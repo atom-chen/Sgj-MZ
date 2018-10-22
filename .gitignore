@@ -13,6 +13,9 @@ Thumbs.db
 Library/
 node_modules/
 build/
+Temp/
+obj/
+.vs/
 
 #//////////////////////////
 # facebook

@@ -1,14 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio for Mac
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabsToSpaces = True
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal
