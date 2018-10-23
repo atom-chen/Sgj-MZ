@@ -4,18 +4,24 @@ using App.View.Common;
 using UnityEngine;
 namespace App.Controller.Common
 {
+    public delegate IEnumerator AnimationComplete();
     public class CBase : MonoBehaviour, IController
     {
+        /**
+         *  
+         *  Awake -> Start = Load => OnLoad -> LoadEnd -> LoadAnimation -> OnLoadAnimation -> LoadAnimationEnd
+         * 
+         *  Unload -> OnUnload -> UnloadEnd -> UnloadAnimation -> OnUnloadAnimation -> UnloadAnimationEnd -> SetActive(false)
+         * 
+         * 
+         **/
+
+        //animation for controller
+        [SerializeField]
+        public ControllerAnimation controllerAnimation;
         protected bool loadCalled = false;
         protected bool unloadCalled = false;
-        public virtual IEnumerator Start()
-        {
-            yield return StartCoroutine(OnLoad(null));
-        }
-        public virtual IEnumerator OnLoad(Request request)
-        {
-            yield return 0;
-        }
+        //view dispatcher
         protected Dispatcher dispatcher = new Dispatcher();
         public Dispatcher Dispatcher
         {
@@ -23,6 +29,22 @@ namespace App.Controller.Common
             {
                 return dispatcher;
             }
+        }
+
+        // delegete
+        public AnimationComplete loadAnimationCompleted;
+        public AnimationComplete unloadAnimationCompleted;
+
+        //各シーンでInstantiateしたオブジェクトでシーン遷移時に破棄するもの
+        //例）クエストの宝箱など
+        private List<GameObject> listUncachedGameObject = new List<GameObject>();
+        public virtual IEnumerator Start()
+        {
+            yield return StartCoroutine(OnLoad(null));
+        }
+        public virtual IEnumerator OnLoad(Request request)
+        {
+            yield return 0;
         }
 
         /// <summary>
@@ -63,7 +85,7 @@ namespace App.Controller.Common
             YieldInstruction y = null;
             if (this.gameObject.activeInHierarchy == true)
             {
-                y = App.Util.AppManager.CurrentScene.StartCoroutine(OnUnload(), this);
+                y = App.Util.AppManager.CurrentScene.StartCoroutine(OnUnload());
             }
             //エフェクトが生きてる場合、全て破棄する
             /*foreach (var effect in this.gameObject.GetComponentsInChildren<App.View.Common.EffectLocation>())
@@ -73,9 +95,81 @@ namespace App.Controller.Common
             this.DestoryUncachedObject();
             return y;
         }
+
+        public void DestoryUncachedObject()
+        {
+            foreach (GameObject obj in this.listUncachedGameObject)
+            {
+                Destroy(obj);
+            }
+            this.listUncachedGameObject = new List<GameObject>();
+        }
+
         public virtual IEnumerator OnUnload()
         {
             yield return 0;
         }
+
+        public YieldInstruction UnloadAnimation()
+        {
+            //別シーンのパネルに遷移する時は元のパネルが非アクティブになってしまっているので、Unloadの処理を実行しない
+            YieldInstruction y = null;
+            if (this.gameObject.activeInHierarchy == true)
+            {
+                y = App.Util.AppManager.CurrentScene.StartCoroutine(UnloadAnimationRoutine());
+            }
+            return y;
+        }
+
+        public IEnumerator UnloadAnimationRoutine()
+        {
+            if (controllerAnimation != null)
+            {
+                bool completed = false;
+                controllerAnimation.Hide(() => {
+                    if (unloadAnimationCompleted != null)
+                    {
+                        App.Util.AppManager.CurrentScene.StartCoroutine(unloadAnimationCompleted());
+                        unloadAnimationCompleted = null; // 連打時のエラー回避
+                    }
+                    completed = true;
+                });
+                while (!completed)
+                {
+                    yield return 0;
+                }
+            }
+        }
+
+        public YieldInstruction LoadAnimation()
+        {
+            return App.Util.AppManager.CurrentScene.StartCoroutine(LoadAnimationRoutine());
+        }
+
+        protected IEnumerator LoadAnimationRoutine()
+        {
+            if (controllerAnimation != null)
+            {
+                bool completed = false;
+                yield return 0;
+                controllerAnimation.Show(() => {
+                    completed = true;
+                });
+                while (!completed)
+                {
+                    yield return 0;
+                }
+            }
+            LoadAnimationCompleted();
+        }
+
+        protected void LoadAnimationCompleted()
+        {
+            if (loadAnimationCompleted != null)
+            {
+                App.Util.AppManager.CurrentScene.StartCoroutine(loadAnimationCompleted());
+            }
+        }
+
     }
 }
