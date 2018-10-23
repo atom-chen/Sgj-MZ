@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
-public class OverrideSprite : MonoBehaviour {
+public class VAvatar : MonoBehaviour {
     private SpriteRenderer sr;
 
     private static int idMainTex = Shader.PropertyToID("_MainTex");

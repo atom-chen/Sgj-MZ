@@ -43,7 +43,8 @@ namespace App.Controller.Common
 
 
                 if (request == null) { request = new Request(); }
-                return App.Util.CoroutineWrapper.BeginCoroutine(OnLoad(request));
+                //TODO:: return App.Util.CoroutineWrapper.BeginCoroutine(OnLoad(request));
+                return null;
             }
             return null;
         }
@@ -52,6 +53,29 @@ namespace App.Controller.Common
         {
             loadCalled = false;
             Load(request, pushHistory);
+        }
+        public virtual YieldInstruction Unload()
+        {
+            loadCalled = false;
+            unloadCalled = true;
+
+            //別シーンのパネルに遷移する時は元のパネルが非アクティブになってしまっているので、Unloadの処理を実行しない
+            YieldInstruction y = null;
+            if (this.gameObject.activeInHierarchy == true)
+            {
+                y = App.Util.AppManager.CurrentScene.StartCoroutine(OnUnload(), this);
+            }
+            //エフェクトが生きてる場合、全て破棄する
+            /*foreach (var effect in this.gameObject.GetComponentsInChildren<App.View.Common.EffectLocation>())
+            {
+                Destroy(effect.gameObject);
+            }*/
+            this.DestoryUncachedObject();
+            return y;
+        }
+        public virtual IEnumerator OnUnload()
+        {
+            yield return 0;
         }
     }
 }
