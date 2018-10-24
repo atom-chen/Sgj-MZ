@@ -33,7 +33,7 @@ namespace App.View.Common
         {
             if (!registered)
             {
-                App.Controller.Common.CBase controller = this.GetController();
+                App.Controller.Common.CBase controller = this.Controller;
                 if (controller != null)
                 {
                     controller.Dispatcher.Regist(this);

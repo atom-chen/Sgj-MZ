@@ -54,7 +54,6 @@ namespace App.View.Common
             {
                 this.OnNotify();
             }
-            BattleServer.Shared.UnityWrap.DebugWrap.Log("notify views:" + this.views.Count);
         }
 
         public IEnumerator NotifyAsync()

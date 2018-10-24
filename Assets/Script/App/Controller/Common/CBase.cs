@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using App.View.Common;
+using App.View.Common.Animation;
 using UnityEngine;
 namespace App.Controller.Common
 {
