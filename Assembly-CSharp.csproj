@@ -65,6 +65,8 @@
     <Compile Include="Assets\Script\App\Controller\Common\CScene.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\IController.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\Request.cs" />
+    <Compile Include="Assets\Script\App\Controller\Home\CHome.cs" />
+    <Compile Include="Assets\Script\App\Controller\Logo\CLogo.cs" />
     <Compile Include="Assets\Script\App\Model\Common\MBase.cs" />
     <Compile Include="Assets\Script\App\Util\AppManager.cs" />
     <Compile Include="Assets\Script\App\View\Avatar\VAvatar.cs" />
