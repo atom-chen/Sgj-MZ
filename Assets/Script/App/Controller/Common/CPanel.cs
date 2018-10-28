@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using App.Controller.Common;
 using App.View.Common;
 using UnityEngine;
-namespace App.Controller.Home
+namespace App.Controller.Common
 {
-    public class CHome : CScene
+    public class CPanel : CBase
     {
     }
 }

@@ -5,7 +5,7 @@ using App.View.Common;
 using UnityEngine;
 namespace App.Controller.Home
 {
-    public class CHome : CScene
+    public class CHomePanel : CPanel
     {
     }
 }

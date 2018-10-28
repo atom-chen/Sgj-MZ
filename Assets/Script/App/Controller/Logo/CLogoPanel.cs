@@ -6,7 +6,7 @@ using App.View.Common;
 using UnityEngine;
 namespace App.Controller.Logo
 {
-    public class CLogo : CScene
+    public class CLogoPanel : CPanel
     {
         public override IEnumerator Start()
         {

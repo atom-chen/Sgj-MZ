@@ -172,5 +172,9 @@ namespace App.Controller.Common
             }
         }
 
+        public GameObject GetObject(GameObject obj)
+        {
+            return Instantiate(obj) as GameObject;
+        }
     }
 }
