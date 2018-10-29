@@ -7,5 +7,10 @@ namespace App.Controller.Home
 {
     public class CHome : CScene
     {
+
+        public void ChangePanel(string panelName)
+        {
+
+        } 
     }
 }

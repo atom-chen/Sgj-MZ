@@ -81,6 +81,7 @@
     <Compile Include="Assets\Script\App\View\Common\Dispatcher.cs" />
     <Compile Include="Assets\Script\App\View\Common\IView.cs" />
     <Compile Include="Assets\Script\App\View\Common\VBase.cs" />
+    <Compile Include="Assets\Script\App\View\Home\VHomeFooterButton.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

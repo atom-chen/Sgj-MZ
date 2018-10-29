@@ -18,8 +18,7 @@ namespace App.Controller.Common
          **/
 
         //animation for controller
-        [SerializeField]
-        public ControllerAnimation controllerAnimation;
+        [SerializeField]private ControllerAnimation controllerAnimation;
         protected bool loadCalled = false;
         protected bool unloadCalled = false;
         //view dispatcher
@@ -45,7 +44,7 @@ namespace App.Controller.Common
         }
         public virtual IEnumerator OnLoad(Request request)
         {
-            yield return 0;
+            yield return LoadAnimation(); ;
         }
 
         /// <summary>

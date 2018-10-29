@@ -1,49 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(SpriteRenderer))]
-public class VAvatar : MonoBehaviour {
-    private SpriteRenderer sr;
-
-    private static int idMainTex = Shader.PropertyToID("_MainTex");
-    private MaterialPropertyBlock block;
-
-    [SerializeField]
-    private Texture texture = null;
-    public Texture overrideTexture
+namespace App.View.Avatar
+{
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class VAvatar : MonoBehaviour
     {
-        get { return texture; }
-        set
+        private SpriteRenderer sr;
+
+        private static int idMainTex = Shader.PropertyToID("_MainTex");
+        private MaterialPropertyBlock block;
+
+        [SerializeField]
+        private Texture texture = null;
+        public Texture overrideTexture
         {
-            texture = value;
-            if (block == null)
+            get { return texture; }
+            set
             {
-                Init();
+                texture = value;
+                if (block == null)
+                {
+                    Init();
+                }
+                block.SetTexture(idMainTex, texture);
             }
-            block.SetTexture(idMainTex, texture);
         }
-    }
 
-    void Awake()
-    {
-        Init();
-        overrideTexture = texture;
-    }
+        void Awake()
+        {
+            Init();
+            overrideTexture = texture;
+        }
 
-    void LateUpdate()
-    {
-        sr.SetPropertyBlock(block);
-    }
+        void LateUpdate()
+        {
+            sr.SetPropertyBlock(block);
+        }
 
-    void OnValidate()
-    {
-        overrideTexture = texture;
-    }
+        void OnValidate()
+        {
+            overrideTexture = texture;
+        }
 
-    void Init()
-    {
-        block = new MaterialPropertyBlock();
-        sr = GetComponent<SpriteRenderer>();
-        sr.GetPropertyBlock(block);
+        void Init()
+        {
+            block = new MaterialPropertyBlock();
+            sr = GetComponent<SpriteRenderer>();
+            sr.GetPropertyBlock(block);
+        }
     }
 }
