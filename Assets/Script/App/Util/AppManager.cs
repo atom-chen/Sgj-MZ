@@ -9,12 +9,17 @@ namespace App.Util
     {
         LogoPanel,
         HomePanel,
+        ShopPanel,
+        CardPanel,
+        GroupPanel,
+        EventPanel,
     }
 
     public class AppManager
     {
         public static CScene CurrentScene;
         public static Request CurrentSceneRequest;
+        public static CPanel CurrentPanel;
         public static void LoadScene(string name, Request req = null)
         {
             //App.Controller.CConnectingDialog.ToShow();
@@ -39,7 +44,12 @@ namespace App.Util
         public IEnumerator LoadPanel(Panel newPanel, Request request = null)
         {
             Debug.Log("newPanel=" + newPanel.ToString());
+            CPanel oldPanel = CurrentPanel;
             yield return LoadPrefab("Panels", newPanel.ToString());
+            if(oldPanel != null){
+                yield return oldPanel.Unload();
+                oldPanel.gameObject.SetActive(false);
+            }
         }
 
         public IEnumerator LoadPrefab(string path, string prefabName)
@@ -51,8 +61,8 @@ namespace App.Util
             };
             yield return LoadAsync(string.Format("Prefabs/{0}/{1}", path, prefabName), callback);
             instance.SetActive(true);
-            //CPanel panel = instance.GetComponent<CPanel>();
-            Transform parent = AppManager.CurrentScene.panelsParent;
+            CurrentPanel = instance.GetComponent<CPanel>();
+            Transform parent = CurrentScene.panelsParent;
             instance.transform.SetParent(parent);
             instance.transform.localScale = Vector3.one;
             instance.transform.localPosition = Vector3.zero;

@@ -9,7 +9,7 @@ namespace App.Controller.Common
     {
         private Transform _panelsParent = null;
         private Transform _dialogsParent = null;
-        public App.Util.Panel defaultPanel;
+        public Panel defaultPanel;
         public override IEnumerator Start()
         {
             Debug.Log("CScene Start");
