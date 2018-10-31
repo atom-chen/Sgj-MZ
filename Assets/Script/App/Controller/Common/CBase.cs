@@ -107,7 +107,7 @@ namespace App.Controller.Common
 
         public virtual IEnumerator OnUnload()
         {
-            yield return 0;
+            yield return UnloadAnimation();
         }
 
         public YieldInstruction UnloadAnimation()
