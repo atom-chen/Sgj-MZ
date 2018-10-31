@@ -18,7 +18,7 @@ namespace App.Controller.Common
          **/
 
         //animation for controller
-        [SerializeField]private ControllerAnimation controllerAnimation;
+        [SerializeField]public ControllerAnimation controllerAnimation;
         protected bool loadCalled = false;
         protected bool unloadCalled = false;
         //view dispatcher

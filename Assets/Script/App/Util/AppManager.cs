@@ -19,6 +19,7 @@ namespace App.Util
     {
         public static CScene CurrentScene;
         public static Request CurrentSceneRequest;
+        public static CPanel OldPanel;
         public static CPanel CurrentPanel;
         public static void LoadScene(string name, Request req = null)
         {
@@ -44,11 +45,11 @@ namespace App.Util
         public IEnumerator LoadPanel(Panel newPanel, Request request = null)
         {
             Debug.Log("newPanel=" + newPanel.ToString());
-            CPanel oldPanel = CurrentPanel;
+            OldPanel = CurrentPanel;
             yield return LoadPrefab("Panels", newPanel.ToString());
-            if(oldPanel != null){
-                yield return oldPanel.Unload();
-                oldPanel.gameObject.SetActive(false);
+            if(OldPanel != null){
+                yield return OldPanel.Unload();
+                //OldPanel.gameObject.SetActive(false);
             }
         }
 

@@ -10,10 +10,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{DBFC73BC-2039-9124-9D1B-B866DDE80659}</ProjectGuid>
+    <ProjectGuid>{E40A1982-0791-90C9-0829-FCC69A368693}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>iOS:9</UnityBuildTarget>
     <UnityVersion>2018.2.14f1</UnityVersion>
   </PropertyGroup>
@@ -61,31 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\App\Controller\Card\CCardPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CBase.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CDialog.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CScene.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\IController.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\Request.cs" />
-    <Compile Include="Assets\Script\App\Controller\Event\CEventPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Group\CGroupPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Home\CHome.cs" />
-    <Compile Include="Assets\Script\App\Controller\Home\CHomePanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Logo\CLogo.cs" />
-    <Compile Include="Assets\Script\App\Controller\Logo\CLogoPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Shop\CShopPanel.cs" />
-    <Compile Include="Assets\Script\App\Model\Common\MBase.cs" />
-    <Compile Include="Assets\Script\App\Util\AppManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Global.cs" />
-    <Compile Include="Assets\Script\App\View\Avatar\VAvatar.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\ControllerAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\IControllerAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\PanelAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Dispatcher.cs" />
-    <Compile Include="Assets\Script\App\View\Common\IView.cs" />
-    <Compile Include="Assets\Script\App\View\Common\VBase.cs" />
-    <Compile Include="Assets\Script\App\View\Home\VHomeFooterButton.cs" />
+    <Compile Include="Assets\Plugins\HOTween\_Demo\HOTweenDemoBrain.cs" />
+    <None Include="Assets\Plugins\HOTween\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -332,12 +309,6 @@
     <Reference Include="Boo.Lang">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{E40A1982-0791-90C9-0829-FCC69A368693}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
