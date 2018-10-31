@@ -62,6 +62,9 @@ namespace App.Util
             yield return LoadAsync(string.Format("Prefabs/{0}/{1}", path, prefabName), callback);
             instance.SetActive(true);
             CurrentPanel = instance.GetComponent<CPanel>();
+            RectTransform trans = instance.GetComponent<RectTransform>();
+            trans.anchorMax = new Vector2(0.5f, 0.5f);
+            trans.anchorMin = new Vector2(0.5f, 0.5f);
             Transform parent = CurrentScene.panelsParent;
             instance.transform.SetParent(parent);
             instance.transform.localScale = Vector3.one;
