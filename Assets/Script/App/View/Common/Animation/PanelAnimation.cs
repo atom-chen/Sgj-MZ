@@ -20,21 +20,36 @@ namespace App.View.Common.Animation
             {
                 case PanelAnimationType.Move:
                     RectTransform trans = gameObject.GetComponent<RectTransform>();
-                    trans.anchoredPosition = new Vector3(trans.sizeDelta.x, trans.anchoredPosition.y);
+                    float x = this.index > oldPanelAnimation.index ? trans.sizeDelta.x : -trans.sizeDelta.x;
+                    trans.anchoredPosition = new Vector3(x, trans.anchoredPosition.y);
+                    break;
+                case PanelAnimationType.Fade:
+                    canvasGroup.alpha = 0;
                     break;
             }
         }
         public override void Show(System.Action complete)
         {
-            this._init(App.Util.AppManager.OldPanel.controllerAnimation as PanelAnimation);
+            PanelAnimationType type = animationType;
+            PanelAnimation oldPanelAnimation = Util.AppManager.OldPanel.controllerAnimation as PanelAnimation;
+            if(oldPanelAnimation == null){
+                type = PanelAnimationType.Fade;
+            }
+            else
+            {
+                this._init(oldPanelAnimation);
+            }
             // パネル表示時→ローディングアニメ非表示
             //Indicator.Hide(type, true, complete);
             Debug.Log("PanelAnimation Show " + this.gameObject.name);
             RectTransform trans = gameObject.GetComponent<RectTransform>();
-            switch (animationType)
+            switch (type)
             {
                 case PanelAnimationType.Move:
                     HOTween.To(trans, 0.3f, new TweenParms().Prop("anchoredPosition", new Vector2(0, 0)));
+                    break;
+                case PanelAnimationType.Fade:
+                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 1));
                     break;
             }
         }
@@ -45,15 +60,31 @@ namespace App.View.Common.Animation
             //Indicator.Show(type, type == Indicator.Type.Tips ? "" : Localization.Get("Transmitting"), true, complete);
             Debug.Log("PanelAnimation Hide " + this.gameObject.name);
             RectTransform trans = gameObject.GetComponent<RectTransform>();
+            PanelAnimation currentPanelAnimation = App.Util.AppManager.CurrentPanel.controllerAnimation as PanelAnimation;
             switch (animationType)
             {
                 case PanelAnimationType.Move:
+                    float x = this.index > currentPanelAnimation.index ? trans.sizeDelta.x : -trans.sizeDelta.x;
                     HOTween.To(trans, 0.3f, new TweenParms()
-                               .Prop("anchoredPosition", new Vector2(-trans.sizeDelta.x, 0))
+                               .Prop("anchoredPosition", new Vector2(x, 0))
                                .OnComplete(()=>{
                                    gameObject.SetActive(false);
                     }));
                     break;
+                case PanelAnimationType.Fade:
+                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 0));
+                    break;
+            }
+        }
+        public CanvasGroup canvasGroup{
+            get
+            {
+                CanvasGroup component = gameObject.GetComponent<CanvasGroup>();
+                if (component == null)
+                {
+                    component = gameObject.AddComponent<CanvasGroup>();
+                }
+                return component;
             }
         }
     }

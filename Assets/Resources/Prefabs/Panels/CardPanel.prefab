@@ -109,7 +109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Home Panel
+  m_Text: Card Panel
 --- !u!114 &114790028240072488
 MonoBehaviour:
   m_ObjectHideFlags: 1
