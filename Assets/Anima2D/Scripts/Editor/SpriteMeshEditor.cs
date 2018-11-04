@@ -11,11 +11,13 @@ namespace Anima2D
 	public class SpriteMeshEditor : Editor
 	{
 		SerializedProperty m_SpriteProperty;
+		SerializedProperty m_SharedMaterialsProperty;
 		SerializedProperty m_SharedMeshProperty;
 
 		void OnEnable()
 		{
 			m_SpriteProperty = serializedObject.FindProperty("m_Sprite");
+			m_SharedMaterialsProperty = serializedObject.FindProperty("m_SharedMaterials");
 			m_SharedMeshProperty = serializedObject.FindProperty("m_SharedMesh");
 		}
 
@@ -54,6 +56,7 @@ namespace Anima2D
 			EditorGUI.BeginDisabledGroup(true);
 
 			EditorGUILayout.PropertyField(m_SharedMeshProperty);
+			EditorGUILayout.PropertyField(m_SharedMaterialsProperty,true);
 
 			EditorGUI.EndDisabledGroup();
 

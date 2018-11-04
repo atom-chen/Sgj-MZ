@@ -40,6 +40,19 @@ namespace Anima2D
 			UpgradeToMaterials();
 			UpgradeToBoneTransforms();
 
+			/*
+			if(m_SpriteMeshInstance.cachedRenderer)
+			{
+				foreach(Material material in m_SpriteMeshInstance.cachedRenderer.sharedMaterials)
+				{
+					if(material)
+					{
+						material.hideFlags = HideFlags.HideInInspector;
+					}
+				}
+			}
+			*/
+
 			UpdateSpriteMeshData();
 			SetupBoneList();
 

@@ -51,10 +51,7 @@ namespace Anima2D
 			GameObject spriteRendererGO = Selection.activeGameObject;
 			SpriteRenderer spriteRenderer = null;
 			SpriteMesh spriteMesh = null;
-
-			int sortingLayerID = 0;
-			int sortingOrder = 0;
-
+			
 			if(spriteRendererGO)
 			{
 				spriteRenderer = spriteRendererGO.GetComponent<SpriteRenderer>();
@@ -63,9 +60,6 @@ namespace Anima2D
 			if(spriteRenderer &&
 			   spriteRenderer.sprite)
 			{
-				sortingLayerID = spriteRenderer.sortingLayerID;
-				sortingOrder = spriteRenderer.sortingOrder;
-
 				SpriteMesh overrideSpriteMesh =  SpriteMeshPostprocessor.GetSpriteMeshFromSprite(spriteRenderer.sprite);
 
 				if(overrideSpriteMesh)
@@ -80,10 +74,7 @@ namespace Anima2D
 			{
 				Undo.SetCurrentGroupName("create SpriteMeshInstance"); 
 				Undo.DestroyObjectImmediate(spriteRenderer);
-				SpriteMeshInstance spriteMeshInstance = SpriteMeshUtils.CreateSpriteMeshInstance(spriteMesh,spriteRendererGO,true);
-
-				spriteMeshInstance.sortingLayerID = sortingLayerID;
-				spriteMeshInstance.sortingOrder = sortingOrder;
+				SpriteMeshUtils.CreateSpriteMeshInstance(spriteMesh,spriteRendererGO,true);
 				
 				Selection.activeGameObject = spriteRendererGO;
 			}else{

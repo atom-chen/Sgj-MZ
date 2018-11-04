@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: fc80061c2d450447784ddbc6c15908cc
+timeCreated: 1490611764
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Challenge Contour
+  fontNames:
+  - Challenge Contour
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

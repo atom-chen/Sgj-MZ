@@ -209,11 +209,6 @@ namespace Anima2D
 						{
 							BoneUtils.FixLocalEulerHint(pose.bone.transform);
 						}
-
-						if(l_ik2D.orientChild && l_ik2D.target.child)
-						{
-							BoneUtils.FixLocalEulerHint(l_ik2D.target.child.transform);
-						}
 					}
 				}
 			}

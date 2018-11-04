@@ -26,6 +26,7 @@ public class SpriteMeshInstancePostProcessor : AssetPostprocessor
 							needsReimport =  needsReimport || spriteMeshInstance.cachedSkinnedRenderer.sharedMesh != spriteMeshInstance.spriteMesh.sharedMesh;
 							
 							spriteMeshInstance.cachedSkinnedRenderer.sharedMesh = spriteMeshInstance.spriteMesh.sharedMesh;
+							spriteMeshInstance.cachedSkinnedRenderer.sharedMaterials = spriteMeshInstance.spriteMesh.sharedMaterials;
 							EditorUtility.SetDirty(spriteMeshInstance.cachedSkinnedRenderer);
 						}
 						
@@ -34,7 +35,9 @@ public class SpriteMeshInstancePostProcessor : AssetPostprocessor
 							needsReimport = needsReimport || spriteMeshInstance.cachedMeshFilter.sharedMesh != spriteMeshInstance.spriteMesh.sharedMesh;
 							
 							spriteMeshInstance.cachedMeshFilter.sharedMesh = spriteMeshInstance.spriteMesh.sharedMesh;
+							spriteMeshInstance.cachedRenderer.sharedMaterials = spriteMeshInstance.spriteMesh.sharedMaterials;
 							EditorUtility.SetDirty(spriteMeshInstance.cachedMeshFilter);
+							EditorUtility.SetDirty(spriteMeshInstance.cachedRenderer);
 						}
 					}
 				}

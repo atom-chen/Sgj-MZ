@@ -8,7 +8,7 @@ namespace Anima2D
 {
 	public class SpriteMesh : ScriptableObject
 	{
-		public const int api_version = 4;
+		public const int api_version = 3;
 
 		[SerializeField][HideInInspector]
 		int m_ApiVersion;
@@ -19,8 +19,12 @@ namespace Anima2D
 		[SerializeField]
 		Mesh m_SharedMesh;
 
-		public Sprite sprite { get { return m_Sprite; } }
+		[SerializeField]
+		Material[] m_SharedMaterials;
+
+        public Sprite sprite { get { return m_Sprite; }set{ m_Sprite = value;} }
 		public Mesh sharedMesh { get { return m_SharedMesh; } }
+		public Material[] sharedMaterials { get { return m_SharedMaterials; } }
 
 #region DEPRECATED
 #if UNITY_EDITOR
@@ -74,8 +78,6 @@ namespace Anima2D
 		[SerializeField][HideInInspector] Hole[] holes;
 		[SerializeField][HideInInspector] int[] indices;
 		[SerializeField][HideInInspector] BindInfo[] bindPoses;
-		[SerializeField][HideInInspector] Material[] m_SharedMaterials;
-
 #endif
 #endregion
 	}

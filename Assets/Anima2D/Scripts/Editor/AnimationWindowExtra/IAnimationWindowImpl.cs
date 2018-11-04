@@ -4,7 +4,6 @@ using System.Collections;
 
 public interface IAnimationWindowImpl
 {
-	EditorWindow animationWindow { get; }
 	int frame { get; set; }
 	bool recording { get; set; }
 	AnimationClip activeAnimationClip { get; }

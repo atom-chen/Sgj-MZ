@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{318A4C47-0A0F-04D2-28E0-9EF21DA3971D}</ProjectGuid>
+    <ProjectGuid>{DBFC73BC-2039-9124-9D1B-B866DDE80659}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -85,6 +85,8 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
+    <Compile Include="Assets\Script\App\Controller\Battle\CBattle.cs" />
+    <Compile Include="Assets\Script\App\Controller\Battle\CBattlePanel.cs" />
     <Compile Include="Assets\Script\App\Controller\Card\CCardPanel.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\CBase.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\CDialog.cs" />
@@ -92,6 +94,9 @@
     <Compile Include="Assets\Script\App\Controller\Common\CScene.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\IController.cs" />
     <Compile Include="Assets\Script\App\Controller\Common\Request.cs" />
+    <Compile Include="Assets\Script\App\Controller\Dialog\CAlertDialog.cs" />
+    <Compile Include="Assets\Script\App\Controller\Dialog\CConnectingDialog.cs" />
+    <Compile Include="Assets\Script\App\Controller\Dialog\CLoadingDialog.cs" />
     <Compile Include="Assets\Script\App\Controller\Event\CEventPanel.cs" />
     <Compile Include="Assets\Script\App\Controller\Group\CGroupPanel.cs" />
     <Compile Include="Assets\Script\App\Controller\Home\CHome.cs" />
@@ -99,10 +104,21 @@
     <Compile Include="Assets\Script\App\Controller\Logo\CLogo.cs" />
     <Compile Include="Assets\Script\App\Controller\Logo\CLogoPanel.cs" />
     <Compile Include="Assets\Script\App\Controller\Shop\CShopPanel.cs" />
+    <Compile Include="Assets\Script\App\Model\Character\MCharacter.cs" />
     <Compile Include="Assets\Script\App\Model\Common\MBase.cs" />
+    <Compile Include="Assets\Script\App\Model\Map\MTile.cs" />
+    <Compile Include="Assets\Script\App\Model\Master\MTile.cs" />
+    <Compile Include="Assets\Script\App\Model\MStatic.cs" />
+    <Compile Include="Assets\Script\App\Service\HttpClient.cs" />
+    <Compile Include="Assets\Script\App\Service\ResponseBase.cs" />
     <Compile Include="Assets\Script\App\Util\AppManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Cacher\CacherBase.cs" />
+    <Compile Include="Assets\Script\App\Util\Cacher\TileCacher.cs" />
     <Compile Include="Assets\Script\App\Util\Global.cs" />
+    <Compile Include="Assets\Script\App\Util\ImageAssetBundleManager.cs" />
     <Compile Include="Assets\Script\App\View\Avatar\VAvatar.cs" />
+    <Compile Include="Assets\Script\App\View\Avatar\VCharacter.cs" />
+    <Compile Include="Assets\Script\App\View\Avatar\VCharacterAnimation.cs" />
     <Compile Include="Assets\Script\App\View\Common\Animation\ControllerAnimation.cs" />
     <Compile Include="Assets\Script\App\View\Common\Animation\IControllerAnimation.cs" />
     <Compile Include="Assets\Script\App\View\Common\Animation\PanelAnimation.cs" />
@@ -110,6 +126,15 @@
     <Compile Include="Assets\Script\App\View\Common\IView.cs" />
     <Compile Include="Assets\Script\App\View\Common\VBase.cs" />
     <Compile Include="Assets\Script\App\View\Home\VHomeFooterButton.cs" />
+    <Compile Include="Assets\Script\App\View\Map\VMap.cs" />
+    <Compile Include="Assets\Script\App\View\Map\VTile.cs" />
+    <Compile Include="Assets\UniWebView\Script\Helper\UniWebViewHelper.cs" />
+    <Compile Include="Assets\UniWebView\Script\UniWebView.cs" />
+    <Compile Include="Assets\UniWebView\Script\UniWebViewEdgeInsets.cs" />
+    <Compile Include="Assets\UniWebView\Script\UniWebViewMessage.cs" />
+    <Compile Include="Assets\UniWebView\Script\UniWebViewOrientation.cs" />
+    <Compile Include="Assets\UniWebView\Script\UniWebViewTransitionEdge.cs" />
+    <None Include="Assets\Shader\Sprites-Gray.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />
     <None Include="Assets\Anima2D\Version.txt" />
@@ -118,16 +143,16 @@
     <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />
     <None Include="Assets\Anima2D\Readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -307,7 +332,7 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/Unity.Locator.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity.Settings">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -328,13 +353,13 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="HOTween">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Assets/Plugins/HOTween/Plugins/HOTween.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Assets/Plugins/HOTween/Plugins/HOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
@@ -366,7 +391,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8FEB267F-215D-FF33-CEE3-E22C01350AB4}</Project>
+      <Project>{E40A1982-0791-90C9-0829-FCC69A368693}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>

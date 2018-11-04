@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{8FEB267F-215D-FF33-CEE3-E22C01350AB4}</ProjectGuid>
+    <ProjectGuid>{E40A1982-0791-90C9-0829-FCC69A368693}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -62,18 +62,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\HOTween\_Demo\HOTweenDemoBrain.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\About.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\DataReaderProvider.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\DataWriterProvider.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\EcmaScriptIdentifier.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\EcmaScriptWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IDataReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IDataWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IJsonSerializable.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonDataReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonDataWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonIgnoreAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonMemberAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonNameAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonOptInAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonReaderSettings.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonSerializationException.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonSpecifiedPropertyAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonToken.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonWriterSettings.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\TypeCoercionUtility.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewEventProcessor.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginAndroid.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginiOS.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginMacEditor.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginWP.cs" />
     <None Include="Assets\Plugins\HOTween\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -253,7 +280,7 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/Unity.Locator.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Unity.Settings">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -274,13 +301,13 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="HOTween">
-      <HintPath>/Users/lubin.zhang/Documents/sgj-MZ/Assets/Plugins/HOTween/Plugins/HOTween.dll</HintPath>
+      <HintPath>/Users/lufy/Documents/git/Sgj-MZ/Assets/Plugins/HOTween/Plugins/HOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

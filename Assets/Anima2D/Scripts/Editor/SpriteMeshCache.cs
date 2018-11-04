@@ -923,74 +923,59 @@ namespace Anima2D
 				return;
 			}
 			
-			if(!spriteMesh)
-				return;
-
-			List<Vector2> controlPoints = new List<Vector2>();
-			List<IndexedEdge> controlPointEdges = new List<IndexedEdge>();
-			List<int> pins = new List<int>();
-			
-			foreach(BindInfo bindInfo in bindPoses)
+			if(spriteMesh && bindPoses.Count > 1)
 			{
-				Vector2 tip = SpriteMeshUtils.VertexToTexCoord(spriteMesh,pivotPoint,bindInfo.position,pixelsPerUnit);
-				Vector2 tail = SpriteMeshUtils.VertexToTexCoord(spriteMesh,pivotPoint,bindInfo.endPoint,pixelsPerUnit);
+				List<Vector2> controlPoints = new List<Vector2>(bindPoses.Count*2);
+				List<IndexedEdge> controlPointEdges = new List<IndexedEdge>(bindPoses.Count);
 				
-				if(bindInfo.boneLength <= 0f)
+				foreach(BindInfo bindInfo in bindPoses)
 				{
-					int index = controlPoints.Count;
-					controlPoints.Add(tip);
-					pins.Add(index);
-
-					continue;
+					Vector2 tip = SpriteMeshUtils.VertexToTexCoord(spriteMesh,pivotPoint,bindInfo.position,pixelsPerUnit);
+					Vector2 tail = SpriteMeshUtils.VertexToTexCoord(spriteMesh,pivotPoint,bindInfo.endPoint,pixelsPerUnit);
+					
+					int index1 = -1;
+					
+					if(!ContainsVector(tip,controlPoints,0.01f, out index1))
+					{
+						index1 = controlPoints.Count;
+						controlPoints.Add(tip);
+					}
+					
+					int index2 = -1;
+					
+					if(!ContainsVector(tail,controlPoints,0.01f, out index2))
+					{
+						index2 = controlPoints.Count;
+						controlPoints.Add(tail);
+					}
+					
+					IndexedEdge edge = new IndexedEdge(index1, index2);
+					controlPointEdges.Add(edge);
+					
 				}
-
-				int index1 = -1;
 				
-				if(!ContainsVector(tip,controlPoints,0.01f, out index1))
+				float[,] weightArray;
+				
+				BbwPlugin.CalculateBbw(m_TexVertices.ToArray(),
+				                       indexedEdges.ToArray(),
+				                       controlPoints.ToArray(),
+				                       controlPointEdges.ToArray(),
+				                       out weightArray);
+				
+				FillBoneWeights(targetNodes, weightArray);
+				
+				isDirty = true;
+			}else{
+				
+				BoneWeight boneWeight = BoneWeight.Create();
+				boneWeight.boneIndex0 = 0;
+				boneWeight.weight0 = 1f;
+				
+				foreach(Node node in targetNodes)
 				{
-					index1 = controlPoints.Count;
-					controlPoints.Add(tip);
+					SetBoneWeight(node,boneWeight);
 				}
-				
-				int index2 = -1;
-				
-				if(!ContainsVector(tail,controlPoints,0.01f, out index2))
-				{
-					index2 = controlPoints.Count;
-					controlPoints.Add(tail);
-				}
-				
-				IndexedEdge edge = new IndexedEdge(index1, index2);
-				controlPointEdges.Add(edge);
-				
 			}
-			
-			UnityEngine.BoneWeight[] boneWeights = BbwPlugin.CalculateBbw(m_TexVertices.ToArray(), indexedEdges.ToArray(), controlPoints.ToArray(), controlPointEdges.ToArray(), pins.ToArray());
-			
-			foreach(Node node in targetNodes)
-			{
-				UnityEngine.BoneWeight unityBoneWeight = boneWeights[node.index];
-				
-				SetBoneWeight(node,CreateBoneWeightFromUnityBoneWeight(unityBoneWeight));
-			}
-			
-			isDirty = true;
-		}
-
-		BoneWeight CreateBoneWeightFromUnityBoneWeight(UnityEngine.BoneWeight unityBoneWeight)
-		{
-			BoneWeight boneWeight = new BoneWeight();
-			
-			boneWeight.boneIndex0 = unityBoneWeight.boneIndex0;
-			boneWeight.boneIndex1 = unityBoneWeight.boneIndex1;
-			boneWeight.boneIndex2 = unityBoneWeight.boneIndex2;
-			boneWeight.boneIndex3 = unityBoneWeight.boneIndex3;
-			boneWeight.weight0 = unityBoneWeight.weight0;
-			boneWeight.weight1 = unityBoneWeight.weight1;
-			boneWeight.weight2 = unityBoneWeight.weight2;
-			boneWeight.weight3 = unityBoneWeight.weight3;
-			
-			return boneWeight;
 		}
 		
 		void FillBoneWeights(List<Node> targetNodes, float[,] weights)

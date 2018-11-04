@@ -116,9 +116,8 @@ public class SkinnedMeshCombiner : MonoBehaviour
 		}
 		
 		SkinnedMeshRenderer combinedSkinnedRenderer = gameObject.AddComponent<SkinnedMeshRenderer>();
-		Mesh combinedMesh = new Mesh();
-		combinedMesh.CombineMeshes( combineInstances.ToArray(), true, true );
-		combinedSkinnedRenderer.sharedMesh = combinedMesh;
+		combinedSkinnedRenderer.sharedMesh = new Mesh();
+		combinedSkinnedRenderer.sharedMesh.CombineMeshes( combineInstances.ToArray(), true, true );
 		combinedSkinnedRenderer.bones = bones.ToArray();
 		combinedSkinnedRenderer.sharedMesh.boneWeights = boneWeights.ToArray();
 		combinedSkinnedRenderer.sharedMesh.bindposes = bindposes.ToArray();

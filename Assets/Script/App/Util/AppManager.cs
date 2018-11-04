@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using App.Controller.Common;
 using UnityEngine;
 
@@ -13,14 +14,22 @@ namespace App.Util
         CardPanel,
         GroupPanel,
         EventPanel,
+        BattlePanel,
     }
 
     public class AppManager
     {
         public static CScene CurrentScene;
         public static Request CurrentSceneRequest;
+        private List<CDialog> Dialogs = new List<CDialog>();
         public static CPanel OldPanel;
         public static CPanel CurrentPanel;
+        public enum Prefabs
+        {
+            ConnectingDialog,
+            LoadingDialog,
+            AlertDialog
+        }
         public static void LoadScene(string name, Request req = null)
         {
             //App.Controller.CConnectingDialog.ToShow();
@@ -38,7 +47,21 @@ namespace App.Util
 
 
         protected CPanel currentPanel;
-
+        public CDialog CurrentDialog
+        {
+            get
+            {
+                for (int i = Dialogs.Count - 1; i >= 0; i--)
+                {
+                    CDialog dialog = Dialogs[i];
+                    if (dialog.gameObject.activeSelf)
+                    {
+                        return dialog;
+                    }
+                }
+                return null;
+            }
+        }
         public void DestoryDialog(CDialog deleteDialog = null){
 
         }
@@ -83,6 +106,39 @@ namespace App.Util
             }
             callback(resourceRequest.asset as GameObject);
             yield return new WaitForEndOfFrame();
+        }
+        public IEnumerator ShowDialog(Prefabs prefab, Request req = null){
+            yield return new WaitForEndOfFrame();
+        }
+        public bool DialogIsShow()
+        {
+            foreach (CDialog dialog in Dialogs)
+            {
+                if (dialog.gameObject.activeSelf)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool DialogIsShow(Prefabs prefab)
+        {
+            return FindDialog(prefab) != null;
+        }
+        public CDialog FindDialog(Prefabs prefab)
+        {
+            foreach (CDialog dialog in Dialogs)
+            {
+                if (!dialog.gameObject.activeSelf)
+                {
+                    continue;
+                }
+                if (dialog.name == (prefab.ToString() + "(Clone)"))
+                {
+                    return dialog;
+                }
+            }
+            return null;
         }
     }
 }
