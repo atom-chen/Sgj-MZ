@@ -128,12 +128,6 @@
     <Compile Include="Assets\Script\App\View\Home\VHomeFooterButton.cs" />
     <Compile Include="Assets\Script\App\View\Map\VMap.cs" />
     <Compile Include="Assets\Script\App\View\Map\VTile.cs" />
-    <Compile Include="Assets\UniWebView\Script\Helper\UniWebViewHelper.cs" />
-    <Compile Include="Assets\UniWebView\Script\UniWebView.cs" />
-    <Compile Include="Assets\UniWebView\Script\UniWebViewEdgeInsets.cs" />
-    <Compile Include="Assets\UniWebView\Script\UniWebViewMessage.cs" />
-    <Compile Include="Assets\UniWebView\Script\UniWebViewOrientation.cs" />
-    <Compile Include="Assets\UniWebView\Script\UniWebViewTransitionEdge.cs" />
     <None Include="Assets\Shader\Sprites-Gray.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />

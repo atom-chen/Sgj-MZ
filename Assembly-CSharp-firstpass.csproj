@@ -84,6 +84,12 @@
     <Compile Include="Assets\Plugins\JsonFx\JsonWriter.cs" />
     <Compile Include="Assets\Plugins\JsonFx\JsonWriterSettings.cs" />
     <Compile Include="Assets\Plugins\JsonFx\TypeCoercionUtility.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\Helper\UniWebViewHelper.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebView.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewEdgeInsets.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewMessage.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewOrientation.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewTransitionEdge.cs" />
     <Compile Include="Assets\Plugins\UniWebViewEventProcessor.cs" />
     <Compile Include="Assets\Plugins\UniWebViewPluginAndroid.cs" />
     <Compile Include="Assets\Plugins\UniWebViewPluginiOS.cs" />
