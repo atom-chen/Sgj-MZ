@@ -38,11 +38,16 @@ namespace App.View.Map
                     }
                 }
             }
-            Debug.Log("tiles.Count" + tiles.Count);
+
+            for (int i = 0; i < tileUnits.Count; i++){
+                List<VTile> childs = tileUnits[i];
+                for (int j = 0; j < childs.Count; j++){
+                    childs[j].gameObject.SetActive(false);
+                }
+            }
             for (int i = 0; i < tiles.Count; i++)
             {
                 List<MTile> mTiles = tiles[i];
-                Debug.Log("mTiles.Count" + mTiles.Count);
                 List<VTile> childs;
                 bool emptyTiles = false;
                 if (tileUnits.Count < i + 1)
@@ -57,7 +62,6 @@ namespace App.View.Map
                 }
                 for (int j = 0; j < mTiles.Count; j++){
                     VTile vTile;
-                    Debug.Log("emptyTiles=" + emptyTiles + ", childs.Count="+ childs.Count);
                     if (emptyTiles || childs.Count < j + 1)
                     {
                         GameObject obj = Instantiate(tilePrefab);
@@ -69,6 +73,7 @@ namespace App.View.Map
                     else
                     {
                         vTile = childs[j];
+                        vTile.gameObject.SetActive(true);
                     }
 
                 }
