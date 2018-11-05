@@ -15,6 +15,37 @@ namespace App.View.Map
         [SerializeField] public SpriteRenderer attackSprite;
         [SerializeField] public SpriteRenderer textBackground;
         [SerializeField] public TextMesh tileName;
+        private VMap _vMap;
+        private VMap vMap{
+            get {
+                if(_vMap == null)
+                {
+                    _vMap = this.GetComponentInParent<VMap>();
+                }
+                return _vMap;
+            }
+        }
+        void OnMouseUp()
+        {
+            StartCoroutine(OnClickTile());
+        }
+        IEnumerator OnClickTile()
+        {
+            int y = -Mathf.FloorToInt((transform.localPosition.y + 0.32f) / 0.64f);
+            int x = Mathf.FloorToInt((transform.localPosition.x - (y % 2 == 0 ? 0.32f : 0.64f)) / 0.64f);
+            Debug.Log("OnClickTile=" + transform.localPosition.x + "," + ((transform.localPosition.x - (y % 2 == 0 ? 0.32f : 0.64f)) / 0.64f) + ","+x + "," + y);
+            yield return 0;
+            if (Global.AppManager.DialogIsShow())
+            {
+                yield break;
+            }
+            if (!vMap.Camera3DEnable || vMap.IsDraging)
+            {
+                yield break;
+            }
+            /*
+            this.Controller.SendMessage("OnClickTile", this.Index, SendMessageOptions.DontRequireReceiver);*/
+        }
         /*
         public int MovingPower { get; set; }
         public bool IsChecked { get; set; }
@@ -91,28 +122,6 @@ namespace App.View.Map
             {
                 buildingSprite.gameObject.SetActive(false);
             }
-        }
-        void OnMouseUp()
-        {
-            StartCoroutine(OnClickTile());
-        }
-        IEnumerator OnClickTile()
-        {
-            Debug.Log("OnClickTile");
-            yield return 0;
-            if (Global.AppManager.DialogIsShow())
-            {
-                yield break;
-            }
-            if (vBaseMap == null)
-            {
-                vBaseMap = this.GetComponentInParent<VBaseMap>();
-            }
-            if (!vBaseMap.Camera3DEnable || vBaseMap.IsDraging)
-            {
-                yield break;
-            }
-            this.Controller.SendMessage("OnClickTile", this.Index, SendMessageOptions.DontRequireReceiver);
         }
         public void ShowMoving(App.Model.Belong belong)
         {

@@ -13,9 +13,29 @@ namespace App.View.Map
         [SerializeField] private GameObject characterLayer;
         [SerializeField] private GameObject tilePrefab;
         [SerializeField] private GameObject tileLayer;
+        private bool _camera3DEnable = true;
+        private bool _isDraging;
         private int mapWidth;
         private int mapHeight;
         private static List<List<VTile>> tileUnits = new List<List<VTile>>();
+        public bool Camera3DEnable
+        {
+            set
+            {
+                _camera3DEnable = value;
+            }
+            get
+            {
+                return _camera3DEnable;
+            }
+        }
+        public bool IsDraging
+        {
+            get
+            {
+                return _isDraging;
+            }
+        }
         public void OnEnable()
         {
             List<List<MTile>> tiles = new List<List<MTile>>();
@@ -79,5 +99,6 @@ namespace App.View.Map
                 }
             }
         }
+
     }
 }
