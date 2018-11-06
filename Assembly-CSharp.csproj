@@ -116,6 +116,13 @@
     <Compile Include="Assets\Script\App\Util\Cacher\TileCacher.cs" />
     <Compile Include="Assets\Script\App\Util\Global.cs" />
     <Compile Include="Assets\Script\App\Util\ImageAssetBundleManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Manager\BattleCalculateManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Manager\BattleCharactersManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Manager\BattleManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Manager\BattleTilesManager.cs" />
+    <Compile Include="Assets\Script\App\Util\Search\AStar.cs" />
+    <Compile Include="Assets\Script\App\Util\Search\BreadthFirst.cs" />
+    <Compile Include="Assets\Script\App\Util\Search\TileMap.cs" />
     <Compile Include="Assets\Script\App\View\Avatar\VAvatar.cs" />
     <Compile Include="Assets\Script\App\View\Avatar\VCharacter.cs" />
     <Compile Include="Assets\Script\App\View\Avatar\VCharacterAnimation.cs" />

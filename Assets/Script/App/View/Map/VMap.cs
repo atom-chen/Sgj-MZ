@@ -18,7 +18,7 @@ namespace App.View.Map
         private int mapWidth;
         private int mapHeight;
         private static List<List<VTile>> tileUnits = new List<List<VTile>>();
-        public bool Camera3DEnable
+        public bool camera3DEnable
         {
             set
             {
@@ -29,7 +29,7 @@ namespace App.View.Map
                 return _camera3DEnable;
             }
         }
-        public bool IsDraging
+        public bool isDraging
         {
             get
             {

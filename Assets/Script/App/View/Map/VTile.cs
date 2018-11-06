@@ -8,13 +8,10 @@ namespace App.View.Map
 {
     public class VTile : VBase
     {
-        [SerializeField] public SpriteRenderer tileSprite;
-        [SerializeField] public SpriteRenderer buildingSprite;
-        [SerializeField] public SpriteRenderer lineSprite;
         [SerializeField] public SpriteRenderer movingSprite;
         [SerializeField] public SpriteRenderer attackSprite;
-        [SerializeField] public SpriteRenderer textBackground;
         [SerializeField] public TextMesh tileName;
+        public Vector2Int coordinate = new Vector2Int(0, 0);
         private VMap _vMap;
         private VMap vMap{
             get {
@@ -25,47 +22,71 @@ namespace App.View.Map
                 return _vMap;
             }
         }
+        public int G { get; set; }
+        public int H { get; set; }
+        public int F { get; set; }
+        public int movingPower { get; set; }
+        public bool isChecked { get; set; }
+        //public int nodeIndex { get; set; }
+        public bool isOpen { get; set; }
+        public VTile parentNode { get; set; }
+        public bool isRoad { get; set; }
+        public bool isAllCost { get; set; }
+
+        //public int Id { get; set; }
+        //public int MapId { get; set; }
+        public int tileId { get; private set; }
+        public bool isAttackTween
+        {
+            get
+            {
+                return attackTween != null;
+            }
+        }
+        private GameObject attackTween;
         void OnMouseUp()
         {
             StartCoroutine(OnClickTile());
         }
         IEnumerator OnClickTile()
         {
-            int y = -Mathf.FloorToInt((transform.localPosition.y + 0.32f) / 0.64f);
-            int x = Mathf.FloorToInt((transform.localPosition.x - (y % 2 == 0 ? 0.32f : 0.64f)) / 0.64f);
-            Debug.Log("OnClickTile=" + transform.localPosition.x + "," + ((transform.localPosition.x - (y % 2 == 0 ? 0.32f : 0.64f)) / 0.64f) + ","+x + "," + y);
             yield return 0;
-            if (Global.AppManager.DialogIsShow())
+            if (Global.AppManager != null && Global.AppManager.DialogIsShow())
             {
                 yield break;
             }
-            if (!vMap.Camera3DEnable || vMap.IsDraging)
+            if (!vMap.camera3DEnable || vMap.isDraging)
             {
                 yield break;
             }
-            /*
-            this.Controller.SendMessage("OnClickTile", this.Index, SendMessageOptions.DontRequireReceiver);*/
+            this.controller.SendMessage("OnClickTile", coordinate, SendMessageOptions.DontRequireReceiver);
+        }
+        public void ShowMoving(Model.Belong belong)
+        {
+            this.movingSprite.gameObject.SetActive(true);
+            //this.movingSprite.sprite = Model.Master.MTile.GetIcon(string.Format("moving_{0}", belong.ToString()));
+        }
+        public void ShowAttack()
+        {
+            this.attackSprite.gameObject.SetActive(true);
+            //this.attackSprite.sprite = Model.Master.MTile.GetIcon("attack");
+        }
+        public void HideMoving()
+        {
+            this.movingSprite.gameObject.SetActive(false);
+        }
+        public void HideAttack()
+        {
+            this.attackSprite.gameObject.SetActive(false);
+        }
+        public void SetAttackTween(GameObject attackTween)
+        {
+            attackTween.transform.SetParent(this.transform);
+            attackTween.transform.localPosition = Vector3.zero;
+            attackTween.transform.localScale = Vector3.one;
+            this.attackTween = attackTween;
         }
         /*
-        public int MovingPower { get; set; }
-        public bool IsChecked { get; set; }
-        public int Index { get; set; }
-        public int CoordinateX { get; set; }
-        public int CoordinateY { get; set; }
-        public int G { get; set; }
-        public int H { get; set; }
-        public int F { get; set; }
-        public int NodeIndex { get; set; }
-        public bool IsOpen { get; set; }
-        public VTile ParentNode { get; set; }
-        public bool IsRoad { get; set; }
-        public bool IsAllCost { get; set; }
-
-        public int Id { get; set; }
-        public int MapId { get; set; }
-        public int TileId { get; private set; }
-        public int BuildingId { get; private set; }
-        private GameObject attackTween;
         private VBaseMap vBaseMap;
         private App.Controller.Battle.CBattlefield _cBattlefield;
         private App.Controller.Battle.CBattlefield cBattlefield
@@ -123,42 +144,10 @@ namespace App.View.Map
                 buildingSprite.gameObject.SetActive(false);
             }
         }
-        public void ShowMoving(App.Model.Belong belong)
-        {
-            this.movingSprite.gameObject.SetActive(true);
-            this.movingSprite.sprite = App.Model.Master.MTile.GetIcon(string.Format("moving_{0}", belong.ToString()));
-        }
-        public void ShowAttack()
-        {
-            this.attackSprite.gameObject.SetActive(true);
-            this.attackSprite.sprite = App.Model.Master.MTile.GetIcon("attack");
-        }
-        public void HideMoving()
-        {
-            this.movingSprite.gameObject.SetActive(false);
-        }
-        public void HideAttack()
-        {
-            this.attackSprite.gameObject.SetActive(false);
-        }
         public void SetColor(Color color)
         {
             tileSprite.color = color;
             buildingSprite.color = color;
-        }
-        public void SetAttackTween(GameObject attackTween)
-        {
-            attackTween.transform.SetParent(this.transform);
-            attackTween.transform.localPosition = Vector3.zero;
-            attackTween.transform.localScale = Vector3.one;
-            this.attackTween = attackTween;
-        }
-        public bool IsAttackTween
-        {
-            get
-            {
-                return attackTween != null;
-            }
         }*/
     }
 }

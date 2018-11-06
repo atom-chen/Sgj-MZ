@@ -11,7 +11,7 @@ namespace App.View.Common
         protected bool registered = false;
 
         private App.Controller.Common.CBase _controller;
-        public App.Controller.Common.CBase Controller
+        public App.Controller.Common.CBase controller
         {
             get
             {
@@ -33,7 +33,6 @@ namespace App.View.Common
         {
             if (!registered)
             {
-                App.Controller.Common.CBase controller = this.Controller;
                 if (controller != null)
                 {
                     controller.Dispatcher.Regist(this);
