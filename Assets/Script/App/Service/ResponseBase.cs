@@ -6,5 +6,6 @@ namespace App.Service
         public System.DateTime now;
         public bool result = false;
         public string message;
+        public Model.User.MUser user;
     }
 }

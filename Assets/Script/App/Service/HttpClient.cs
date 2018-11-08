@@ -70,6 +70,10 @@ namespace App.Service
                         }
                     });
                 }
+                if (response.user != null)
+                {
+                    App.Util.Cacher.UserCacher.Instance.Update(response.user);
+                }
                 text = www.text;
                 isWaiting = false;
                 if (response.now > DateTime.MinValue)
