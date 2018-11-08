@@ -10,11 +10,15 @@ namespace App.Controller.Logo
     {
         public override IEnumerator Start()
         {
-            Global.Initialize();
             yield return StartCoroutine(base.Start());
         }
         public void GameStart()
         {
+            this.StartCoroutine(GameStartCoroutine());
+        }
+        public IEnumerator GameStartCoroutine()
+        {
+            yield return this.StartCoroutine(AppInitialize.Initialize());
             AppManager.LoadScene("Home", null);
         }
     }

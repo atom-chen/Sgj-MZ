@@ -11,7 +11,7 @@ namespace App.Service
         public HttpClient()
         {
         }
-        public const string docmainBase = "https://lufylegend.com/ssl/sh/";
+        public const string docmainBase = "https://lufylegend.com/ssl/ch/";
         public static string docmain
         {
             get

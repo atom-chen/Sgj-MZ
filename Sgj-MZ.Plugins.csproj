@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BA1CA6AD-A7AE-EAE7-C7A8-32DBFD79E636}</ProjectGuid>
+    <ProjectGuid>{EF8D8211-26E6-DE46-FCDC-2E285BEB24A3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -15,7 +15,7 @@
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2018.2.14f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -307,95 +307,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Sgj-MZ.Plugins.csproj">
-      <Project>{EF8D8211-26E6-DE46-FCDC-2E285BEB24A3}</Project>
-      <Name>Sgj-MZ.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Anima2D\Examples\Scripts\CharacterMotion.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\Follow.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SkinnedMeshCombiner.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringBone.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringCollider.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpringManager.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycle.cs" />
-    <Compile Include="Assets\Anima2D\Examples\Scripts\SpriteCycleParallax.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\Bone2D.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\Control.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\EditorUpdaterProxy.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\Ik2D.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkCCD2D.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkGroup.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkLimb2D.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkSolver2D.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkSolver2DCCD.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\IkSolver2DLimb.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\MathUtils.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\Pose.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\PoseManager.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
-    <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
-    <Compile Include="Assets\Script\App\Controller\Battle\CBattle.cs" />
-    <Compile Include="Assets\Script\App\Controller\Battle\CBattlePanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Card\CCardPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CBase.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CDialog.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\CScene.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\IController.cs" />
-    <Compile Include="Assets\Script\App\Controller\Common\Request.cs" />
-    <Compile Include="Assets\Script\App\Controller\Dialog\CAlertDialog.cs" />
-    <Compile Include="Assets\Script\App\Controller\Dialog\CConnectingDialog.cs" />
-    <Compile Include="Assets\Script\App\Controller\Dialog\CLoadingDialog.cs" />
-    <Compile Include="Assets\Script\App\Controller\Event\CEventPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Group\CGroupPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Home\CHome.cs" />
-    <Compile Include="Assets\Script\App\Controller\Home\CHomePanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Logo\CLogo.cs" />
-    <Compile Include="Assets\Script\App\Controller\Logo\CLogoPanel.cs" />
-    <Compile Include="Assets\Script\App\Controller\Shop\CShopPanel.cs" />
-    <Compile Include="Assets\Script\App\Model\Character\MCharacter.cs" />
-    <Compile Include="Assets\Script\App\Model\Common\MBase.cs" />
-    <Compile Include="Assets\Script\App\Model\Map\MTile.cs" />
-    <Compile Include="Assets\Script\App\Model\Master\MTile.cs" />
-    <Compile Include="Assets\Script\App\Model\MStatic.cs" />
-    <Compile Include="Assets\Script\App\Model\Scriptable\AssetBase.cs" />
-    <Compile Include="Assets\Script\App\Model\Scriptable\AvatarSpriteAsset.cs" />
-    <Compile Include="Assets\Script\App\Model\User\MUser.cs" />
-    <Compile Include="Assets\Script\App\Model\User\MVersion.cs" />
-    <Compile Include="Assets\Script\App\Service\HttpClient.cs" />
-    <Compile Include="Assets\Script\App\Service\ResponseBase.cs" />
-    <Compile Include="Assets\Script\App\Service\SBase.cs" />
-    <Compile Include="Assets\Script\App\Service\SMaster.cs" />
-    <Compile Include="Assets\Script\App\Service\SUser.cs" />
-    <Compile Include="Assets\Script\App\Util\AppInitialize.cs" />
-    <Compile Include="Assets\Script\App\Util\AppManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Cacher\CacherBase.cs" />
-    <Compile Include="Assets\Script\App\Util\Cacher\TileCacher.cs" />
-    <Compile Include="Assets\Script\App\Util\Cacher\UserCacher.cs" />
-    <Compile Include="Assets\Script\App\Util\Global.cs" />
-    <Compile Include="Assets\Script\App\Util\ImageAssetBundleManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Manager\BattleCalculateManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Manager\BattleCharactersManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Manager\BattleManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Manager\BattleTilesManager.cs" />
-    <Compile Include="Assets\Script\App\Util\Search\AStar.cs" />
-    <Compile Include="Assets\Script\App\Util\Search\BreadthFirst.cs" />
-    <Compile Include="Assets\Script\App\Util\Search\TileMap.cs" />
-    <Compile Include="Assets\Script\App\View\Avatar\VAvatar.cs" />
-    <Compile Include="Assets\Script\App\View\Avatar\VCharacter.cs" />
-    <Compile Include="Assets\Script\App\View\Avatar\VCharacterAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\ControllerAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\IControllerAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Animation\PanelAnimation.cs" />
-    <Compile Include="Assets\Script\App\View\Common\Dispatcher.cs" />
-    <Compile Include="Assets\Script\App\View\Common\IView.cs" />
-    <Compile Include="Assets\Script\App\View\Common\VBase.cs" />
-    <Compile Include="Assets\Script\App\View\Home\VHomeFooterButton.cs" />
-    <Compile Include="Assets\Script\App\View\Map\VMap.cs" />
-    <Compile Include="Assets\Script\App\View\Map\VTile.cs" />
+    <Compile Include="Assets\Plugins\HOTween\_Demo\HOTweenDemoBrain.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\About.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\DataReaderProvider.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\DataWriterProvider.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\EcmaScriptIdentifier.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\EcmaScriptWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IDataReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IDataWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\IJsonSerializable.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonDataReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonDataWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonIgnoreAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonMemberAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonNameAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonOptInAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonReader.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonReaderSettings.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonSerializationException.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonSpecifiedPropertyAttribute.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonToken.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonWriter.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\JsonWriterSettings.cs" />
+    <Compile Include="Assets\Plugins\JsonFx\TypeCoercionUtility.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\Helper\UniWebViewHelper.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebView.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewEdgeInsets.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewMessage.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewOrientation.cs" />
+    <Compile Include="Assets\Plugins\UniWebView\Script\UniWebViewTransitionEdge.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewEventProcessor.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginAndroid.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginiOS.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginMacEditor.cs" />
+    <Compile Include="Assets\Plugins\UniWebViewPluginWP.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Anima2D\Examples\Shaders\Unlit-Alpha-Cull-off.shader" />

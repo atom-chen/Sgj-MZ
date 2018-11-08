@@ -36,5 +36,23 @@ namespace App.Service
             }
         }
 
+        public IEnumerator RequestGet(int id)
+        {
+            var url = "user/get";
+            HttpClient client = new HttpClient();
+            WWWForm form = new WWWForm();
+            form.AddField("id", id);
+            yield return App.Util.AppManager.CurrentScene.StartCoroutine(client.Send(url, form));
+        }
+        /// <summary>
+        /// 获取玩家自己的数据
+        /// </summary>
+        /// <returns>The get.</returns>
+        public IEnumerator RequestGet()
+        {
+            yield return App.Util.AppManager.CurrentScene.StartCoroutine(RequestGet(this.self.id));
+            //App.Util.LSharp.LSharpScript.Instance.UpdateBattleList();
+        }
+
     }
 }
