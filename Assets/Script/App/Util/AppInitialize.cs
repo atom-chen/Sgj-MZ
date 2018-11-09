@@ -47,7 +47,8 @@ namespace App.Util
                 AvatarSpriteAsset.assetbundle = assetbundle;
                 ImageAssetBundleManager.weapon = AvatarSpriteAsset.Data.meshs;
             }));
-
+            //TODO:
+            list.Add(sUser.RequestLogin("lufylegend02", "buzhidao"));
             list.Add(sUser.RequestGet());
             float step = 100f / list.Count;
             for (int i = 0; i < list.Count; i++)
