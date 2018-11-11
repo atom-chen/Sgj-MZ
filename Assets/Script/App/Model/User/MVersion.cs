@@ -10,6 +10,9 @@ namespace App.Model.User
         public int horse_img;
         public int clothes_img;
         public int weapon_img;
+        public int character;
+        public int npc;
+        public int tile;
         public MVersion()
         {
         }

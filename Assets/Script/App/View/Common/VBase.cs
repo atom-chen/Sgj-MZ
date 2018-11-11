@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using App.Controller.Common;
+using UnityEngine;
 namespace App.View.Common
 {
     public class VBase : MonoBehaviour, IView
@@ -10,23 +12,23 @@ namespace App.View.Common
         protected bool ready = true;
         protected bool registered = false;
 
-        private App.Controller.Common.CBase _controller;
-        public App.Controller.Common.CBase controller
+        private CBase _controller;
+        public CBase controller
         {
             get
             {
                 if (_controller == null)
                 {
-                    _controller = this.GetComponentInParent<App.Controller.Common.CBase>();
+                    _controller = this.GetComponentInParent<CBase>();
                 }
                 return _controller;
             }
         }
 
-        public virtual void Start()
+        public virtual void Awake()
         {
             this.InitContoller();
-            this.UpdateView();
+            //TODO:: this.UpdateView();
         }
 
         public void InitContoller()
@@ -61,6 +63,53 @@ namespace App.View.Common
 
         public virtual void UpdateView()
         {
+        }
+        public object Get(string key)
+        {
+            if (controller != null)
+            {
+                return controller.Dispatcher.Get(key);
+            }
+            return null;
+        }
+        public object GetByPath(string path){
+            int first_pos = path.IndexOf('.');
+            object currentVal;
+            if (first_pos > 0)
+            {
+                string first_key = path.Substring(0, first_pos);
+                currentVal = this.Get(first_key);
+                path = path.Substring(first_pos + 1, path.Length - first_pos - 1);
+            }
+            else
+            {
+                return this.Get(path);
+            }
+            string[] paths = path.Split('.');
+
+            foreach (string key in paths)
+            {
+                if (currentVal == null)
+                {
+                    return null;
+                }
+                PropertyInfo property = currentVal.GetType().GetProperty(key);
+                if (property == null)
+                {
+                    FieldInfo field = currentVal.GetType().GetField(key);
+                    if (field == null)
+                    {
+                        return null;
+                    }
+
+                    currentVal = field.GetValue(currentVal);
+                }
+                else
+                {
+                    currentVal = property.GetGetMethod().Invoke(currentVal, null);
+                }
+            }
+            return currentVal;
         }
     }
 }

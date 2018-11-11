@@ -25,11 +25,49 @@ namespace App.Controller.Battle
             LSharpInit();
             InitMap();
             yield return this.StartCoroutine(base.OnLoad(request));
+            Service.SUser sUser = Util.Global.SUser;
+            string url = Service.HttpClient.assetBandleURL + "maps/maps_001.unity3d";
+            yield return this.StartCoroutine(sUser.Download(url, 0, (AssetBundle assetbundle) => {
+                GameObject[] ts = assetbundle.LoadAllAssets<GameObject>();
+                GameObject obj = ts[0] as GameObject;
+                this.dispatcher.Set("tileMap", obj);
+                assetbundle.Unload(false);
+
+            }));
+            this.dispatcher.Notify();
         }
         private void LSharpInit() { 
         }
         public void InitMap(){
 
+            List<List<Model.Master.MTile>> tiles = new List<List<Model.Master.MTile>>();
+            for (int i = 0; i < 10; i++)
+            {
+                List<Model.Master.MTile> childs;
+                if (tiles.Count < i + 1)
+                {
+                    childs = new List<Model.Master.MTile>();
+                    tiles.Add(childs);
+                }
+                else
+                {
+                    childs = tiles[i];
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Model.Master.MTile mTile;
+                    if (childs.Count < j + 1)
+                    {
+                        mTile = new Model.Master.MTile();
+                        childs.Add(mTile);
+                    }
+                    else
+                    {
+                        mTile = childs[j];
+                    }
+                }
+            }
+            this.dispatcher.Set("map", tiles);
         }
         public void InitManager(){
             mapSearch = new TileMap();

@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4514152462806452}
   - component: {fileID: 61307319599913168}
   - component: {fileID: 114669177946795900}
+  - component: {fileID: 210452440021371146}
   m_Layer: 0
   m_Name: TileUnit
   m_TagString: Untagged
@@ -141,6 +142,16 @@ MonoBehaviour:
   attackSprite: {fileID: 212301329293027564}
   tileName: {fileID: 0}
   coordinate: {x: 0, y: 0}
+--- !u!210 &210452440021371146
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095483591017860}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
 --- !u!212 &212301329293027564
 SpriteRenderer:
   m_ObjectHideFlags: 1

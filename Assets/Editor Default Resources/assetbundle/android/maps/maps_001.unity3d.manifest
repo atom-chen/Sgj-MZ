@@ -1,0 +1,44 @@
+ManifestFileVersion: 0
+CRC: 2981492208
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7fa966f87f463da3c41ac5c9c1ae7572
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3d08b10cd52fc6a24f3f447b68ad9fd6
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ed538c1d47e924ca18013afcfba9e295, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c138277fd0cb14f7f9aae4176ab44bbc, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 156049354
+  Script: {instanceID: 0}
+- Class: 483693784
+  Script: {instanceID: 0}
+- Class: 1839735485
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/Prefabs/maps/001.prefab
+Dependencies: []

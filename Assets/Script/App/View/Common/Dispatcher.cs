@@ -40,6 +40,15 @@ namespace App.View.Common
             return is_ready;
         }
 
+        public void Notify<T>()
+        {
+            foreach (IView view in this.views)
+            {
+                if(view is T){
+                    view.OnNotify();
+                }
+            }
+        }
 
         /// <summary>
         /// 上位Panel要素の読込完了時に呼び出す。

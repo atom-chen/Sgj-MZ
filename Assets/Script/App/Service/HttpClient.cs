@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using App.Service;
 using App.Util;
 using UnityEngine;
 
@@ -32,23 +31,23 @@ namespace App.Service
             if (Global.AppManager != null && !Global.AppManager.DialogIsShow(AppManager.Prefabs.ConnectingDialog) && !Global.AppManager.DialogIsShow(AppManager.Prefabs.LoadingDialog))
             {
                 showConnecting = true;
-                App.Controller.Dialog.CConnectingDialog.ToShow();
+                Controller.Dialog.CConnectingDialog.ToShow();
             }
-            if (!string.IsNullOrEmpty(App.Util.Global.ssid))
+            if (!string.IsNullOrEmpty(Global.ssid))
             {
                 if (form == null)
                 {
                     form = new WWWForm();
                 }
-                form.AddField("ssid", App.Util.Global.ssid);
-                Debug.Log("ssid : " + App.Util.Global.ssid);
+                form.AddField("ssid", Global.ssid);
+                Debug.Log("ssid : " + Global.ssid);
             }
             using (WWW www = (form == null ? new WWW(url) : new WWW(url, form)))
             {
                 yield return www;
                 if (showConnecting)
                 {
-                    App.Controller.Dialog.CConnectingDialog.ToClose();
+                    Controller.Dialog.CConnectingDialog.ToClose();
                 }
                 if (!string.IsNullOrEmpty(www.error))
                 {
@@ -57,22 +56,22 @@ namespace App.Service
                 }
                 if (Global.AppManager != null && Global.AppManager.CurrentDialog != null)
                 {
-                    App.Controller.Dialog.CLoadingDialog.UpdatePlusProgress(1f);
+                    Controller.Dialog.CLoadingDialog.UpdatePlusProgress(1f);
                 }
                 Debug.Log("HttpClient : " + www.text);
                 ResponseBase response = HttpClient.Deserialize<ResponseBase>(www.text);
                 if (!response.result)
                 {
-                    App.Controller.Dialog.CAlertDialog.Show(response.message, () => {
+                    Controller.Dialog.CAlertDialog.Show(response.message, () => {
                         if (Global.AppManager != null && Global.AppManager.DialogIsShow(AppManager.Prefabs.ConnectingDialog))
                         {
-                            App.Controller.Dialog.CConnectingDialog.ToClose();
+                            Controller.Dialog.CConnectingDialog.ToClose();
                         }
                     });
                 }
                 if (response.user != null)
                 {
-                    App.Util.Cacher.UserCacher.Instance.Update(response.user);
+                    Util.Cacher.UserCacher.Instance.Update(response.user);
                 }
                 text = www.text;
                 isWaiting = false;

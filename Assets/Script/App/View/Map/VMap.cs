@@ -36,9 +36,13 @@ namespace App.View.Map
                 return _isDraging;
             }
         }
+        public void Start()
+        {
+            UpdateView();
+        }
         public void OnEnable()
         {
-            List<List<MTile>> tiles = new List<List<MTile>>();
+            /*List<List<MTile>> tiles = new List<List<MTile>>();
             for (int i = 0; i < 10;i++){
                 List<MTile> childs;
                 if (tiles.Count < i+1){
@@ -58,13 +62,23 @@ namespace App.View.Map
                     }
                 }
             }
-
+            */
             for (int i = 0; i < tileUnits.Count; i++){
                 List<VTile> childs = tileUnits[i];
                 for (int j = 0; j < childs.Count; j++){
                     childs[j].gameObject.SetActive(false);
                 }
             }
+        }
+        public override void UpdateView()
+        {
+            base.UpdateView();
+            object val = this.GetByPath("map");
+            Debug.LogError("val=" + val);
+            if (val == null){
+                return;
+            }
+            List<List<MTile>> tiles = val as List<List<MTile>>;
             for (int i = 0; i < tiles.Count; i++)
             {
                 List<MTile> mTiles = tiles[i];
@@ -80,7 +94,8 @@ namespace App.View.Map
                 {
                     childs = tileUnits[i];
                 }
-                for (int j = 0; j < mTiles.Count; j++){
+                for (int j = 0; j < mTiles.Count; j++)
+                {
                     VTile vTile;
                     if (emptyTiles || childs.Count < j + 1)
                     {
@@ -88,7 +103,7 @@ namespace App.View.Map
                         obj.transform.SetParent(tileLayer.transform);
                         obj.transform.localScale = Vector3.one;
                         float x = 0.32f + j * 0.64f + (i % 2 == 0 ? 0 : 0.32f);
-                        obj.transform.localPosition = new Vector3(x, -0.32f - i* 0.64f, 0);
+                        obj.transform.localPosition = new Vector3(x, -0.32f - i * 0.64f, 0);
                     }
                     else
                     {
@@ -99,6 +114,5 @@ namespace App.View.Map
                 }
             }
         }
-
     }
 }

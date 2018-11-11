@@ -6,6 +6,7 @@ using App.Controller.Dialog;
 using App.Model.Scriptable;
 using App.Model.User;
 using App.Service;
+using App.Util.Cacher;
 using UnityEngine;
 
 namespace App.Util
@@ -47,8 +48,18 @@ namespace App.Util
                 AvatarSpriteAsset.assetbundle = assetbundle;
                 ImageAssetBundleManager.weapon = AvatarSpriteAsset.Data.meshs;
             }));
+            list.Add(sUser.Download(CharacterAsset.Url, versions.character, (AssetBundle assetbundle) => {
+                CharacterAsset.assetbundle = assetbundle;
+                CharacterCacher.Instance.Reset(CharacterAsset.Data.characters);
+                CharacterAsset.Clear();
+            }));
+            list.Add(sUser.Download(NpcAsset.Url, versions.npc, (AssetBundle assetbundle) => {
+                NpcAsset.assetbundle = assetbundle;
+                NpcCacher.Instance.Reset(NpcAsset.Data.npcs);
+                NpcAsset.Clear();
+            }));
             //TODO:
-            list.Add(sUser.RequestLogin("lufylegend02", "buzhidao"));
+            list.Add(sUser.RequestLogin("lufylegend02", "11111111"));
             list.Add(sUser.RequestGet());
             float step = 100f / list.Count;
             for (int i = 0; i < list.Count; i++)

@@ -30,6 +30,12 @@ namespace App.View.Common.Animation
         }
         public override void Show(System.Action complete)
         {
+            Holoville.HOTween.Core.TweenDelegate.TweenCallback onLoadAnimationOver = () =>
+            {
+                if(complete != null){
+                    complete();
+                }
+            };
             PanelAnimationType type = animationType;
             PanelAnimation oldPanelAnimation = Util.AppManager.OldPanel.controllerAnimation as PanelAnimation;
             if(oldPanelAnimation == null){
@@ -41,24 +47,29 @@ namespace App.View.Common.Animation
             }
             // パネル表示時→ローディングアニメ非表示
             //Indicator.Hide(type, true, complete);
-            Debug.Log("PanelAnimation Show " + this.gameObject.name);
             RectTransform trans = gameObject.GetComponent<RectTransform>();
             switch (type)
             {
                 case PanelAnimationType.Move:
-                    HOTween.To(trans, 0.3f, new TweenParms().Prop("anchoredPosition", new Vector2(0, 0)));
+                    HOTween.To(trans, 0.3f, new TweenParms().Prop("anchoredPosition", new Vector2(0, 0)).OnComplete(onLoadAnimationOver));
                     break;
                 case PanelAnimationType.Fade:
-                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 1));
+                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 1).OnComplete(onLoadAnimationOver));
                     break;
             }
         }
 
         public override void Hide(System.Action complete)
         {
+            Holoville.HOTween.Core.TweenDelegate.TweenCallback onLoadAnimationOver = () =>
+            {
+                if (complete != null)
+                {
+                    complete();
+                }
+            };
             // パネル非表示→ローディングアニメ表示
             //Indicator.Show(type, type == Indicator.Type.Tips ? "" : Localization.Get("Transmitting"), true, complete);
-            Debug.Log("PanelAnimation Hide " + this.gameObject.name);
             RectTransform trans = gameObject.GetComponent<RectTransform>();
             PanelAnimation currentPanelAnimation = App.Util.AppManager.CurrentPanel.controllerAnimation as PanelAnimation;
             switch (animationType)
@@ -69,10 +80,11 @@ namespace App.View.Common.Animation
                                .Prop("anchoredPosition", new Vector2(x, 0))
                                .OnComplete(()=>{
                                    gameObject.SetActive(false);
+                                   onLoadAnimationOver();
                     }));
                     break;
                 case PanelAnimationType.Fade:
-                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 0));
+                    HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 0).OnComplete(onLoadAnimationOver));
                     break;
             }
         }
