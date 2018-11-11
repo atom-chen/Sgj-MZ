@@ -6,12 +6,14 @@ using UnityEngine;
 namespace App.Model.Master
 {
     [System.Serializable]
-    public class MBaseMap : MBase
+    public class MMap : MBase
     {
-        public MBaseMap()
+        public MMap()
         {
         }
-        public int[][] tile_ids;//小地图块
+        public int width;//横向格数
+        public int height;//纵向格数
+        public int[] tile_ids;//小地图块
         private List<List<MTile>> _tiles;
         public List<List<MTile>> tiles{
             get{
@@ -20,14 +22,17 @@ namespace App.Model.Master
                     return _tiles;
                 }
                 _tiles = new List<List<MTile>>();
-                foreach (int[] child_ids in tile_ids){
-                    List<MTile> childs = new List<MTile>();
-                    foreach (int tile_id in child_ids)
+                int i = 0;
+                List<MTile> childs = new List<MTile>();
+                foreach (int tile_id in tile_ids)
+                {
+                    if(i > 0 && i++ % width == 0)
                     {
-                        MTile tile = TileCacher.Instance.Get(tile_id);
-                        childs.Add(tile);
+                        childs = new List<MTile>();
+                        _tiles.Add(childs);
                     }
-                    _tiles.Add(childs);
+                    MTile tile = TileCacher.Instance.Get(tile_id);
+                    childs.Add(tile);
                 }
                 return _tiles;
             }
