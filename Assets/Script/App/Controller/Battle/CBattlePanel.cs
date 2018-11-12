@@ -38,9 +38,9 @@ namespace App.Controller.Battle
             GameObject obj = ts[0] as GameObject;
             this.dispatcher.Set("tileMap", obj);
             Model.Scriptable.MapAsset mapAsset = ts[1] as Model.Scriptable.MapAsset;
-            Debug.LogError("mapAsset.map.tiles.Count=" + mapAsset.map.tiles.Count);
             Debug.LogError("mapAsset.map.width" + mapAsset.map.width);
             Debug.LogError("mapAsset.map.height" + mapAsset.map.height);
+            Debug.LogError("mapAsset.map.tiles.Count=" + mapAsset.map.tiles.Count);
             this.dispatcher.Set("map", mapAsset.map.tiles);
             assetbundle.Unload(false);
         }

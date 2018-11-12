@@ -58,6 +58,11 @@ namespace App.Util
                 NpcCacher.Instance.Reset(NpcAsset.Data.npcs);
                 NpcAsset.Clear();
             }));
+            list.Add(sUser.Download(TileAsset.Url, versions.tile, (AssetBundle assetbundle) => {
+                TileAsset.assetbundle = assetbundle;
+                TileCacher.Instance.Reset(TileAsset.Data.tiles);
+                TileAsset.Clear();
+            }));
             //TODO:
             list.Add(sUser.RequestLogin("lufylegend02", "11111111"));
             list.Add(sUser.RequestGet());
