@@ -20,6 +20,7 @@ namespace MyEditor
         [SerializeField] private GameObject tilesLayer;
         [SerializeField] private int width = 30;
         [SerializeField] private int height = 30;
+        const string scriptableMapsPath = "Assets/Editor Default Resources/ScriptableObject/maps/{0}.asset";
         private bool loadComplete = false;
         private bool createMapOk = false;
         private MTile currentTile = null;
@@ -65,6 +66,10 @@ namespace MyEditor
                 //createMapOk = true;
                 currentTile = TileCacher.Instance.Get(1);
             }
+            if (GUI.Button(new Rect(50, 100, 100, 30), "saveMap"))
+            {
+                CreateScriptableObjectMasterMapRun(1);
+            }
         }
         void CreateMap(){
 
@@ -87,6 +92,31 @@ namespace MyEditor
                 }
             }
         }
+        void CreateScriptableObjectMasterMapRun(int id)
+        {
+            List<int> tileIds = new List<int>();
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    Transform trans = tilesLayer.transform.Find("Tile_" + (i + 1) + "_" + (j + 1));
+                    tileIds.Add(0);
+                }
+            }
+
+            var asset = ScriptableObject.CreateInstance<MapAsset>();
+            Debug.LogError("tileIds+"+ tileIds.Count);
+            MMap map = new MMap();
+            map.tile_ids = tileIds.ToArray();
+            map.width = width;
+            map.height = height;
+            asset.map = map;
+            Debug.LogError("CreateAsset Map:" + id);
+            UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableMapsPath, id));
+            UnityEditor.AssetDatabase.Refresh();
+            Debug.Log("CreateScriptableObjectMasterScenarioRun complete");
+        }
+
         [MenuItem("CH/Build Assetbundle/Maps")]
         static private void BuildAssetBundleMap()
         {

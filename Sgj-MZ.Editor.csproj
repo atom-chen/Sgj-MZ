@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B4F57DC9-7662-F89F-FE4C-81644BAC8A45}</ProjectGuid>
+    <ProjectGuid>{35520ECE-EE8A-3F00-5D91-53560A9273CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -327,19 +327,19 @@
       <HintPath>Assets/Plugins/HOTween/Plugins/Editor/HOTweenV1_Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Analytics">
-      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll</HintPath>
+      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>/Users/lufy/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>/Users/lubin.zhang/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
@@ -379,13 +379,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Sgj-MZ.Plugins.csproj">
-      <Project>{EF8D8211-26E6-DE46-FCDC-2E285BEB24A3}</Project>
-      <Name>Sgj-MZ.Plugins</Name>
+    <ProjectReference Include="sgj-MZ.Plugins.csproj">
+      <Project>{EA0A695F-4F3B-5C73-B71A-3639B1EBEA0A}</Project>
+      <Name>sgj-MZ.Plugins</Name>
     </ProjectReference>
-    <ProjectReference Include="Sgj-MZ.csproj">
-      <Project>{BA1CA6AD-A7AE-EAE7-C7A8-32DBFD79E636}</Project>
-      <Name>Sgj-MZ</Name>
+    <ProjectReference Include="sgj-MZ.csproj">
+      <Project>{98EE9736-3B9E-311E-6F3A-560599D61970}</Project>
+      <Name>sgj-MZ</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
