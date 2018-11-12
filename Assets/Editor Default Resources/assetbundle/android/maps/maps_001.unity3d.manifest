@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2981492208
+CRC: 615542260
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7fa966f87f463da3c41ac5c9c1ae7572
+    Hash: 4230375579c1e0b08b750a8569b4c2fb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3d08b10cd52fc6a24f3f447b68ad9fd6
+    Hash: a36b8f0962425704a85e9006df398a72
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,10 +24,14 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 2b52175a49c974fa1b58536d891959d2, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: ed538c1d47e924ca18013afcfba9e295, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c138277fd0cb14f7f9aae4176ab44bbc, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 210
   Script: {instanceID: 0}
 - Class: 212
   Script: {instanceID: 0}
@@ -40,5 +44,6 @@ ClassTypes:
 - Class: 1839735485
   Script: {instanceID: 0}
 Assets:
+- Assets/Editor Default Resources/ScriptableObject/maps/001.asset
 - Assets/Editor Default Resources/Prefabs/maps/001.prefab
 Dependencies: []

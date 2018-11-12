@@ -20,11 +20,13 @@ namespace MyEditor
         [SerializeField] private GameObject tilesLayer;
         [SerializeField] private int width = 30;
         [SerializeField] private int height = 30;
+
         const string scriptableMapsPath = "Assets/Editor Default Resources/ScriptableObject/maps/{0}.asset";
         private bool loadComplete = false;
         private bool createMapOk = false;
         private MTile currentTile = null;
         private VTile currentVTile = null;
+        private string setId = "001";
         public IEnumerator Start()
         {
             Caching.ClearCache();
@@ -59,7 +61,8 @@ namespace MyEditor
             }
             width = int.Parse(GUI.TextField(new Rect(50, 10, 50, 30), width.ToString()));
             height = int.Parse(GUI.TextField(new Rect(150, 10, 50, 30), height.ToString()));
-            //setId = int.Parse(GUI.TextField(new Rect(350, 10, 50, 30), setId.ToString()));
+            setId = GUI.TextField(new Rect(350, 10, 50, 30), setId);
+
             if (GUI.Button(new Rect(50, 50, 100, 30), "createMap"))
             {
                 CreateMap();
@@ -68,7 +71,7 @@ namespace MyEditor
             }
             if (GUI.Button(new Rect(50, 100, 100, 30), "saveMap"))
             {
-                CreateScriptableObjectMasterMapRun(1);
+                CreateScriptableObjectMasterMapRun();
             }
         }
         void CreateMap(){
@@ -92,7 +95,7 @@ namespace MyEditor
                 }
             }
         }
-        void CreateScriptableObjectMasterMapRun(int id)
+        void CreateScriptableObjectMasterMapRun()
         {
             List<int> tileIds = new List<int>();
             for (int i = 0; i < height; i++)
@@ -105,14 +108,13 @@ namespace MyEditor
             }
 
             var asset = ScriptableObject.CreateInstance<MapAsset>();
-            Debug.LogError("tileIds+"+ tileIds.Count);
             MMap map = new MMap();
             map.tile_ids = tileIds.ToArray();
             map.width = width;
             map.height = height;
             asset.map = map;
-            Debug.LogError("CreateAsset Map:" + id);
-            UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableMapsPath, id));
+            Debug.LogError("CreateAsset Map:" + setId);
+            UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableMapsPath, setId));
             UnityEditor.AssetDatabase.Refresh();
             Debug.Log("CreateScriptableObjectMasterScenarioRun complete");
         }
@@ -141,10 +143,15 @@ namespace MyEditor
             string path = "Assets/Editor Default Resources/assetbundle/" + target + "/" + child + "/";
             string assetPath = string.Format("Assets/Editor Default Resources/Prefabs/{0}/{1}.prefab", child, name);
             AssetBundleBuild[] builds = new AssetBundleBuild[1];
+            //builds[0].assetBundleName = string.Format("{0}_{1}.unity3d", child, name);
             builds[0].assetBundleName = child + "_" + name + ".unity3d";
-            string[] enemyAssets = new string[1];
+            string[] enemyAssets = new string[2];
             enemyAssets[0] = assetPath;
+            //enemyAssets[0] = string.Format("Assets/Editor Default Resources/Prefabs/{0}/{1}.prefab", child, name);
+            enemyAssets[1] = string.Format("Assets/Editor Default Resources/ScriptableObject/{0}/{1}.asset", child, name);
             builds[0].assetNames = enemyAssets;
+            Debug.LogError(enemyAssets[0]);
+            Debug.LogError(enemyAssets[1]);
             BuildPipeline.BuildAssetBundles(path, builds,
                 BuildAssetBundleOptions.ChunkBasedCompression
                 , GetBuildTarget()

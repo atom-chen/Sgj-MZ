@@ -23,51 +23,26 @@ namespace App.Controller.Battle
         public BattleCalculateManager calculateManager { get; set; }
         public override IEnumerator OnLoad( Request request ) {
             LSharpInit();
-            InitMap();
             yield return this.StartCoroutine(base.OnLoad(request));
             Service.SUser sUser = Util.Global.SUser;
             string url = Service.HttpClient.assetBandleURL + "maps/maps_001.unity3d";
-            yield return this.StartCoroutine(sUser.Download(url, 0, (AssetBundle assetbundle) => {
-                GameObject[] ts = assetbundle.LoadAllAssets<GameObject>();
-                GameObject obj = ts[0] as GameObject;
-                this.dispatcher.Set("tileMap", obj);
-                assetbundle.Unload(false);
-
-            }));
+            yield return this.StartCoroutine(sUser.Download(url, 0, InitMap));
             this.dispatcher.Notify();
         }
         private void LSharpInit() { 
         }
-        public void InitMap(){
-
-            List<List<Model.Master.MTile>> tiles = new List<List<Model.Master.MTile>>();
-            for (int i = 0; i < 10; i++)
-            {
-                List<Model.Master.MTile> childs;
-                if (tiles.Count < i + 1)
-                {
-                    childs = new List<Model.Master.MTile>();
-                    tiles.Add(childs);
-                }
-                else
-                {
-                    childs = tiles[i];
-                }
-                for (int j = 0; j < 10; j++)
-                {
-                    Model.Master.MTile mTile;
-                    if (childs.Count < j + 1)
-                    {
-                        mTile = new Model.Master.MTile();
-                        childs.Add(mTile);
-                    }
-                    else
-                    {
-                        mTile = childs[j];
-                    }
-                }
-            }
-            this.dispatcher.Set("map", tiles);
+        public void InitMap(AssetBundle assetbundle)
+        {
+            Object[] ts = assetbundle.LoadAllAssets<Object>();
+            Debug.LogError("ts.Length=" + ts.Length);
+            GameObject obj = ts[0] as GameObject;
+            this.dispatcher.Set("tileMap", obj);
+            Model.Scriptable.MapAsset mapAsset = ts[1] as Model.Scriptable.MapAsset;
+            Debug.LogError("mapAsset.map.tiles.Count=" + mapAsset.map.tiles.Count);
+            Debug.LogError("mapAsset.map.width" + mapAsset.map.width);
+            Debug.LogError("mapAsset.map.height" + mapAsset.map.height);
+            this.dispatcher.Set("map", mapAsset.map.tiles);
+            assetbundle.Unload(false);
         }
         public void InitManager(){
             mapSearch = new TileMap();
