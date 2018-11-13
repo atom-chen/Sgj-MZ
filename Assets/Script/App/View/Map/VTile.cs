@@ -8,7 +8,8 @@ namespace App.View.Map
 {
     public class VTile : VBase
     {
-        [SerializeField] public SpriteRenderer movingSprite;
+        [SerializeField] public SpriteRenderer terrainReview;
+        [SerializeField] public SpriteRenderer movingSprite; 
         [SerializeField] public SpriteRenderer attackSprite;
         [SerializeField] public TextMesh tileName;
         public Vector2Int coordinate = new Vector2Int(0, 0);
@@ -59,7 +60,7 @@ namespace App.View.Map
             {
                 yield break;
             }
-            this.controller.SendMessage("OnClickTile", coordinate, SendMessageOptions.DontRequireReceiver);
+            this.controller.SendMessage("OnClickTile", this, SendMessageOptions.DontRequireReceiver);
         }
         public void ShowMoving(Model.Belong belong)
         {

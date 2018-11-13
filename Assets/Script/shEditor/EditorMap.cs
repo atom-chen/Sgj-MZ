@@ -8,13 +8,14 @@ using App.Model.Scriptable;
 using App.Util.Cacher;
 using App.View.Map;
 using App.Model.Master;
+using App.Controller.Common;
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
 
 namespace MyEditor
 {
-    public class EditorMap : MonoBehaviour
+    public class EditorMap : CBase
     {
         [SerializeField] private GameObject prefabTile;
         [SerializeField] private GameObject tilesLayer;
@@ -60,19 +61,20 @@ namespace MyEditor
                 return;
             }
             width = int.Parse(GUI.TextField(new Rect(50, 10, 50, 30), width.ToString()));
-            height = int.Parse(GUI.TextField(new Rect(150, 10, 50, 30), height.ToString()));
-            setId = GUI.TextField(new Rect(350, 10, 50, 30), setId);
+            height = int.Parse(GUI.TextField(new Rect(110, 10, 50, 30), height.ToString()));
+            setId = GUI.TextField(new Rect(170, 10, 50, 30), setId);
 
-            if (GUI.Button(new Rect(50, 50, 100, 30), "createMap"))
+            if (GUI.Button(new Rect(250, 10, 90, 30), "createMap"))
             {
                 CreateMap();
                 //createMapOk = true;
                 currentTile = TileCacher.Instance.Get(1);
             }
-            if (GUI.Button(new Rect(50, 100, 100, 30), "saveMap"))
+            if (GUI.Button(new Rect(350, 10, 90, 30), "saveMap"))
             {
                 CreateScriptableObjectMasterMapRun();
             }
+            ChangeCurrentTile();
         }
         void CreateMap(){
 
@@ -117,6 +119,32 @@ namespace MyEditor
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableMapsPath, setId));
             UnityEditor.AssetDatabase.Refresh();
             Debug.Log("CreateScriptableObjectMasterScenarioRun complete");
+        }
+        public void OnClickTile(VTile vTile)
+        {
+            Vector2Int coordinate = vTile.coordinate;
+            //vTile.tileName.text = "click";
+            vTile.terrainReview.sprite = App.Model.Master.MTile.GetIcon(1);
+
+        }
+        private void ChangeCurrentTile()
+        {
+            MTile[] tiles = TileCacher.Instance.GetAll();
+            int i = 0;
+            int j = 0;
+            foreach (MTile tile in tiles)
+            {
+                if (GUI.Button(new Rect(50 + i * 110, 100 + j * 40, 100, 30), tile.name))
+                {
+                    currentTile = tile;
+                }
+                j++;
+                if (j >= 15)
+                {
+                    j = 0;
+                    i++;
+                }
+            }
         }
 
         [MenuItem("CH/Build Assetbundle/Maps")]

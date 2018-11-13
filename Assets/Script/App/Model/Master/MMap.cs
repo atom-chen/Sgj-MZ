@@ -17,22 +17,23 @@ namespace App.Model.Master
         private List<List<MTile>> _tiles;
         public List<List<MTile>> tiles{
             get{
-                if(tile_ids != null)
+                if(_tiles != null)
                 {
                     return _tiles;
                 }
                 _tiles = new List<List<MTile>>();
-                int i = 0;
-                List<MTile> childs = new List<MTile>();
-                foreach (int tile_id in tile_ids)
+                for (int i = 0; i < height; i++)
                 {
-                    if(i > 0 && i++ % width == 0)
+                    List<MTile> childs = new List<MTile>();
+                    for (int j = 0; j < width; j++)
                     {
-                        childs = new List<MTile>();
-                        _tiles.Add(childs);
+                        int tile_id = tile_ids[i * width + j];
+                        //TODO::
+                        tile_id = 1;
+                        MTile tile = TileCacher.Instance.Get(tile_id);
+                        childs.Add(tile);
                     }
-                    MTile tile = TileCacher.Instance.Get(tile_id);
-                    childs.Add(tile);
+                    _tiles.Add(childs);
                 }
                 return _tiles;
             }

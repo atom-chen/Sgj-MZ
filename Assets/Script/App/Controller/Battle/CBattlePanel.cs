@@ -50,8 +50,9 @@ namespace App.Controller.Battle
             breadthFirst = new BreadthFirst();
 
         }
-        public void OnClickTile(Vector2Int coordinate)
+        public void OnClickTile(View.Map.VTile vTile)
         {
+            Vector2Int coordinate = vTile.coordinate;
             if (currentBelong != Belong.self)
             {
                 return;
