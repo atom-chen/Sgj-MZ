@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using App.Model.Master;
 using App.Util;
 using App.View.Common;
 using UnityEngine;
@@ -13,8 +14,16 @@ namespace App.View.Map
         [SerializeField] public SpriteRenderer attackSprite;
         [SerializeField] public TextMesh tileName;
         public Vector2Int coordinate = new Vector2Int(0, 0);
+        private MTile _mTile;
+        public MTile mTile
+        {
+            get
+            {
+                return _mTile;
+            }
+        }
         private VMap _vMap;
-        private VMap vMap{
+        public VMap vMap{
             get {
                 if(_vMap == null)
                 {
@@ -45,6 +54,13 @@ namespace App.View.Map
             }
         }
         private GameObject attackTween;
+        public override void Awake()
+        {
+            base.Awake();
+            terrainReview.gameObject.SetActive(false);
+            movingSprite.gameObject.SetActive(false);
+            attackSprite.gameObject.SetActive(false);
+        }
         void OnMouseUp()
         {
             StartCoroutine(OnClickTile());
@@ -86,6 +102,16 @@ namespace App.View.Map
             attackTween.transform.localPosition = Vector3.zero;
             attackTween.transform.localScale = Vector3.one;
             this.attackTween = attackTween;
+        }
+        public void EditorSetData(MTile mTile)
+        {
+            terrainReview.gameObject.SetActive(true);
+            terrainReview.sprite = MTile.GetIcon(mTile.id);
+            SetData(mTile);
+        }
+        public void SetData(MTile mTile)
+        {
+            _mTile = mTile;
         }
         /*
         private VBaseMap vBaseMap;

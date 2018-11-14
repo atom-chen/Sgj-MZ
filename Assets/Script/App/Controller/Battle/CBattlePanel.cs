@@ -52,6 +52,7 @@ namespace App.Controller.Battle
         }
         public void OnClickTile(View.Map.VTile vTile)
         {
+            Debug.LogError("OnClickTile:" + vTile.mTile.id);
             Vector2Int coordinate = vTile.coordinate;
             if (currentBelong != Belong.self)
             {

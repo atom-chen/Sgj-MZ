@@ -40,6 +40,9 @@ namespace MyEditor
                 TileCacher.Instance.Reset(TileAsset.Data.tiles);
                 TileAsset.Clear();
             }));
+            list.Add(sUser.Download(ImageAssetBundleManager.mapUrl, versions.map, (AssetBundle assetbundle) => {
+                ImageAssetBundleManager.map = assetbundle;
+            }, false));
             /*list.Add(sUser.Download(ConstantAsset.Url, versions.constant, (AssetBundle assetbundle) => {
                 ConstantAsset.assetbundle = assetbundle;
                 Global.Constant = ConstantAsset.Data.constant;
@@ -77,7 +80,7 @@ namespace MyEditor
             ChangeCurrentTile();
         }
         void CreateMap(){
-
+            currentTile = TileCacher.Instance.Get(1);
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -88,12 +91,8 @@ namespace MyEditor
                     obj.transform.SetParent(tilesLayer.transform);
                     obj.transform.localPosition = new Vector3(j * 0.64f + 0.32f, -i * 0.64f - 0.32f, 0f);
                     obj.transform.localScale = Vector3.one;
-                    /*VTile vTile = obj.GetComponent<VTile>();
-                    vTile.tileSprite.sprite = null;
-                    vTile.buildingSprite.sprite = null;
-                    vTile.lineSprite.sprite = null;
-                    tiles.Add(vTile);
-                    tileIds.Add(1);*/
+                    VTile vTile = obj.GetComponent<VTile>();
+                    vTile.EditorSetData(currentTile);
                 }
             }
         }
@@ -105,7 +104,8 @@ namespace MyEditor
                 for (int j = 0; j < width; j++)
                 {
                     Transform trans = tilesLayer.transform.Find("Tile_" + (i + 1) + "_" + (j + 1));
-                    tileIds.Add(0);
+                    VTile vTile = trans.GetComponent<VTile>();
+                    tileIds.Add(vTile.mTile.id);
                 }
             }
 
@@ -123,8 +123,7 @@ namespace MyEditor
         public void OnClickTile(VTile vTile)
         {
             Vector2Int coordinate = vTile.coordinate;
-            //vTile.tileName.text = "click";
-            vTile.terrainReview.sprite = App.Model.Master.MTile.GetIcon(1);
+            vTile.EditorSetData(currentTile);
 
         }
         private void ChangeCurrentTile()

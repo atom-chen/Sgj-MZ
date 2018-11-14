@@ -28,8 +28,6 @@ namespace App.Model.Master
                     for (int j = 0; j < width; j++)
                     {
                         int tile_id = tile_ids[i * width + j];
-                        //TODO::
-                        tile_id = 1;
                         MTile tile = TileCacher.Instance.Get(tile_id);
                         childs.Add(tile);
                     }

@@ -36,6 +36,7 @@ namespace App.Model.Master
         public string strategy;//可使用法术
         public static Sprite GetIcon(int id)
         {
+            Debug.LogError("GetIcon="+id);
             return App.Util.ImageAssetBundleManager.GetMapTile(string.Format("tile_{0}", id));
         }
         public static Sprite GetIcon(string key)

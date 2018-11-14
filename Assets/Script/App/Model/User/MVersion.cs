@@ -13,6 +13,7 @@ namespace App.Model.User
         public int character;
         public int npc;
         public int tile;
+        public int map;
         public MVersion()
         {
         }

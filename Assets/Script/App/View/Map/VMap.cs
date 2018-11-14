@@ -104,13 +104,15 @@ namespace App.View.Map
                         obj.transform.localScale = Vector3.one;
                         float x = 0.32f + j * 0.64f + (i % 2 == 0 ? 0 : 0.32f);
                         obj.transform.localPosition = new Vector3(x, -0.32f - i * 0.64f, 0);
+                        vTile = obj.GetComponent<VTile>();
                     }
                     else
                     {
                         vTile = childs[j];
                         vTile.gameObject.SetActive(true);
                     }
-
+                    vTile.SetData(mTiles[j]);
+                    Debug.Log("mTiles["+ i + ","+j +"].id=" + mTiles[j].id);
                 }
             }
         }
