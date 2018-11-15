@@ -70,12 +70,28 @@ namespace App.View.Map
                 }
             }
         }
-        public override void UpdateView()
+        private void SetCharacters()
         {
-            base.UpdateView();
+            object val = this.GetByPath("characters");
+            if (val == null)
+            {
+                return;
+            }
+            List<Model.Character.MCharacter> characters = val as List<Model.Character.MCharacter>;
+            for (int i = 0; i < characters.Count; i++)
+            {
+                Model.Character.MCharacter character = characters[i];
+                GameObject obj = Instantiate(characterPrefab);
+                obj.transform.SetParent(characterLayer.transform);
+                obj.transform.localScale = Vector3.one;
+
+            }
+        }
+        private void SetTiles()
+        {
             object val = this.GetByPath("map");
-            Debug.LogError("val=" + val);
-            if (val == null){
+            if (val == null)
+            {
                 return;
             }
             List<List<MTile>> tiles = val as List<List<MTile>>;
@@ -112,9 +128,14 @@ namespace App.View.Map
                         vTile.gameObject.SetActive(true);
                     }
                     vTile.SetData(mTiles[j]);
-                    Debug.Log("mTiles["+ i + ","+j +"].id=" + mTiles[j].id);
                 }
             }
+        }
+        public override void UpdateView()
+        {
+            base.UpdateView();
+            SetTiles();
+            SetCharacters();
         }
     }
 }

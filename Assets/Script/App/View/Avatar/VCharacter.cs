@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using App.Util.Manager;
 using App.View.Common;
 using Holoville.HOTween;
 using UnityEngine;
@@ -70,6 +71,14 @@ namespace App.View.Avatar
             get
             {
                 return armRightShort.gameObject.activeSelf ? armRightShort : armRightLong;
+            }
+        }
+        private Model.Character.MCharacter _mCharacter;
+        public Model.Character.MCharacter mCharacter
+        {
+            get
+            {
+                return _mCharacter;
             }
         }
         private static Material materialGray;
@@ -163,6 +172,63 @@ namespace App.View.Avatar
             {
                 return head.sharedMaterial.Equals(materialGray);
             }
+        }
+        public float alpha
+        {
+            set
+            {
+                foreach (Anima2D.SpriteMeshInstance sprite in allSprites)
+                {
+                    sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, value);
+                }
+            }
+            get
+            {
+                return allSprites[0].color.a;
+            }
+        }
+        private void ActionChanged()
+        {
+            string animatorName = string.Format("{0}_{1}_{2}", 
+                                                mCharacter.moveType.ToString(), 
+                                                WeaponManager.GetWeaponTypeAction(mCharacter.weaponType, mCharacter.action), 
+                                                mCharacter.action.ToString());
+            if (!this.gameObject.activeInHierarchy)
+            {
+                return;
+            }
+            animator.Play(animatorName);
+            if (mCharacter.action != App.Model.ActionType.idle)
+            {
+                this.controller.SendMessage("AddDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
+                return;
+            }
+            if (mCharacter.hp > 0)
+            {
+                this.StartCoroutine(RemoveDynamicCharacter());
+                return;
+            }
+            HOTween.To(this, 1f, new TweenParms().Prop("alpha", 0f).OnComplete(() => {
+                this.gameObject.SetActive(false);
+                this.alpha = 1f;
+                if (sequenceStatus != null)
+                {
+                    sequenceStatus.Kill();
+                }
+                if (App.Util.AppManager.CurrentScene != null)
+                {
+                    App.Util.AppManager.CurrentScene.StartCoroutine(RemoveDynamicCharacter());
+                }
+            }));
+        }
+        private IEnumerator RemoveDynamicCharacter()
+        {
+            while (this.gameObject.activeSelf && this.num.gameObject.activeSelf)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForEndOfFrame();
+            this.controller.SendMessage("RemoveDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
         }
 
     }

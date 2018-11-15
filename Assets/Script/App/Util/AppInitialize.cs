@@ -63,6 +63,21 @@ namespace App.Util
                 TileCacher.Instance.Reset(TileAsset.Data.tiles);
                 TileAsset.Clear();
             }));
+            list.Add(sUser.Download(HorseAsset.Url, versions.horse, (AssetBundle assetbundle) => {
+                HorseAsset.assetbundle = assetbundle;
+                EquipmentCacher.Instance.ResetHorse(HorseAsset.Data.equipments);
+                HorseAsset.Clear();
+            }));
+            list.Add(sUser.Download(WeaponAsset.Url, versions.weapon, (AssetBundle assetbundle) => {
+                WeaponAsset.assetbundle = assetbundle;
+                EquipmentCacher.Instance.ResetWeapon(WeaponAsset.Data.equipments);
+                WeaponAsset.Clear();
+            }));
+            list.Add(sUser.Download(ClothesAsset.Url, versions.clothes, (AssetBundle assetbundle) => {
+                ClothesAsset.assetbundle = assetbundle;
+                EquipmentCacher.Instance.ResetClothes(ClothesAsset.Data.equipments);
+                ClothesAsset.Clear();
+            }));
             //TODO:
             list.Add(sUser.RequestLogin("lufylegend02", "11111111"));
             list.Add(sUser.RequestGet());

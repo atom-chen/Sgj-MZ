@@ -119,4 +119,12 @@ namespace App.Model
         /// </summary>
         defensive
     }
+    public enum ActionType
+    {
+        idle,
+        move,
+        attack,
+        block,
+        hert,
+    }
 }

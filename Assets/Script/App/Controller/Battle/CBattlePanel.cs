@@ -27,20 +27,40 @@ namespace App.Controller.Battle
             Service.SUser sUser = Util.Global.SUser;
             string url = Service.HttpClient.assetBandleURL + "maps/maps_001.unity3d";
             yield return this.StartCoroutine(sUser.Download(url, 0, InitMap));
+            InitCharacters();
             this.dispatcher.Notify();
         }
-        private void LSharpInit() { 
+        private void LSharpInit()
+        {
+        }
+        public void InitCharacters()
+        {
+
+            List<Model.Character.MCharacter> characters = new List<Model.Character.MCharacter>();
+            Model.Character.MCharacter mCharacter = new Model.Character.MCharacter();
+            mCharacter.id = 0;
+            mCharacter.characterId = 1;
+            mCharacter.weapon = 1;
+            mCharacter.clothes = 1;
+            mCharacter.horse = 1;
+            mCharacter.head = 1;
+            characters.Add(mCharacter);
+            mCharacter = new Model.Character.MCharacter();
+            mCharacter.id = 0;
+            mCharacter.characterId = 1;
+            mCharacter.weapon = 2;
+            mCharacter.clothes = 2;
+            mCharacter.horse = 2;
+            mCharacter.head = 2;
+            characters.Add(mCharacter);
+            this.dispatcher.Set("characters", characters);
         }
         public void InitMap(AssetBundle assetbundle)
         {
             Object[] ts = assetbundle.LoadAllAssets<Object>();
-            Debug.LogError("ts.Length=" + ts.Length);
             GameObject obj = ts[0] as GameObject;
             this.dispatcher.Set("tileMap", obj);
             Model.Scriptable.MapAsset mapAsset = ts[1] as Model.Scriptable.MapAsset;
-            Debug.LogError("mapAsset.map.width" + mapAsset.map.width);
-            Debug.LogError("mapAsset.map.height" + mapAsset.map.height);
-            Debug.LogError("mapAsset.map.tiles.Count=" + mapAsset.map.tiles.Count);
             this.dispatcher.Set("map", mapAsset.map.tiles);
             assetbundle.Unload(false);
         }

@@ -14,6 +14,9 @@ namespace App.Model.User
         public int npc;
         public int tile;
         public int map;
+        public int horse;
+        public int weapon;
+        public int clothes;
         public MVersion()
         {
         }
