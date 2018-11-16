@@ -26,5 +26,26 @@ namespace App.Util
             }
             t.DetachChildren();    //すべての子オブジェクトを親オブジェクトから切り離します
         }
+        private static GameObject _characterPrefab;
+        public static GameObject characterPrefab{
+            get{
+                if(_characterPrefab == null){
+                    _characterPrefab = (GameObject)Resources.Load("Character/Character");
+                }
+                return _characterPrefab;
+            }
+        }
+        private static GameObject _tilePrefab;
+        public static GameObject tilePrefab
+        {
+            get
+            {
+                if (_tilePrefab == null)
+                {
+                    _tilePrefab = (GameObject)Resources.Load("Tile/TileUnit");
+                }
+                return _tilePrefab;
+            }
+        }
     }
 }

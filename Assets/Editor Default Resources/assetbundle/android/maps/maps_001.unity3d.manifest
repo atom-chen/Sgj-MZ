@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3560971870
+CRC: 3053980493
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c350b47ba8a7209702fda8cd3c5bd82d
+    Hash: 07ca42371eb043e79a7f063f68b819e4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fce888b0de445866374264497d1e66ac
+    Hash: 2f78203e341c1110577c00400a024c40
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,61 +15,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
-- Class: 23
-  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
-- Class: 33
-  Script: {instanceID: 0}
-- Class: 43
-  Script: {instanceID: 0}
 - Class: 48
-  Script: {instanceID: 0}
-- Class: 61
-  Script: {instanceID: 0}
-- Class: 74
-  Script: {instanceID: 0}
-- Class: 91
-  Script: {instanceID: 0}
-- Class: 95
-  Script: {instanceID: 0}
-- Class: 102
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
 - Class: 114
-  Script: {fileID: 11500000, guid: 129903318099543b5b9769b85af9a880, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 29b62aa2fd5064339ab40ddc8eb59ad5, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 99091f75dac5d4ede961d37f71798fc6, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: c10c0be6d28fe4d539c4a39822fe301c, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 03b157d7625014c58bfbad3513f40289, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 2b52175a49c974fa1b58536d891959d2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5ec17ceaa560940e9bf0dbeafc3a1971, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: ed538c1d47e924ca18013afcfba9e295, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 533669fe702b5414cbcdd5a5efeb8e36, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: c138277fd0cb14f7f9aae4176ab44bbc, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 128
-  Script: {instanceID: 0}
-- Class: 136
-  Script: {instanceID: 0}
-- Class: 137
-  Script: {instanceID: 0}
-- Class: 210
-  Script: {instanceID: 0}
-- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}

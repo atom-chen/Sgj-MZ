@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 8195094281555100506}
   - component: {fileID: 3664157346138786258}
   m_Layer: 0
-  m_Name: characterLayer
+  m_Name: CharacterLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 8195094281498399820}
   - component: {fileID: 3664157344194087544}
   m_Layer: 0
-  m_Name: building
+  m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 8195094280882747164}
   - component: {fileID: 3664157345245632608}
   m_Layer: 0
-  m_Name: ground
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,12 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed538c1d47e924ca18013afcfba9e295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera3d: {fileID: 0}
-  characterPrefab: {fileID: 1054364540451168, guid: 70d85f33b1f6d4709ae2ffee614b5eb4,
-    type: 2}
-  characterLayer: {fileID: 1008274269695182}
-  tilePrefab: {fileID: 1095483591017860, guid: c27f6ed86ee034de5b1b8baabb0f9d8c, type: 2}
-  tileLayer: {fileID: 1429499397659772}
 --- !u!156049354 &2569400268487096122
 Grid:
   m_ObjectHideFlags: 1

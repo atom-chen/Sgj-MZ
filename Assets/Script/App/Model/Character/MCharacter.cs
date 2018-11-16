@@ -39,6 +39,7 @@ namespace App.Model.Character
         public MoveType moveType;
         public WeaponType weaponType;
         public ActionType action;
+        public UnityEngine.Vector2Int coordinate = new UnityEngine.Vector2Int(0, 0);
         public MCharacter()
         {
             this.mission = Mission.initiative;

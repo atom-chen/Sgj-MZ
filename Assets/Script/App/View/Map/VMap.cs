@@ -8,11 +8,29 @@ namespace App.View.Map
 {
     public class VMap:VBase
     {
-        [SerializeField] private Camera camera3d;
-        [SerializeField] private GameObject characterPrefab;
-        [SerializeField] private GameObject characterLayer;
-        [SerializeField] private GameObject tilePrefab;
-        [SerializeField] private GameObject tileLayer;
+        private Camera camera3d;
+        private Transform _characterLayer;
+        private Transform characterLayer
+        {
+            get{
+                if(_characterLayer == null){
+                    _characterLayer = transform.Find("CharacterLayer");
+                }
+                return _characterLayer;
+            }
+        }
+        private Transform _ctrlLayer;
+        private Transform ctrlLayer
+        {
+            get
+            {
+                if (_ctrlLayer == null)
+                {
+                    _ctrlLayer = transform.Find("CtrlLayer");
+                }
+                return _ctrlLayer;
+            }
+        }
         private bool _camera3DEnable = true;
         private bool _isDraging;
         private int mapWidth;
@@ -42,27 +60,6 @@ namespace App.View.Map
         }
         public void OnEnable()
         {
-            /*List<List<MTile>> tiles = new List<List<MTile>>();
-            for (int i = 0; i < 10;i++){
-                List<MTile> childs;
-                if (tiles.Count < i+1){
-                    childs = new List<MTile>();
-                    tiles.Add(childs);
-                }else{
-                    childs = tiles[i];
-                }
-                for (int j = 0; j < 10;j++){
-                    MTile mTile;
-                    if(childs.Count < j+1){
-                        mTile = new MTile();
-                        childs.Add(mTile);
-                    }
-                    else{
-                        mTile = childs[j];
-                    }
-                }
-            }
-            */
             for (int i = 0; i < tileUnits.Count; i++){
                 List<VTile> childs = tileUnits[i];
                 for (int j = 0; j < childs.Count; j++){
@@ -81,10 +78,10 @@ namespace App.View.Map
             for (int i = 0; i < characters.Count; i++)
             {
                 Model.Character.MCharacter character = characters[i];
-                GameObject obj = Instantiate(characterPrefab);
-                obj.transform.SetParent(characterLayer.transform);
+                GameObject obj = Instantiate(Util.Global.characterPrefab);
+                obj.transform.SetParent(characterLayer);
                 obj.transform.localScale = Vector3.one;
-
+                obj.transform.localPosition = new Vector3(character.coordinate.x * 0.64f + 0.32f, -character.coordinate.y * 0.64f - 0.32f, 0);
             }
         }
         private void SetTiles()
@@ -115,8 +112,8 @@ namespace App.View.Map
                     VTile vTile;
                     if (emptyTiles || childs.Count < j + 1)
                     {
-                        GameObject obj = Instantiate(tilePrefab);
-                        obj.transform.SetParent(tileLayer.transform);
+                        GameObject obj = Instantiate(Util.Global.tilePrefab);
+                        obj.transform.SetParent(ctrlLayer);
                         obj.transform.localScale = Vector3.one;
                         float x = 0.32f + j * 0.64f + (i % 2 == 0 ? 0 : 0.32f);
                         obj.transform.localPosition = new Vector3(x, -0.32f - i * 0.64f, 0);
