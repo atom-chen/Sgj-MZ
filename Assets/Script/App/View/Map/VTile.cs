@@ -54,6 +54,15 @@ namespace App.View.Map
             }
         }
         private GameObject attackTween;
+        public void SearchInit()
+        {
+            movingPower = 0;
+            isChecked = false;
+            isOpen = false;
+            isRoad = true;
+            isAllCost = false;
+            parentNode = null;
+        }
         public override void Awake()
         {
             base.Awake();

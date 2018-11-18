@@ -36,9 +36,13 @@ namespace App.Model.Character
         }
         public int star;
         public int hp;
+        public int roadLength;
+        public Belong belong;
         public MoveType moveType;
         public WeaponType weaponType;
         public ActionType action;
+        public MCharacterAbility ability;
+        public bool isHide = false;
         public UnityEngine.Vector2Int coordinate = new UnityEngine.Vector2Int(0, 0);
         public MCharacter()
         {

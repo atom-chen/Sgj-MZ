@@ -1,7 +1,10 @@
 ﻿
 
+using System.Collections.Generic;
 using App.Model.User;
 using App.Service;
+using App.Util.Event;
+using App.View.Map;
 using UnityEngine;
 
 namespace App.Util
@@ -12,8 +15,14 @@ namespace App.Util
         public static SUser SUser;
         public static string ssid;
         public static AppManager AppManager { get; private set; }
+        public static Manager.BattleManager battleManager { get; set; }
+        public static VMap vMap { get; set; }
+        public static List<List<VTile>> tileUnits = new List<List<VTile>>();
+        public static BattleEvent battleEvent { get; set; }
         public static void Initialize()
         {
+            battleEvent = new BattleEvent();
+            battleManager = new Manager.BattleManager();
             AppManager = new AppManager();
             SUser = new SUser();
         }
