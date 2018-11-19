@@ -28,7 +28,7 @@ namespace MyEditor
         private MTile currentTile = null;
         private VTile currentVTile = null;
         private string setId = "001";
-        public IEnumerator Start()
+        public override IEnumerator Start()
         {
             Caching.ClearCache();
             Global.Initialize();

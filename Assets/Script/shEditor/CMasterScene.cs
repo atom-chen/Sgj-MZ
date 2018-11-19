@@ -37,7 +37,7 @@ namespace App.Controller{
             page = 0;
 			yield return 0;
         }
-        /*
+
         #if UNITY_EDITOR
         void OnGUI()
         {
@@ -492,6 +492,6 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.Refresh();
         }
         #endif
-        */
+
 	}
 }

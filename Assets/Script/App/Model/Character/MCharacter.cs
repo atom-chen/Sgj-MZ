@@ -36,11 +36,14 @@ namespace App.Model.Character
         }
         public int star;
         public int hp;
+        public int mp;
         public int roadLength;
         public Belong belong;
         public MoveType moveType;
         public WeaponType weaponType;
         public ActionType action;
+        public MSkill[] skills;
+        public MSkill currentSkill;
         public MCharacterAbility ability;
         public bool isHide = false;
         public UnityEngine.Vector2Int coordinate = new UnityEngine.Vector2Int(0, 0);
@@ -57,9 +60,28 @@ namespace App.Model.Character
             mCharacter.clothes = npc.clothes;
             mCharacter.weapon = npc.weapon;
             mCharacter.star = npc.star;
-            mCharacter.hp = 100;
             mCharacter.action = ActionType.idle;
             return mCharacter;
+        }
+        public void StatusInit()
+        {
+            if (this.currentSkill == null)
+            {
+                if (this.skills != null && this.skills.Length > 0)
+                {
+                    this.currentSkill = Array.Find(this.skills, s => Master.MSkill.IsWeaponType(s.master, this.weaponType));
+                }
+            }
+            if (this.ability == null)
+            {
+                this.ability = MCharacterAbility.Create(this);
+            }
+            else
+            {
+                this.ability.Update(this);
+            }
+            this.hp = this.ability.hpMax;
+            this.mp = this.ability.mpMax;
         }
         private void _moveTypeUpdate()
         {
