@@ -45,38 +45,38 @@ namespace App.Controller{
             {
                 if (GUI.Button(new Rect(50, 100, 200, 30), "Init"))
                 {
-                    apis.Add("tutorial", CreateScriptableObjectMasterTutorialRun());
-                    apis.Add("tiles", CreateScriptableObjectMasterTileRun());
-                    apis.Add("base_maps", CreateScriptableObjectMasterBaseMapRun());
-                    apis.Add("buildings", CreateScriptableObjectMasterBuildingRun());
-                    apis.Add("Constant", CreateScriptableObjectMasterConstantRun());
-                    apis.Add("world", CreateScriptableObjectMasterWorldRun());
-                    apis.Add("area", CreateScriptableObjectMasterAreaRun());
+                    //apis.Add("tutorial", CreateScriptableObjectMasterTutorialRun());
+                    //apis.Add("tiles", CreateScriptableObjectMasterTileRun());
+                    //apis.Add("base_maps", CreateScriptableObjectMasterBaseMapRun());
+                    //apis.Add("buildings", CreateScriptableObjectMasterBuildingRun());
+                    //apis.Add("Constant", CreateScriptableObjectMasterConstantRun());
+                    //apis.Add("world", CreateScriptableObjectMasterWorldRun());
+                    //apis.Add("area", CreateScriptableObjectMasterAreaRun());
                     apis.Add("character", CreateScriptableObjectMasterCharacterRun());
                     apis.Add("horse", CreateScriptableObjectMasterHorseRun());
                     apis.Add("clothes", CreateScriptableObjectMasterClothesRun());
                     apis.Add("weapon", CreateScriptableObjectMasterWeaponRun());
                     apis.Add("skill", CreateScriptableObjectMasterSkillRun());
-                    apis.Add("strategy", CreateScriptableObjectMasterStrategyRun());
-                    apis.Add("battlefield", CreateScriptableObjectMasterBattleFieldRun());
-                    apis.Add("item", CreateScriptableObjectMasterItemRun());
-                    apis.Add("mission", CreateScriptableObjectMasterMissionRun());
-                    apis.Add("shop", CreateScriptableObjectMasterShopRun());
-                    apis.Add("gacha", CreateScriptableObjectMasterGachaRun());
-                    apis.Add("word", CreateScriptableObjectMasterWordRun());
-                    apis.Add("npc", CreateScriptableObjectMasterNpcRun());
-                    apis.Add("npc_equip", CreateScriptableObjectMasterNpcEquipmentRun());
-                    apis.Add("star", CreateScriptableObjectMasterStarRun());
-                    apis.Add("loginbonus", CreateScriptableObjectMasterLoginBonusRun());
-                    apis.Add("exp", CreateScriptableObjectMasterExpRun());
+                    //apis.Add("strategy", CreateScriptableObjectMasterStrategyRun());
+                    //apis.Add("battlefield", CreateScriptableObjectMasterBattleFieldRun());
+                    //apis.Add("item", CreateScriptableObjectMasterItemRun());
+                    //apis.Add("mission", CreateScriptableObjectMasterMissionRun());
+                    //apis.Add("shop", CreateScriptableObjectMasterShopRun());
+                    //apis.Add("gacha", CreateScriptableObjectMasterGachaRun());
+                    //apis.Add("word", CreateScriptableObjectMasterWordRun());
+                    //apis.Add("npc", CreateScriptableObjectMasterNpcRun());
+                    //apis.Add("npc_equip", CreateScriptableObjectMasterNpcEquipmentRun());
+                    //apis.Add("star", CreateScriptableObjectMasterStarRun());
+                    //apis.Add("loginbonus", CreateScriptableObjectMasterLoginBonusRun());
+                    //apis.Add("exp", CreateScriptableObjectMasterExpRun());
                     //apis.Add("scenario", CreateScriptableObjectMasterScenarioRun());
-                    apis.Add("story_progress", CreateScriptableObjectMasterStoryProgressRun());
+                    //apis.Add("story_progress", CreateScriptableObjectMasterStoryProgressRun());
                     apiKeys = apis.Keys.ToArray();
 
-                    assets.Add("face", CreateScriptableObjectFaceAssetRun());
-                    assets.Add("Prompt", CreateScriptableObjectPromptAssetRun());
-                    assets.Add("Language", CreateScriptableObjectLanguageAssetRun());
-                    assets.Add("Effect", CreateScriptableObjectEffectAssetRun());
+                    //assets.Add("face", CreateScriptableObjectFaceAssetRun());
+                    //assets.Add("Prompt", CreateScriptableObjectPromptAssetRun());
+                    //assets.Add("Language", CreateScriptableObjectLanguageAssetRun());
+                    //assets.Add("Effect", CreateScriptableObjectEffectAssetRun());
                     assetsKeys = assets.Keys.ToArray();
 
                     scenarioKeys = scenarios.Keys.ToArray();
@@ -116,14 +116,14 @@ namespace App.Controller{
             }
             else if (type == "scenarios")
             {
-                ScenarioRun();
+                //ScenarioRun();
             }
             else if (type == "user reset")
             {
                 UserReset();
             }
         }
-        void ScenarioRun(){
+        /*void ScenarioRun(){
             scenarioId = GUI.TextField(new Rect(50, 100, 200, 30), scenarioId);
             if (GUI.Button(new Rect(50, 150, 200, 30), "run"))
             {
@@ -133,14 +133,14 @@ namespace App.Controller{
             {
                 type = "";
             }
-        }
+        }*/
         void UserReset()
         {
             userId = GUI.TextField(new Rect(50, 100, 200, 30), userId);
             if (GUI.Button(new Rect(50, 150, 200, 30), "reset"))
             {
                 SEditorMaster sMaster = new SEditorMaster();
-                StartCoroutine (sMaster.RequestUserReset(userId));
+                //StartCoroutine (sMaster.RequestUserReset(userId));
             }
         }
         void SubGUI(string[] keys)
@@ -173,7 +173,7 @@ namespace App.Controller{
                 }
             }
         }
-        IEnumerator CreateScriptableObjectMasterExpRun()
+        /*IEnumerator CreateScriptableObjectMasterExpRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.ExpAsset>();
 
@@ -270,7 +270,7 @@ namespace App.Controller{
                 UnityEditor.AssetDatabase.Refresh();
             }
 
-        }
+        }*/
         IEnumerator CreateScriptableObjectMasterNpcRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.NpcAsset>();
@@ -282,7 +282,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableObjectPath, App.Model.Scriptable.NpcAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }
-        IEnumerator CreateScriptableObjectMasterNpcEquipmentRun()
+        /*IEnumerator CreateScriptableObjectMasterNpcEquipmentRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.NpcEquipmentAsset>();
 
@@ -347,7 +347,7 @@ namespace App.Controller{
 
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableObjectPath, App.Model.Scriptable.ItemAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
-        }
+        }*/
         IEnumerator CreateScriptableObjectMasterSkillRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.SkillAsset>();
@@ -359,7 +359,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableObjectPath, App.Model.Scriptable.SkillAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }
-        IEnumerator CreateScriptableObjectMasterStrategyRun()
+        /*IEnumerator CreateScriptableObjectMasterStrategyRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.StrategyAsset>();
 
@@ -369,7 +369,7 @@ namespace App.Controller{
 
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableObjectPath, App.Model.Scriptable.StrategyAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
-        }
+        }*/
         IEnumerator CreateScriptableObjectMasterHorseRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.HorseAsset>();
@@ -414,7 +414,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(areaAsset, string.Format(scriptableObjectPath, App.Model.Scriptable.CharacterAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }
-        IEnumerator CreateScriptableObjectMasterBattleFieldRun()
+        /*IEnumerator CreateScriptableObjectMasterBattleFieldRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.BattlefieldAsset>();
 
@@ -490,7 +490,7 @@ namespace App.Controller{
 
             UnityEditor.AssetDatabase.CreateAsset(constantAsset, string.Format(scriptableObjectPath, App.Model.Scriptable.ConstantAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
-        }
+        }*/
         #endif
 
 	}
