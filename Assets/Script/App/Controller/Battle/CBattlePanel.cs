@@ -44,6 +44,7 @@ namespace App.Controller.Battle
             mCharacter.clothes = 1;
             mCharacter.horse = 1;
             mCharacter.head = 1;
+            mCharacter.StatusInit();
             characters.Add(mCharacter);
             mCharacter = new Model.Character.MCharacter();
             mCharacter.id = 0;
@@ -54,6 +55,7 @@ namespace App.Controller.Battle
             mCharacter.head = 2;
             mCharacter.coordinate.x = 0;
             mCharacter.coordinate.y = 1;
+            mCharacter.StatusInit();
             characters.Add(mCharacter);
             this.dispatcher.Set("characters", characters);
         }
