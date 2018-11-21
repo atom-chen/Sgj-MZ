@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Model.Common;
+using App.Util.Cacher;
+using UnityEngine;
 
 namespace App.Model.Character
 {
@@ -94,6 +96,105 @@ namespace App.Model.Character
             }
             List<Master.MEquipment> equipments = new List<Master.MEquipment>();
 
+            if (mCharacter.weapon > 0)
+            {
+                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.weapon,EquipmentType.weapon));
+            }
+            if (mCharacter.clothes > 0)
+            {
+                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.clothes, EquipmentType.clothes));
+            }
+            if (mCharacter.horse > 0)
+            {
+                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.horse, EquipmentType.horse));
+            }
+            int physicalAttack = 0;
+            int physicalDefense = 0;
+            int magicAttack = 0;
+            int magicDefense = 0;
+            foreach (Master.MEquipment equipment in equipments)
+            {
+                hp += equipment.hp;
+                mp += equipment.mp;
+                this.power += equipment.power;
+                this.knowledge += equipment.knowledge;
+                this.speed += equipment.speed;
+                this.trick += equipment.trick;
+                this.endurance += equipment.endurance;
+                this.movingPower += equipment.moving_power;
+                this.riding += equipment.riding;
+                this.walker += equipment.walker;
+                this.pike += equipment.pike;
+                this.sword += equipment.sword;
+                this.longKnife += equipment.long_knife;
+                this.knife += equipment.knife;
+                this.longAx += equipment.long_ax;
+                this.ax += equipment.ax;
+                this.longSticks += equipment.long_sticks;
+                this.sticks += equipment.sticks;
+                this.archery += equipment.archery;
+                this.hiddenWeapons += equipment.hidden_weapons;
+                this.dualWield += equipment.dual_wield;
+                this.magic += equipment.magic;
+                this.resistanceMetal += equipment.resistance_metal;
+                this.resistanceWood += equipment.resistance_wood;
+                this.resistanceWater += equipment.resistance_water;
+                this.resistanceFire += equipment.resistance_fire;
+                this.resistanceEarth += equipment.resistance_earth;
+                physicalAttack += equipment.physical_attack;
+                physicalDefense += equipment.physical_defense;
+                magicAttack += equipment.magic_attack;
+                magicDefense += equipment.magic_defense;
+            }
+
+            this.hpMax = Mathf.FloorToInt(mCharacter.level * (10 + this.endurance * 0.2f) + hp);
+            this.mpMax = Mathf.FloorToInt(mCharacter.level * (5 + this.knowledge * 0.1f) + mp);
+            float moveTypeValue = (mCharacter.moveType == MoveType.cavalry ? this.riding : this.walker);
+            switch (mCharacter.weaponType)
+            {
+                case WeaponType.archery:
+                    moveTypeValue += this.archery;
+                    break;
+                case WeaponType.pike:
+                    moveTypeValue += this.pike;
+                    break;
+                case WeaponType.sword:
+                    moveTypeValue += this.sword;
+                    break;
+                case WeaponType.longAx:
+                    moveTypeValue += this.longAx;
+                    break;
+                case WeaponType.ax:
+                    moveTypeValue += this.ax;
+                    break;
+                case WeaponType.longKnife:
+                    moveTypeValue += this.longKnife;
+                    break;
+                case WeaponType.shortKnife:
+                    moveTypeValue += this.knife;
+                    break;
+                case WeaponType.longSticks:
+                    moveTypeValue += this.longSticks;
+                    break;
+                case WeaponType.sticks:
+                    moveTypeValue += this.sticks;
+                    break;
+                case WeaponType.dualWield:
+                    moveTypeValue += this.dualWield;
+                    break;
+                case WeaponType.magic:
+                    moveTypeValue += this.magic;
+                    break;
+            }
+            float starPower = 0.7f + mCharacter.star * 0.06f;
+            this.physicalAttack = Mathf.FloorToInt((this.power + this.knowledge) * 0.3f + (this.power * 2f + this.knowledge) * (0.4f + (moveTypeValue * 0.5f) * 0.006f) * (1f + mCharacter.level * starPower * 0.5f) * 0.1f);
+            this.physicalAttack += physicalAttack;
+            this.magicAttack = Mathf.FloorToInt((this.trick + this.knowledge) * 0.3f + (this.trick * 2f + this.knowledge) * (0.4f + (moveTypeValue * 0.5f) * 0.006f) * (1f + mCharacter.level * starPower * 0.5f) * 0.1f);
+            this.magicAttack += magicAttack;
+            this.physicalDefense = Mathf.FloorToInt((this.power * 0.5f + this.knowledge) * 0.3f + (this.power + this.knowledge) * (1f + mCharacter.level * starPower * 0.5f) * 0.04f);
+            this.physicalDefense += physicalDefense;
+            this.magicDefense = Mathf.FloorToInt((this.trick * 0.5f + this.knowledge) * 0.3f + (this.trick + this.knowledge) * (1f + mCharacter.level * starPower * 0.5f) * 0.04f);
+            this.magicDefense += magicDefense;
         }
 
         /// <summary>

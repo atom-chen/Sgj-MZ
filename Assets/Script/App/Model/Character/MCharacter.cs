@@ -8,7 +8,18 @@ namespace App.Model.Character
     {
         public Mission mission;
         public int characterId;
-        public int head;
+        public int head{
+            get{
+                return master.head;
+            }
+        }
+        public int hat
+        {
+            get
+            {
+                return master.hat;
+            }
+        }
         public int _weapon;
         public int weapon
         {
@@ -37,6 +48,7 @@ namespace App.Model.Character
         public int star;
         public int hp;
         public int mp;
+        public int level;
         public int roadLength;
         public Belong belong;
         public MoveType moveType;

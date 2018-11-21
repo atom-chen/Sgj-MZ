@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using App.Model;
+using App.Util;
+using App.Util.Cacher;
 using App.Util.Manager;
 using App.View.Common;
 using Holoville.HOTween;
@@ -187,12 +190,64 @@ namespace App.View.Avatar
                 return allSprites[0].color.a;
             }
         }
+        public void UpdateView(Model.Character.MCharacter mCharacter)
+        {
+            this._mCharacter = mCharacter;
+            Init();
+            HeadChanged();
+            WeaponChanged();
+            ActionChanged();
+        }
+        private void HeadChanged()
+        {
+            head.spriteMesh = ImageAssetBundleManager.GetHeadMesh(mCharacter.head);
+            hat.spriteMesh = ImageAssetBundleManager.GetHatMesh(mCharacter.hat);
+        }
+        private void WeaponChanged()
+        {
+            int weaponId = mCharacter.weapon;
+            App.Model.Master.MEquipment mEquipment = null;
+            if (weaponId == 0)
+            {
+
+                App.Model.Master.MCharacter character = mCharacter.master;
+                mEquipment = EquipmentCacher.Instance.GetEquipment(character.weapon, EquipmentType.weapon);
+                weaponId = character.weapon;
+            }
+            else
+            {
+                mEquipment = EquipmentCacher.Instance.GetEquipment(weaponId, EquipmentType.weapon);
+            }
+            if (mEquipment == null)
+            {
+                weapon.gameObject.SetActive(false);
+                weaponRight.gameObject.SetActive(false);
+                weaponArchery.gameObject.SetActive(false);
+                return;
+            }
+            bool isArchery = (mEquipment.weapon_type == App.Model.WeaponType.archery);
+            weapon.gameObject.SetActive(!isArchery);
+            weaponArchery.gameObject.SetActive(isArchery);
+            if (mEquipment.weapon_type == App.Model.WeaponType.dualWield)
+            {
+                //this.weaponRight.gameObject.SetActive(true);
+                this.Weapon.spriteMesh = ImageAssetBundleManager.GetLeftWeaponMesh(weaponId);
+                this.weaponRight.spriteMesh = ImageAssetBundleManager.GetRightWeaponMesh(weaponId);
+            }
+            else
+            {
+                //this.weaponRight.gameObject.SetActive(false);
+                this.Weapon.spriteMesh = ImageAssetBundleManager.GetWeaponMesh(weaponId);
+            }
+        }
         private void ActionChanged()
         {
+            Debug.LogError("mCharacter=" + mCharacter.master.name + ", " + mCharacter.hp);
             string animatorName = string.Format("{0}_{1}_{2}", 
                                                 mCharacter.moveType.ToString(), 
                                                 WeaponManager.GetWeaponTypeAction(mCharacter.weaponType, mCharacter.action), 
                                                 mCharacter.action.ToString());
+            Debug.LogError("animatorName=" + animatorName);
             if (!this.gameObject.activeInHierarchy)
             {
                 return;
