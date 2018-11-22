@@ -64,6 +64,9 @@ namespace App.View.Common
         public virtual void UpdateView()
         {
         }
+        public virtual void UpdateView(Model.Common.MBase model)
+        {
+        }
         public object Get(string key)
         {
             if (controller != null)

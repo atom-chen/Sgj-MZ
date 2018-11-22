@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2258006372
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: characterasset.unity3d
+      Dependencies: {}

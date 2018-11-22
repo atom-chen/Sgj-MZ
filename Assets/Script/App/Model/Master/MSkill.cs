@@ -1,5 +1,6 @@
 ﻿
 using App.Model.Common;
+using JsonFx;
 
 namespace App.Model.Master
 {
@@ -13,14 +14,17 @@ namespace App.Model.Master
         public string name;//
         public SkillType[] types;//
         public int price;//升级所需费用
-        public int character_level;//升级所需英雄等级
-        public WeaponType[] weapon_types;
+        [JsonName(Name = "character_level")]
+        public int characterLevel;//升级所需英雄等级
+        [JsonName(Name = "weapon_types")]
+        public WeaponType[] weaponTypes;
         public int[] distance;
         public int strength;
         /// <summary>
         /// 半径种类
         /// </summary>
-        public RadiusType radius_type;
+        [JsonName(Name = "radius_type")]
+        public RadiusType radiusType;
         public int radius;
         public MSkillEffects effect;
         public string animation;
@@ -33,7 +37,8 @@ namespace App.Model.Master
         /// 火类：火
         /// 地类：土
         /// </summary>
-        public FiveElements five_elements;
+        [JsonName(Name = "five_elements")]
+        public FiveElements fiveElements;
         public string explanation;
 
         //SkillType为ability时下列数据有效
@@ -52,7 +57,7 @@ namespace App.Model.Master
         }
         public static bool IsWeaponType(MSkill skill, WeaponType type)
         {
-            return skill.weapon_types.Length == 0 || System.Array.Exists(skill.weapon_types, s => s == type);
+            return skill.weaponTypes.Length == 0 || System.Array.Exists(skill.weaponTypes, s => s == type);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using App.Model.Common;
+using JsonFx;
 
 namespace App.Model.Master
 {
@@ -10,8 +11,10 @@ namespace App.Model.Master
         public MNpcEquipment()
         {
         }
-        public int equipment_id;
-        public EquipmentType equipment_type;
+        [JsonName(Name = "equipment_id")]
+        public int equipmentId;
+        [JsonName(Name = "equipment_type")]
+        public EquipmentType equipmentType;
         public int level;
     }
 }

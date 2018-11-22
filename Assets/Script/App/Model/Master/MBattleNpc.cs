@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using App.Model.Common;
+using JsonFx;
 using UnityEngine;
 namespace App.Model.Master
 {
@@ -9,7 +10,8 @@ namespace App.Model.Master
     {
         public int boss;
         public int level;
-        public int npc_id;
+        [JsonName(Name = "npc_id")]
+        public int npcId;
         /// <summary>
         /// NpcEquipmentCacher id
         /// 0表示使用MNpc的默认装备

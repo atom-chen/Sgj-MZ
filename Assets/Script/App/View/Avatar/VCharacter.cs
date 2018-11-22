@@ -225,10 +225,10 @@ namespace App.View.Avatar
                 weaponArchery.gameObject.SetActive(false);
                 return;
             }
-            bool isArchery = (mEquipment.weapon_type == App.Model.WeaponType.archery);
+            bool isArchery = (mEquipment.weaponType == App.Model.WeaponType.archery);
             weapon.gameObject.SetActive(!isArchery);
             weaponArchery.gameObject.SetActive(isArchery);
-            if (mEquipment.weapon_type == App.Model.WeaponType.dualWield)
+            if (mEquipment.weaponType == App.Model.WeaponType.dualWield)
             {
                 //this.weaponRight.gameObject.SetActive(true);
                 this.Weapon.spriteMesh = ImageAssetBundleManager.GetLeftWeaponMesh(weaponId);

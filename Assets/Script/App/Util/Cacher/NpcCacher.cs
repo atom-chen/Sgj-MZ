@@ -15,8 +15,8 @@ namespace App.Util.Cacher
         }
         public MCharacter GetFromBattleNpc(App.Model.Master.MBattleNpc mBattleNpc)
         {
-            Debug.LogError("mBattleNpc.npc_id =" + mBattleNpc.npc_id);
-            App.Model.Master.MNpc npc = Get(mBattleNpc.npc_id);
+            Debug.LogError("mBattleNpc.npc_id =" + mBattleNpc.npcId);
+            App.Model.Master.MNpc npc = Get(mBattleNpc.npcId);
             MCharacter mCharacter = GetFromNpc(npc);
             if (mBattleNpc.horse > 0)
             {

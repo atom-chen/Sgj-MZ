@@ -17,6 +17,7 @@ namespace App.Model.User
         public int horse;
         public int weapon;
         public int clothes;
+        public int face;
         public MVersion()
         {
         }

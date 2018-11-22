@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 2990273676
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 26b2be21505fd1497da49b75e15f263f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4e70d28f6bea6280957c269da17cf829
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: af5c3b521ebb349968a75ccce5598b92, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/characterasset.asset
+Dependencies: []

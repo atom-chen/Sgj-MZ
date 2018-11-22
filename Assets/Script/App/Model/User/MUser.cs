@@ -15,7 +15,8 @@ namespace App.Model.User
         public MCharacter[] characters;
         //public MEquipment[] equipments;
         public void Update(MUser user)
-        { 
+        {
+            this.characters = user.characters;
         }
     }
 }

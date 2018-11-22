@@ -1,12 +1,14 @@
 ﻿using System;
 using App.Model.Common;
 using App.Util.Cacher;
+using JsonFx;
 
 namespace App.Model.Character
 {
     public class MCharacter: MBase
     {
         public Mission mission;
+        [JsonName(Name = "character_id")]
         public int characterId;
         public int head{
             get{
@@ -107,7 +109,7 @@ namespace App.Model.Character
             {
                 mEquipment = EquipmentCacher.Instance.GetEquipment(horse, EquipmentType.horse);
             }
-            this.moveType = mEquipment.move_type;
+            this.moveType = mEquipment.moveType;
         }
         private void _weaponTypeUpdate()
         {
@@ -121,7 +123,7 @@ namespace App.Model.Character
             {
                 mEquipment = EquipmentCacher.Instance.GetEquipment(weapon, EquipmentType.weapon);
             }
-            this.weaponType = mEquipment == null ? WeaponType.sticks : mEquipment.weapon_type;
+            this.weaponType = mEquipment == null ? WeaponType.sticks : mEquipment.weaponType;
         }
         private Master.MCharacter _master = null;
         public Master.MCharacter master

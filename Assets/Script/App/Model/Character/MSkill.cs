@@ -1,11 +1,13 @@
 ﻿using System;
 using App.Model.Common;
+using JsonFx;
 
 namespace App.Model.Character
 {
     public class MSkill : MBase
     {
 
+        [JsonName(Name = "skill_id")]
         public int skillId;
         public int level;
         public bool canUnlock;
