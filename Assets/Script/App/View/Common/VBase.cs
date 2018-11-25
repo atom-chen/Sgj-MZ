@@ -67,7 +67,7 @@ namespace App.View.Common
         public virtual void UpdateView(Model.Common.MBase model)
         {
         }
-        public object Get(string key)
+        public virtual object Get(string key)
         {
             if (controller != null)
             {
@@ -75,19 +75,8 @@ namespace App.View.Common
             }
             return null;
         }
-        public object GetByPath(string path){
-            int first_pos = path.IndexOf('.');
-            object currentVal;
-            if (first_pos > 0)
-            {
-                string first_key = path.Substring(0, first_pos);
-                currentVal = this.Get(first_key);
-                path = path.Substring(first_pos + 1, path.Length - first_pos - 1);
-            }
-            else
-            {
-                return this.Get(path);
-            }
+        public object GetValue(object currentVal, string path)
+        {
             string[] paths = path.Split('.');
 
             foreach (string key in paths)
@@ -113,6 +102,21 @@ namespace App.View.Common
                 }
             }
             return currentVal;
+        }
+        public object GetByPath(string path){
+            int first_pos = path.IndexOf('.');
+            object currentVal;
+            if (first_pos > 0)
+            {
+                string first_key = path.Substring(0, first_pos);
+                currentVal = this.Get(first_key);
+                path = path.Substring(first_pos + 1, path.Length - first_pos - 1);
+            }
+            else
+            {
+                return this.Get(path);
+            }
+            return GetValue(currentVal, path);
         }
     }
 }

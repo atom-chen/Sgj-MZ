@@ -14,14 +14,13 @@ namespace App.View.Common.Animation
         }
         [SerializeField] private PanelAnimationType animationType = PanelAnimationType.None;
         [SerializeField] public int index = 0;
-        private void _init(PanelAnimation oldPanelAnimation)
+        private void _init(PanelAnimation oldPanelAnimation, PanelAnimationType type)
         {
-            switch(animationType)
+            switch (type)
             {
                 case PanelAnimationType.Move:
-                    RectTransform trans = gameObject.GetComponent<RectTransform>();
-                    float x = this.index > oldPanelAnimation.index ? trans.sizeDelta.x : -trans.sizeDelta.x;
-                    trans.anchoredPosition = new Vector3(x, trans.anchoredPosition.y);
+                    float x = this.index > oldPanelAnimation.index ? Camera.main.pixelWidth : -Camera.main.pixelWidth;
+                    panel.anchoredPosition = new Vector3(x, panel.anchoredPosition.y);
                     break;
                 case PanelAnimationType.Fade:
                     canvasGroup.alpha = 0;
@@ -37,21 +36,19 @@ namespace App.View.Common.Animation
                 }
             };
             PanelAnimationType type = animationType;
-            PanelAnimation oldPanelAnimation = Util.AppManager.OldPanel.controllerAnimation as PanelAnimation;
+            PanelAnimation oldPanelAnimation = Util.AppManager.OldPanel == null ? null : Util.AppManager.OldPanel.controllerAnimation as PanelAnimation;
             if(oldPanelAnimation == null){
                 type = PanelAnimationType.Fade;
             }
-            else
-            {
-                this._init(oldPanelAnimation);
-            }
+            Debug.LogError("Show "+gameObject.name+" type=" + type+ ", oldPanelAnimation="+ oldPanelAnimation+";");
+            this._init(oldPanelAnimation, type);
             // パネル表示時→ローディングアニメ非表示
             //Indicator.Hide(type, true, complete);
-            RectTransform trans = gameObject.GetComponent<RectTransform>();
             switch (type)
             {
                 case PanelAnimationType.Move:
-                    HOTween.To(trans, 0.3f, new TweenParms().Prop("anchoredPosition", new Vector2(0, 0)).OnComplete(onLoadAnimationOver));
+                    HOTween.To(panel, 0.3f, new TweenParms()
+                               .Prop("anchoredPosition", Vector2.zero).OnComplete(onLoadAnimationOver));
                     break;
                 case PanelAnimationType.Fade:
                     HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 1).OnComplete(onLoadAnimationOver));
@@ -70,18 +67,18 @@ namespace App.View.Common.Animation
             };
             // パネル非表示→ローディングアニメ表示
             //Indicator.Show(type, type == Indicator.Type.Tips ? "" : Localization.Get("Transmitting"), true, complete);
-            RectTransform trans = gameObject.GetComponent<RectTransform>();
             PanelAnimation currentPanelAnimation = App.Util.AppManager.CurrentPanel.controllerAnimation as PanelAnimation;
             switch (animationType)
             {
                 case PanelAnimationType.Move:
-                    float x = this.index > currentPanelAnimation.index ? trans.sizeDelta.x : -trans.sizeDelta.x;
-                    HOTween.To(trans, 0.3f, new TweenParms()
-                               .Prop("anchoredPosition", new Vector2(x, 0))
-                               .OnComplete(()=>{
+                    float x = this.index > currentPanelAnimation.index ? Camera.main.pixelWidth : -Camera.main.pixelWidth;
+                    HOTween.To(panel, 0.3f, new TweenParms()
+                               .Prop("anchoredPosition", new Vector2(x, 0)).OnComplete(()=> {
+                                   Debug.LogError("Hide OnComplete");
                                    gameObject.SetActive(false);
                                    onLoadAnimationOver();
-                    }));
+                        }));
+                    Debug.LogError("Hide trans.anchoredPosition=" + x);
                     break;
                 case PanelAnimationType.Fade:
                     HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 0).OnComplete(onLoadAnimationOver));

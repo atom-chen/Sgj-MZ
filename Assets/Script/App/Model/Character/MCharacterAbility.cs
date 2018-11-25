@@ -108,10 +108,10 @@ namespace App.Model.Character
             {
                 equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.horse, EquipmentType.horse));
             }
-            int physicalAttack = 0;
-            int physicalDefense = 0;
-            int magicAttack = 0;
-            int magicDefense = 0;
+            physicalAttack = 0;
+            physicalDefense = 0;
+            magicAttack = 0;
+            magicDefense = 0;
             foreach (Master.MEquipment equipment in equipments)
             {
                 hp += equipment.hp;

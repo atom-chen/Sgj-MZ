@@ -30,7 +30,7 @@ namespace App.View.Common
             obj.transform.SetParent(parentContent);
             obj.SetActive(true);
             obj.transform.localScale = Vector3.one;
-            VBase view = obj.GetComponent<VBase>();
+            VBaseListChild view = obj.GetComponent<VBaseListChild>();
             view.UpdateView(model);
             return obj;
         }

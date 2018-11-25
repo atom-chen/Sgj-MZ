@@ -53,6 +53,11 @@ namespace App.Util
                 CharacterCacher.Instance.Reset(CharacterAsset.Data.characters);
                 CharacterAsset.Clear();
             }));
+            list.Add(sUser.Download(SkillAsset.Url, versions.skill, (AssetBundle assetbundle) => {
+                SkillAsset.assetbundle = assetbundle;
+                SkillCacher.Instance.Reset(SkillAsset.Data.skills);
+                SkillAsset.Clear();
+            }));
             list.Add(sUser.Download(NpcAsset.Url, versions.npc, (AssetBundle assetbundle) => {
                 NpcAsset.assetbundle = assetbundle;
                 NpcCacher.Instance.Reset(NpcAsset.Data.npcs);
@@ -78,9 +83,6 @@ namespace App.Util
                 EquipmentCacher.Instance.ResetClothes(ClothesAsset.Data.equipments);
                 ClothesAsset.Clear();
             }));
-            //TODO:
-            list.Add(sUser.RequestLogin("lufylegend02", "11111111"));
-            list.Add(sUser.RequestGet());
             float step = 100f / list.Count;
             for (int i = 0; i < list.Count; i++)
             {

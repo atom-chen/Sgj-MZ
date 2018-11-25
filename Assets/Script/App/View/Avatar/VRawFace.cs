@@ -13,7 +13,7 @@ namespace App.View.Avatar
     {
 
         RawImage icon;
-        public int CharacterId
+        public int characterId
         {
             set
             {

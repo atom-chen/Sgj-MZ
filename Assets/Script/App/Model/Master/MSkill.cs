@@ -57,6 +57,7 @@ namespace App.Model.Master
         }
         public static bool IsWeaponType(MSkill skill, WeaponType type)
         {
+            UnityEngine.Debug.LogError(skill.id + ", " + skill.level + ", " + skill.name +  ", skill.weaponTypes = " + skill.weaponTypes);
             return skill.weaponTypes.Length == 0 || System.Array.Exists(skill.weaponTypes, s => s == type);
         }
     }

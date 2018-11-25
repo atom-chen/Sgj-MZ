@@ -10,7 +10,6 @@ namespace App.Controller.Logo
     {
         public override IEnumerator Start()
         {
-            Caching.ClearCache();
             Global.Initialize();
             yield return StartCoroutine(base.Start());
         }

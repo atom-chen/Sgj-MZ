@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 305414245
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: be9ae91773b4196aa1da072487e3116c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c93c3179d9790b6ef533edf76d2b81d9
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: c031a929d960141b39e1510ba9a6ffa7, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/skillasset.asset
+Dependencies: []

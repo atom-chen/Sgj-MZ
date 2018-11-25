@@ -22,6 +22,18 @@ namespace App.Model.Character
                 return master.hat;
             }
         }
+        public string name
+        {
+            get
+            {
+                return master.name;
+            }
+        }
+        public int movingPower{
+            get{
+                return ability.movingPower;
+            }
+        }
         public int _weapon;
         public int weapon
         {
@@ -96,6 +108,32 @@ namespace App.Model.Character
             }
             this.hp = this.ability.hpMax;
             this.mp = this.ability.mpMax;
+        }
+        public int physicalAttack{
+            get{
+                return ability.physicalAttack;
+            }
+        }
+        public int magicAttack
+        {
+            get
+            {
+                return ability.magicAttack;
+            }
+        }
+        public int physicalDefense
+        {
+            get
+            {
+                return ability.physicalDefense;
+            }
+        }
+        public int magicDefense
+        {
+            get
+            {
+                return ability.magicDefense;
+            }
         }
         private void _moveTypeUpdate()
         {

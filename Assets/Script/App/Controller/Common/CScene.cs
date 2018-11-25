@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using App.Controller.Dialog;
 using App.Util;
 using App.View.Common;
 using UnityEngine;
@@ -7,8 +8,8 @@ namespace App.Controller.Common
 {
     public class CScene : CBase
     {
-        private Transform _panelsParent = null;
-        private Transform _dialogsParent = null;
+        public Transform panelsParent = null;
+        public Transform dialogsParent = null;
         public Panel defaultPanel;
         public override IEnumerator Start()
         {
@@ -17,8 +18,10 @@ namespace App.Controller.Common
             //App.Util.Global.DialogSortOrder = 0;
             //保存当前场景
             App.Util.AppManager.CurrentScene = this;
-            yield return StartCoroutine(OnLoad(App.Util.AppManager.CurrentSceneRequest));
+            yield return StartCoroutine(OnLoad(AppManager.CurrentSceneRequest));
             App.Util.AppManager.CurrentSceneRequest = null;
+            yield return StartCoroutine(CConnectingDialog.ToShowAsync());
+            CConnectingDialog.ToClose();
         }
         public override IEnumerator OnLoad(Request request)
         {
@@ -31,25 +34,6 @@ namespace App.Controller.Common
                 return transform;
             }
             return trans;
-        }
-        public Transform panelsParent {
-            get{
-                if(this._panelsParent == null){
-                    this._panelsParent = GetChildParent("panelsParent");
-                }
-                return this._panelsParent;
-            }
-        }
-        public Transform dialogsParent
-        {
-            get
-            {
-                if (this._dialogsParent == null)
-                {
-                    this._dialogsParent = GetChildParent("dialogsParent");
-                }
-                return this._dialogsParent;
-            }
         }
     }
 }

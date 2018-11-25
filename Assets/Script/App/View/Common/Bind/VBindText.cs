@@ -1,14 +1,15 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.View.Common.Bind
 {
 
     public class VBindText : VBindBase
     {
-        private const float DBL_EPSILON = 0.0001f;
-        public string Format = "{0}";
-        public float max = 0;
-        protected Text text;
+        //private const float DBL_EPSILON = 0.0001f;
+        [SerializeField] private string Format = "{0}";
+        //public float max = 0;
+        private Text text;
 
         public override void Awake()
         {
@@ -21,10 +22,10 @@ namespace App.View.Common.Bind
         public override void UpdateView()
         {
             object val = this.GetByPath(BindPath);
-            if (val != null)
+            if (val == null)
             {
-
-                if (val.GetType().IsPrimitive)
+                return;
+                /*if (val.GetType().IsPrimitive)
                 {
                     // if int, float, double
                     float f = 0;
@@ -35,8 +36,9 @@ namespace App.View.Common.Bind
                 {
                     //text.text = string.Format(Format, Localization.Get(val.ToString()));
                     text.text = string.Format(Format, val);
-                }
+                }*/
             }
+            text.text = string.Format(Format, val);
         }
     }
 

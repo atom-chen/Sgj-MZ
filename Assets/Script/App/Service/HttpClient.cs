@@ -28,7 +28,8 @@ namespace App.Service
             Debug.Log("url : " + url);
             isWaiting = true;
             bool showConnecting = false;
-            if (Global.AppManager != null && !Global.AppManager.DialogIsShow(AppManager.Prefabs.ConnectingDialog) && !Global.AppManager.DialogIsShow(AppManager.Prefabs.LoadingDialog))
+            if (Global.AppManager != null && !Global.AppManager.DialogIsShow(Dialog.ConnectingDialog) && 
+                !Global.AppManager.DialogIsShow(Dialog.LoadingDialog))
             {
                 showConnecting = true;
                 Controller.Dialog.CConnectingDialog.ToShow();
@@ -63,7 +64,7 @@ namespace App.Service
                 if (!response.result)
                 {
                     Controller.Dialog.CAlertDialog.Show(response.message, () => {
-                        if (Global.AppManager != null && Global.AppManager.DialogIsShow(AppManager.Prefabs.ConnectingDialog))
+                        if (Global.AppManager != null && Global.AppManager.DialogIsShow(Dialog.ConnectingDialog))
                         {
                             Controller.Dialog.CConnectingDialog.ToClose();
                         }

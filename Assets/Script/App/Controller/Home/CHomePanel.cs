@@ -8,6 +8,14 @@ namespace App.Controller.Home
 {
     public class CHomePanel : CPanel
     {
+
+        public override IEnumerator OnLoad(Request request)
+        {
+            System.Array.ForEach(Global.SUser.self.characters, child => {
+                child.StatusInit();
+            });
+            yield return StartCoroutine(base.OnLoad(request));
+        }
         public void BattleStart()
         {
             AppManager.LoadScene("Battle", null);

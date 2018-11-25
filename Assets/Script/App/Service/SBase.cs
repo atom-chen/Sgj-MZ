@@ -12,7 +12,9 @@ namespace App.Service
         {
             Debug.Log("url=" + url);
             bool showConnecting = false;
-            if (App.Util.Global.AppManager != null && !App.Util.Global.AppManager.DialogIsShow(App.Util.AppManager.Prefabs.ConnectingDialog) && !App.Util.Global.AppManager.DialogIsShow(App.Util.AppManager.Prefabs.LoadingDialog))
+            if (Util.Global.AppManager != null && 
+                !Util.Global.AppManager.DialogIsShow(Util.Dialog.ConnectingDialog) && 
+                !Util.Global.AppManager.DialogIsShow(Util.Dialog.LoadingDialog))
             {
                 showConnecting = true;
                 App.Controller.Dialog.CConnectingDialog.ToShow();
@@ -20,9 +22,9 @@ namespace App.Service
             var www = WWW.LoadFromCacheOrDownload(url, ver);
             while (!www.isDone)
             {
-                if (App.Util.Global.AppManager != null && App.Util.Global.AppManager.CurrentDialog != null)
+                if (Util.Global.AppManager != null && Util.Global.AppManager.CurrentDialog != null)
                 {
-                    App.Controller.Dialog.CLoadingDialog.UpdatePlusProgress(www.progress);
+                    Controller.Dialog.CLoadingDialog.UpdatePlusProgress(www.progress);
                 }
                 if (!string.IsNullOrEmpty(www.error))
                 {
@@ -34,11 +36,12 @@ namespace App.Service
             }
             if (showConnecting)
             {
-                App.Controller.Dialog.CConnectingDialog.ToClose();
+                Controller.Dialog.CConnectingDialog.ToClose();
             }
             //yield return www;
             if (!string.IsNullOrEmpty(www.error))
             {
+                Debug.Log(url);
                 Debug.LogError(www.error);
                 yield break;
             }

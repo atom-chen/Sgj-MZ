@@ -150,6 +150,11 @@ namespace MyEditor
             BuildAssetBundleCharacter();
             BuildAssetBundleMasterNpc();
         }
+        [MenuItem("CH/Build Assetbundle/Master/Skill")]
+        static private void BuildAssetBundleSkill()
+        {
+            BuildAssetBundleMaster(App.Model.Scriptable.SkillAsset.Name);
+        }
         /*
         [MenuItem("CH/Build Assetbundle/Master/StoryProgress")]
         static private void BuildAssetBundleStoryProgress()
@@ -190,11 +195,6 @@ namespace MyEditor
         static private void BuildAssetBundleConstant()
         {
             BuildAssetBundleMaster(App.Model.Scriptable.ConstantAsset.Name);
-        }
-        [MenuItem("CH/Build Assetbundle/Master/Skill")]
-        static private void BuildAssetBundleSkill()
-        {
-            BuildAssetBundleMaster(App.Model.Scriptable.SkillAsset.Name);
         }
         [MenuItem("CH/Build Assetbundle/Master/Item")]
         static private void BuildAssetBundleItem()

@@ -40,11 +40,13 @@ namespace App.Controller.Common
         private List<GameObject> listUncachedGameObject = new List<GameObject>();
         public virtual IEnumerator Start()
         {
-            yield return StartCoroutine(OnLoad(null));
+            //yield return StartCoroutine(OnLoad(null));
+            yield return new WaitForEndOfFrame();
         }
         public virtual IEnumerator OnLoad(Request request)
         {
-            yield return LoadAnimation(); ;
+            Debug.LogError("OnLoad=" + gameObject.name);
+            yield return LoadAnimation();
         }
 
         /// <summary>
@@ -110,6 +112,12 @@ namespace App.Controller.Common
             yield return UnloadAnimation();
         }
 
+        public virtual void OnClickView(VBase view)
+        {
+        }
+        public virtual void OnCallController(string param)
+        {
+        }
         public YieldInstruction UnloadAnimation()
         {
             //別シーンのパネルに遷移する時は元のパネルが非アクティブになってしまっているので、Unloadの処理を実行しない
@@ -148,6 +156,7 @@ namespace App.Controller.Common
 
         protected IEnumerator LoadAnimationRoutine()
         {
+            Debug.LogError("controllerAnimation = " + controllerAnimation);
             if (controllerAnimation != null)
             {
                 bool completed = false;

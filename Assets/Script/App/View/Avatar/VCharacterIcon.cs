@@ -9,7 +9,7 @@ namespace App.View.Avatar
 {
     public class VCharacterIcon : VBase
     {
-
+        /*
         [SerializeField] private Image background;
         [SerializeField] private VRawFace faceIcon;
         [SerializeField] private GameObject[] stars;
@@ -17,7 +17,7 @@ namespace App.View.Avatar
         [SerializeField] private GameObject selectIcon;
         [SerializeField] private bool hideLevel;
         [SerializeField] private bool clickDisabled = false;
-
+        */
 
     }
 }

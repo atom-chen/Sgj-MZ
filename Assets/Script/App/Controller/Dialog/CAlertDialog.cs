@@ -9,24 +9,25 @@ namespace App.Controller.Dialog
 {
     public class CAlertDialog : CDialog
     {
-        [SerializeField] private Text title;
-        [SerializeField] private Text message;
-        [SerializeField] private Text buttonText;
         public override IEnumerator OnLoad(Request request)
         {
             yield return StartCoroutine(base.OnLoad(request));
-            message.text = request.Get<string>("message");
+            //message.text = request.Get<string>("message");
+            this.dispatcher.Set("message", request.Get<string>("message"));
             if (request.Has("buttonText"))
             {
-                buttonText.text = request.Get<string>("buttonText");
+                this.dispatcher.Set("buttonText", request.Get<string>("buttonText"));
+                //buttonText.text = request.Get<string>("buttonText");
             }
             if (request.Has("title"))
             {
-                title.text = request.Get<string>("title");
+                this.dispatcher.Set("title", request.Get<string>("title"));
+                //title.text = request.Get<string>("title");
             }
             else
             {
-                title.text = string.Empty;
+                //title.text = string.Empty;
+                this.dispatcher.Set("title", string.Empty);
             }
         }
         /// <summary>
@@ -52,7 +53,7 @@ namespace App.Controller.Dialog
             {
                 req.Set("closeEvent", closeEvent);
             }
-            AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(AppManager.Prefabs.AlertDialog, req));
+            AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.AlertDialog, req));
         }
         /// <summary>
         /// 消息框
