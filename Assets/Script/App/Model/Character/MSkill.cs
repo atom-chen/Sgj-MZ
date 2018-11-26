@@ -11,6 +11,18 @@ namespace App.Model.Character
         public int skillId;
         public int level;
         public bool canUnlock;
+        public bool useToEnemy
+        {
+            get
+            {
+                if (Array.Exists(master.types, s => (s == SkillType.attack || s == SkillType.magic)))
+                {
+                    return true;
+                }
+                //TODO::降低敌军状态等法术
+                return false;
+            }
+        }
         public App.Model.Master.MSkill master
         {
             get

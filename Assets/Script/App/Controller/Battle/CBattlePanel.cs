@@ -37,29 +37,19 @@ namespace App.Controller.Battle
         {
 
             characters = new List<Model.Character.MCharacter>();
-            Model.Character.MCharacter mCharacter = new Model.Character.MCharacter();
-            mCharacter.id = 0;
-            mCharacter.characterId = 1;
-            mCharacter.level = 1;
-            mCharacter.weapon = 1;
-            mCharacter.clothes = 1;
-            mCharacter.horse = 1;
-            //mCharacter.head = 1;
+            Model.Character.MCharacter mCharacter = Global.SUser.self.characters[0];
             mCharacter.coordinate.x = 0;
             mCharacter.coordinate.y = 1;
-            mCharacter.StatusInit();
             characters.Add(mCharacter);
-            mCharacter = new Model.Character.MCharacter();
-            mCharacter.id = 1;
-            mCharacter.characterId = 2;
-            mCharacter.level = 1;
-            mCharacter.weapon = 2;
-            mCharacter.clothes = 2;
-            mCharacter.horse = 2;
-            //mCharacter.head = 2;
+            mCharacter = Global.SUser.self.characters[1];
             mCharacter.coordinate.x = 2;
+            mCharacter.coordinate.y = 4;
+            characters.Add(mCharacter);
+
+            mCharacter = Global.SUser.self.characters[2];
+            mCharacter.belong = Belong.enemy;
+            mCharacter.coordinate.x = 4;
             mCharacter.coordinate.y = 3;
-            mCharacter.StatusInit();
             characters.Add(mCharacter);
             this.dispatcher.Set("characters", characters);
         }

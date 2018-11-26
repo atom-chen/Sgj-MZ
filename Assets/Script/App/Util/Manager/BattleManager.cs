@@ -32,8 +32,8 @@ namespace App.Util.Manager
                 this.currentCharacter = mCharacter;
                 this.currentCharacter.roadLength = 0;
                 tilesManager.ShowCharacterMovingArea(mCharacter);
-                /*tilesManager.ShowCharacterSkillArea(mCharacter);
-                cBattlefield.OpenBattleCharacterPreviewDialog(mCharacter);
+                tilesManager.ShowCharacterSkillArea(mCharacter);
+                /*cBattlefield.OpenBattleCharacterPreviewDialog(mCharacter);
                 oldCoordinate[0] = mCharacter.CoordinateX;
                 oldCoordinate[1] = mCharacter.CoordinateY;
                 ActionType action = mCharacter.Action;

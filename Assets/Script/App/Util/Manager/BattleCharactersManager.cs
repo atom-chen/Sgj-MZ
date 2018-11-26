@@ -24,6 +24,10 @@ namespace App.Util.Manager
             }
             return belong2 == Belong.self || belong2 == Belong.friend;
         }
+        public MCharacter GetCharacter(Vector2Int coordinate, MCharacter[] characters)
+        {
+            return System.Array.Find(characters, child => child.coordinate.Equals(coordinate));
+        }
         public MCharacter GetCharacter(Vector2Int coordinate, List<MCharacter> characters)
         {
             return characters.Find(child=>child.coordinate.Equals(coordinate));

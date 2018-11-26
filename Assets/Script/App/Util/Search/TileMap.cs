@@ -69,5 +69,39 @@ namespace App.Util.Search
             }
             return coordinates;
         }
+        public int GetDistance(VTile tile1, VTile tile2){
+            return GetDistance(tile1.coordinate.x, tile1.coordinate.y, tile2.coordinate.x, tile2.coordinate.y);
+        }
+        public int GetDistance(int x, int y, int cx, int cy){
+            if (cy == y)
+            {
+                return Mathf.Abs(cx - x);
+            }
+            int distance = 0;
+            int directionY = cy > y ? 1 : -1;
+            do
+            {
+                distance += 1;
+                if (cx != x)
+                {
+                    if (y % 2 == 0)
+                    {
+                        if (cx < x)
+                        {
+                            x -= 1;
+                        }
+                    }
+                    else
+                    {
+                        if (cx > x)
+                        {
+                            x += 1;
+                        }
+                    }
+                }
+                y += directionY;
+            } while (cy != y);
+            return Mathf.Abs(cx - x) + distance;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Model.Common;
 using App.Util.Cacher;
 using JsonFx;
@@ -72,6 +73,7 @@ namespace App.Model.Character
         public MSkill currentSkill;
         public MCharacterAbility ability;
         public bool isHide = false;
+        public bool actionOver;
         public UnityEngine.Vector2Int coordinate = new UnityEngine.Vector2Int(0, 0);
         public MCharacter()
         {
@@ -163,6 +165,21 @@ namespace App.Model.Character
             }
             this.weaponType = mEquipment == null ? WeaponType.sticks : mEquipment.weaponType;
         }
+        public List<int[]> skillDistances
+        {
+            get{
+                List<int[]> arr = new List<int[]>();
+                Array.ForEach(this.skills, (skill)=> {
+                    Master.MSkill skillMaster = skill.master;
+                    if (skillMaster.effect.special != SkillEffectSpecial.attack_distance)
+                    {
+                        return;
+                    }
+                    arr.Add(skillMaster.distance);
+                });
+                return arr;
+            }
+        }
         private Master.MCharacter _master = null;
         public Master.MCharacter master
         {
@@ -175,5 +192,7 @@ namespace App.Model.Character
                 return _master;
             }
         }
+
+        public object CurrentSkill { get; internal set; }
     }
 }

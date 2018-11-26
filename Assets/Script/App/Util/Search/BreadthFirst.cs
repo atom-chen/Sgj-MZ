@@ -19,17 +19,15 @@ namespace App.Util.Search
             if (movePower == 0)
             {
                 movePower = mCharacter.ability.movingPower;
-                Debug.LogError("mCharacter.ability.movingPower = " + movePower);
                 if (movePower == 0)
                 {
                     Debug.LogError("movePower = " + movePower);
-                    movePower = 4;
+                    movePower = 3;
                 }
             }
-            VTile tile = Global.tileUnits[mCharacter.coordinate.x][mCharacter.coordinate.y];
+            VTile tile = Global.tileUnits[mCharacter.coordinate.y][mCharacter.coordinate.x];
             tile.movingPower = movePower;
             LoopSearch(tile);
-            Debug.LogError("Search tiles=" + tiles.Count);
             return tiles;
         }
         private void LoopSearch(VTile vTile)

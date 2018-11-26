@@ -127,6 +127,7 @@ namespace App.View.Map
                         float x = 0.32f + j * 0.64f + (i % 2 == 0 ? 0 : 0.32f);
                         obj.transform.localPosition = new Vector3(x, -0.32f - i * 0.64f, 0);
                         vTile = obj.GetComponent<VTile>();
+                        obj.name = "U_"+j+","+i;
                         vTile.coordinate.x = j;
                         vTile.coordinate.y = i;
                         childs.Add(vTile);
@@ -157,13 +158,21 @@ namespace App.View.Map
             camera3d = val as Camera;
             SetTiles();
             SetCharacters();
-            Global.battleEvent.HandlerTiles += ShowMovingTiles;
+            Global.battleEvent.HandlerMovingTiles += ShowMovingTiles;
+            Global.battleEvent.HandlerAttackTiles += ShowAttackTiles;
         }
         private void ShowMovingTiles(List<VTile> tiles, App.Model.Belong belong)
         {
             foreach (VTile tile in tiles)
             {
                 tile.ShowMoving(belong);
+            }
+        }
+        private void ShowAttackTiles(List<VTile> tiles, App.Model.Belong belong)
+        {
+            foreach (VTile tile in tiles)
+            {
+                tile.ShowAttack();
             }
         }
         void OnMouseDown()

@@ -12,6 +12,7 @@ namespace App.View.Map
         [SerializeField] public SpriteRenderer terrainReview;
         [SerializeField] public SpriteRenderer movingSprite; 
         [SerializeField] public SpriteRenderer attackSprite;
+        [SerializeField] public SpriteRenderer attackIcon;
         [SerializeField] public TextMesh tileName;
         public Vector2Int coordinate = new Vector2Int(0, 0);
         private MTile _mTile;
@@ -69,6 +70,7 @@ namespace App.View.Map
             terrainReview.gameObject.SetActive(false);
             movingSprite.gameObject.SetActive(false);
             attackSprite.gameObject.SetActive(false);
+            attackIcon.gameObject.SetActive(false);
         }
         void OnMouseUp()
         {
@@ -91,12 +93,14 @@ namespace App.View.Map
         public void ShowMoving(Model.Belong belong)
         {
             this.movingSprite.gameObject.SetActive(true);
-            //this.movingSprite.sprite = Model.Master.MTile.GetIcon(string.Format("moving_{0}", belong.ToString()));
         }
         public void ShowAttack()
         {
             this.attackSprite.gameObject.SetActive(true);
-            //this.attackSprite.sprite = Model.Master.MTile.GetIcon("attack");
+        }
+        public void ShowAttackIcon()
+        {
+            this.attackIcon.gameObject.SetActive(true);
         }
         public void HideMoving()
         {
