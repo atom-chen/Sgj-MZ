@@ -242,12 +242,10 @@ namespace App.View.Avatar
         }
         private void ActionChanged()
         {
-            Debug.LogError("mCharacter=" + mCharacter.master.name + ", " + mCharacter.hp);
             string animatorName = string.Format("{0}_{1}_{2}", 
                                                 mCharacter.moveType.ToString(), 
                                                 WeaponManager.GetWeaponTypeAction(mCharacter.weaponType, mCharacter.action), 
                                                 mCharacter.action.ToString());
-            Debug.LogError("animatorName=" + animatorName);
             if (!this.gameObject.activeInHierarchy)
             {
                 return;

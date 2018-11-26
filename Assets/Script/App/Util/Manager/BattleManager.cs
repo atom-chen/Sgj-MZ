@@ -26,6 +26,7 @@ namespace App.Util.Manager
         public void ClickNoneNode(Vector2Int coordinate)
         {
             MCharacter mCharacter = charactersManager.GetCharacter(coordinate, cBattle.characters);
+            Debug.LogError("mCharacter="+ mCharacter.name + ","+ mCharacter.coordinate.x + ","+ mCharacter.coordinate.y + "; "+ coordinate.x+","+ coordinate.y);
             if (mCharacter != null)
             {
                 this.currentCharacter = mCharacter;

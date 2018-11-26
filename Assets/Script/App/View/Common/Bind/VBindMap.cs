@@ -8,7 +8,6 @@ namespace App.View.Common.Bind
     {
         public override void UpdateView()
         {
-            Debug.LogError("VBindMap UpdateView=" + BindPath);
             object val = this.GetByPath(BindPath);
             if (val == null)
             {

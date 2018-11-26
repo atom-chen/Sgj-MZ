@@ -127,6 +127,8 @@ namespace App.View.Map
                         float x = 0.32f + j * 0.64f + (i % 2 == 0 ? 0 : 0.32f);
                         obj.transform.localPosition = new Vector3(x, -0.32f - i * 0.64f, 0);
                         vTile = obj.GetComponent<VTile>();
+                        vTile.coordinate.x = j;
+                        vTile.coordinate.y = i;
                         childs.Add(vTile);
                     }
                     else

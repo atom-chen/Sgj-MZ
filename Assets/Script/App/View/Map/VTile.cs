@@ -85,6 +85,7 @@ namespace App.View.Map
             {
                 yield break;
             }
+            Debug.LogError("OnClickTile=" + coordinate.x + "," + coordinate.y);
             this.controller.SendMessage("OnClickTile", this, SendMessageOptions.DontRequireReceiver);
         }
         public void ShowMoving(Model.Belong belong)

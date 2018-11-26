@@ -156,7 +156,6 @@ namespace App.Controller.Common
 
         protected IEnumerator LoadAnimationRoutine()
         {
-            Debug.LogError("controllerAnimation = " + controllerAnimation);
             if (controllerAnimation != null)
             {
                 bool completed = false;

@@ -40,7 +40,6 @@ namespace App.View.Common.Animation
             if(oldPanelAnimation == null){
                 type = PanelAnimationType.Fade;
             }
-            Debug.LogError("Show "+gameObject.name+" type=" + type+ ", oldPanelAnimation="+ oldPanelAnimation+";");
             this._init(oldPanelAnimation, type);
             // パネル表示時→ローディングアニメ非表示
             //Indicator.Hide(type, true, complete);

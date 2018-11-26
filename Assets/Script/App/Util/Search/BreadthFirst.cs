@@ -19,6 +19,7 @@ namespace App.Util.Search
             if (movePower == 0)
             {
                 movePower = mCharacter.ability.movingPower;
+                Debug.LogError("mCharacter.ability.movingPower = " + movePower);
                 if (movePower == 0)
                 {
                     Debug.LogError("movePower = " + movePower);
@@ -28,6 +29,7 @@ namespace App.Util.Search
             VTile tile = Global.tileUnits[mCharacter.coordinate.x][mCharacter.coordinate.y];
             tile.movingPower = movePower;
             LoopSearch(tile);
+            Debug.LogError("Search tiles=" + tiles.Count);
             return tiles;
         }
         private void LoopSearch(VTile vTile)
@@ -55,6 +57,7 @@ namespace App.Util.Search
                 }
                 int cost = 1;
                 tile.movingPower = vTile.movingPower - cost;
+                Debug.LogError("tile.movingPower = " + tile.movingPower + ", vTile.movingPower="+ vTile.movingPower);
                 LoopSearch(tile);
             }
         }
