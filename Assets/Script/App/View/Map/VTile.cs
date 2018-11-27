@@ -110,6 +110,10 @@ namespace App.View.Map
         {
             this.attackSprite.gameObject.SetActive(false);
         }
+        public void HideAttackIcon()
+        {
+            this.attackIcon.gameObject.SetActive(false);
+        }
         public void EditorSetData(MTile mTile)
         {
             terrainReview.gameObject.SetActive(true);

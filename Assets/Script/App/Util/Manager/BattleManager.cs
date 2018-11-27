@@ -113,7 +113,29 @@ namespace App.Util.Manager
                 };
             }
             List<VTile> tiles = cBattle.aStar.Search(this.currentCharacter, startTile, endTile);
-
+            this.currentCharacter.roadLength = tiles.Count;
+            if (tiles.Count > 0)
+            {
+                //cBattlefield.CloseOperatingMenu();
+                this.tilesManager.ClearCurrentTiles();
+                this.mCharacter.Action = ActionType.move;
+                cBattlefield.battleMode = CBattlefield.BattleMode.moving;
+                Sequence sequence = new Sequence();
+                foreach (VTile tile in tiles)
+                {
+                    TweenParms tweenParms = new TweenParms().Prop("X", tile.transform.localPosition.x, false).Prop("Y", tile.transform.localPosition.y, false).Ease(EaseType.Linear);
+                    if (tile.Index == endTile.Index)
+                    {
+                        tweenParms.OnComplete(moveComplete);
+                    }
+                    sequence.Append(HOTween.To(this.mCharacter, 0.5f, tweenParms));
+                }
+                sequence.Play();
+            }
+            else
+            {
+                moveComplete();
+            }
         }
         public void ClickSkillNode(Vector2Int coordinate)
         {

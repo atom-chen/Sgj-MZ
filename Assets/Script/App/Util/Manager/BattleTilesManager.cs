@@ -11,9 +11,35 @@ namespace App.Util.Manager
     {
         private List<VTile> currentMovingTiles;
         private List<VTile> currentAttackTiles;
+        private List<VTile> attackIcons = new List<VTile>();
         public BattleTilesManager()
         {
 
+        }
+
+        public void ClearCurrentTiles()
+        {
+            if (currentMovingTiles != null)
+            {
+                currentMovingTiles.ForEach(tile=>{
+                    tile.HideMoving();
+                });
+                currentMovingTiles.Clear();
+            }
+            if (currentAttackTiles != null)
+            {
+                currentAttackTiles.ForEach(tile => {
+                    tile.HideAttack();
+                });
+                currentAttackTiles.Clear();
+            }
+            if(attackIcons.Count > 0)
+            {
+                attackIcons.ForEach(tile => {
+                    tile.HideAttackIcon();
+                });
+                attackIcons.Clear();
+            }
         }
 
         public bool IsInMovingCurrentTiles(Vector2Int coordinate)
@@ -73,11 +99,10 @@ namespace App.Util.Manager
                 }
                 bool sameBelong = Global.battleManager.charactersManager.IsSameBelong(character.belong, mCharacter.belong);
                 bool useToEnemy = mCharacter.currentSkill.useToEnemy;
-                tile.ShowAttackIcon();
-                //TODO:
                 if (useToEnemy ^ sameBelong)
                 {
                     tile.ShowAttackIcon();
+                    attackIcons.Add(tile);
                 }
             }
         }
