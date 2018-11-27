@@ -48,7 +48,7 @@ namespace App.Controller.Battle
 
             mCharacter = Global.SUser.self.characters[2];
             mCharacter.belong = Belong.enemy;
-            mCharacter.coordinate.x = 4;
+            mCharacter.coordinate.x = 2;
             mCharacter.coordinate.y = 3;
             characters.Add(mCharacter);
             this.dispatcher.Set("characters", characters);

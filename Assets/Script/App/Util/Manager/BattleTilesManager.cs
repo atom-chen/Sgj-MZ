@@ -15,6 +15,12 @@ namespace App.Util.Manager
         {
 
         }
+
+        public bool IsInMovingCurrentTiles(Vector2Int coordinate)
+        {
+            return currentMovingTiles.Exists(_ => _.coordinate.Equals(coordinate));
+        }
+
         public void ShowCharacterMovingArea(MCharacter mCharacter, int movingPower = 0)
         {
             currentMovingTiles = Global.battleManager.cBattle.breadthFirst.Search(mCharacter, movingPower, true);
@@ -67,6 +73,7 @@ namespace App.Util.Manager
                 }
                 bool sameBelong = Global.battleManager.charactersManager.IsSameBelong(character.belong, mCharacter.belong);
                 bool useToEnemy = mCharacter.currentSkill.useToEnemy;
+                tile.ShowAttackIcon();
                 //TODO:
                 if (useToEnemy ^ sameBelong)
                 {

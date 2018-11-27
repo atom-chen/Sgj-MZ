@@ -38,7 +38,7 @@ namespace App.View.Map
         public int F { get; set; }
         public int movingPower { get; set; }
         public bool isChecked { get; set; }
-        //public int nodeIndex { get; set; }
+        public int nodeIndex { get; set; }
         public bool isOpen { get; set; }
         public VTile parentNode { get; set; }
         public bool isRoad { get; set; }
@@ -51,7 +51,7 @@ namespace App.View.Map
         {
             get
             {
-                return attackTween != null;
+                return attackIcon.gameObject.activeSelf;
             }
         }
         private GameObject attackTween;
@@ -109,13 +109,6 @@ namespace App.View.Map
         public void HideAttack()
         {
             this.attackSprite.gameObject.SetActive(false);
-        }
-        public void SetAttackTween(GameObject attackTween)
-        {
-            attackTween.transform.SetParent(this.transform);
-            attackTween.transform.localPosition = Vector3.zero;
-            attackTween.transform.localScale = Vector3.one;
-            this.attackTween = attackTween;
         }
         public void EditorSetData(MTile mTile)
         {

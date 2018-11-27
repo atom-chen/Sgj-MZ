@@ -55,7 +55,7 @@ namespace App.Util.Search
                 }
                 int cost = 1;
                 tile.movingPower = vTile.movingPower - cost;
-                Debug.LogError("tile.movingPower = " + tile.movingPower + ", vTile.movingPower="+ vTile.movingPower);
+                //Debug.LogError("tile.movingPower = " + tile.movingPower + ", vTile.movingPower="+ vTile.movingPower);
                 LoopSearch(tile);
             }
         }

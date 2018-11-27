@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Controller.Battle;
 using App.Model.Character;
+using App.View.Map;
 using UnityEngine;
 
 namespace App.Util.Manager
@@ -55,6 +57,63 @@ namespace App.Util.Manager
         }
         public void ClickMovingNode(Vector2Int coordinate)
         {
+            if (this.currentCharacter.belong != cBattle.currentBelong || this.currentCharacter.actionOver)
+            {
+                //CharacterReturnNone();
+                return;
+            }
+            MCharacter mCharacter = this.charactersManager.GetCharacter(coordinate, cBattle.characters);
+            if (mCharacter != null)
+            {
+                bool sameBelong = this.charactersManager.IsSameBelong(mCharacter.belong, this.currentCharacter.belong);
+                bool useToEnemy = this.currentCharacter.currentSkill.useToEnemy;
+                if (useToEnemy ^ sameBelong)
+                {
+                    ClickSkillNode(coordinate);
+                }
+                return;
+            }
+            if (this.tilesManager.IsInMovingCurrentTiles(coordinate))
+            {
+                MoveStart(coordinate);
+            }
+            else if (cBattle.battleMode != Model.BattleMode.move_after_attack)
+            {
+                //CharacterReturnNone();
+            }
+        }
+        private void MoveStart(Vector2Int coordinate)
+        {
+            VTile startTile = cBattle.mapSearch.GetTile(this.currentCharacter.coordinate);
+            VTile endTile = cBattle.mapSearch.GetTile(coordinate);
+            //cBattlefield.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
+            Holoville.HOTween.Core.TweenDelegate.TweenCallback moveComplete;
+            if (cBattle.battleMode == Model.BattleMode.move_after_attack)
+            {
+                moveComplete = () =>
+                {
+                    this.currentCharacter.coordinate.y = endTile.coordinate.y;
+                    this.currentCharacter.coordinate.x = endTile.coordinate.x;
+                    //cBattle.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
+                    //cBattle.StartCoroutine(ActionOverNext());
+                };
+            }
+            else
+            {
+                moveComplete = () =>
+                {
+                    this.currentCharacter.action = Model.ActionType.idle;
+                    /*this.tilesManager.ClearCurrentTiles();
+                    cBattlefield.battleMode = CBattlefield.BattleMode.move_end;
+                    this.mCharacter.CoordinateY = endTile.CoordinateY;
+                    this.mCharacter.CoordinateX = endTile.CoordinateX;
+                    cBattlefield.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
+                    cBattlefield.tilesManager.ShowCharacterSkillArea(this.mCharacter);
+                    cBattlefield.OpenOperatingMenu();*/
+                };
+            }
+            List<VTile> tiles = cBattle.aStar.Search(this.currentCharacter, startTile, endTile);
+
         }
         public void ClickSkillNode(Vector2Int coordinate)
         {
