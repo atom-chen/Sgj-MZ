@@ -25,5 +25,15 @@ namespace App.Util.Event
                 HandlerAttackTiles(tiles, belong);
             }
         }
+
+        public delegate void NoArgsEventHandler();
+        public event NoArgsEventHandler ActionEndHandler;
+        private void ActionEnd()
+        {
+            if (ActionEndHandler != null)
+            {
+                ActionEndHandler();
+            }
+        }
     }
 }

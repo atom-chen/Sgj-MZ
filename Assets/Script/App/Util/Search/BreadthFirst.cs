@@ -73,7 +73,7 @@ namespace App.Util.Search
             }
             int mapHeight = Global.tileUnits.Count;
             int mapWidth = Global.tileUnits[0].Count;
-            foreach (MCharacter character in cBattle.characters)
+            foreach (MCharacter character in Global.battleManager.charactersManager.mCharacters)
             {
                 if (character.hp == 0 || character.isHide || Global.battleManager.charactersManager.IsSameCharacter(mCharacter, character))
                 {

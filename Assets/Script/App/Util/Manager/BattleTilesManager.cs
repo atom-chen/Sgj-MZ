@@ -92,7 +92,7 @@ namespace App.Util.Manager
                 {
                     continue;
                 }
-                MCharacter character = Global.battleManager.charactersManager.GetCharacter(tile.coordinate, Global.battleManager.cBattle.characters);
+                MCharacter character = Global.battleManager.charactersManager.GetCharacter(tile.coordinate);
                 if (character == null || character.hp == 0 || character.isHide)
                 {
                     continue;

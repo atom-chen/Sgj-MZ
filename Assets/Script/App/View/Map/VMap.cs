@@ -84,13 +84,14 @@ namespace App.View.Map
             for (int i = 0; i < characters.Count; i++)
             {
                 Model.Character.MCharacter character = characters[i];
-                GameObject obj = Instantiate(Util.Global.characterPrefab);
+                GameObject obj = Instantiate(Global.characterPrefab);
                 obj.transform.SetParent(characterLayer);
                 obj.transform.localScale = Vector3.one * 0.6f;
                 float x = character.coordinate.x * 0.64f + 0.32f + (character.coordinate.y % 2 == 0 ? 0 : 0.32f);
                 obj.transform.localPosition = new Vector3(x, -character.coordinate.y * 0.64f - 0.32f, 0);
                 Avatar.VCharacter vCharacter = obj.GetComponent<Avatar.VCharacter>();
                 vCharacter.UpdateView(character);
+                Global.battleManager.charactersManager.vCharacters.Add(vCharacter);
             }
         }
         private void SetTiles()

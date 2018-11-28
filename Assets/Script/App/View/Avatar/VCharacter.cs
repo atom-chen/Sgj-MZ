@@ -76,23 +76,53 @@ namespace App.View.Avatar
                 return armRightShort.gameObject.activeSelf ? armRightShort : armRightLong;
             }
         }
-        private Model.Character.MCharacter _mCharacter;
-        public Model.Character.MCharacter mCharacter
-        {
-            get
-            {
-                return _mCharacter;
-            }
-        }
+        public Model.Character.MCharacter mCharacter { get; private set; }
         private static Material materialGray;
         private static Material materialDefault;
-        private static Dictionary<Model.Belong, Color32> hpColors = new Dictionary<Model.Belong, Color32>{
-            {Model.Belong.self, new Color32(255,0,0,255)},
-            {Model.Belong.friend, new Color32(0,255,0,255)},
-            {Model.Belong.enemy, new Color32(0,0,255,255)}
+        private static Dictionary<Belong, Color32> hpColors = new Dictionary<Belong, Color32>{
+            {Belong.self, new Color32(255,0,0,255)},
+            {Belong.friend, new Color32(0,255,0,255)},
+            {Belong.enemy, new Color32(0,0,255,255)}
         };
         private Anima2D.SpriteMeshInstance[] allSprites;
         private bool init = false;
+        public Direction direction{
+            set{
+                content.localScale = new Vector3(value == Direction.left ? 1 : -1, 1, 1);
+            }
+            get{
+                return content.localScale.x > 0 ? Direction.left : Direction.right;
+            }
+        }
+        public float X
+        {
+            get{
+                return transform.localPosition.x;
+            }
+            set
+            {
+                float oldvalue = transform.localPosition.x;
+                if (value > oldvalue)
+                {
+                    direction = Direction.right;
+                }
+                else if (value < oldvalue)
+                {
+                    direction = Direction.left;
+                }
+                transform.localPosition = new Vector3(value, transform.localPosition.y, 0f);
+            }
+        }
+        public float Y
+        {
+            get
+            {
+                return transform.localPosition.y;
+            }
+            set {
+                transform.localPosition = new Vector3(transform.localPosition.x, value, 0f);
+            }
+        }
         private Animator _animator;
         private Animator animator
         {
@@ -100,7 +130,7 @@ namespace App.View.Avatar
             {
                 if (_animator == null)
                 {
-                    _animator = this.GetComponentInChildren<Animator>();
+                    _animator = GetComponentInChildren<Animator>();
                 }
                 return _animator;
             }
@@ -192,7 +222,7 @@ namespace App.View.Avatar
         }
         public void UpdateView(Model.Character.MCharacter mCharacter)
         {
-            this._mCharacter = mCharacter;
+            this.mCharacter = mCharacter;
             Init();
             HeadChanged();
             WeaponChanged();
@@ -240,6 +270,15 @@ namespace App.View.Avatar
                 this.Weapon.spriteMesh = ImageAssetBundleManager.GetWeaponMesh(weaponId);
             }
         }
+        public ActionType action{
+            set{
+                mCharacter.action = value;
+                ActionChanged();
+            }
+            get{
+                return mCharacter.action;
+            }
+        }
         private void ActionChanged()
         {
             string animatorName = string.Format("{0}_{1}_{2}", 
@@ -251,7 +290,7 @@ namespace App.View.Avatar
                 return;
             }
             animator.Play(animatorName);
-            if (mCharacter.action != App.Model.ActionType.idle)
+            if (mCharacter.action != ActionType.idle)
             {
                 this.controller.SendMessage("AddDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
                 return;

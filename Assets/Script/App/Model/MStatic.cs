@@ -17,6 +17,15 @@ namespace App.Model
         move_after_attack
 
     }
+    public enum Direction
+    {
+        left,
+        right,
+        leftUp,
+        leftDown,
+        rightUp,
+        rightDown
+    }
     public enum MoveType
     {
         /// <summary>

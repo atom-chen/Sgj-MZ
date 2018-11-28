@@ -11,6 +11,7 @@ namespace App.Model.Character
         public Mission mission;
         [JsonName(Name = "character_id")]
         public int characterId;
+        public MCharacter target;
         public int head{
             get{
                 return master.head;
@@ -194,5 +195,31 @@ namespace App.Model.Character
         }
 
         public object CurrentSkill { get; internal set; }
+        private bool IsSkillEffectSpecial(SkillEffectSpecial special)
+        {
+            foreach (MSkill skill in this.skills)
+            {
+                if (skill.master.effect.special != special)
+                {
+                    continue;
+                }
+                return true;
+            }
+            return false;
+        }
+        public bool isForceBackAttack
+        {
+            get
+            {
+                return IsSkillEffectSpecial(SkillEffectSpecial.force_back_attack);
+            }
+        }
+        public bool isNoBackAttack
+        {
+            get
+            {
+                return IsSkillEffectSpecial(SkillEffectSpecial.no_back_attack);
+            }
+        }
     }
 }

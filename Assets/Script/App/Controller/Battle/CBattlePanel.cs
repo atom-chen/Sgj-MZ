@@ -14,7 +14,6 @@ namespace App.Controller.Battle
         [SerializeField] private Camera camera3d;
         private int boutCount = 0;
         private int maxBout = 0;
-        public List<Model.Character.MCharacter> characters { get; set; }
         public Belong currentBelong { get; set; }
         public BattleMode battleMode { get; set; }
         public TileMap mapSearch { get; set; }
@@ -33,10 +32,15 @@ namespace App.Controller.Battle
         private void LSharpInit()
         {
         }
+        public void OpenOperatingMenu(){
+
+        }
+        public void CloseOperatingMenu(){
+
+        }
         public void InitCharacters()
         {
-
-            characters = new List<Model.Character.MCharacter>();
+            List<Model.Character.MCharacter> characters = Global.battleManager.charactersManager.mCharacters;
             Model.Character.MCharacter mCharacter = Global.SUser.self.characters[0];
             mCharacter.coordinate.x = 0;
             mCharacter.coordinate.y = 1;
@@ -65,6 +69,8 @@ namespace App.Controller.Battle
         }
         public void InitManager(){
             Global.battleManager.Init(this);
+            Global.battleManager.charactersManager.mCharacters.Clear();
+            Global.battleManager.charactersManager.vCharacters.Clear();
             mapSearch = new TileMap();
             aStar = new AStar();
             breadthFirst = new BreadthFirst();

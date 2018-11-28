@@ -72,6 +72,10 @@ namespace App.Util.Search
         public int GetDistance(VTile tile1, VTile tile2){
             return GetDistance(tile1.coordinate.x, tile1.coordinate.y, tile2.coordinate.x, tile2.coordinate.y);
         }
+        public int GetDistance(Vector2Int coordinate1, Vector2Int coordinate2)
+        {
+            return GetDistance(coordinate1.x, coordinate1.y, coordinate2.x, coordinate2.y);
+        }
         public int GetDistance(int x, int y, int cx, int cy){
             if (cy == y)
             {
