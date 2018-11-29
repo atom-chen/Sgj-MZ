@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
+using App.Model.Common;
 namespace App.Model.Master
 {
     [System.Serializable]
