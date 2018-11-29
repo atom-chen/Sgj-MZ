@@ -74,7 +74,7 @@ namespace App.Util.Search
         }
         private void CalculationGHF(VTile node)
         {
-            node.H = Global.battleManager.cBattle.mapSearch.GetDistance(node, endNode);
+            node.H = Global.battleManager.mapSearch.GetDistance(node, endNode);
             node.F = node.G + node.H;
         }
         /// <summary>
@@ -200,11 +200,11 @@ namespace App.Util.Search
             while (!isOver)
             {
                 thisPoint.isChecked = true;
-                List<Vector2Int> checkList = Global.battleManager.cBattle.mapSearch.GetNeighboringCoordinates(thisPoint.coordinate);
+                List<Vector2Int> checkList = Global.battleManager.mapSearch.GetNeighboringCoordinates(thisPoint.coordinate);
                 //检测开始
                 foreach (Vector2Int tileVec in checkList)
                 {
-                    VTile tile = Global.battleManager.cBattle.mapSearch.GetTile(tileVec);
+                    VTile tile = Global.battleManager.mapSearch.GetTile(tileVec);
                     if (IsWay(tile))
                     {
                         //如果坐标可以通过，则首先检查是不是目标点

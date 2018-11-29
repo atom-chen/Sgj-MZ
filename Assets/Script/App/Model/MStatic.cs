@@ -257,4 +257,37 @@ namespace App.Model
         tile,
     }
 
+    [System.Serializable]
+    public enum AidType
+    {
+        none,
+        physicalAttack,
+        magicAttack,
+        physicalDefense,
+        magicDefense,
+        /// <summary>
+        /// 混乱
+        /// </summary>
+        chaos,
+        /// <summary>
+        /// 睡眠
+        /// </summary>
+        sleep,
+        /// <summary>
+        /// 定身/麻痹
+        /// </summary>
+        hemp,
+        /// <summary>
+        /// 毒
+        /// </summary>
+        poison,
+    }
+    public enum StrategyEffectType
+    {
+        aid,
+        status,
+        animation,
+        vampire
+    }
+
 }

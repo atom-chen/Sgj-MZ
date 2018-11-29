@@ -66,7 +66,7 @@ namespace App.Util.Manager
         {
             //MSkill targetSkill = distanceCharacter.CurrentSkill;
             App.Model.Master.MSkill targetSkillMaster = targetSkill.master;
-            int distance = Global.battleManager.cBattle.mapSearch.GetDistance(coordinate, targetCoordinate);
+            int distance = Global.battleManager.mapSearch.GetDistance(coordinate, targetCoordinate);
             if (distance >= targetSkillMaster.distance[0] && distance <= targetSkillMaster.distance[1])
             {
                 return true;

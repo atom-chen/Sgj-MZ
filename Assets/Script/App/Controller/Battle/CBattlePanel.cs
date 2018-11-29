@@ -16,9 +16,6 @@ namespace App.Controller.Battle
         private int maxBout = 0;
         public Belong currentBelong { get; set; }
         public BattleMode battleMode { get; set; }
-        public TileMap mapSearch { get; set; }
-        public AStar aStar { get; set; }
-        public BreadthFirst breadthFirst { get; set; }
         public override IEnumerator OnLoad( Request request ) {
             LSharpInit();
             yield return this.StartCoroutine(base.OnLoad(request));
@@ -36,6 +33,14 @@ namespace App.Controller.Battle
 
         }
         public void CloseOperatingMenu(){
+
+        }
+        public void OpenBattleCharacterPreviewDialog(Model.Character.MCharacter mCharacter)
+        {
+
+        }
+        public void HideBattleCharacterPreviewDialog()
+        {
 
         }
         public void InitCharacters()
@@ -69,11 +74,6 @@ namespace App.Controller.Battle
         }
         public void InitManager(){
             Global.battleManager.Init(this);
-            Global.battleManager.charactersManager.mCharacters.Clear();
-            Global.battleManager.charactersManager.vCharacters.Clear();
-            mapSearch = new TileMap();
-            aStar = new AStar();
-            breadthFirst = new BreadthFirst();
 
         }
         public void OnClickTile(View.Map.VTile vTile)

@@ -49,7 +49,7 @@ namespace App.Util.Manager
 
         public void ShowCharacterMovingArea(MCharacter mCharacter, int movingPower = 0)
         {
-            currentMovingTiles = Global.battleManager.cBattle.breadthFirst.Search(mCharacter, movingPower, true);
+            currentMovingTiles = Global.battleManager.breadthFirst.Search(mCharacter, movingPower, true);
             Global.battleEvent.DispatchEventMovingTiles(currentMovingTiles, mCharacter.belong);
             Controller.Battle.CBattlePanel cBattle = Global.battleManager.cBattle;
             cBattle.battleMode = BattleMode.show_move_tiles;
@@ -68,10 +68,10 @@ namespace App.Util.Manager
                     maxDistance = distance[1];
                 }
             }
-            currentAttackTiles = Global.battleManager.cBattle.breadthFirst.Search(mCharacter, maxDistance);
+            currentAttackTiles = Global.battleManager.breadthFirst.Search(mCharacter, maxDistance);
             VTile characterTile = currentAttackTiles.Find(v => v.coordinate.Equals(mCharacter.coordinate));
             currentAttackTiles = currentAttackTiles.FindAll((tile) => {
-                int length = Global.battleManager.cBattle.mapSearch.GetDistance(tile, characterTile);
+                int length = Global.battleManager.mapSearch.GetDistance(tile, characterTile);
                 return distances.Exists(d => length >= d[0] && length <= d[1]);
             });
             if (mCharacter.currentSkill == null)

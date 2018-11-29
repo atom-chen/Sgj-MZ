@@ -221,5 +221,17 @@ namespace App.Model.Character
                 return IsSkillEffectSpecial(SkillEffectSpecial.no_back_attack);
             }
         }
+        public bool isMoveAfterAttack
+        {
+            get
+            {
+                return IsSkillEffectSpecial(SkillEffectSpecial.move_after_attack);
+            }
+        }
+
+        /// <summary>
+        /// 攻击动作结束后，将受到的技能
+        /// </summary>
+        public List<App.Model.Master.MSkillEffect> attackEndEffects = new List<App.Model.Master.MSkillEffect>();
     }
 }

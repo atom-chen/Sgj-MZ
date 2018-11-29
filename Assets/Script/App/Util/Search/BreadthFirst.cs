@@ -45,7 +45,7 @@ namespace App.Util.Search
             {
                 return;
             }
-            List<Vector2Int> coordinates = Global.battleManager.cBattle.mapSearch.GetNeighboringCoordinates(vTile.coordinate);
+            List<Vector2Int> coordinates = Global.battleManager.mapSearch.GetNeighboringCoordinates(vTile.coordinate);
             foreach (Vector2Int vec in coordinates)
             {
                 VTile tile = Global.tileUnits[vec.y][vec.x];
@@ -79,14 +79,14 @@ namespace App.Util.Search
                 {
                     continue;
                 }
-                VTile tile = cBattle.mapSearch.GetTile(character.coordinate);
+                VTile tile = Global.battleManager.mapSearch.GetTile(character.coordinate);
                 if (Global.battleManager.charactersManager.IsSameBelong(mCharacter.belong, character.belong))
                 {
                     continue;
                 }
                 tile.isRoad = false;
 
-                List<Vector2Int> coordinates = cBattle.mapSearch.GetNeighboringCoordinates(tile.coordinate);
+                List<Vector2Int> coordinates = Global.battleManager.mapSearch.GetNeighboringCoordinates(tile.coordinate);
                 foreach (Vector2Int vec in coordinates)
                 {
                     VTile childTile = Global.tileUnits[vec.y][vec.x];
