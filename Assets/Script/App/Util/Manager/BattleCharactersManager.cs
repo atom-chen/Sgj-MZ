@@ -86,6 +86,16 @@ namespace App.Util.Manager
             }
             return false;
         }
+        /// <summary>
+        /// 获取攻击到的所有敌人
+        /// </summary>
+        /// <returns>The damage characters.</returns>
+        /// <param name="vCharacter">攻击方</param>
+        /// <param name="targetView">攻击目标</param>
+        /// <param name="skill">Skill.</param>
+        public List<VCharacter> GetTargetCharacters(VCharacter vCharacter, VCharacter targetView, App.Model.Master.MSkill skill) {
+            return null;
+        }
 
     }
 }

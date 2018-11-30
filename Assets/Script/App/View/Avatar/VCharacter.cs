@@ -135,12 +135,6 @@ namespace App.View.Avatar
                 return _animator;
             }
         }
-        public void AttackToHert()
-        { 
-        }
-        public void ActionEnd()
-        {
-        }
         public void SetOrders(Dictionary<string, int> meshOrders)
         {
             foreach (string key in meshOrders.Keys)
@@ -321,6 +315,25 @@ namespace App.View.Avatar
             }
             yield return new WaitForEndOfFrame();
             this.controller.SendMessage("RemoveDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
+        }
+        public void AttackToHert()
+        {
+            if (mCharacter.target == null)
+            {
+                return;
+            }
+            if (mCharacter.currentSkill.useToEnemy)
+            {
+                this.controller.SendMessage("OnDamage", this, SendMessageOptions.DontRequireReceiver);
+            }
+            else
+            {
+                this.controller.SendMessage("OnHeal", this, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        public void ActionEnd()
+        {
+            this.action = ActionType.idle;
         }
 
     }
