@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Model;
 using App.Model.Character;
 using App.View.Avatar;
+using App.View.Map;
 using UnityEngine;
 
 namespace App.Util.Manager
@@ -30,6 +31,10 @@ namespace App.Util.Manager
         public VCharacter GetVCharacter(MCharacter mCharacter)
         {
             return vCharacters.Find(child=>child.mCharacter.id == mCharacter.id);
+        }
+        public VCharacter GetCharacter(Vector2Int coordinate, List<VCharacter> characters)
+        {
+            return characters.Find(child => child.mCharacter.coordinate.Equals(coordinate));
         }
         public MCharacter GetCharacter(Vector2Int coordinate, MCharacter[] characters)
         {
@@ -93,8 +98,83 @@ namespace App.Util.Manager
         /// <param name="vCharacter">攻击方</param>
         /// <param name="targetView">攻击目标</param>
         /// <param name="skill">Skill.</param>
-        public List<VCharacter> GetTargetCharacters(VCharacter vCharacter, VCharacter targetView, App.Model.Master.MSkill skill) {
-            return null;
+        public List<VCharacter> GetTargetCharacters(VCharacter vCharacter, VCharacter targetView, Model.Master.MSkill skill) {
+            Search.TileMap mapSearch = Global.battleManager.mapSearch;
+            List<VCharacter> result = new List<VCharacter>() { targetView };
+            if (skill.radiusType == RadiusType.point)
+            {
+                return result;
+            }
+            List<VCharacter> characters;
+            if (Array.Exists(skill.types, s => s == SkillType.heal))
+            {
+                characters = vCharacters.FindAll(c => c.hp > 0 
+                && IsSameBelong(c.mCharacter.belong, vCharacter.mCharacter.belong) 
+                                                 && !IsSameCharacter(targetView.mCharacter, c.mCharacter));
+            }
+            else
+            {
+                characters = vCharacters.FindAll(c => c.hp > 0 
+                && IsSameBelong(c.mCharacter.belong, targetView.mCharacter.belong) 
+                                                 && !IsSameCharacter(targetView.mCharacter, c.mCharacter));
+            }
+            VTile targetTile;
+            if (skill.effect.special == SkillEffectSpecial.attack_all_near)
+            {
+                targetTile = mapSearch.GetTile(vCharacter.mCharacter.coordinate);
+            }
+            else
+            {
+                targetTile = mapSearch.GetTile(targetView.mCharacter.coordinate);
+            }
+            if (skill.radiusType == RadiusType.range)
+            {
+                foreach (VCharacter child in characters)
+                {
+                    VTile tile = mapSearch.GetTile(child.mCharacter.coordinate);
+                    if (targetTile.coordinate.Equals(tile.coordinate) && mapSearch.GetDistance(targetTile, tile) <= skill.radius)
+                    {
+                        result.Add(child);
+                    }
+                }
+                bool quantity_plus = skill.effect.special == SkillEffectSpecial.quantity_plus;
+                if (quantity_plus)
+                {
+                    List<VCharacter> resultPlus = new List<VCharacter>();
+                    while (result.Count > 1 && resultPlus.Count < skill.effect.special_value)
+                    {
+                        int index = UnityEngine.Random.Range(1, result.Count - 1);
+                        VCharacter plusView = result[index];
+                        resultPlus.Add(plusView);
+                        result.RemoveAt(index);
+                    }
+                    resultPlus.Add(targetView);
+                    return resultPlus;
+                }
+            }
+            else if (skill.radiusType == RadiusType.direction)
+            {
+                VTile tile = mapSearch.GetTile(vCharacter.mCharacter.coordinate);
+                int distance = mapSearch.GetDistance(targetTile, tile);
+                if (distance > 1)
+                {
+                    return result;
+                }
+                var direction = mapSearch.GetDirection(tile, targetTile);
+                var radius = skill.radius;
+                while (radius-- > 0)
+                {
+                    tile = mapSearch.GetTile(targetTile, direction);
+                    VCharacter child = GetCharacter(tile.coordinate, characters);
+                    if (child == null)
+                    {
+                        break;
+                    }
+                    result.Add(child);
+                    targetTile = tile;
+                }
+            }
+            return result;
         }
 
     }

@@ -159,8 +159,8 @@ namespace App.View.Map
             camera3d = val as Camera;
             SetTiles();
             SetCharacters();
-            Global.battleEvent.HandlerMovingTiles += ShowMovingTiles;
-            Global.battleEvent.HandlerAttackTiles += ShowAttackTiles;
+            Global.battleEvent.MovingTilesHandler += ShowMovingTiles;
+            Global.battleEvent.AttackTilesHandler += ShowAttackTiles;
         }
         private void ShowMovingTiles(List<VTile> tiles, App.Model.Belong belong)
         {

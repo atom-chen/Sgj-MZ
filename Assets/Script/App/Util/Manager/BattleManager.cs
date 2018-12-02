@@ -6,6 +6,7 @@ using App.Controller.Battle;
 using App.Model;
 using App.Model.Character;
 using App.Util.Cacher;
+using App.Util.Event;
 using App.Util.Search;
 using App.View.Avatar;
 using App.View.Map;
@@ -16,13 +17,14 @@ namespace App.Util.Manager
 {
     public class BattleManager
     {
+        public Belong currentBelong { get; set; }
+        public BattleMode battleMode { get; set; }
         public BattleTilesManager tilesManager { get; set; }
         public BattleCharactersManager charactersManager { get; set; }
         public BattleCalculateManager calculateManager { get; set; }
         public TileMap mapSearch { get; set; }
         public AStar aStar { get; set; }
         public BreadthFirst breadthFirst { get; set; }
-        public CBattlePanel cBattle;
         private MCharacter currentCharacter;
         private VCharacter currentVCharacter;
         private System.Action returnAction;
@@ -37,9 +39,8 @@ namespace App.Util.Manager
             aStar = new AStar();
             breadthFirst = new BreadthFirst();
         }
-        public void Init(CBattlePanel cBattle)
+        public void Init()
         {
-            this.cBattle = cBattle;
             charactersManager.mCharacters.Clear();
             charactersManager.vCharacters.Clear();
 
@@ -47,23 +48,22 @@ namespace App.Util.Manager
         public void ClickNoneNode(Vector2Int coordinate)
         {
             MCharacter mCharacter = charactersManager.GetCharacter(coordinate);
-            currentVCharacter = charactersManager.GetVCharacter(mCharacter);
-            Debug.LogError("mCharacter="+ mCharacter.name + ","+ mCharacter.coordinate.x + ","+ mCharacter.coordinate.y + "; "+ coordinate.x+","+ coordinate.y);
             if (mCharacter != null)
             {
+                currentVCharacter = charactersManager.GetVCharacter(mCharacter);
                 this.currentCharacter = mCharacter;
                 this.currentCharacter.roadLength = 0;
                 tilesManager.ShowCharacterMovingArea(mCharacter);
                 tilesManager.ShowCharacterSkillArea(mCharacter);
-                cBattle.OpenBattleCharacterPreviewDialog(mCharacter);
+                Global.battleEvent.DispatchEventCharacterPreview(mCharacter);
                 oldCoordinate.x = mCharacter.coordinate.x;
                 oldCoordinate.y = mCharacter.coordinate.y;
-                Model.ActionType action = currentVCharacter.action;
+                ActionType action = currentVCharacter.action;
                 float x = currentVCharacter.X;
-                Model.Direction direction = currentVCharacter.direction;
-                if (mCharacter.belong == Model.Belong.self)
+                Direction direction = currentVCharacter.direction;
+                if (mCharacter.belong == Belong.self)
                 {
-                    cBattle.OpenOperatingMenu();
+                    Global.battleEvent.DispatchEventOperatingMenu(true);
                 }
                 returnAction = () =>
                 {
@@ -77,7 +77,7 @@ namespace App.Util.Manager
         }
         public void ClickMovingNode(Vector2Int coordinate)
         {
-            if (this.currentCharacter.belong != cBattle.currentBelong || this.currentCharacter.actionOver)
+            if (this.currentCharacter.belong != currentBelong || this.currentCharacter.actionOver)
             {
                 CharacterReturnNone();
                 return;
@@ -97,7 +97,7 @@ namespace App.Util.Manager
             {
                 MoveStart(coordinate);
             }
-            else if (cBattle.battleMode != Model.BattleMode.move_after_attack)
+            else if (battleMode != Model.BattleMode.move_after_attack)
             {
                 CharacterReturnNone();
             }
@@ -108,14 +108,14 @@ namespace App.Util.Manager
             VTile endTile = mapSearch.GetTile(coordinate);
             //cBattlefield.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
             Holoville.HOTween.Core.TweenDelegate.TweenCallback moveComplete;
-            if (cBattle.battleMode == Model.BattleMode.move_after_attack)
+            if (battleMode == Model.BattleMode.move_after_attack)
             {
                 moveComplete = () =>
                 {
                     this.currentCharacter.coordinate.y = endTile.coordinate.y;
                     this.currentCharacter.coordinate.x = endTile.coordinate.x;
                     //cBattle.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
-                    cBattle.StartCoroutine(ActionOverNext());
+                    App.Util.AppManager.CurrentScene.StartCoroutine(ActionOverNext());
                 };
             }
             else
@@ -124,24 +124,24 @@ namespace App.Util.Manager
                 {
                     currentVCharacter.action = Model.ActionType.idle;
                     this.tilesManager.ClearCurrentTiles();
-                    cBattle.battleMode = Model.BattleMode.move_end;
+                    battleMode = Model.BattleMode.move_end;
                     this.currentCharacter.coordinate.y = endTile.coordinate.y;
                     this.currentCharacter.coordinate.x = endTile.coordinate.x;
                     /*
                     cBattlefield.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
                     */
                     this.tilesManager.ShowCharacterSkillArea(this.currentCharacter);
-                    cBattle.OpenOperatingMenu();
+                    Global.battleEvent.DispatchEventOperatingMenu(true);
                 };
             }
             List<VTile> tiles = aStar.Search(currentCharacter, startTile, endTile);
             this.currentCharacter.roadLength = tiles.Count;
             if (tiles.Count > 0)
             {
-                cBattle.CloseOperatingMenu();
+                Global.battleEvent.DispatchEventOperatingMenu(false);
                 this.tilesManager.ClearCurrentTiles();
                 currentVCharacter.action = Model.ActionType.move;
-                cBattle.battleMode = Model.BattleMode.moving;
+                battleMode = Model.BattleMode.moving;
                 Sequence sequence = new Sequence();
                 foreach (VTile tile in tiles)
                 {
@@ -200,9 +200,9 @@ namespace App.Util.Manager
                 SetActionCharacterList(currentVCharacter, vCharacter, false);
             }
             this.tilesManager.ClearCurrentTiles();
-            cBattle.CloseOperatingMenu();
-            cBattle.HideBattleCharacterPreviewDialog();
-            cBattle.battleMode = Model.BattleMode.actioning;
+            Global.battleEvent.DispatchEventOperatingMenu(false);
+            Global.battleEvent.DispatchEventCharacterPreview(null);
+            battleMode = Model.BattleMode.actioning;
             Global.battleEvent.ActionEndHandler += OnActionComplete;
             OnActionComplete();
         }
@@ -248,7 +248,7 @@ namespace App.Util.Manager
                 }
             }
             Global.battleEvent.ActionEndHandler -= OnActionComplete;
-            cBattle.StartCoroutine(ActionOver());
+            AppManager.CurrentScene.StartCoroutine(ActionOver());
         }
         /// <summary>
         /// 开始动作
@@ -401,7 +401,7 @@ namespace App.Util.Manager
             && currentCharacter.ability.movingPower - currentCharacter.roadLength > 0)
             {
                 tilesManager.ShowCharacterMovingArea(currentCharacter, currentCharacter.ability.movingPower - currentCharacter.roadLength);
-                cBattle.battleMode = BattleMode.move_after_attack;
+                battleMode = BattleMode.move_after_attack;
                 if (currentCharacter.belong != Belong.self)
                 {
                     //cBattle.ai.MoveAfterAttack();
@@ -410,7 +410,7 @@ namespace App.Util.Manager
             else
             {
                 Debug.LogError("ActionOverNext");
-                cBattle.StartCoroutine(ActionOverNext());
+                App.Util.AppManager.CurrentScene.StartCoroutine(ActionOverNext());
             }
         }
         /// <summary>
@@ -446,7 +446,7 @@ namespace App.Util.Manager
                     }
                 }
             }
-            cBattle.StartCoroutine(AddAidToCharacterComplete(strategys, targetCharacters));
+            AppManager.CurrentScene.StartCoroutine(AddAidToCharacterComplete(strategys, targetCharacters));
         }
         private IEnumerator AddAidToCharacterComplete(List<App.Model.Master.MStrategy> strategys, MCharacter[] targetCharacters)
         {
@@ -476,16 +476,16 @@ namespace App.Util.Manager
         /// </summary>
         public IEnumerator ActionOverNext()
         {
-            if (cBattle.battleMode == BattleMode.moving)
+            if (battleMode == BattleMode.moving)
             {
                 currentVCharacter.action = ActionType.idle;
             }
-            yield return cBattle.StartCoroutine(ActionEndSkillsRun());
+            yield return AppManager.CurrentScene.StartCoroutine(ActionEndSkillsRun());
             currentCharacter.actionOver = true;
             currentCharacter.roadLength = 0;
             tilesManager.ClearCurrentTiles();
-            cBattle.HideBattleCharacterPreviewDialog();
-            cBattle.battleMode = BattleMode.none;
+            Global.battleEvent.DispatchEventCharacterPreview(null);
+            battleMode = BattleMode.none;
             Belong belong = currentCharacter.belong;
             this.currentCharacter = null;
             this.currentVCharacter = null;
@@ -495,7 +495,7 @@ namespace App.Util.Manager
             }
             else
             {
-                cBattle.CloseOperatingMenu();
+                Global.battleEvent.DispatchEventOperatingMenu(false);
             }
         }
         public void ChangeBelong(Belong belong)
@@ -528,9 +528,9 @@ namespace App.Util.Manager
             returnAction();
             this.currentCharacter = null;
             this.tilesManager.ClearCurrentTiles();
-            cBattle.CloseOperatingMenu();
-            cBattle.HideBattleCharacterPreviewDialog();
-            cBattle.battleMode = Model.BattleMode.none;
+            Global.battleEvent.DispatchEventOperatingMenu(false);
+            Global.battleEvent.DispatchEventCharacterPreview(null);
+            battleMode = Model.BattleMode.none;
         }
 
     }

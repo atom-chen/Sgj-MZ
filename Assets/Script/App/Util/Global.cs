@@ -14,6 +14,7 @@ namespace App.Util
         public static MVersion versions;
         public static SUser SUser;
         public static string ssid;
+        public static Model.Master.MConstant Constant;
         public static int dialogSortOrder = 20;
         public static AppManager AppManager { get; private set; }
         public static Manager.BattleManager battleManager { get; set; }

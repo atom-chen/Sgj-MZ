@@ -9,6 +9,11 @@ namespace App.Model.Character
 
         [JsonName(Name = "skill_id")]
         public int skillId;
+        public string name{
+            get{
+                return master.name;
+            }
+        }
         public int level;
         public bool canUnlock;
         public bool useToEnemy

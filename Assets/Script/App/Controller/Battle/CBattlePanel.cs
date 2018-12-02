@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using App.Controller.Common;
 using App.Model;
 using App.Util;
-using App.Util.Manager;
-using App.Util.Search;
+using App.View.Battle;
 using App.View.Common;
 using UnityEngine;
 namespace App.Controller.Battle
@@ -12,10 +11,11 @@ namespace App.Controller.Battle
     public class CBattlePanel : CPanel
     {
         [SerializeField] private Camera camera3d;
+        [SerializeField] private VBottomMenu operatingMenu;
+        [SerializeField] private VBottomMenu battleMenu;
+        [SerializeField] private VBaseListChild characterPreview;
         private int boutCount = 0;
         private int maxBout = 0;
-        public Belong currentBelong { get; set; }
-        public BattleMode battleMode { get; set; }
         public override IEnumerator OnLoad( Request request ) {
             LSharpInit();
             yield return this.StartCoroutine(base.OnLoad(request));
@@ -23,25 +23,52 @@ namespace App.Controller.Battle
             string url = Service.HttpClient.assetBandleURL + "maps/maps_001.unity3d";
             yield return this.StartCoroutine(sUser.Download(url, 0, InitMap));
             InitManager();
-            InitCharacters();
+            InitCharacters(); 
+            Global.battleEvent.OperatingMenuHandler += ChangeOperatingMenu;
+            Global.battleEvent.CharacterPreviewHandler += ChangeBattleCharacterPreviewDialog;
             this.dispatcher.Notify();
         }
         private void LSharpInit()
         {
         }
-        public void OpenOperatingMenu(){
-
-        }
-        public void CloseOperatingMenu(){
-
-        }
-        public void OpenBattleCharacterPreviewDialog(Model.Character.MCharacter mCharacter)
+        private void ChangeOperatingMenu(bool value)
         {
-
+            if(value){
+                OpenOperatingMenu();
+            }else{
+                CloseOperatingMenu();
+            }
         }
-        public void HideBattleCharacterPreviewDialog()
+        private void OpenOperatingMenu(){
+            operatingMenu.Open();
+            battleMenu.Close(null);
+        }
+        private void CloseOperatingMenu(){
+            operatingMenu.Close(null);
+            /*if (Global.battleManager.currentCharacter != null)
+            {
+                return;
+            }*/
+            if (Global.battleManager.currentBelong != Belong.self)
+            {
+                //ai.Execute(Global.battleManager.currentBelong);
+            }
+            else
+            {
+                battleMenu.Open();
+            }
+        }
+        void ChangeBattleCharacterPreviewDialog(Model.Character.MCharacter mCharacter)
         {
-
+            if(mCharacter == null)
+            {
+                characterPreview.gameObject.SetActive(false);
+            }
+            else
+            {
+                characterPreview.gameObject.SetActive(true);
+                characterPreview.UpdateView(mCharacter);
+            }
         }
         public void InitCharacters()
         {
@@ -73,18 +100,18 @@ namespace App.Controller.Battle
             assetbundle.Unload(false);
         }
         public void InitManager(){
-            Global.battleManager.Init(this);
+            Global.battleManager.Init();
 
         }
         public void OnClickTile(View.Map.VTile vTile)
         {
             Debug.LogError("OnClickTile:" + vTile.mTile.id);
             Vector2Int coordinate = vTile.coordinate;
-            if (currentBelong != Belong.self)
+            if (Global.battleManager.currentBelong != Belong.self)
             {
                 return;
             }
-            switch (battleMode)
+            switch (Global.battleManager.battleMode)
             {
                 case BattleMode.none:
                     Global.battleManager.ClickNoneNode(coordinate);

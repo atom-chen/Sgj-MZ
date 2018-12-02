@@ -39,6 +39,7 @@ namespace App.View.Avatar
         [SerializeField] TextMesh num;
         [SerializeField] UnityEngine.Rendering.SortingGroup sortingGroup;
         [SerializeField] SpriteRenderer[] status;
+        private static Vector3 numScale = new Vector3(0.01f, 0.01f, 0.01f);
         private Sequence sequenceStatus;
         private Dictionary<string, Anima2D.SpriteMeshInstance> meshs = new Dictionary<string, Anima2D.SpriteMeshInstance>();
         private Anima2D.SpriteMeshInstance Weapon
@@ -324,7 +325,8 @@ namespace App.View.Avatar
             }
             if (mCharacter.currentSkill.useToEnemy)
             {
-                this.controller.SendMessage("OnDamage", this, SendMessageOptions.DontRequireReceiver);
+                Global.battleEvent.OnDamage(this);
+                //this.controller.SendMessage("OnDamage", this, SendMessageOptions.DontRequireReceiver);
             }
             else
             {
@@ -335,6 +337,58 @@ namespace App.View.Avatar
         {
             this.action = ActionType.idle;
         }
-
+        public int hp{
+            get{
+                return mCharacter.hp;
+            }
+            set{
+                mCharacter.hp = value;
+                float hpValue = value * 1f / mCharacter.ability.hpMax;
+                hpSprite.transform.localPosition = new Vector3((hpValue - 1f) * 0.5f, 0f, 0f);
+                hpSprite.transform.localScale = new Vector3(hpValue, 1f, 1f);
+            }
+        }
+        public void OnBlock()
+        {
+            this.action = ActionType.block;
+        }
+        public void OnHeal(Model.Battle.MDamageParam arg)
+        {
+            this.action = ActionType.block;
+            OnHealWithoutAction(arg);
+        }
+        public void OnDamage(App.Model.Battle.MDamageParam arg)
+        {
+            this.action = ActionType.hert;
+            this.num.text = arg.value.ToString();
+            this.num.gameObject.SetActive(true);
+            this.num.transform.localPosition = new Vector3(0, 0.2f, 0);
+            this.num.color = Color.white;
+            this.num.transform.localScale = Vector3.zero;
+            Sequence seqHp = new Sequence();
+            seqHp.Insert(0f, HOTween.To(this.num.transform, 0.2f, new TweenParms().Prop("localScale", numScale * 2f, false).Ease(EaseType.EaseInQuart)));
+            seqHp.Insert(0.2f, HOTween.To(this.num.transform, 0.3f, new TweenParms().Prop("localScale", numScale, false).Ease(EaseType.EaseOutBounce)));
+            seqHp.Insert(0.5f, HOTween.To(this.num, 0.2f, new TweenParms().Prop("color", new Color(this.num.color.r, this.num.color.g, this.num.color.b, 0f), false).OnComplete(() => {
+                this.num.gameObject.SetActive(false);
+            })));
+            seqHp.Insert(0f, HOTween.To(this, 0.2f, new TweenParms().Prop("hp", this.mCharacter.hp + arg.value, false).Ease(EaseType.EaseInQuart)));
+            seqHp.Play();
+        }
+        public void OnHealWithoutAction(Model.Battle.MDamageParam arg)
+        {
+            this.num.text = string.Format("+{0}", arg.value);
+            this.num.gameObject.SetActive(true);
+            this.num.transform.localPosition = new Vector3(0, 0.2f, 0);
+            this.num.color = Color.green;
+            this.num.transform.localScale = Vector3.zero;
+            Sequence seqHp = new Sequence();
+            seqHp.Insert(0f, HOTween.To(this.num.transform, 0.2f, new TweenParms().Prop("localScale", numScale * 2f, false).Ease(EaseType.EaseInQuart)));
+            seqHp.Insert(0.2f, HOTween.To(this.num.transform, 0.3f, new TweenParms().Prop("localScale", numScale, false).Ease(EaseType.EaseOutBounce)));
+            seqHp.Insert(0.5f, HOTween.To(this.num, 0.2f, new TweenParms().Prop("color", new Color(this.num.color.r, this.num.color.g, this.num.color.b, 0f), false).OnComplete(() => {
+                this.num.gameObject.SetActive(false);
+            })));
+            seqHp.Insert(0f, HOTween.To(this, 0.2f, new TweenParms().Prop("hp", this.mCharacter.hp + arg.value, false).Ease(EaseType.EaseInQuart)));
+            seqHp.Play();
+        }
     }
 }

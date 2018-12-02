@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Model.Common;
 using App.Util.Cacher;
+using App.Util.Manager;
 using JsonFx;
 
 namespace App.Model.Character
@@ -181,6 +182,73 @@ namespace App.Model.Character
                 return arr;
             }
         }
+        /// <summary>
+        /// 枪剑类兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is pike; otherwise, <c>false</c>.</value>
+        public bool isPike
+        {
+            get
+            {
+                return WeaponManager.IsPike(weaponType);
+            }
+        }
+        /// <summary>
+        /// 斧类兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is ax; otherwise, <c>false</c>.</value>
+        public bool isAx
+        {
+            get
+            {
+                return WeaponManager.IsAx(weaponType);
+            }
+        }
+        /// <summary>
+        /// 刀类兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is knife; otherwise, <c>false</c>.</value>
+        public bool isKnife
+        {
+            get
+            {
+                return WeaponManager.IsKnife(weaponType);
+            }
+        }
+        /// <summary>
+        /// 长兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is long weapon; otherwise, <c>false</c>.</value>
+        public bool isLongWeapon
+        {
+            get
+            {
+                return WeaponManager.IsLongWeapon(weaponType);
+            }
+        }
+        /// <summary>
+        /// 短兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is short weapon; otherwise, <c>false</c>.</value>
+        public bool isShortWeapon
+        {
+            get
+            {
+                return WeaponManager.IsShortWeapon(weaponType);
+            }
+        }
+        /// <summary>
+        /// 远程类兵器
+        /// </summary>
+        /// <value><c>true</c> if this instance is archery; otherwise, <c>false</c>.</value>
+        public bool isArcheryWeapon
+        {
+            get
+            {
+                return WeaponManager.IsArcheryWeapon(weaponType);
+            }
+        }
+
         private Master.MCharacter _master = null;
         public Master.MCharacter master
         {
@@ -194,7 +262,27 @@ namespace App.Model.Character
             }
         }
 
-        public object CurrentSkill { get; internal set; }
+        public float TileAid(View.Map.VTile vTile)
+        {
+            int aid = 0;
+            foreach (MSkill skill in skills)
+            {
+                Master.MSkill mSkill = skill.master;
+                if (!Master.MSkill.IsSkillType(mSkill, SkillType.help) || mSkill.effect.special != SkillEffectSpecial.tile)
+                {
+                    continue;
+                }
+                if (mSkill.wild > 0 && Array.Exists(Util.Global.Constant.tile_wild, v => v == vTile.tileId))
+                {
+                    aid += mSkill.wild;
+                }
+                if (mSkill.swim > 0 && Array.Exists(Util.Global.Constant.tile_swim, v => v == vTile.tileId))
+                {
+                    aid += mSkill.swim;
+                }
+            }
+            return aid == 0 ? 1f : (100 + aid) * 0.01f;
+        }
         private bool IsSkillEffectSpecial(SkillEffectSpecial special)
         {
             foreach (MSkill skill in this.skills)
@@ -226,6 +314,11 @@ namespace App.Model.Character
             get
             {
                 return IsSkillEffectSpecial(SkillEffectSpecial.move_after_attack);
+            }
+        }
+        public bool isForceHit{
+            get{
+                return IsSkillEffectSpecial(SkillEffectSpecial.force_hit);
             }
         }
 

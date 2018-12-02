@@ -51,8 +51,7 @@ namespace App.Util.Manager
         {
             currentMovingTiles = Global.battleManager.breadthFirst.Search(mCharacter, movingPower, true);
             Global.battleEvent.DispatchEventMovingTiles(currentMovingTiles, mCharacter.belong);
-            Controller.Battle.CBattlePanel cBattle = Global.battleManager.cBattle;
-            cBattle.battleMode = BattleMode.show_move_tiles;
+            Global.battleManager.battleMode = BattleMode.show_move_tiles;
         }
 
         public void ShowCharacterSkillArea(MCharacter mCharacter)

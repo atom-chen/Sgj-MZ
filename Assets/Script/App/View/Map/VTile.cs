@@ -46,7 +46,11 @@ namespace App.View.Map
 
         //public int Id { get; set; }
         //public int MapId { get; set; }
-        public int tileId { get; private set; }
+        public int tileId { 
+            get{
+                return mTile.id;
+            } 
+        }
         public bool isAttackTween
         {
             get
