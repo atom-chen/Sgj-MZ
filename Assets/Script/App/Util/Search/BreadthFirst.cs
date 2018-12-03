@@ -66,11 +66,6 @@ namespace App.Util.Search
                     tile.SearchInit();
                 });
             });
-            Controller.Battle.CBattlePanel cBattle = Global.battleManager.cBattle;
-            if (cBattle == null || !obstacleEnable)
-            {
-                return;
-            }
             int mapHeight = Global.tileUnits.Count;
             int mapWidth = Global.tileUnits[0].Count;
             foreach (MCharacter character in Global.battleManager.charactersManager.mCharacters)
