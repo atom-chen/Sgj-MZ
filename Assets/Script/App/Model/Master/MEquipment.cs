@@ -11,6 +11,7 @@ namespace App.Model.Master
         public MEquipment()
         {
         }
+        public int star;
         public string name;//
         public int qualification;//品质
         [JsonName(Name = "weapon_type")]
