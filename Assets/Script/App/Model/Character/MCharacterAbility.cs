@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Model.Common;
+using App.Model.Equipment;
 using App.Util.Cacher;
 using UnityEngine;
 
@@ -94,25 +95,25 @@ namespace App.Model.Character
                     this.CountCharacterParams(skillMaster);
                 }
             }
-            List<Master.MEquipment> equipments = new List<Master.MEquipment>();
+            List<MEquipment> equipments = new List<MEquipment>();
 
             if (mCharacter.weapon > 0)
             {
-                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.weapon,EquipmentType.weapon));
+                equipments.Add(mCharacter.equipmentWepon);
             }
             if (mCharacter.clothes > 0)
             {
-                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.clothes, EquipmentType.clothes));
+                equipments.Add(mCharacter.equipmentClothes);
             }
             if (mCharacter.horse > 0)
             {
-                equipments.Add(EquipmentCacher.Instance.GetEquipment(mCharacter.horse, EquipmentType.horse));
+                equipments.Add(mCharacter.equipmentHorse);
             }
             physicalAttack = 0;
             physicalDefense = 0;
             magicAttack = 0;
             magicDefense = 0;
-            foreach (Master.MEquipment equipment in equipments)
+            foreach (MEquipment equipment in equipments)
             {
                 hp += equipment.hp;
                 mp += equipment.mp;

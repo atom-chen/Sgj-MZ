@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Model.Common;
+using App.Model.Equipment;
 using App.Util.Cacher;
 using App.Util.Manager;
 using JsonFx;
@@ -50,6 +51,9 @@ namespace App.Model.Character
                 _weaponTypeUpdate();
             }
         }
+        public MEquipment equipmentWepon;
+        public MEquipment equipmentClothes;
+        public MEquipment equipmentHorse;
         public int clothes;
         public int _horse;
         public int horse{

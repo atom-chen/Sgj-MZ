@@ -26,51 +26,51 @@ namespace App.Model.Master
         [JsonName(Name = "clothes_type")]
         public ClothesType clothesType;//衣服类型
         [JsonName(Name = "physical_attack")]
-        public int physicalAttack;//物理攻击
+        public MEquipmentValue physicalAttack;//物理攻击
         [JsonName(Name = "magic_attack")]
-        public int magicAttack;//魔法攻击
-        public int power;//力量
-        public int hp;//血量
-        public int mp;//MP
-        public int speed;//速度
+        public MEquipmentValue magicAttack;//魔法攻击
+        public MEquipmentValue power;//力量
+        public MEquipmentValue hp;//血量
+        public MEquipmentValue mp;//MP
+        public MEquipmentValue speed;//速度
         [JsonName(Name = "physical_defense")]
-        public int physicalDefense;//物理防御
+        public MEquipmentValue physicalDefense;//物理防御
         [JsonName(Name = "magic_defense")]
-        public int magicDefense;//魔法防御
-        public int knowledge;//技巧
-        public int trick;//谋略
-        public int endurance;//耐力
+        public MEquipmentValue magicDefense;//魔法防御
+        public MEquipmentValue knowledge;//技巧
+        public MEquipmentValue trick;//谋略
+        public MEquipmentValue endurance;//耐力
         [JsonName(Name = "moving_power")]
-        public int movingPower;//轻功／移动力
-        public int riding;//骑术
-        public int walker;//步战
-        public int pike;//长枪
-        public int sword;//短剑
+        public MEquipmentValue movingPower;//轻功／移动力
+        public MEquipmentValue riding;//骑术
+        public MEquipmentValue walker;//步战
+        public MEquipmentValue pike;//长枪
+        public MEquipmentValue sword;//短剑
         [JsonName(Name = "long_knife")]
-        public int longKnife;//大刀
-        public int knife;//短刀
+        public MEquipmentValue longKnife;//大刀
+        public MEquipmentValue knife;//短刀
         [JsonName(Name = "long_ax")]
-        public int longAx;//长斧
-        public int ax;//短斧
+        public MEquipmentValue longAx;//长斧
+        public MEquipmentValue ax;//短斧
         [JsonName(Name = "long_sticks")]
-        public int longSticks;//棍棒
-        public int sticks;//棍棒
-        public int archery;//箭术
+        public MEquipmentValue longSticks;//棍棒
+        public MEquipmentValue sticks;//棍棒
+        public MEquipmentValue archery;//箭术
         [JsonName(Name = "hidden_weapons")]
-        public int hiddenWeapons;//暗器
+        public MEquipmentValue hiddenWeapons;//暗器
         [JsonName(Name = "dual_wield")]
-        public int dualWield;//双手
-        public int magic;//法宝
+        public MEquipmentValue dualWield;//双手
+        public MEquipmentValue magic;//法宝
         [JsonName(Name = "resistance_metal")]
-        public int resistanceMetal;//抗金
+        public MEquipmentValue resistanceMetal;//抗金
         [JsonName(Name = "resistance_wood")]
-        public int resistanceWood;//抗木
+        public MEquipmentValue resistanceWood;//抗木
         [JsonName(Name = "resistance_water")]
-        public int resistanceWater;//抗水
+        public MEquipmentValue resistanceWater;//抗水
         [JsonName(Name = "resistance_fire")]
-        public int resistanceFire;//抗火
+        public MEquipmentValue resistanceFire;//抗火
         [JsonName(Name = "resistance_earth")]
-        public int resistanceEarth;//抗土
+        public MEquipmentValue resistanceEarth;//抗土
 
         [JsonName(Name = "image_index")]
         public int imageIndex;//马匹或鞋
