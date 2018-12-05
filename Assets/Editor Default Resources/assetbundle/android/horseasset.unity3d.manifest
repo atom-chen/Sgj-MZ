@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 4134267521
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4deddca98ad46f5e0f9d36aaa4a99d21
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6e6a78a3471217512757100b14409c00
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 0d93f3cb84b0f4830baa67917e4c0595, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/horseasset.asset
+Dependencies: []

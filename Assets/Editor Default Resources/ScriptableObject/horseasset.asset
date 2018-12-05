@@ -1,0 +1,529 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d93f3cb84b0f4830baa67917e4c0595, type: 3}
+  m_Name: horseasset
+  m_EditorClassIdentifier: 
+  equipments:
+  - id: 1
+    star: 0
+    name: "\u767D\u9A6C"
+    qualification: 0
+    weaponType: 0
+    compatibility: 0
+    moveType: 1
+    clothesType: 0
+    physicalAttack:
+      value: 0
+      plus: 0
+    magicAttack:
+      value: 0
+      plus: 0
+    power:
+      value: 0
+      plus: 0
+    hp:
+      value: 0
+      plus: 0
+    mp:
+      value: 0
+      plus: 0
+    speed:
+      value: 0
+      plus: 0
+    physicalDefense:
+      value: 0
+      plus: 0
+    magicDefense:
+      value: 0
+      plus: 0
+    knowledge:
+      value: 0
+      plus: 0
+    trick:
+      value: 0
+      plus: 0
+    endurance:
+      value: 0
+      plus: 0
+    movingPower:
+      value: 1
+      plus: 0
+    riding:
+      value: 0
+      plus: 0
+    walker:
+      value: 0
+      plus: 0
+    pike:
+      value: 0
+      plus: 0
+    sword:
+      value: 0
+      plus: 0
+    longKnife:
+      value: 0
+      plus: 0
+    knife:
+      value: 0
+      plus: 0
+    longAx:
+      value: 0
+      plus: 0
+    ax:
+      value: 0
+      plus: 0
+    longSticks:
+      value: 0
+      plus: 0
+    sticks:
+      value: 0
+      plus: 0
+    archery:
+      value: 0
+      plus: 0
+    hiddenWeapons:
+      value: 0
+      plus: 0
+    dualWield:
+      value: 0
+      plus: 0
+    magic:
+      value: 0
+      plus: 0
+    resistanceMetal:
+      value: 0
+      plus: 0
+    resistanceWood:
+      value: 0
+      plus: 0
+    resistanceWater:
+      value: 0
+      plus: 0
+    resistanceFire:
+      value: 0
+      plus: 0
+    resistanceEarth:
+      value: 0
+      plus: 0
+    imageIndex: 1
+    saddle: 1
+  - id: 2
+    star: 0
+    name: "\u9ED1\u9A6C"
+    qualification: 0
+    weaponType: 0
+    compatibility: 0
+    moveType: 1
+    clothesType: 0
+    physicalAttack:
+      value: 0
+      plus: 0
+    magicAttack:
+      value: 0
+      plus: 0
+    power:
+      value: 0
+      plus: 0
+    hp:
+      value: 0
+      plus: 0
+    mp:
+      value: 0
+      plus: 0
+    speed:
+      value: 0
+      plus: 0
+    physicalDefense:
+      value: 0
+      plus: 0
+    magicDefense:
+      value: 0
+      plus: 0
+    knowledge:
+      value: 0
+      plus: 0
+    trick:
+      value: 0
+      plus: 0
+    endurance:
+      value: 0
+      plus: 0
+    movingPower:
+      value: 1
+      plus: 0
+    riding:
+      value: 0
+      plus: 0
+    walker:
+      value: 0
+      plus: 0
+    pike:
+      value: 0
+      plus: 0
+    sword:
+      value: 0
+      plus: 0
+    longKnife:
+      value: 0
+      plus: 0
+    knife:
+      value: 0
+      plus: 0
+    longAx:
+      value: 0
+      plus: 0
+    ax:
+      value: 0
+      plus: 0
+    longSticks:
+      value: 0
+      plus: 0
+    sticks:
+      value: 0
+      plus: 0
+    archery:
+      value: 0
+      plus: 0
+    hiddenWeapons:
+      value: 0
+      plus: 0
+    dualWield:
+      value: 0
+      plus: 0
+    magic:
+      value: 0
+      plus: 0
+    resistanceMetal:
+      value: 0
+      plus: 0
+    resistanceWood:
+      value: 0
+      plus: 0
+    resistanceWater:
+      value: 0
+      plus: 0
+    resistanceFire:
+      value: 0
+      plus: 0
+    resistanceEarth:
+      value: 0
+      plus: 0
+    imageIndex: 2
+    saddle: 1
+  - id: 3
+    star: 0
+    name: "\u6F06\u9ED1\u9A6C"
+    qualification: 0
+    weaponType: 0
+    compatibility: 0
+    moveType: 1
+    clothesType: 0
+    physicalAttack:
+      value: 0
+      plus: 0
+    magicAttack:
+      value: 0
+      plus: 0
+    power:
+      value: 0
+      plus: 0
+    hp:
+      value: 50
+      plus: 0
+    mp:
+      value: 0
+      plus: 0
+    speed:
+      value: 0
+      plus: 0
+    physicalDefense:
+      value: 0
+      plus: 0
+    magicDefense:
+      value: 0
+      plus: 0
+    knowledge:
+      value: 0
+      plus: 0
+    trick:
+      value: 0
+      plus: 0
+    endurance:
+      value: 0
+      plus: 0
+    movingPower:
+      value: 1
+      plus: 0
+    riding:
+      value: 0
+      plus: 0
+    walker:
+      value: 0
+      plus: 0
+    pike:
+      value: 0
+      plus: 0
+    sword:
+      value: 0
+      plus: 0
+    longKnife:
+      value: 0
+      plus: 0
+    knife:
+      value: 0
+      plus: 0
+    longAx:
+      value: 0
+      plus: 0
+    ax:
+      value: 0
+      plus: 0
+    longSticks:
+      value: 0
+      plus: 0
+    sticks:
+      value: 0
+      plus: 0
+    archery:
+      value: 0
+      plus: 0
+    hiddenWeapons:
+      value: 0
+      plus: 0
+    dualWield:
+      value: 0
+      plus: 0
+    magic:
+      value: 0
+      plus: 0
+    resistanceMetal:
+      value: 0
+      plus: 0
+    resistanceWood:
+      value: 0
+      plus: 0
+    resistanceWater:
+      value: 0
+      plus: 0
+    resistanceFire:
+      value: 0
+      plus: 0
+    resistanceEarth:
+      value: 0
+      plus: 0
+    imageIndex: 2
+    saddle: 2
+  - id: 4
+    star: 0
+    name: "\u5E03\u978B"
+    qualification: 0
+    weaponType: 0
+    compatibility: 0
+    moveType: 0
+    clothesType: 0
+    physicalAttack:
+      value: 0
+      plus: 0
+    magicAttack:
+      value: 0
+      plus: 0
+    power:
+      value: 0
+      plus: 0
+    hp:
+      value: 50
+      plus: 0
+    mp:
+      value: 0
+      plus: 0
+    speed:
+      value: 1
+      plus: 0
+    physicalDefense:
+      value: 0
+      plus: 0
+    magicDefense:
+      value: 0
+      plus: 0
+    knowledge:
+      value: 0
+      plus: 0
+    trick:
+      value: 0
+      plus: 0
+    endurance:
+      value: 0
+      plus: 0
+    movingPower:
+      value: 0
+      plus: 0
+    riding:
+      value: 0
+      plus: 0
+    walker:
+      value: 0
+      plus: 0
+    pike:
+      value: 0
+      plus: 0
+    sword:
+      value: 0
+      plus: 0
+    longKnife:
+      value: 0
+      plus: 0
+    knife:
+      value: 0
+      plus: 0
+    longAx:
+      value: 0
+      plus: 0
+    ax:
+      value: 0
+      plus: 0
+    longSticks:
+      value: 0
+      plus: 0
+    sticks:
+      value: 0
+      plus: 0
+    archery:
+      value: 0
+      plus: 0
+    hiddenWeapons:
+      value: 0
+      plus: 0
+    dualWield:
+      value: 0
+      plus: 0
+    magic:
+      value: 0
+      plus: 0
+    resistanceMetal:
+      value: 0
+      plus: 0
+    resistanceWood:
+      value: 0
+      plus: 0
+    resistanceWater:
+      value: 0
+      plus: 0
+    resistanceFire:
+      value: 0
+      plus: 0
+    resistanceEarth:
+      value: 0
+      plus: 0
+    imageIndex: 1
+    saddle: 0
+  - id: 5
+    star: 0
+    name: "\u76AE\u9774"
+    qualification: 0
+    weaponType: 0
+    compatibility: 0
+    moveType: 0
+    clothesType: 0
+    physicalAttack:
+      value: 0
+      plus: 0
+    magicAttack:
+      value: 0
+      plus: 0
+    power:
+      value: 0
+      plus: 0
+    hp:
+      value: 0
+      plus: 0
+    mp:
+      value: 0
+      plus: 0
+    speed:
+      value: 2
+      plus: 0
+    physicalDefense:
+      value: 0
+      plus: 0
+    magicDefense:
+      value: 0
+      plus: 0
+    knowledge:
+      value: 0
+      plus: 0
+    trick:
+      value: 0
+      plus: 0
+    endurance:
+      value: 0
+      plus: 0
+    movingPower:
+      value: 0
+      plus: 0
+    riding:
+      value: 0
+      plus: 0
+    walker:
+      value: 0
+      plus: 0
+    pike:
+      value: 0
+      plus: 0
+    sword:
+      value: 0
+      plus: 0
+    longKnife:
+      value: 0
+      plus: 0
+    knife:
+      value: 0
+      plus: 0
+    longAx:
+      value: 0
+      plus: 0
+    ax:
+      value: 0
+      plus: 0
+    longSticks:
+      value: 0
+      plus: 0
+    sticks:
+      value: 0
+      plus: 0
+    archery:
+      value: 0
+      plus: 0
+    hiddenWeapons:
+      value: 0
+      plus: 0
+    dualWield:
+      value: 0
+      plus: 0
+    magic:
+      value: 0
+      plus: 0
+    resistanceMetal:
+      value: 0
+      plus: 0
+    resistanceWood:
+      value: 0
+      plus: 0
+    resistanceWater:
+      value: 0
+      plus: 0
+    resistanceFire:
+      value: 0
+      plus: 0
+    resistanceEarth:
+      value: 0
+      plus: 0
+    imageIndex: 2
+    saddle: 0

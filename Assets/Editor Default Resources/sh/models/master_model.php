@@ -170,14 +170,34 @@ class Master_model extends MY_Model
 		$select = "`id`,`name_{$language}` as `name`,`child_type` as `move_type`,`moving_power`,`image_index`,`saddle`,`hp`,`speed`";
 		$table = $this->master_db->horse;
 		$order_by = "id asc";
-		$result = $this->master_db->select($select, $table, null, $order_by);
+		$result_select = $this->master_db->select($select, $table, null, $order_by, null, Database_Result::TYPE_DEFAULT);
+		$result = array();
+		while ($row = mysql_fetch_assoc($result_select)) {
+			foreach($row as $key => $value){
+				if(substr($value, 0, 1) === "["){
+					$equipmentValue = json_decode($value);
+					$row[$key] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
+				}
+			}
+			$result[] = $row;
+		}
 		return $result;
 	}
 	function get_master_weapon($language = "cn"){
 		$select = "`id`,`name_{$language}` as `name`,`child_type` as `weapon_type`,`physical_attack`,`magic_attack`,`power`";
 		$table = $this->master_db->weapon;
 		$order_by = "id asc";
-		$result = $this->master_db->select($select, $table, null, $order_by);
+		$result_select = $this->master_db->select($select, $table, null, $order_by, null, Database_Result::TYPE_DEFAULT);
+		$result = array();
+		while ($row = mysql_fetch_assoc($result_select)) {
+			foreach($row as $key => $value){
+				if(substr($value, 0, 1) === "["){
+					$equipmentValue = json_decode($value);
+					$row[$key] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
+				}
+			}
+			$result[] = $row;
+		}
 		return $result;
 	}
 	function get_master_clothes($language = "cn"){
@@ -187,12 +207,12 @@ class Master_model extends MY_Model
 		$result_select = $this->master_db->select($select, $table, null, $order_by, null, Database_Result::TYPE_DEFAULT);
 		$result = array();
 		while ($row = mysql_fetch_assoc($result_select)) {
-			$equipmentValue = json_decode($row["physical_defense"]);
-			$row["physical_defense"] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
-			$equipmentValue = json_decode($row["magic_defense"]);
-			$row["magic_defense"] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
-			$equipmentValue = json_decode($row["hp"]);
-			$row["hp"] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
+			foreach($row as $key => $value){
+				if(substr($value, 0, 1) === "["){
+					$equipmentValue = json_decode($value);
+					$row[$key] = array("value"=>$equipmentValue[0], "plus"=>$equipmentValue[1]);
+				}
+			}
 			$result[] = $row;
 		}
 		return $result;

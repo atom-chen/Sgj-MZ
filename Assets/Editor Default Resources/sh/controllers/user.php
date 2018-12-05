@@ -71,9 +71,9 @@ class User extends MY_Controller {
 				}
 			}
 		}
-		if(is_null($user["characters"])){
+		if(is_null($user["characterBasics"])){
 			$character_model = new Character_model();
-			$user["characters"] = $character_model->get_character_list($user["id"]);
+			$user["characterBasics"] = $character_model->get_character_list($user["id"]);
 		}
 		if(is_null($user["battlelist"])){
 			load_model(array('battle_model'));

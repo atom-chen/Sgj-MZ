@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3370403478
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 645413d7c60af5cd90a3a49a100ca540
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 07a692ef33befeb9e5193e2269fab9a3
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: c60325a2a2ee54931984778c9c6d3630, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/weaponasset.asset
+Dependencies: []

@@ -87,7 +87,8 @@ namespace App.Controller.Logo
         public void CacheClear()
         {
             Caching.ClearCache();
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteKey("account");
+            PlayerPrefs.DeleteKey("password");
         }
     }
 }

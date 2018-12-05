@@ -155,6 +155,21 @@ namespace MyEditor
         {
             BuildAssetBundleMaster(App.Model.Scriptable.SkillAsset.Name);
         }
+        [MenuItem("CH/Build Assetbundle/Master/Horse")]
+        static private void BuildAssetBundleMasterHorse()
+        {
+            BuildAssetBundleMaster(App.Model.Scriptable.HorseAsset.Name);
+        }
+        [MenuItem("CH/Build Assetbundle/Master/Clothes")]
+        static private void BuildAssetBundleMasterClothes()
+        {
+            BuildAssetBundleMaster(App.Model.Scriptable.ClothesAsset.Name);
+        }
+        [MenuItem("CH/Build Assetbundle/Master/Weapon")]
+        static private void BuildAssetBundleMasterWeapon()
+        {
+            BuildAssetBundleMaster(App.Model.Scriptable.WeaponAsset.Name);
+        }
         /*
         [MenuItem("CH/Build Assetbundle/Master/StoryProgress")]
         static private void BuildAssetBundleStoryProgress()
@@ -235,21 +250,6 @@ namespace MyEditor
         static private void BuildAssetBundleBuilding()
         {
             BuildAssetBundleMaster(App.Model.Scriptable.BuildingAsset.Name);
-        }
-        [MenuItem("CH/Build Assetbundle/Master/Horse")]
-        static private void BuildAssetBundleMasterHorse()
-        {
-            BuildAssetBundleMaster(App.Model.Scriptable.HorseAsset.Name);
-        }
-        [MenuItem("CH/Build Assetbundle/Master/Clothes")]
-        static private void BuildAssetBundleMasterClothes()
-        {
-            BuildAssetBundleMaster(App.Model.Scriptable.ClothesAsset.Name);
-        }
-        [MenuItem("CH/Build Assetbundle/Master/Weapon")]
-        static private void BuildAssetBundleMasterWeapon()
-        {
-            BuildAssetBundleMaster(App.Model.Scriptable.WeaponAsset.Name);
         }
         [MenuItem("CH/Build Assetbundle/Master/NpcEquipment")]
         static private void BuildAssetBundleMasterNpcEquipment()

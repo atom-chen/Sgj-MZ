@@ -14,6 +14,7 @@ namespace App.Model.Character
         [JsonName(Name = "character_id")]
         public int characterId;
         public MCharacter target;
+        public int fragment;
         public int head{
             get{
                 return master.head;

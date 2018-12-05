@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-using App.Model.Character;
+using App.Model;
 using App.Model.Common;
 using App.Model.Equipment;
 
@@ -13,7 +13,8 @@ namespace App.Model.User
         }
         public string name;
         public string password;
-        public MCharacter[] characters;
+        public Character.MCharacter[] characters;
+        public Character.MCharacterBasic[] characterBasics;
         public MEquipment[] equipments;
         public void Update(MUser user)
         {
