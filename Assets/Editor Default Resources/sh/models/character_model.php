@@ -5,8 +5,8 @@ class Character_model extends MY_Model
 		parent::__construct();
 	}
 	function get_character_list($user_id, $chara_id = null){
-		$select = "`id`,`user_id`, `character_id`,`fragment`, 
-		`star`, `level`, `exp`, `horse`, `clothes`, `weapon`";
+		//$select = "`id`,`user_id`, `character_id`,`fragment`, `star`, `level`, `exp`, `horse`, `clothes`, `weapon`";
+		$select = "`id`,`user_id`, `character_id`,`fragment`";
 		$table = $this->user_db->characters;
 		$where = array();
 		$where[] = "user_id = {$user_id}";

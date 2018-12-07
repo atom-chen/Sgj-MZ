@@ -25,9 +25,13 @@ namespace App.Model.Equipment
         public int characterId;
         public EquipmentType equipmentType;
         public int level;
+        private Master.MEquipment _master;
         public Master.MEquipment master {
             get {
-                return EquipmentCacher.Instance.GetEquipment(this.equipmentId, this.equipmentType);
+                if(_master == null) {
+                    _master = EquipmentCacher.Instance.GetEquipment(this.equipmentId, this.equipmentType); ;
+                }
+                return _master;
             }
         }
 

@@ -10,13 +10,90 @@ namespace App.Model.Character
 {
     public class MCharacter: MBase
     {
-        public Mission mission;
+        #region 服务器数据
         [JsonName(Name = "character_id")]
         public int characterId;
-        public MCharacter target;
         public int fragment;
-        public int head{
-            get{
+        public MSkill[] skills;
+        #endregion
+
+        #region 存档数据
+        public int level
+        {
+            get
+            {
+                return fileCharacter.level;
+            }
+        }
+        public int exp
+        {
+            get
+            {
+                return fileCharacter.exp;
+            }
+        }
+        #endregion
+
+        public MEquipment equipmentWepon;
+        public int weapon
+        {
+            get
+            {
+                return fileCharacter.weapon;
+            }
+            set
+            {
+                fileCharacter.weapon = value;
+                equipmentWepon = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.weapon) as MEquipment;
+            }
+        }
+        public WeaponType weaponType
+        {
+            get
+            {
+                return equipmentWepon.weaponType;
+            }
+        }
+        public MEquipment equipmentHorse;
+        public int horse
+        {
+            get
+            {
+                return fileCharacter.horse;
+            }
+            set
+            {
+                fileCharacter.horse = value;
+                equipmentHorse = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.horse) as MEquipment;
+            }
+        }
+        public MoveType moveType
+        {
+            get
+            {
+                return equipmentHorse.moveType;
+            }
+        }
+        public MEquipment equipmentClothes;
+        public int clothes
+        {
+            get
+            {
+                return fileCharacter.clothes;
+            }
+            set
+            {
+                fileCharacter.clothes = value;
+                equipmentClothes = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.clothes) as MEquipment;
+            }
+        }
+
+        public Mission mission;
+        public MCharacter target;
+        public int head
+        {
+            get
+            {
                 return master.head;
             }
         }
@@ -39,44 +116,12 @@ namespace App.Model.Character
                 return ability.movingPower;
             }
         }
-        public int _weapon;
-        public int weapon
-        {
-            get
-            {
-                return _weapon;
-            }
-            set
-            {
-                _weapon = value;
-                _weaponTypeUpdate();
-            }
-        }
-        public MEquipment equipmentWepon;
-        public MEquipment equipmentClothes;
-        public MEquipment equipmentHorse;
-        public int clothes;
-        public int _horse;
-        public int horse{
-            get{
-                return _horse;
-            }
-            set
-            {
-                _horse = value;
-                _moveTypeUpdate();
-            }
-        }
         public int star;
         public int hp;
         public int mp;
-        public int level;
         public int roadLength;
         public Belong belong;
-        public MoveType moveType;
-        public WeaponType weaponType;
         public ActionType action;
-        public MSkill[] skills;
         public MSkill currentSkill;
         public MCharacterAbility ability;
         public bool isHide = false;
@@ -143,34 +188,6 @@ namespace App.Model.Character
             {
                 return ability.magicDefense;
             }
-        }
-        private void _moveTypeUpdate()
-        {
-            App.Model.Master.MEquipment mEquipment = null;
-            if (horse == 0)
-            {
-                App.Model.Master.MCharacter character = CharacterCacher.Instance.Get(this.characterId);
-                mEquipment = EquipmentCacher.Instance.GetEquipment(character.horse, EquipmentType.horse);
-            }
-            else
-            {
-                mEquipment = EquipmentCacher.Instance.GetEquipment(horse, EquipmentType.horse);
-            }
-            this.moveType = mEquipment.moveType;
-        }
-        private void _weaponTypeUpdate()
-        {
-            App.Model.Master.MEquipment mEquipment = null;
-            if (weapon == 0)
-            {
-                App.Model.Master.MCharacter character = CharacterCacher.Instance.Get(this.characterId);
-                mEquipment = EquipmentCacher.Instance.GetEquipment(character.weapon, EquipmentType.weapon);
-            }
-            else
-            {
-                mEquipment = EquipmentCacher.Instance.GetEquipment(weapon, EquipmentType.weapon);
-            }
-            this.weaponType = mEquipment == null ? WeaponType.sticks : mEquipment.weaponType;
         }
         public List<int[]> skillDistances
         {
@@ -254,18 +271,6 @@ namespace App.Model.Character
             }
         }
 
-        private Master.MCharacter _master = null;
-        public Master.MCharacter master
-        {
-            get
-            {
-                if (_master == null)
-                {
-                    _master = CharacterCacher.Instance.Get(characterId);
-                }
-                return _master;
-            }
-        }
 
         public float TileAid(View.Map.VTile vTile)
         {
@@ -331,5 +336,36 @@ namespace App.Model.Character
         /// 攻击动作结束后，将受到的技能
         /// </summary>
         public List<App.Model.Master.MSkillEffect> attackEndEffects = new List<App.Model.Master.MSkillEffect>();
+
+        /// <summary>
+        /// 本地数据
+        /// </summary>
+        private File.MCharacter _fileCharacter = null;
+        public File.MCharacter fileCharacter
+        {
+            get
+            {
+                if (_fileCharacter == null)
+                {
+                    _fileCharacter = FileCharacterCacher.Instance.GetFromCharacterId(characterId);
+                }
+                return _fileCharacter;
+            }
+        }
+        /// <summary>
+        /// The master.
+        /// </summary>
+        private Master.MCharacter _master = null;
+        public Master.MCharacter master
+        {
+            get
+            {
+                if (_master == null)
+                {
+                    _master = CharacterCacher.Instance.Get(characterId);
+                }
+                return _master;
+            }
+        }
     }
 }

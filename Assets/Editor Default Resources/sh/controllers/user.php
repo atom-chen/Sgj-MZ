@@ -2,7 +2,7 @@
 class User extends MY_Controller {
 	function __construct() {
 		parent::__construct();
-		load_model(array('user_model', 'character_model', 'item_model', 'version_model', 'loginbonus_model', 'mission_model'));
+		load_model(array('user_model', 'character_model', 'equipment_model', 'item_model', 'version_model', 'loginbonus_model', 'mission_model'));
 	}
 	public function register()
 	{
@@ -46,7 +46,7 @@ class User extends MY_Controller {
 	{
 		$user = $this->getSessionData("user");
 		$user_model = null;
-		if(is_null($user["TopMap"])){
+		/*if(is_null($user["TopMap"])){
 			$user_model = is_null($user_model) ? new User_model() : $user_model;
 			$user["TopMap"] = $user_model->get_top_map($user["id"]);
 		}
@@ -70,17 +70,21 @@ class User extends MY_Controller {
 					$user["missions"] = $mission_model->get_mission_list($user["id"]);
 				}
 			}
-		}
-		if(is_null($user["characterBasics"])){
+		}*/
+		if(is_null($user["characters"])){
 			$character_model = new Character_model();
-			$user["characterBasics"] = $character_model->get_character_list($user["id"]);
+			$user["characters"] = $character_model->get_character_list($user["id"]);
 		}
-		if(is_null($user["battlelist"])){
+		if(is_null($user["equipments"])){
+			$equipment_model = new Equipment_model();
+			$user["equipments"] = $equipment_model->get_list($user["id"]);
+		}
+		/*if(is_null($user["battlelist"])){
 			load_model(array('battle_model'));
 			$battle_model = new Battle_model();
 			$battle_list = $battle_model->get_list($user["id"]);
 			$user["battlelist"] = $battle_list;
-		}
+		}*/
 		$this->setSessionData("user", $user);
 		$this->out(array("user"=>$user));
 	}

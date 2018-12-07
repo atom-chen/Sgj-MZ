@@ -1,57 +1,29 @@
 ﻿
+using System.Collections.Generic;
 using App.Model;
+using App.Model.Common;
 
 namespace App.Util.Cacher
 {
-    public class FileEquipmentCacher : CacherBase<FileEquipmentCacher, App.Model.File.MEquipment>
+    public class FileEquipmentCacher : BaseUserEquipmentCacher
     {
-        private App.Model.File.MEquipment[] weapons;
-        private App.Model.File.MEquipment[] horses;
-        private App.Model.File.MEquipment[] clothes;
-        public void ResetEquipment(App.Model.File.MEquipment[] datas, EquipmentType type)
+        public override void ResetEquipment(MBase[] datas, Dictionary<int, MBase> dictionaryEquipment)
         {
-            switch (type)
-            {
-                case EquipmentType.weapon:
-                    ResetWeapon(datas);
-                    break;
-                case EquipmentType.clothes:
-                    ResetClothes(datas);
-                    break;
-                case EquipmentType.horse:
-                    ResetHorse(datas);
-                    break;
+            dictionaryEquipment.Clear();
+            System.Array.ForEach(datas, child => {
+                dictionaryEquipment.Add((child as Model.File.MEquipment).equipmentId, child);
+            });
+        }
+        public override MBase GetEquipment(int equipmentId, EquipmentType type)
+        {
+            MBase equipment = base.GetEquipment(equipmentId, type);
+            if(equipment != null) {
+                return equipment;
             }
-        }
-        public void ResetWeapon(App.Model.File.MEquipment[] datas)
-        {
-            this.weapons = datas;
-        }
-        public void ResetHorse(App.Model.File.MEquipment[] datas)
-        {
-            this.horses = datas;
-        }
-        public void ResetClothes(App.Model.File.MEquipment[] datas)
-        {
-            this.clothes = datas;
-        }
-        public App.Model.File.MEquipment GetEquipment(int id, EquipmentType type)
-        {
-            App.Model.File.MEquipment[] equipments;
-            switch (type)
-            {
-                case EquipmentType.weapon:
-                    equipments = weapons;
-                    break;
-                case EquipmentType.clothes:
-                    equipments = clothes;
-                    break;
-                case EquipmentType.horse:
-                default:
-                    equipments = horses;
-                    break;
-            }
-            return System.Array.Find(equipments, _ => _.id == id);
+            Model.File.MEquipment mEquipment = new Model.File.MEquipment();
+            mEquipment.equipmentId = equipmentId;
+            mEquipment.equipmentType = type;
+            return mEquipment;
         }
     }
 }

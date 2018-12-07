@@ -14,7 +14,6 @@ namespace App.Model.User
         public string name;
         public string password;
         public Character.MCharacter[] characters;
-        public Character.MCharacterBasic[] characterBasics;
         public MEquipment[] equipments;
         public void Update(MUser user)
         {
