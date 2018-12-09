@@ -10,12 +10,15 @@ namespace App.Util.Cacher
         public override void ResetEquipment(MBase[] datas, Dictionary<int, MBase> dictionaryEquipment)
         {
             dictionaryEquipment.Clear();
-            System.Array.ForEach(datas, child => {
-                dictionaryEquipment.Add((child as Model.File.MEquipment).equipmentId, child);
-            });
+            if(datas != null) { 
+                System.Array.ForEach(datas, child => {
+                    dictionaryEquipment.Add((child as Model.File.MEquipment).equipmentId, child);
+                });
+            }
         }
         public override MBase GetEquipment(int equipmentId, EquipmentType type)
         {
+            UnityEngine.Debug.LogError("FileEquipmentCacher equipmentId=" + equipmentId+ "type="+ type);
             MBase equipment = base.GetEquipment(equipmentId, type);
             if(equipment != null) {
                 return equipment;

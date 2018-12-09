@@ -221,6 +221,8 @@ namespace App.View.Avatar
             Init();
             HeadChanged();
             WeaponChanged();
+            ClothesChanged();
+            HorseChanged();
             ActionChanged();
         }
         private void HeadChanged()
@@ -231,38 +233,64 @@ namespace App.View.Avatar
         private void WeaponChanged()
         {
             int weaponId = mCharacter.weapon;
-            App.Model.Master.MEquipment mEquipment = null;
-            if (weaponId == 0)
-            {
-
-                App.Model.Master.MCharacter character = mCharacter.master;
-                mEquipment = EquipmentCacher.Instance.GetEquipment(character.weapon, EquipmentType.weapon);
-                weaponId = character.weapon;
-            }
-            else
-            {
-                mEquipment = EquipmentCacher.Instance.GetEquipment(weaponId, EquipmentType.weapon);
-            }
-            if (mEquipment == null)
+            Model.Equipment.MEquipment mEquipment = mCharacter.equipmentWepon;
+            if (mEquipment.equipmentId == 0)
             {
                 weapon.gameObject.SetActive(false);
                 weaponRight.gameObject.SetActive(false);
                 weaponArchery.gameObject.SetActive(false);
                 return;
             }
-            bool isArchery = (mEquipment.weaponType == App.Model.WeaponType.archery);
+            bool isArchery = (mEquipment.weaponType == WeaponType.archery);
             weapon.gameObject.SetActive(!isArchery);
             weaponArchery.gameObject.SetActive(isArchery);
-            if (mEquipment.weaponType == App.Model.WeaponType.dualWield)
+            if (mEquipment.weaponType == WeaponType.dualWield)
             {
-                //this.weaponRight.gameObject.SetActive(true);
-                this.Weapon.spriteMesh = ImageAssetBundleManager.GetLeftWeaponMesh(weaponId);
-                this.weaponRight.spriteMesh = ImageAssetBundleManager.GetRightWeaponMesh(weaponId);
+                this.Weapon.spriteMesh = ImageAssetBundleManager.GetLeftWeaponMesh(mEquipment.equipmentId);
+                this.weaponRight.spriteMesh = ImageAssetBundleManager.GetRightWeaponMesh(mEquipment.equipmentId);
             }
             else
             {
-                //this.weaponRight.gameObject.SetActive(false);
-                this.Weapon.spriteMesh = ImageAssetBundleManager.GetWeaponMesh(weaponId);
+                this.Weapon.spriteMesh = ImageAssetBundleManager.GetWeaponMesh(mEquipment.equipmentId);
+            }
+        }
+        private void ClothesChanged()
+        {
+            Model.Equipment.MEquipment mEquipment = mCharacter.equipmentClothes;
+            bool isArmor = (mEquipment.clothesType == ClothesType.armor);
+
+            clothesUpShort.gameObject.SetActive(isArmor);
+            clothesDownShort.gameObject.SetActive(isArmor);
+            armLeftShort.gameObject.SetActive(isArmor);
+            armRightShort.gameObject.SetActive(isArmor);
+
+            clothesUpLong.gameObject.SetActive(!isArmor);
+            clothesDownLong.gameObject.SetActive(!isArmor);
+            armLeftLong.gameObject.SetActive(!isArmor);
+            armRightLong.gameObject.SetActive(!isArmor);
+
+            ClothesUp.spriteMesh = ImageAssetBundleManager.GetClothesUpMesh(mEquipment.equipmentId);
+            ClothesDown.spriteMesh = ImageAssetBundleManager.GetClothesDownMesh(mEquipment.equipmentId);
+        }
+        private void HorseChanged()
+        {
+            Model.Equipment.MEquipment mEquipment = mCharacter.equipmentHorse;
+            if (mEquipment.moveType == MoveType.cavalry)
+            {
+                horseBody.spriteMesh = ImageAssetBundleManager.GetHorseBodyMesh(mEquipment.imageIndex);
+                horseFrontLegLeft.spriteMesh = ImageAssetBundleManager.GetHorseFrontLegLeftMesh(mEquipment.imageIndex);
+                horseFrontLegRight.spriteMesh = ImageAssetBundleManager.GetHorseFrontLegRightMesh(mEquipment.imageIndex);
+                horseHindLegLeft.spriteMesh = ImageAssetBundleManager.GetHorseHindLegLeftMesh(mEquipment.imageIndex);
+                horseHindLegRight.spriteMesh = ImageAssetBundleManager.GetHorseHindLegRightMesh(mEquipment.imageIndex);
+
+                horseSaddle.spriteMesh = ImageAssetBundleManager.GetHorseSaddleMesh(mEquipment.saddle);
+                legLeft.spriteMesh = ImageAssetBundleManager.GetShoeLeftMesh(App.Util.Global.Constant.shoe_default_index);
+                legRight.spriteMesh = ImageAssetBundleManager.GetShoeRightMesh(App.Util.Global.Constant.shoe_default_index);
+            }
+            else
+            {
+                legLeft.spriteMesh = ImageAssetBundleManager.GetShoeLeftMesh(mEquipment.imageIndex);
+                legRight.spriteMesh = ImageAssetBundleManager.GetShoeRightMesh(mEquipment.imageIndex);
             }
         }
         public ActionType action{

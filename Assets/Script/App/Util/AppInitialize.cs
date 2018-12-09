@@ -48,6 +48,9 @@ namespace App.Util
                 AvatarSpriteAsset.assetbundle = assetbundle;
                 ImageAssetBundleManager.weapon = AvatarSpriteAsset.Data.meshs;
             }));
+            list.Add(sUser.Download(ImageAssetBundleManager.equipmentIconUrl, versions.equipmenticon_icon, (AssetBundle assetbundle) => {
+                ImageAssetBundleManager.equipmentIcon = assetbundle;
+            }, false));
             list.Add(sUser.Download(CharacterAsset.Url, versions.character, (AssetBundle assetbundle) => {
                 CharacterAsset.assetbundle = assetbundle;
                 CharacterCacher.Instance.Reset(CharacterAsset.Data.characters);

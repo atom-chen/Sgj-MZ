@@ -33,8 +33,16 @@ namespace App.Model.Character
             }
         }
         #endregion
-
-        public MEquipment equipmentWepon;
+        MEquipment _equipmentWepon;
+        public MEquipment equipmentWepon
+        {
+            get {
+                if(_equipmentWepon == null) {
+                    _equipmentWepon = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(weapon, EquipmentType.weapon, master.weapon) as MEquipment;
+                }
+                return _equipmentWepon;
+            }
+        }
         public int weapon
         {
             get
@@ -44,7 +52,7 @@ namespace App.Model.Character
             set
             {
                 fileCharacter.weapon = value;
-                equipmentWepon = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.weapon) as MEquipment;
+                _equipmentWepon = null;
             }
         }
         public WeaponType weaponType
@@ -54,7 +62,18 @@ namespace App.Model.Character
                 return equipmentWepon.weaponType;
             }
         }
-        public MEquipment equipmentHorse;
+        MEquipment _equipmentHorse;
+        public MEquipment equipmentHorse
+        {
+            get
+            {
+                if (_equipmentHorse == null)
+                {
+                    _equipmentHorse = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(horse, EquipmentType.horse, master.horse) as MEquipment;
+                }
+                return _equipmentHorse;
+            }
+        }
         public int horse
         {
             get
@@ -64,7 +83,7 @@ namespace App.Model.Character
             set
             {
                 fileCharacter.horse = value;
-                equipmentHorse = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.horse) as MEquipment;
+                _equipmentHorse = null;
             }
         }
         public MoveType moveType
@@ -74,7 +93,18 @@ namespace App.Model.Character
                 return equipmentHorse.moveType;
             }
         }
-        public MEquipment equipmentClothes;
+        MEquipment _equipmentClothes;
+        public MEquipment equipmentClothes
+        {
+            get
+            {
+                if (_equipmentClothes == null)
+                {
+                    _equipmentClothes = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(clothes, EquipmentType.clothes, master.clothes) as MEquipment;
+                }
+                return _equipmentClothes;
+            }
+        }
         public int clothes
         {
             get
@@ -84,7 +114,7 @@ namespace App.Model.Character
             set
             {
                 fileCharacter.clothes = value;
-                equipmentClothes = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(value, EquipmentType.clothes) as MEquipment;
+                _equipmentClothes = null;
             }
         }
 

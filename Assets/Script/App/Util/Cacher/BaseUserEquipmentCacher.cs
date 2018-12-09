@@ -48,7 +48,7 @@ namespace App.Util.Cacher
                     equipments = dictionaryHorses;
                     break;
             }
-            return equipments[equipmentId];
+            return equipments.ContainsKey(equipmentId) ? equipments[equipmentId]:null;
         }
     }
 }

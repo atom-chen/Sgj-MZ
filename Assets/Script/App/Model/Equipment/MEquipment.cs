@@ -17,24 +17,49 @@ namespace App.Model.Equipment
             equipment.id = npcEquipment.id;
             equipment.equipmentId = npcEquipment.equipmentId;
             equipment.equipmentType = npcEquipment.equipmentType;
-            equipment.level = npcEquipment.level;
+            equipment.fileEquipment.level = npcEquipment.level;
             return equipment;
         }
         public int userId;
         public int equipmentId;
-        public int characterId;
         public EquipmentType equipmentType;
-        public int level;
+        public int characterId
+        {
+            get
+            {
+                return fileEquipment.characterId;
+            }
+        }
+        public int exp
+        {
+            get
+            {
+                return fileEquipment.exp;
+            }
+        }
+        public int level{
+            get{
+                return fileEquipment.level;
+            }
+        }
         private Master.MEquipment _master;
         public Master.MEquipment master {
             get {
                 if(_master == null) {
-                    _master = EquipmentCacher.Instance.GetEquipment(this.equipmentId, this.equipmentType); ;
+                    _master = EquipmentCacher.Instance.GetEquipment(this.equipmentId, this.equipmentType);
                 }
                 return _master;
             }
         }
-
+        private File.MEquipment _fileEquipment;
+        public File.MEquipment fileEquipment{
+            get{
+                if(_fileEquipment == null){
+                    _fileEquipment = CacherBase<FileEquipmentCacher, MBase>.Instance.GetEquipment(equipmentId, EquipmentType.clothes) as File.MEquipment;
+                }
+                return _fileEquipment;
+            }
+        }
 
         public int star
         {

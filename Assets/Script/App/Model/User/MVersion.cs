@@ -10,6 +10,7 @@ namespace App.Model.User
         public int horse_img;
         public int clothes_img;
         public int weapon_img;
+        public int equipmenticon_icon;
         public int character;
         public int skill;
         public int npc;
