@@ -86,6 +86,10 @@ namespace App.Util
                 EquipmentCacher.Instance.ResetClothes(ClothesAsset.Data.equipments);
                 ClothesAsset.Clear();
             }));
+            list.Add(sUser.Download(ConstantAsset.Url, versions.constant, (AssetBundle assetbundle) => {
+                ConstantAsset.assetbundle = assetbundle;
+                Global.Constant = ConstantAsset.Data.constant;
+            }));
             float step = 100f / list.Count;
             for (int i = 0; i < list.Count; i++)
             {

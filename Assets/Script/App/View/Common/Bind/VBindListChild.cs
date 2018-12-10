@@ -27,7 +27,6 @@ namespace App.View.Common.Bind
                 return;
             }
             object val = this.GetByPath(BindPath);
-            UnityEngine.Debug.LogError("VBindListChild val=" + val);
             if (val != null)
             {
                 vListChild.UpdateView(val as MBase);

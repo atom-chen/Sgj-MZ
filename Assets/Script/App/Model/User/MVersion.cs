@@ -20,6 +20,7 @@ namespace App.Model.User
         public int weapon;
         public int clothes;
         public int face;
+        public int constant;
         public MVersion()
         {
         }

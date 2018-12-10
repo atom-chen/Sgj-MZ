@@ -19,7 +19,6 @@ namespace App.View.Equipment.Bind
         public override void UpdateView()
         {
             object val = this.GetByPath(BindPath);
-            UnityEngine.Debug.LogError("VBindEquipmentIcon " + BindPath + " = "+val);
             int outData;
             if (val != null && int.TryParse(val.ToString(), out outData))
             {
