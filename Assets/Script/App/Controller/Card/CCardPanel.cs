@@ -11,8 +11,7 @@ namespace App.Controller.Card
     {
         public override IEnumerator OnLoad(Request request){
             MCharacter mCharacter = Global.SUser.self.characters[0];
-            Debug.LogError("mCharacter " + mCharacter.currentSkill);
-            this.dispatcher.Set("currentCharacter", mCharacter+", length="+ Global.SUser.self.characters.Length);
+            this.dispatcher.Set("currentCharacter", mCharacter);
             this.dispatcher.Set("characters", Global.SUser.self.characters);
             this.dispatcher.Notify();
             yield return StartCoroutine(base.OnLoad(request));
