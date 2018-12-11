@@ -30,5 +30,6 @@ namespace App.Model.Master
         /// [0,抗金,抗木,抗水,抗火,抗土]
         /// </summary>
         public int[] resistances;
+        public MCharacterSkill[] skills;
     }
 }

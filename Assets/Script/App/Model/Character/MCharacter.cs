@@ -14,7 +14,6 @@ namespace App.Model.Character
         [JsonName(Name = "character_id")]
         public int characterId;
         public int fragment;
-        public MSkill[] skills;
         #endregion
 
         #region 存档数据
@@ -30,6 +29,24 @@ namespace App.Model.Character
             get
             {
                 return fileCharacter.exp;
+            }
+        }
+        public MSkill[] skills
+        {
+            get
+            {
+                if((fileCharacter.skills == null || fileCharacter.skills.Length == 0) && master.skills.Length > 0) {
+                    List<MSkill> skillList = new List<MSkill>();
+                    Array.ForEach(master.skills, (skill) => {
+                        MSkill mSkill = new MSkill();
+                        mSkill.skillId = skill.skillId;
+                        mSkill.level = 1;
+                        skillList.Add(mSkill);
+
+                    });
+                    fileCharacter.skills = skillList.ToArray();
+                }
+                return fileCharacter.skills;
             }
         }
         #endregion

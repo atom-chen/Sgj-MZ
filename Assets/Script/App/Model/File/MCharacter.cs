@@ -11,6 +11,7 @@ namespace App.Model.File
         public int weapon;
         public int level;
         public int exp;
+        public Character.MSkill[] skills;
         public MCharacter()
         {
         }
