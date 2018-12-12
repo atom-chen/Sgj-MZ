@@ -39,6 +39,8 @@ namespace App.View.Avatar
         [SerializeField] TextMesh num;
         [SerializeField] UnityEngine.Rendering.SortingGroup sortingGroup;
         [SerializeField] SpriteRenderer[] status;
+        [SerializeField] GameObject beAttackedIconObj;
+
         private static Vector3 numScale = new Vector3(0.01f, 0.01f, 0.01f);
         private Sequence sequenceStatus;
         private Dictionary<string, Anima2D.SpriteMeshInstance> meshs = new Dictionary<string, Anima2D.SpriteMeshInstance>();
@@ -375,6 +377,12 @@ namespace App.View.Avatar
                 float hpValue = value * 1f / mCharacter.ability.hpMax;
                 hpSprite.transform.localPosition = new Vector3((hpValue - 1f) * 0.5f, 0f, 0f);
                 hpSprite.transform.localScale = new Vector3(hpValue, 1f, 1f);
+            }
+        }
+        public bool beAttackedIcon
+        {
+            set{
+                beAttackedIconObj.SetActive(value);
             }
         }
         public void OnBlock()

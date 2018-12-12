@@ -12396,6 +12396,7 @@ MonoBehaviour:
   num: {fileID: 102179820629316628}
   sortingGroup: {fileID: 210789783975976716}
   status: []
+  beAttackedIconObj: {fileID: 0}
 --- !u!114 &114465169740988320
 MonoBehaviour:
   m_ObjectHideFlags: 1

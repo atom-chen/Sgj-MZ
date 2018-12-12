@@ -11,7 +11,7 @@ namespace App.Util.Manager
     {
         private List<VTile> currentMovingTiles;
         private List<VTile> currentAttackTiles;
-        private List<VTile> attackIcons = new List<VTile>();
+        private List<View.Avatar.VCharacter> beAttackedCharacters = new List<View.Avatar.VCharacter>();
         public BattleTilesManager()
         {
 
@@ -33,12 +33,12 @@ namespace App.Util.Manager
                 });
                 currentAttackTiles.Clear();
             }
-            if(attackIcons.Count > 0)
+            if(beAttackedCharacters.Count > 0)
             {
-                attackIcons.ForEach(tile => {
-                    tile.HideAttackIcon();
+                beAttackedCharacters.ForEach(child => {
+                    child.beAttackedIcon = false;
                 });
-                attackIcons.Clear();
+                beAttackedCharacters.Clear();
             }
         }
 
@@ -76,10 +76,8 @@ namespace App.Util.Manager
             //Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             currentAttackTiles = currentAttackTiles.FindAll((tile) => {
                 int length = Global.battleManager.mapSearch.GetDistance(tile.coordinate, mCharacter.coordinate);
-                Debug.LogError("length=" + length);
                 return distances.Exists(d => length >= d[0] && length <= d[1]);
             });
-            Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             if (mCharacter.currentSkill == null)
             {
                 return;
@@ -92,7 +90,6 @@ namespace App.Util.Manager
         }
         public void ShowCharacterSkillTween(MCharacter mCharacter, List<VTile> tiles)
         {
-            Debug.LogError("ShowCharacterSkillTween " + tiles.Count);
             foreach (VTile tile in tiles)
             {
                 if (tile.isAttackTween)
@@ -108,8 +105,9 @@ namespace App.Util.Manager
                 bool useToEnemy = mCharacter.currentSkill.useToEnemy;
                 if (useToEnemy ^ sameBelong)
                 {
-                    tile.ShowAttackIcon();
-                    attackIcons.Add(tile);
+                    View.Avatar.VCharacter vCharacter = Global.battleManager.charactersManager.GetVCharacter(character);
+                    vCharacter.beAttackedIcon = true;
+                    beAttackedCharacters.Add(vCharacter);
                 }
             }
         }

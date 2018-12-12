@@ -102,10 +102,6 @@ namespace App.View.Map
         {
             this.attackSprite.gameObject.SetActive(true);
         }
-        public void ShowAttackIcon()
-        {
-            this.attackIcon.gameObject.SetActive(true);
-        }
         public void HideMoving()
         {
             this.movingSprite.gameObject.SetActive(false);
@@ -113,10 +109,6 @@ namespace App.View.Map
         public void HideAttack()
         {
             this.attackSprite.gameObject.SetActive(false);
-        }
-        public void HideAttackIcon()
-        {
-            this.attackIcon.gameObject.SetActive(false);
         }
         public void EditorSetData(MTile mTile)
         {
