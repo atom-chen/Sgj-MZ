@@ -67,12 +67,19 @@ namespace App.Util.Manager
                     maxDistance = distance[1];
                 }
             }
+            Debug.LogError(mCharacter.name + " = " + mCharacter.coordinate.x + "," + mCharacter.coordinate.y);
             currentAttackTiles = Global.battleManager.breadthFirst.Search(mCharacter, maxDistance);
-            VTile characterTile = currentAttackTiles.Find(v => v.coordinate.Equals(mCharacter.coordinate));
+            currentAttackTiles.ForEach(tile=> {
+                Debug.LogError(tile.name + " = " + tile.coordinate.x + ","+ tile.coordinate.y);
+            });
+            //VTile characterTile = currentAttackTiles.Find(v => v.coordinate.Equals(mCharacter.coordinate));
+            //Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             currentAttackTiles = currentAttackTiles.FindAll((tile) => {
-                int length = Global.battleManager.mapSearch.GetDistance(tile, characterTile);
+                int length = Global.battleManager.mapSearch.GetDistance(tile.coordinate, mCharacter.coordinate);
+                Debug.LogError("length=" + length);
                 return distances.Exists(d => length >= d[0] && length <= d[1]);
             });
+            Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             if (mCharacter.currentSkill == null)
             {
                 return;
@@ -85,6 +92,7 @@ namespace App.Util.Manager
         }
         public void ShowCharacterSkillTween(MCharacter mCharacter, List<VTile> tiles)
         {
+            Debug.LogError("ShowCharacterSkillTween " + tiles.Count);
             foreach (VTile tile in tiles)
             {
                 if (tile.isAttackTween)

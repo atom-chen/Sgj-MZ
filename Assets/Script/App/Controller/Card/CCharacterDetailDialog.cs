@@ -14,6 +14,9 @@ namespace App.Controller.Dialog
         public override IEnumerator OnLoad(Request request)
         {
             MCharacter mCharacter = request.Get<MCharacter>("currentCharacter");
+            Debug.LogError("master=" + mCharacter.master.skills.Length);
+            Debug.LogError(mCharacter.characterId +"="+mCharacter.skills.Length);
+            Debug.LogError(mCharacter.fileCharacter.skills.Length);
             this.dispatcher.Set("character", mCharacter);
             this.dispatcher.Set("statusContent", _statusContent);
             this.dispatcher.Notify();
