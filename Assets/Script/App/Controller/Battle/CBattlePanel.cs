@@ -26,6 +26,7 @@ namespace App.Controller.Battle
             InitCharacters(); 
             Global.battleEvent.OperatingMenuHandler += ChangeOperatingMenu;
             Global.battleEvent.CharacterPreviewHandler += ChangeBattleCharacterPreviewDialog;
+            Global.battleEvent.BelongChangeHandler += BoutWave;
             this.dispatcher.Notify();
         }
         private void LSharpInit()
@@ -38,6 +39,26 @@ namespace App.Controller.Battle
             }else{
                 CloseOperatingMenu();
             }
+        }
+        private void BoutWave(Belong belong)
+        {
+            Debug.LogError("BoutWave belong="+ belong);
+            Global.battleManager.currentBelong = belong;
+            if (belong == Belong.self)
+            {
+                boutCount++;
+            }
+            /*Global.battleManager.charactersManager.ActionRestore();
+            System.Action closeEvent = () => {
+                this.StartCoroutine(OnBoutStart());
+            };
+            foreach (MCharacter mCharacter in mBaseMap.Characters)
+            {
+                mCharacter.boutEventComplete = false;
+            }
+            Request req = Request.Create("belong", belong, "bout", boutCount, "maxBout", maxBout, "closeEvent", closeEvent);
+            this.StartCoroutine(Global.AppManager.ShowDialog(Prefabs.BoutWaveDialog, req));
+            */           
         }
         private void OpenOperatingMenu(){
             operatingMenu.Open();

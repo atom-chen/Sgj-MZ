@@ -142,6 +142,10 @@ namespace App.Util.Search
         {
             return GetDirection(tile.coordinate.x, tile.coordinate.y, target.coordinate.x, target.coordinate.y);
         }
+        public Direction GetDirection(Vector2Int coordinate1, Vector2Int coordinate2)
+        {
+            return GetDirection(coordinate1.x, coordinate1.y, coordinate2.x, coordinate2.y);
+        }
         public Direction GetDirection(int x, int y, int cx, int cy)
         {
             if (cy == y)
@@ -150,11 +154,13 @@ namespace App.Util.Search
             }
             else if (cy > y)
             {
-                return cx < x + (y % 2) ? Direction.leftDown : Direction.rightDown;
+                //return cx < x + (y % 2) ? Direction.leftDown : Direction.rightDown;
+                return cx < x + (y % 2) ? Direction.left : Direction.right;
             }
             else
             {
-                return cx < x + (y % 2) ? Direction.leftUp : Direction.rightUp;
+                //return cx < x + (y % 2) ? Direction.leftUp : Direction.rightUp;
+                return cx < x + (y % 2) ? Direction.left : Direction.right;
             }
         }
     }

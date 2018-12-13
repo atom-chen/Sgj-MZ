@@ -318,7 +318,8 @@ namespace App.View.Avatar
             animator.Play(animatorName);
             if (mCharacter.action != ActionType.idle)
             {
-                this.controller.SendMessage("AddDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
+                Global.battleManager.charactersManager.AddDynamicCharacter(this);
+                //this.controller.SendMessage("AddDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
                 return;
             }
             if (mCharacter.hp > 0)
@@ -346,7 +347,8 @@ namespace App.View.Avatar
                 yield return new WaitForEndOfFrame();
             }
             yield return new WaitForEndOfFrame();
-            this.controller.SendMessage("RemoveDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
+            Global.battleManager.charactersManager.RemoveDynamicCharacter(this);
+            //this.controller.SendMessage("RemoveDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
         }
         public void AttackToHert()
         {
@@ -362,6 +364,18 @@ namespace App.View.Avatar
             else
             {
                 this.controller.SendMessage("OnHeal", this, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        public bool actionOver
+        {
+            set
+            {
+                mCharacter.actionOver = value;
+                Gray = value;
+                animator.speed = value ? 0 : 1;
+            }
+            get {
+                return mCharacter.actionOver;
             }
         }
         public void ActionEnd()

@@ -10,12 +10,69 @@ namespace App.Util.Manager
 {
     public class BattleCharactersManager
     {
+        /// <summary>
+        /// 行动中武将
+        /// </summary>
+        private List<VCharacter> dynamicCharacters = new List<VCharacter>();
         public List<MCharacter> mCharacters = new List<MCharacter>();
         public List<VCharacter> vCharacters = new List<VCharacter>();
         public BattleCharactersManager()
         {
 
         }
+
+        #region 行动中武将
+        /// <summary>
+        /// 行动中武将挂起
+        /// </summary>
+        /// <param name="mCharacter">M character.</param>
+        public void AddDynamicCharacter(MCharacter mCharacter)
+        {
+            AddDynamicCharacter(GetVCharacter(mCharacter));
+        }
+        /// <summary>
+        /// 行动中武将挂起
+        /// </summary>
+        /// <param name="vCharacter">V character.</param>
+        public void AddDynamicCharacter(VCharacter vCharacter)
+        {
+            if (dynamicCharacters.Contains(vCharacter))
+            {
+                return;
+            }
+            //Debug.LogError("行动中武将 " + vCharacter.ViewModel.Action.Value + ","+vCharacter.ViewModel.Name.Value + ","+vCharacter.ViewModel.Belong.Value);
+            dynamicCharacters.Add(vCharacter);
+        }
+        /// <summary>
+        /// 行动中武将移除
+        /// </summary>
+        /// <param name="mCharacter">M character.</param>
+        public void RemoveDynamicCharacter(MCharacter mCharacter)
+        {
+            RemoveDynamicCharacter(GetVCharacter(mCharacter));
+        }
+        /// <summary>
+        /// 行动中武将移除
+        /// </summary>
+        /// <param name="vCharacter">V character.</param>
+        public void RemoveDynamicCharacter(VCharacter vCharacter)
+        {
+            dynamicCharacters.Remove(vCharacter);
+            if (!HasDynamicCharacter())
+            {
+                Global.battleEvent.DispatchEventActionEnd();
+            }
+        }
+        /// <summary>
+        /// 是否存在行动中武将
+        /// </summary>
+        /// <returns><c>true</c> if this instance has dynamic character; otherwise, <c>false</c>.</returns>
+        public bool HasDynamicCharacter()
+        {
+            return dynamicCharacters.Count > 0;
+        }
+        #endregion
+
         public bool IsSameCharacter(MCharacter character1, MCharacter character2)
         {
             return character1.belong == character2.belong && character1.id == character2.id;

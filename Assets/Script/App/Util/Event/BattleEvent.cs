@@ -28,9 +28,19 @@ namespace App.Util.Event
             }
         }
 
+        public delegate void BelongEvent(Belong belong);
+        public event BelongEvent BelongChangeHandler;
+        public void DispatchEventBelongChange(Belong belong)
+        {
+            if (BelongChangeHandler != null)
+            {
+                BelongChangeHandler(belong);
+            }
+        }
+
         public delegate void NoArgsEvent();
         public event NoArgsEvent ActionEndHandler;
-        private void ActionEnd()
+        public void DispatchEventActionEnd()
         {
             if (ActionEndHandler != null)
             {

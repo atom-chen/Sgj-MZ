@@ -237,6 +237,7 @@ namespace App.Util.Manager
         /// </summary>
         public void OnActionComplete()
         {
+            Debug.LogError("OnActionComplete");
             if (actionCharacterList.Count > 0)
             {
                 VCharacter vCharacter = actionCharacterList[0];
@@ -256,6 +257,7 @@ namespace App.Util.Manager
         /// <returns><c>true</c>, if start was actioned, <c>false</c> otherwise.</returns>
         /// <param name="vCharacter">Current character.</param>
         private bool ActionStart(VCharacter vCharacter){
+            Debug.LogError("ActionStart");
             if (vCharacter.mCharacter.hp > 0)
             {
                 //目标已死
@@ -305,10 +307,12 @@ namespace App.Util.Manager
         /// <param name="vCharacter">Current character.</param>
         private void ActionStartRun(VCharacter vCharacter)
         {
+            Debug.LogError("ActionStartRun");
             System.Action actionStartEvent = () =>
             {
                 //cBattlefield.MapMoveToPosition(currentCharacter.CoordinateX, currentCharacter.CoordinateY);
-                vCharacter.direction = (vCharacter.mCharacter.coordinate.x > vCharacter.mCharacter.target.coordinate.x ? Direction.left : Direction.right);
+                //vCharacter.direction = (vCharacter.mCharacter.coordinate.x > vCharacter.mCharacter.target.coordinate.x ? Direction.left : Direction.right);
+                vCharacter.direction = mapSearch.GetDirection(vCharacter.mCharacter.coordinate, vCharacter.mCharacter.target.coordinate);
                 vCharacter.action = ActionType.attack;
                 App.Model.Master.MSkill skillMaster = vCharacter.mCharacter.currentSkill.master;
                 if (!string.IsNullOrEmpty(skillMaster.animation))
@@ -361,6 +365,7 @@ namespace App.Util.Manager
         /// 动作结束后处理
         /// </summary>
         public IEnumerator ActionOver(){
+            Debug.LogError("ActionOver");
             if (currentCharacter.target != null)
             {
                 if (currentCharacter.target.hp > 0 && currentCharacter.target.attackEndEffects.Count > 0)
@@ -481,7 +486,7 @@ namespace App.Util.Manager
                 currentVCharacter.action = ActionType.idle;
             }
             yield return AppManager.CurrentScene.StartCoroutine(ActionEndSkillsRun());
-            currentCharacter.actionOver = true;
+            currentVCharacter.actionOver = true;
             currentCharacter.roadLength = 0;
             tilesManager.ClearCurrentTiles();
             Global.battleEvent.DispatchEventCharacterPreview(null);
@@ -504,20 +509,20 @@ namespace App.Util.Manager
             {
                 if (charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.friend && !c.actionOver))
                 {
-                    //cBattle.BoutWave(Belong.friend);
+                    Global.battleEvent.DispatchEventBelongChange(Belong.friend);
                 }
                 else
                 {
-                    //cBattle.BoutWave(Belong.enemy);
+                    Global.battleEvent.DispatchEventBelongChange(Belong.enemy);
                 }
             }
             else if (belong == Belong.friend)
             {
-                //cBattle.BoutWave(Belong.enemy);
+                Global.battleEvent.DispatchEventBelongChange(Belong.enemy);
             }
             else if (belong == Belong.enemy)
             {
-                //cBattle.BoutWave(Belong.self);
+                Global.battleEvent.DispatchEventBelongChange(Belong.self);
             }
         }
         private IEnumerator ActionEndSkillsRun() {

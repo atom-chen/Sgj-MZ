@@ -14,7 +14,6 @@ namespace App.Util.Search
         }
         public List<VTile> Search(MCharacter mCharacter, int movePower = 0, bool obstacleEnable = false)
         {
-            Debug.LogError("Search = " + mCharacter.coordinate.x + ", " + mCharacter.coordinate.y);
             SearchInit(mCharacter, obstacleEnable);
             tiles = new List<VTile>();
             if (movePower == 0)
@@ -40,7 +39,6 @@ namespace App.Util.Search
             if (!vTile.isChecked)
             {
                 vTile.isChecked = true;
-                Debug.LogError("tiles.Add = " + vTile.coordinate.x + ", " + vTile.coordinate.y);
                 tiles.Add(vTile);
             }
             if (vTile.movingPower <= 0 || vTile.isAllCost)
@@ -48,15 +46,9 @@ namespace App.Util.Search
                 return;
             }
             List<Vector2Int> coordinates = Global.battleManager.mapSearch.GetNeighboringCoordinates(vTile.coordinate);
-            if(vTile.coordinate.x == 2 && vTile.coordinate.y == 4) {
-                coordinates.ForEach(vec=> {
-                    Debug.LogError("LoopSearch(2,4) , " + vec.x + ","+vec.y);
-                });
-            }
             foreach (Vector2Int vec in coordinates)
             {
                 VTile tile = Global.tileUnits[vec.y][vec.x];
-                Debug.LogError(tile.name + "  , " + vec.x + "," + vec.y + ", " + tile.isChecked + ", " + tile.movingPower);
                 if (tile.isChecked && tile.movingPower >= vTile.movingPower)
                 {
                     continue;

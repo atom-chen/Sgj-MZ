@@ -196,6 +196,10 @@ namespace App.Model.Character
             this.physicalDefense += physicalDefense;
             this.magicDefense = Mathf.FloorToInt((this.trick * 0.5f + this.knowledge) * 0.3f + (this.trick + this.knowledge) * (1f + mCharacter.level * starPower * 0.5f) * 0.04f);
             this.magicDefense += magicDefense;
+
+
+            this.hpMax *= 3;
+            this.mpMax *= 3;
         }
 
         /// <summary>

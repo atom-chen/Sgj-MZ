@@ -67,11 +67,7 @@ namespace App.Util.Manager
                     maxDistance = distance[1];
                 }
             }
-            Debug.LogError(mCharacter.name + " = " + mCharacter.coordinate.x + "," + mCharacter.coordinate.y);
             currentAttackTiles = Global.battleManager.breadthFirst.Search(mCharacter, maxDistance);
-            currentAttackTiles.ForEach(tile=> {
-                Debug.LogError(tile.name + " = " + tile.coordinate.x + ","+ tile.coordinate.y);
-            });
             //VTile characterTile = currentAttackTiles.Find(v => v.coordinate.Equals(mCharacter.coordinate));
             //Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             currentAttackTiles = currentAttackTiles.FindAll((tile) => {
