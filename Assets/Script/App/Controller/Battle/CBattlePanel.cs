@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Controller.Common;
 using App.Model;
+using App.Model.Character;
 using App.Util;
 using App.View.Battle;
 using App.View.Common;
@@ -48,17 +49,16 @@ namespace App.Controller.Battle
             {
                 boutCount++;
             }
-            /*Global.battleManager.charactersManager.ActionRestore();
+           Global.battleManager.charactersManager.ActionRestore();
             System.Action closeEvent = () => {
-                this.StartCoroutine(OnBoutStart());
+                this.StartCoroutine(Global.battleEvent.OnBoutStart());
             };
-            foreach (MCharacter mCharacter in mBaseMap.Characters)
-            {
-                mCharacter.boutEventComplete = false;
-            }
-            Request req = Request.Create("belong", belong, "bout", boutCount, "maxBout", maxBout, "closeEvent", closeEvent);
-            this.StartCoroutine(Global.AppManager.ShowDialog(Prefabs.BoutWaveDialog, req));
-            */           
+            foreach (MCharacter mCharacter in Global.battleManager.charactersManager.mCharacters)
+           {
+               mCharacter.boutEventComplete = false;
+           }
+           Request req = Request.Create("belong", belong, "bout", boutCount, "maxBout", maxBout, "closeEvent", closeEvent);
+           this.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.BoutWaveDialog, req));
         }
         private void OpenOperatingMenu(){
             operatingMenu.Open();

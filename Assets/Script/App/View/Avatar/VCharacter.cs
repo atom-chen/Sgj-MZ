@@ -382,6 +382,20 @@ namespace App.View.Avatar
         {
             this.action = ActionType.idle;
         }
+        public Belong belong
+        {
+            get
+            {
+                return mCharacter.belong;
+            }
+        }
+        public bool isHide
+        {
+            get
+            {
+                return mCharacter.isHide;
+            }
+        }
         public int hp{
             get{
                 return mCharacter.hp;

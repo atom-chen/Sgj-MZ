@@ -73,6 +73,18 @@ namespace App.Util.Manager
         }
         #endregion
 
+        public void ActionRestore()
+        {
+            foreach (VCharacter character in vCharacters)
+            {
+                if (character.actionOver)
+                {
+                    character.actionOver = false;
+                    character.action = ActionType.idle;
+                }
+            }
+        }
+
         public bool IsSameCharacter(MCharacter character1, MCharacter character2)
         {
             return character1.belong == character2.belong && character1.id == character2.id;

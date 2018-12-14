@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Model;
 using App.Model.Character;
+using App.Util.Search;
 using App.View.Avatar;
 using App.View.Map;
 
@@ -130,5 +131,67 @@ namespace App.Util.Event
                 }
             }
         }
+        public System.Collections.IEnumerator OnBoutFixedDamage(MCharacter mCharacter, Model.Master.MSkill skill, List<VCharacter> characters)
+        {
+            TileMap mapSearch = Global.battleManager.mapSearch;
+            Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            VTile targetTile = mapSearch.GetTile(mCharacter.coordinate);
+            foreach (VCharacter child in characters)
+            {
+                VTile tile = mapSearch.GetTile(child.mCharacter.coordinate);
+                if (mapSearch.GetDistance(targetTile, tile) <= skill.radius)
+                {
+                    int hert = skill.strength;
+                    if (child.hp - hert <= 0)
+                    {
+                        hert = child.hp - 1;
+                    }
+                    Model.Battle.MDamageParam arg = new Model.Battle.MDamageParam(-hert);
+                    child.SendMessage(CharacterEvent.OnDamage.ToString(), arg);
+                }
+            }
+            while (charactersManager.HasDynamicCharacter())
+            {
+                yield return new UnityEngine.WaitForEndOfFrame();
+            }
+        }
+
+        public System.Collections.IEnumerator OnBoutStart()
+        {
+            Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            Belong currentBelong = Global.battleManager.currentBelong;
+            while (true)
+            {
+                MCharacter mCharacter = charactersManager.mCharacters.Find((c) => {
+                    return c.belong == currentBelong && c.hp > 0 && !c.isHide && !c.boutEventComplete;
+                });
+                if (mCharacter == null)
+                {
+                    break;
+                }
+                App.Model.Master.MSkill skill = mCharacter.boutFixedDamageSkill;
+                if (skill != null)
+                {
+                    List<VCharacter> characters = charactersManager.vCharacters.FindAll((c)=> {
+                        return c.hp > 0 && !c.isHide && !charactersManager.IsSameBelong(c.belong, currentBelong);
+                    });
+                    yield return OnBoutFixedDamage(mCharacter, skill, characters);
+                }
+                mCharacter.boutEventComplete = true;
+            }
+            if (currentBelong != Belong.self)
+            {
+                Global.battleManager.aiManager.Execute(currentBelong);
+            }
+            else
+            {
+                Global.battleEvent.DispatchEventOperatingMenu(false);
+                /*if (scriptWaitPaths != null)
+                {
+                    WaitScript(scriptWaitPaths);
+                }*/
+            }
+        }
+
     }
 }

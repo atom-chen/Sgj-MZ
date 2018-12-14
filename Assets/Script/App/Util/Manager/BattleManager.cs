@@ -22,6 +22,7 @@ namespace App.Util.Manager
         public BattleTilesManager tilesManager { get; set; }
         public BattleCharactersManager charactersManager { get; set; }
         public BattleCalculateManager calculateManager { get; set; }
+        public AIManager aiManager { get; set; }
         public TileMap mapSearch { get; set; }
         public AStar aStar { get; set; }
         public BreadthFirst breadthFirst { get; set; }

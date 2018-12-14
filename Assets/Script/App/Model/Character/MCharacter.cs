@@ -171,6 +171,7 @@ namespace App.Model.Character
         public ActionType action;
         public MSkill currentSkill;
         public MCharacterAbility ability;
+        public bool boutEventComplete;
         public bool isHide = false;
         public bool actionOver;
         public UnityEngine.Vector2Int coordinate = new UnityEngine.Vector2Int(0, 0);
@@ -234,6 +235,22 @@ namespace App.Model.Character
             get
             {
                 return ability.magicDefense;
+            }
+        }
+        public Master.MSkill boutFixedDamageSkill
+        {
+            get
+            {
+                foreach (MSkill skill in skills)
+                {
+                    Master.MSkill mSkill = skill.master;
+                    if (mSkill.effect.special != SkillEffectSpecial.bout_fixed_damage)
+                    {
+                        continue;
+                    }
+                    return mSkill;
+                }
+                return null;
             }
         }
         public List<int[]> skillDistances

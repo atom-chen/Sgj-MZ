@@ -22,7 +22,8 @@ namespace App.Util
         LoadingDialog,
         AlertDialog,
         RegisterDialog,
-        CharacterDetailDialog
+        CharacterDetailDialog,
+        BoutWaveDialog
     }
 
     public class AppManager
