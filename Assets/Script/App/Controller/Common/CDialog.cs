@@ -75,7 +75,7 @@ namespace App.Controller.Common
                 rect.localScale = new Vector3(1.1f, 1.1f, 1f);
                 background = instance.GetComponent<UnityEngine.UI.Image>();
             };
-            yield return Util.Global.AppManager.LoadPrefab("Dialogs", "DialogBackground", callback);
+            yield return StartCoroutine(Util.Global.AppManager.LoadPrefab("Dialogs", "DialogBackground", callback));
             if (background != null)
             {
                 background.transform.SetAsFirstSibling();

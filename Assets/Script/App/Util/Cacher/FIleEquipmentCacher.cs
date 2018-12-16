@@ -18,7 +18,6 @@ namespace App.Util.Cacher
         }
         public override MBase GetEquipment(int equipmentId, EquipmentType type)
         {
-            UnityEngine.Debug.LogError("FileEquipmentCacher equipmentId=" + equipmentId+ "type="+ type);
             MBase equipment = base.GetEquipment(equipmentId, type);
             if(equipment != null) {
                 return equipment;

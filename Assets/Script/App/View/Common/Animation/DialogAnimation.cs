@@ -23,6 +23,9 @@ namespace App.View.Common.Animation
                     _savePosition = trans.anchoredPosition;
                     trans.anchoredPosition = new Vector2(trans.anchoredPosition.x, Camera.main.pixelHeight * -1f);
                     break;
+                case DialogAnimationType.Middle:
+                    panel.localScale = new Vector3(panel.localScale.x, 0, panel.localScale.z);
+                    break;
                 case DialogAnimationType.Fade:
                     canvasGroup.alpha = 0;
                     break;
@@ -47,6 +50,9 @@ namespace App.View.Common.Animation
                     HOTween.To(panel as RectTransform, 0.3f, 
                                new TweenParms().Prop("anchoredPosition", _savePosition)
                                .OnComplete(onLoadAnimationOver));
+                    break;
+                case DialogAnimationType.Middle:
+                    HOTween.To(panel, 0.3f, new TweenParms().Prop("localScale", new Vector3(1f, 1f, 1f)).OnComplete(onLoadAnimationOver));
                     break;
                 case DialogAnimationType.Fade:
                     HOTween.To(canvasGroup, 0.3f, 
@@ -74,6 +80,9 @@ namespace App.View.Common.Animation
                     trans = panel as RectTransform;
                     HOTween.To(panel as RectTransform, 0.3f, new TweenParms()
                                .Prop("anchoredPosition", new Vector2(trans.anchoredPosition.x, Camera.main.pixelHeight * -1f)).OnComplete(onLoadAnimationOver));
+                    break;
+                case DialogAnimationType.Middle:
+                    HOTween.To(panel, 0.2f, new TweenParms().Prop("localScale", new Vector3(1f, 0, 1f)).OnComplete(onLoadAnimationOver));
                     break;
                 case DialogAnimationType.Fade:
                     HOTween.To(canvasGroup, 0.3f, new TweenParms().Prop("alpha", 0).OnComplete(onLoadAnimationOver));

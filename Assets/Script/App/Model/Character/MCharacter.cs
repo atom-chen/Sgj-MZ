@@ -268,6 +268,24 @@ namespace App.Model.Character
                 return arr;
             }
         }
+        public bool canHeal
+        {
+            get
+            {
+                return Array.Exists(skills, s => Master.MSkill.IsSkillType(s.master, SkillType.heal));
+            }
+        }
+        /// <summary>
+        /// 是否残血
+        /// </summary>
+        /// <value><c>true</c> if this instance is pant; otherwise, <c>false</c>.</value>
+        public bool isPant
+        {
+            get
+            {
+                return hp / ability.hpMax < Util.Global.Constant.is_pant;
+            }
+        }
         /// <summary>
         /// 枪剑类兵器
         /// </summary>

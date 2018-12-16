@@ -314,7 +314,6 @@ namespace App.View.Avatar
             {
                 return;
             }
-            Debug.LogError("animatorName=" + animatorName+ ", equipmentHorse="+ mCharacter.equipmentHorse.name+", " + mCharacter.equipmentHorse.master.moveType);
             animator.Play(animatorName);
             if (mCharacter.action != ActionType.idle)
             {

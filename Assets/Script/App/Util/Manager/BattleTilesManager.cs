@@ -9,8 +9,9 @@ namespace App.Util.Manager
 {
     public class BattleTilesManager
     {
-        private List<VTile> currentMovingTiles;
+        private List<VTile> _currentMovingTiles;
         private List<VTile> currentAttackTiles;
+        public List<VTile> currentMovingTiles { get { return _currentMovingTiles; } }
         private List<View.Avatar.VCharacter> beAttackedCharacters = new List<View.Avatar.VCharacter>();
         public BattleTilesManager()
         {
@@ -19,12 +20,12 @@ namespace App.Util.Manager
 
         public void ClearCurrentTiles()
         {
-            if (currentMovingTiles != null)
+            if (_currentMovingTiles != null)
             {
-                currentMovingTiles.ForEach(tile=>{
+                _currentMovingTiles.ForEach(tile=>{
                     tile.HideMoving();
                 });
-                currentMovingTiles.Clear();
+                _currentMovingTiles.Clear();
             }
             if (currentAttackTiles != null)
             {
@@ -44,13 +45,13 @@ namespace App.Util.Manager
 
         public bool IsInMovingCurrentTiles(Vector2Int coordinate)
         {
-            return currentMovingTiles.Exists(_ => _.coordinate.Equals(coordinate));
+            return _currentMovingTiles.Exists(_ => _.coordinate.Equals(coordinate));
         }
 
         public void ShowCharacterMovingArea(MCharacter mCharacter, int movingPower = 0)
         {
-            currentMovingTiles = Global.battleManager.breadthFirst.Search(mCharacter, movingPower, true);
-            Global.battleEvent.DispatchEventMovingTiles(currentMovingTiles, mCharacter.belong);
+            _currentMovingTiles = Global.battleManager.breadthFirst.Search(mCharacter, movingPower, true);
+            Global.battleEvent.DispatchEventMovingTiles(_currentMovingTiles, mCharacter.belong);
             Global.battleManager.battleMode = BattleMode.show_move_tiles;
         }
 

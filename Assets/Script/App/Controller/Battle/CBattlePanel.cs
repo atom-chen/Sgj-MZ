@@ -66,20 +66,20 @@ namespace App.Controller.Battle
         }
         private void CloseOperatingMenu(){
             operatingMenu.Close(null);
-            /*if (Global.battleManager.currentCharacter != null)
+            if (!Global.battleManager.characterIsRunning)
             {
                 return;
-            }*/
+            }
             if (Global.battleManager.currentBelong != Belong.self)
             {
-                //ai.Execute(Global.battleManager.currentBelong);
+                Global.battleManager.aiManager.Execute(Global.battleManager.currentBelong);
             }
             else
             {
                 battleMenu.Open();
             }
         }
-        void ChangeBattleCharacterPreviewDialog(Model.Character.MCharacter mCharacter)
+        void ChangeBattleCharacterPreviewDialog(MCharacter mCharacter)
         {
             if(mCharacter == null)
             {
@@ -93,8 +93,8 @@ namespace App.Controller.Battle
         }
         public void InitCharacters()
         {
-            List<Model.Character.MCharacter> characters = Global.battleManager.charactersManager.mCharacters;
-            Model.Character.MCharacter mCharacter = Global.SUser.self.characters[0];
+            List<MCharacter> characters = Global.battleManager.charactersManager.mCharacters;
+            MCharacter mCharacter = Global.SUser.self.characters[0];
             mCharacter.coordinate.x = 0;
             mCharacter.coordinate.y = 1;
             characters.Add(mCharacter);
@@ -126,7 +126,6 @@ namespace App.Controller.Battle
         }
         public void OnClickTile(View.Map.VTile vTile)
         {
-            Debug.LogError("OnClickTile:" + vTile.mTile.id);
             Vector2Int coordinate = vTile.coordinate;
             if (Global.battleManager.currentBelong != Belong.self)
             {

@@ -158,6 +158,7 @@ namespace App.Util.Event
 
         public System.Collections.IEnumerator OnBoutStart()
         {
+            UnityEngine.Debug.LogError("OnBoutStart");
             Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
             Belong currentBelong = Global.battleManager.currentBelong;
             while (true)
@@ -169,7 +170,7 @@ namespace App.Util.Event
                 {
                     break;
                 }
-                App.Model.Master.MSkill skill = mCharacter.boutFixedDamageSkill;
+                Model.Master.MSkill skill = mCharacter.boutFixedDamageSkill;
                 if (skill != null)
                 {
                     List<VCharacter> characters = charactersManager.vCharacters.FindAll((c)=> {
@@ -179,6 +180,7 @@ namespace App.Util.Event
                 }
                 mCharacter.boutEventComplete = true;
             }
+            UnityEngine.Debug.LogError("OnBoutStart currentBelong="+ currentBelong);
             if (currentBelong != Belong.self)
             {
                 Global.battleManager.aiManager.Execute(currentBelong);

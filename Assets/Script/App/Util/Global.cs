@@ -58,5 +58,8 @@ namespace App.Util
                 return _tilePrefab;
             }
         }
+        public static bool IsFloatZero(float value) {
+            return System.Math.Abs(value) < 0.0001f;
+        }
     }
 }
