@@ -66,7 +66,7 @@ namespace App.Controller.Battle
         }
         private void CloseOperatingMenu(){
             operatingMenu.Close(null);
-            if (!Global.battleManager.characterIsRunning)
+            if (Global.battleManager.characterIsRunning)
             {
                 return;
             }
