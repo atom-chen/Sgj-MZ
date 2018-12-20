@@ -1,0 +1,934 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1a001bd99b34db0b43a552bc3a7c10, type: 3}
+  m_Name: battlefieldasset
+  m_EditorClassIdentifier: 
+  battlefields:
+  - id: 1
+    name: "\u738B\u8FDB\u9047\u88AD\u6218"
+    enemys:
+    - id: 1
+      boss: 1
+      level: 1
+      npcId: 5
+      horse: 4
+      clothes: 3
+      weapon: 4
+      star: 1
+      x: 2
+      y: 0
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 5
+      boss: 0
+      level: 1
+      npcId: 6
+      horse: 4
+      clothes: 1
+      weapon: 3
+      star: 1
+      x: 3
+      y: 0
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 6
+      boss: 0
+      level: 1
+      npcId: 7
+      horse: 4
+      clothes: 1
+      weapon: 3
+      star: 1
+      x: 7
+      y: 5
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 7
+      boss: 0
+      level: 1
+      npcId: 3
+      horse: 4
+      clothes: 1
+      weapon: 3
+      star: 0
+      x: 2
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 8
+      boss: 0
+      level: 1
+      npcId: 4
+      horse: 4
+      clothes: 1
+      weapon: 3
+      star: 0
+      x: 3
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    friends:
+    - id: 2
+      boss: 0
+      level: 1
+      npcId: 2
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 1
+      x: 2
+      y: 5
+      skills: '[]'
+    - id: 3
+      boss: 0
+      level: 1
+      npcId: 1
+      horse: 4
+      clothes: 2
+      weapon: 11
+      star: 1
+      x: 2
+      y: 4
+      skills: '[{"SkillId":67,"Level":1},{"SkillId":98,"Level":5}]'
+    - id: 4
+      boss: 0
+      level: 1
+      npcId: 8
+      horse: 1
+      clothes: 3
+      weapon: 7
+      star: 1
+      x: 8
+      y: 8
+      skills: '[{"SkillId":32,"Level":1},{"SkillId":98,"Level":5}]'
+    owns:
+    - id: 1
+      x: 5
+      y: 5
+    - id: 2
+      x: 4
+      y: 5
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script:
+    - Character.addskill(5301,enemy,98,5)
+    - Character.hide(3)
+    - Character.hide(4)
+    - Character.hide(8)
+    - "Talk.setnpc(5,0,\u6765\u4E86\u4E2A\u4E0D\u6015\u6B7B\u7684\u9EC4\u6BDB\u5C0F\u9B3C\uFF01\u628A\u4ED6\u4E00\u8D77\u5E72\u6389\uFF01,false)"
+    - "Talk.setplayer(@player_id,0,\uFF08\u90A3\u4E2A\u5C71\u5927\u738B\u51F6\u795E\u6076\u715E\u7684\u6837\u5B50\u597D\u53EF\u6015\u554A\uFF0C\u600E\u4E48\u529E\uFF1F\u600E\u4E48\u529E\uFF1F\uFF09,true)"
+    - "Talk.setnpc(1,0,\u591A\u8C22\u5C0F\u82F1\u96C4\u4ED7\u4E49\u51FA\u624B\uFF0C\u524D\u9762\u4E24\u4E2A\u5F3A\u76D7\u6211\u53EF\u4EE5\u5E94\u4ED8\uFF01,false)"
+    - "Talk.setnpc(1,0,\u53F3\u9762\u7684\u5C0F\u5F3A\u76D7\u6BD4\u8F83\u5F31\u4E00\u4E9B\uFF0C\u5C31\u9EBB\u70E6\u5C0F\u82F1\u96C4\u5148\u6321\u4E00\u6321\u4E86\uFF01,false)"
+    - Character.move(1,2,3)
+    - "Talk.setplayer(@player_id,0,\uFF08\u6B63\u5408\u6211\u610F\uFF09,true)"
+    - "Talk.setplayer(@player_id,0,\u738B\u6559\u5934\u653E\u5FC3\uFF0C\u4EA4\u7ED9\u6211\u4E86\u3002,true)"
+    - Character.moveself(0,5,5)
+    - Character.show(3)
+    - Character.show(4)
+    - "Talk.setnpc(3,0,\u738B\u6559\u5934\uFF0C\u7EC8\u4E8E\u8D76\u4E0A\u4F60\u4E86\uFF0C\u9AD8\u592A\u5C09\u6D3E\u6211\u4EEC\u6293\u4F60\u56DE\u53BB\uFF01,false)"
+    - "Talk.setnpc(1,0,\uFF08\u7CDF\u7CD5\uFF01\u9AD8\u4FC5\u7684\u4EBA\u8FD9\u4E48\u5FEB\u5C31\u8FFD\u6765\u4E86...\uFF09,false)"
+    - Character.show(8)
+    - Character.setdirection(8,left)
+    - Character.setaction(8,attack)
+    - "Talk.setnpc(8,0,\u54EA\u91CC\u6765\u7684\u5F3A\u76D7\uFF0C\u7ADF\u6562\u5728\u6211\u53F2\u5BB6\u6751\u9644\u8FD1\u51FA\u6CA1\uFF0C\u95EE\u8FC7\u6211\u53F2\u5927\u90CE\u7684\u5200\u4E86\u5417\uFF1F,false)"
+    - Character.move(8,3,8)
+    - Character.setmission(2,defensive)
+  - id: 2
+    name: "\u53F2\u5BB6\u5E84\u9632\u5B88\u6218"
+    enemys:
+    - id: 9
+      boss: 1
+      level: 3
+      npcId: 11
+      horse: 1
+      clothes: 1
+      weapon: 7
+      star: 1
+      x: 2
+      y: 3
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 11
+      boss: 0
+      level: 2
+      npcId: 6
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 12
+      boss: 0
+      level: 2
+      npcId: 7
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 13
+      boss: 0
+      level: 2
+      npcId: 12
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 1
+      y: 0
+      skills: '[{"SkillId":2,"Level":1}]'
+    - id: 14
+      boss: 0
+      level: 2
+      npcId: 13
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 2
+      y: 0
+      skills: '[{"SkillId":2,"Level":1}]'
+    friends:
+    - id: 10
+      boss: 0
+      level: 2
+      npcId: 8
+      horse: 1
+      clothes: 1
+      weapon: 7
+      star: 1
+      x: 3
+      y: 8
+      skills: '[{"SkillId":32,"Level":1}]'
+    owns:
+    - id: 1
+      x: 4
+      y: 8
+    - id: 2
+      x: 3
+      y: 9
+    - id: 3
+      x: 2
+      y: 9
+    mapId: 4
+    ap: 2
+    max_bout: 20
+    script:
+    - Character.setaction(8,attack)
+    - "Talk.setnpc(8,0,\u4F60\u4EEC\u8FD9\u4E9B\u5F3A\u76D7\uFF0C\u597D\u5927\u80C6\u5462\uFF0C\u6CA1\u542C\u8FC7\u4E5D\u7EB9\u9F99\u7684\u5927\u540D\u5417\uFF1F\u7ADF\u6562\u5728\u592A\u5C81\u5934\u4E0A\u52A8\u571F\uFF01,false)"
+    - Character.setaction(11,defence)
+    - "Talk.setnpc(11,0,\u4E5D\u7EB9\u9F99\u7684\u5927\u540D\u5982\u96F7\u704C\u8033\uFF0C\u6211\u7B49\u600E\u4E48\u6562\u5192\u72AF\u5462\u3002\u53EA\u662F\u5C71\u5BE8\u91CC\u7F3A\u5C11\u7CAE\u98DF\uFF0C\u60F3\u53BB\u534E\u9634\u53BF\u501F\u7CAE\uFF01,false)"
+    - "Talk.setnpc(11,0,\u6240\u8C13\u56DB\u6D77\u4E4B\u5185\u7686\u5144\u5F1F\uFF0C\u8BF7\u597D\u6C49\u501F\u4E00\u6761\u8DEF\u653E\u6211\u4EEC\u8FC7\u53BB\u5C31\u884C\uFF0C\u56DE\u6765\u5FC5\u5F53\u76F8\u8C22\uFF01,false)"
+    - "Talk.setnpc(8,0,\u7B80\u76F4\u80E1\u8BF4\u516B\u9053\uFF01\u653E\u4F60\u4EEC\u8FC7\u53BB\u5FC5\u7136\u8FDE\u7D2F\u6211\u4EEC\u53F2\u5BB6\u6751\u3002\u51B5\u4E14\u5C31\u7B97\u6211\u80AF\uFF0C\u4E5F\u6709\u4E00\u4E2A\u4EBA\u4E0D\u80AF\u3002,false)"
+    - "Talk.setnpc(11,0,\u597D\u6C49\uFF0C\u4F60\u8BF4\u7684\u662F\u8C01\uFF1F,false)"
+    - "Talk.setnpc(8,0,\u5C31\u662F\u6211\u624B\u4E2D\u8FD9\u53E3\u5200\uFF0C\u4F60\u53EA\u9700\u95EE\u95EE\u5B83\u80AF\u4E0D\u80AF\u5C31\u884C\u4E86\u3002,false)"
+    - "Talk.setnpc(11,0,\u6C14\u6B7B\u6211\u4E86\uFF0C\u53F2\u8FDB\uFF0C\u4F60\u4E0D\u8981\u6B3A\u4EBA\u592A\u751A\uFF0C\u522B\u4EE5\u4E3A\u6211\u6015\u4E86\u4F60\uFF01\u5144\u5F1F\u4EEC\uFF01\u7ED9\u6211\u4E0A\uFF01,false)"
+    - "Talk.setnpc(8,0,\u54FC\u54FC\uFF01\u6765\u5427\uFF0C\u8BF4\u90A3\u4E48\u591A\u5E9F\u8BDD\u505A\u4EC0\u4E48\uFF01,false)"
+    - function battle_win()
+    - "Talk.set(5300,0,\u7CDF\u7CD5\u4E86\uFF01\u9648\u5934\u9886\u88AB\u6293\u4E86\uFF0C\u6211\u4EEC\u8D76\u5FEB\u9003\u56DE\u53BB\u62A5\u544A\u7ED9\u6731\u5934\u9886\u548C\u6768\u5934\u9886\u5427\u3002,false)"
+    - "Talk.set(5301,0,\u5FEB\u8DD1\u5427\u3002,false)"
+    - Var.setprogress(shijin_1,5)
+    - Var.setprogress(zhuwu_1,1)
+    - Var.setprogress(chenda_1,3)
+    - endfunction
+  - id: 3
+    name: "\u53F2\u5BB6\u5E84\u7A81\u56F4\u6218"
+    enemys:
+    - id: 15
+      boss: 1
+      level: 3
+      npcId: 17
+      horse: 4
+      clothes: 0
+      weapon: 1
+      star: 0
+      x: 1
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 16
+      boss: 0
+      level: 3
+      npcId: 18
+      horse: 4
+      clothes: 0
+      weapon: 1
+      star: 0
+      x: 2
+      y: 2
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 17
+      boss: 0
+      level: 3
+      npcId: 25
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 18
+      boss: 0
+      level: 3
+      npcId: 26
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 8
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 19
+      boss: 0
+      level: 3
+      npcId: 29
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 3
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 20
+      boss: 0
+      level: 3
+      npcId: 30
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    friends:
+    - id: 21
+      boss: 0
+      level: 3
+      npcId: 8
+      horse: 1
+      clothes: 1
+      weapon: 7
+      star: 1
+      x: 3
+      y: 7
+      skills: '[{"SkillId":32,"Level":1}]'
+    owns:
+    - id: 1
+      x: 4
+      y: 6
+    - id: 2
+      x: 4
+      y: 7
+    - id: 3
+      x: 5
+      y: 8
+    mapId: 4
+    ap: 2
+    max_bout: 20
+    script:
+    - Character.setaction(8,attack)
+    - "Talk.setnpc(8,0,\u8FD9\u91CC\u7684\u4EBA\u90FD\u662F\u6211\u7684\u5BA2\u4EBA\uFF0C\u4F60\u4EEC\u60F3\u6293\u4ED6\u4EEC\uFF0C\u8FD8\u662F\u5148\u8D62\u4E86\u6211\u518D\u8BF4\u5427\uFF01,false)"
+    - Character.setaction(17,hert)
+    - "Talk.setnpc(17,0,\u4E0D\u597D\u4E86\uFF0C\u53F2\u8FDB\u548C\u8D3C\u4EBA\u662F\u4E00\u4F19\u7684\uFF01,false)"
+    - "Talk.setnpc(18,0,\u5982\u679C\u653E\u8D70\u4E86\u8D3C\u4EBA\uFF0C\u53BF\u5C09\u4E00\u5B9A\u4F1A\u8D23\u7F5A\u7684\uFF0C\u53EA\u80FD\u62FC\u4E86\uFF01,false)"
+    - function battle_win()
+    - "Talk.setplayer(@player_id,0,\u53F2\u5927\u54E5\uFF0C\u4F60\u5F97\u7F6A\u4E86\u5B98\u5175\uFF0C\u5B98\u5175\u6050\u6015\u4F1A\u6D3E\u4EBA\u6293\u4F60\u7684\u3002,true)"
+    - "Talk.set(37,0,\u54E5\u54E5\uFF0C\u4F60\u8FD8\u662F\u5148\u540C\u6211\u4EEC\u4E00\u8D77\u4E0A\u5C11\u534E\u5C71\u5427\u3002,false)"
+    - "Talk.set(23,0,\u55EF\uFF0C\u770B\u6765\u4E5F\u53EA\u80FD\u8FD9\u6837\u4E86\u3002,false)"
+    - Var.setprogress(shijin_2,1)
+    - Var.setprogress(luda_1,1)
+    - endfunction
+  - id: 4
+    name: "\u62F3\u6253\u9547\u5173\u897F"
+    enemys:
+    - id: 22
+      boss: 1
+      level: 4
+      npcId: 20
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 1
+      x: 1
+      y: 3
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 23
+      boss: 0
+      level: 3
+      npcId: 6
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 2
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 24
+      boss: 0
+      level: 3
+      npcId: 7
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 0
+      y: 2
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 25
+      boss: 0
+      level: 3
+      npcId: 12
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 0
+      y: 6
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 26
+      boss: 0
+      level: 3
+      npcId: 13
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 0
+      y: 7
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 27
+      boss: 0
+      level: 3
+      npcId: 33
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 8
+      y: 4
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 28
+      boss: 0
+      level: 3
+      npcId: 34
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 7
+      y: 5
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 29
+      boss: 0
+      level: 3
+      npcId: 35
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 8
+      y: 6
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 30
+      boss: 0
+      level: 3
+      npcId: 36
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 7
+      y: 7
+      skills: '[{"SkillId":1,"Level":1}]'
+    friends:
+    - id: 31
+      boss: 0
+      level: 3
+      npcId: 19
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 4
+      y: 5
+      skills: '[{"SkillId":1,"Level":1}]'
+    owns:
+    - id: 1
+      x: 5
+      y: 5
+    - id: 2
+      x: 4
+      y: 6
+    - id: 3
+      x: 5
+      y: 6
+    - id: 4
+      x: 4
+      y: 7
+    mapId: 5
+    ap: 2
+    max_bout: 20
+    script:
+    - Character.setaction(19,attack)
+    - "Talk.setnpc(19,0,\u4F60\u4E00\u4E2A\u5356\u732A\u8089\u7684\u5C60\u6237\uFF0C\u7ADF\u7136\u4E5F\u6562\u53EB\u4EC0\u4E48\u9547\u5173\u897F\uFF01\u4F60\u662F\u600E\u4E48\u9A97\u4E86\u91D1\u7FE0\u83B2\uFF0C\u7ED9\u6211\u8001\u5B9E\u4EA4\u4EE3\u4EA4\u4EE3\uFF01,false)"
+    - Character.setaction(20,attack)
+    - "Talk.setnpc(20,0,\u9C81\u8FBE\uFF0C\u4F60\u53EF\u522B\u4EE5\u4E3A\u8001\u5B50\u6015\u4E86\u4F60\u4E86\uFF0C\u770B\u4F60\u4E00\u4E2A\u4EBA\u600E\u4E48\u5BF9\u4ED8\u6211\u4EEC\u8FD9\u4E48\u591A\u4EBA\uFF01,false)"
+    - "Talk.setplayer(@player_id,0,(\u5BF9\u65B9\u4EBA\u597D\u591A\uFF0C\u6CA1\u529E\u6CD5\u4E0D\u7BA1\u4E86......),true)"
+    - "Talk.setplayer(@player_id,0,\u9C81\u8FBE\u54E5\u54E5\uFF0C\u6211\u6765\u5E2E\u4F60\uFF01,true)"
+    - function battle_win()
+    - "Talk.setplayer(@player_id,0,\u8FD9\u4E0B\u4E0D\u597D\u4E86\uFF0C\u9C81\u8FBE\u54E5\u54E5\uFF0C\u4F60\u4E0B\u624B\u592A\u91CD\uFF0C\u90D1\u5C60\u6CA1\u6C14\u513F\u4E86\u3002,true)"
+    - "Talk.set(19,0,\u54CE\u5466\uFF0C\u6D12\u5BB6\u53EA\u60F3\u6559\u8BAD\u4E00\u4E0B\u8FD9\u53AE\uFF0C\u6CA1\u60F3\u5230\u8FD9\u5BB6\u4F19\u8FD9\u4E48\u4E0D\u7ECF\u6253\u3002,false)"
+    - "Talk.setplayer(@player_id,0,\u8FD9\u53EF\u600E\u4E48\u529E\u554A\u3002,true)"
+    - "Talk.set(19,0,\u54FC\uFF01\u8FD9\u53AE\u8BC8\u6B7B\uFF0C\u6D12\u5BB6\u4EE5\u540E\u518D\u8DDF\u4F60\u7B97\u8D26\uFF01,false)"
+    - "Talk.set(19,0,@player_claim_called\uFF0C\u5FEB\u64A4\uFF01,false)"
+    - Var.setprogress(luda_1,3)
+    - endfunction
+  - id: 5
+    name: "\u6E2D\u6D32\u9003\u51FA\u7AD9"
+    enemys:
+    - id: 32
+      boss: 1
+      level: 5
+      npcId: 17
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 4
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 33
+      boss: 0
+      level: 5
+      npcId: 18
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 6
+      y: 12
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 34
+      boss: 0
+      level: 4
+      npcId: 25
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 4
+      y: 8
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 35
+      boss: 0
+      level: 4
+      npcId: 26
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 5
+      y: 8
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 36
+      boss: 0
+      level: 4
+      npcId: 27
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 5
+      y: 9
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 37
+      boss: 0
+      level: 4
+      npcId: 29
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 6
+      y: 11
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 38
+      boss: 0
+      level: 4
+      npcId: 30
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 7
+      y: 12
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 39
+      boss: 0
+      level: 4
+      npcId: 31
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 6
+      y: 13
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 40
+      boss: 0
+      level: 4
+      npcId: 37
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 14
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 41
+      boss: 0
+      level: 4
+      npcId: 38
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 0
+      y: 13
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 42
+      boss: 0
+      level: 4
+      npcId: 39
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 0
+      y: 14
+      skills: '[{"SkillId":1,"Level":1}]'
+    friends:
+    - id: 43
+      boss: 0
+      level: 1
+      npcId: 19
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 11
+      skills: '[{"SkillId":1,"Level":1}]'
+    owns:
+    - id: 1
+      x: 1
+      y: 11
+    - id: 2
+      x: 2
+      y: 10
+    - id: 3
+      x: 3
+      y: 12
+    - id: 4
+      x: 3
+      y: 11
+    mapId: 5
+    ap: 2
+    max_bout: 20
+    script:
+    - "Talk.setnpc(17,0,\u9C81\u63D0\u8F96\uFF0C\u4F60\u8FD8\u662F\u8DDF\u6211\u4EEC\u56DE\u53BB\u5427\uFF01,false)"
+    - "Talk.setnpc(19,0,\u54FC\uFF01\u6D12\u5BB6\u624D\u6CA1\u90A3\u4E48\u50BB\u5462\uFF1F\u4F60\u4EEC\u8FD9\u4E48\u591A\u4EBA\u6765\u6293\u6D12\u5BB6\uFF0C\u5F88\u660E\u663E\u90D1\u5C60\u90A3\u53AE\u5DF2\u7ECF\u6B7B\u4E86\uFF01\u4F60\u8BA9\u6D12\u5BB6\u8DDF\u4F60\u56DE\u53BB\uFF0C\u8FD9\u662F\u5728\u641E\u4E8B\u60C5\u554A\u3002,false)"
+    - "Talk.setnpc(17,0,\u9C81\u63D0\u8F96\uFF0C\u4F60\u4E0D\u56DE\u53BB\u6211\u4EEC\u6CA1\u529E\u6CD5\u4EA4\u4EE3\u554A\uFF01,false)"
+    - "Talk.setnpc(19,0,\u65E2\u7136\u8FD9\u6837\uFF0C\u4F60\u4EEC\u51FA\u624B\u5427\uFF0C\u6D12\u5BB6\u4E0D\u602A\u4F60\u4EEC\uFF0C\u4F60\u4EEC\u4E5F\u4E0D\u8981\u602A\u6D12\u5BB6\u8DDF\u4F60\u4EEC\u641E\u4E8B\u60C5\u4E86\uFF01,false)"
+    - function battle_win()
+    - "Talk.setplayer(@player_id,0,\u9C81\u8FBE\u54E5\u54E5\uFF0C\u8D81\u5B98\u5175\u6682\u65F6\u9000\u4E86\uFF0C\u54B1\u4EEC\u8D76\u7D27\u8D70\u5427\u3002,true)"
+    - "Talk.setnpc(19,0,\u5144\u5F1F\u8BF4\u7684\u5BF9\uFF0C\u8D76\u7D27\u8D70\u3002,false)"
+    - Var.setprogress(luda_1,4)
+    - Var.setprogress(luda_2,1)
+    - endfunction
+  - id: 6
+    name: "\u8BEF\u6597\u8D75\u5458\u5916"
+    enemys:
+    - id: 44
+      boss: 1
+      level: 3
+      npcId: 41
+      horse: 1
+      clothes: 1
+      weapon: 7
+      star: 1
+      x: 2
+      y: 3
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 45
+      boss: 0
+      level: 2
+      npcId: 6
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 46
+      boss: 0
+      level: 2
+      npcId: 7
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 47
+      boss: 0
+      level: 2
+      npcId: 12
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 1
+      y: 0
+      skills: '[{"SkillId":2,"Level":1}]'
+    - id: 48
+      boss: 0
+      level: 2
+      npcId: 13
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 2
+      y: 0
+      skills: '[{"SkillId":2,"Level":1}]'
+    - id: 49
+      boss: 0
+      level: 2
+      npcId: 33
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 50
+      boss: 0
+      level: 2
+      npcId: 34
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 51
+      boss: 0
+      level: 2
+      npcId: 35
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 1
+      y: 0
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 52
+      boss: 0
+      level: 2
+      npcId: 36
+      horse: 4
+      clothes: 1
+      weapon: 5
+      star: 0
+      x: 2
+      y: 0
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 53
+      boss: 0
+      level: 2
+      npcId: 42
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 1
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    - id: 54
+      boss: 0
+      level: 2
+      npcId: 43
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    friends:
+    - id: 55
+      boss: 0
+      level: 2
+      npcId: 19
+      horse: 4
+      clothes: 1
+      weapon: 1
+      star: 0
+      x: 2
+      y: 1
+      skills: '[{"SkillId":1,"Level":1}]'
+    owns: []
+    mapId: 78
+    ap: 2
+    max_bout: 20
+    script:
+    - "Talk.setplayer(@player_id,0,\u54E5\u54E5\uFF0C\u8FD9\u4E9B\u4EBA\u4E0D\u50CF\u662F\u5B98\u5175\u554A\uFF0C\u662F\u4E0D\u662F...\uFF1F,false)"
+    - "Talk.setnpc(19,0,\u522B\u7BA1\u90A3\u4E48\u591A\u4E86\uFF0C\u4ED6\u4EEC\u6765\u6293\u6D12\u5BB6\uFF0C\u5C31\u662F\u8DDF\u6D12\u5BB6\u641E\u4E8B\u60C5\u554A\uFF0C\u6740\u51FA\u53BB\u518D\u8BF4\uFF01,false)"
+    - "Talk.setplayer(@player_id,0,\u597D\u5427\uFF01,false)"
+    - function battle_win()
+    - "Talk.set(1004,0,\u90FD\u4E0D\u8981\u6253\u4E86\uFF0C\u90FD\u542C\u6211\u8BF4\uFF0C\u8FD9\u662F\u8BEF\u4F1A\u3002,false)"
+    - "Talk.setnpc(19,0,\u8BEF\u4F1A\uFF01\uFF1F,false)"
+    - "Talk.set(1004,0,\u8FD9\u662F\u6211\u513F\u7684\u5B98\u4EBA\u8D75\u5458\u5916\uFF0C\u5458\u5916\u554A\uFF0C\u8FD9\u5C31\u662F\u6211\u8DDF\u4F60\u63D0\u8D77\u7684\u5927\u6069\u4EBA\u9C81\u63D0\u8F96\u5462\u3002,false)"
+    - "Talk.set(1006,0,\u554A\uFF01\uFF1F\u65E9\u542C\u8BF4\u63D0\u8F96\u5341\u5206\u8C6A\u6770\uFF0C\u771F\u662F\u95FB\u540D\u4E0D\u5982\u89C1\u9762\u554A\uFF0C\u8BF7\u63D0\u8F96\u53D7\u5C0F\u5B50\u4E00\u62DC\u3002,false)"
+    - "Talk.setnpc(19,0,\u5458\u5916\u4E0D\u5FC5\u5BA2\u6C14\uFF0C\u521A\u521A\u91D1\u8001\u6C49\u8FD8\u63D0\u8D77\u5458\u5916\u7684\u597D\uFF0C\u7136\u540E\u54B1\u4EEC\u5C31\u6253\u8D77\u6765\u4E86\uFF0C\u54C8\u54C8\u3002,false)"
+    - "Talk.set(1006,0,\u54C8\u54C8\uFF01\u8FD9\u91CC\u4E0D\u662F\u8BF4\u8BDD\u7684\u5730\u65B9\uFF0C\u8FD8\u8BF7\u63D0\u8F96\u5230\u655D\u5E84\u4F4F\u4E9B\u65E5\u5B50\u5427\u3002,false)"
+    - Var.setprogress(luda_2,2)
+    - Var.setprogress(luzhishen_1,1)
+    - endfunction
+  - id: 7
+    name: "\u9189\u95F9\u4E94\u53F0\u5C71"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 2
+    max_bout: 20
+    script:
+    - "Talk.setplayer(@player_id,0,(\u6211\u53EA\u628A\u4ED6\u4EEC\u6253\u9000\u4E86\u5C31\u597D\uFF0C\u5343\u4E07\u4E0D\u53EF\u4F24\u5230\u8FD9\u4E9B\u548C\u5C1A\u3002),false)"
+    - function battle_win()
+    - "Talk.set(1004,0,\u667A\u6DF1\uFF0C\u5FEB\u4F4F\u624B\u3002,false)"
+    - "Talk.setnpc(19,0,\uFF08\u7CDF\u4E86...\u662F\u65B9\u4E08\uFF01\u6D12\u5BB6\u8FD9\u6B21\u53C8\u628A\u4E8B\u60C5\u641E\u5927\u4E86...\uFF09,false)"
+    - "Talk.setnpc(19,0,\u65B9\u4E08\uFF0C\u4ED6\u4EEC\u4E0D\u8BA9\u6D12\u5BB6\u8FDB\u5BFA\uFF0C\u6D12\u5BB6\u624D\u8DDF\u4ED6\u4EEC\u51FA\u624B\u7684\uFF0C\u6D12\u5BB6\u77E5\u9519\u4E86\u3002,false)"
+    - "Talk.set(1004,0,\u667A\u6DF1\uFF0C\u4E0A\u6B21\u4F60\u5DF2\u7ECF\u5927\u9189\u95F9\u4E86\u4E00\u573A\uFF0C\u8D75\u5458\u5916\u518D\u4E09\u8D54\u793C\uFF0C\u8001\u50E7\u5FF5\u4F60\u662F\u521D\u72AF\uFF0C\u624D\u8BA9\u4F60\u7559\u4E0B\u6765\u3002\u8FD9\u6B21\u53C8\u6253\u4F24\u4E86\u8FD9\u4E48\u591A\u4EBA\uFF0C\u8001\u50E7\u4E5F\u4E0D\u80FD\u7559\u4F60\u4E86\u3002,false)"
+    - "Talk.setnpc(19,0,\u65B9\u4E08\uFF0C\u90A3\u4F60\u8BA9\u6D12\u5BB6\u53BB\u54EA\u554A\uFF1F,false)"
+    - "Talk.set(1006,0,\u6211\u6709\u4E00\u4E2A\u5E08\u5F1F\uFF0C\u73B0\u5728\u4E1C\u4EAC\u5927\u76F8\u56FD\u5BFA\u4F4F\u6301\uFF0C\u53EB\u505A\u667A\u6E05\u7985\u5E08\u3002\u6211\u7ED9\u4F60\u4E00\u5C01\u4E66\u4FE1\uFF0C\u4F60\u53BB\u6295\u5954\u4ED6\u90A3\u91CC\u5427\u3002,false)"
+    - "Talk.setnpc(19,0,\u5373\u7136\u5982\u6B64\uFF0C\u6D12\u5BB6\u613F\u610F\u542C\u65B9\u4E08\u5B89\u6392\u3002,false)"
+    - "Talk.set(1006,0,\u6211\u6709\u56DB\u53E5\u5048\u8A00\uFF0C\u4F60\u8BB0\u4E0B\u6765\uFF0C\u53EF\u4EE5\u7EC8\u8EAB\u53D7\u7528\uFF0C\u201C\u9047\u6797\u800C\u8D77\uFF0C\u9047\u5C71\u800C\u5BCC\uFF0C\u9047\u6C34\u800C\u5174\uFF0C\u9047\u6C5F\u800C\u6B62\u3002\u201D\u3002,false)"
+    - "Talk.setnpc(19,0,\u6D12\u5BB6\u8BB0\u4E0B\u4E86\uFF0C\u591A\u8C22\u65B9\u4E08\u3002,false)"
+    - "Talk.setnpc(19,0,\u5144\u5F1F\u554A\uFF0C\u6D12\u5BB6\u8981\u5F80\u4E1C\u4EAC\u5927\u76F8\u56FD\u5BFA\u53BB\u4E86\uFF0C\u4F60\u6709\u7A7A\u8BB0\u5F97\u6765\u770B\u6D12\u5BB6\u3002,false)"
+    - "Talk.setplayer(@player_id,0,\u54E5\u54E5\u653E\u5FC3\uFF0C\u6211\u4E00\u5B9A\u53BB\u770B\u4F60\u3002,false)"
+    - Var.setprogress(luzhishen_2,1)
+    - endfunction
+  - id: 8
+    name: "\u6843\u82B1\u5E84\u62A2\u4EB2"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 2
+    max_bout: 20
+    script:
+    - "Talk.setnpc(19,0,\u8001\u4E08\u4EBA\uFF0C\u6211\u6765\u63A5\u65B0\u5A18\u4E86\uFF0C\u8FD8\u4E0D\u5FEB\u6765\u8FCE\u63A5\u6211\u8FD9\u4E2A\u59D1\u7237\u4E86\uFF01,false)"
+    - "Talk.setnpc(19,0,\u54C8\u54C8\u54C8\uFF01\u76F4\u5A18\u8D3C\uFF0C\u6D12\u5BB6\u5C31\u662F\u4F60\u7684\u65B0\u5A18\uFF01\u4F60\u60F3\u5973\u4EBA\u60F3\u75AF\u4E86\u5427\uFF0C\u8FDE\u548C\u5C1A\u90FD\u5A36\u3002,false)"
+    - "Talk.setnpc(19,0,\u54EA\u91CC\u6765\u7684\u75AF\u548C\u5C1A\uFF0C\u662F\u4E0D\u662F\u6D3B\u817B\u4E86\uFF1F,false)"
+    - "Talk.setplayer(@player_id,0,\u662F\u8C01\u6D3B\u817B\u4E86\uFF0C\u8981\u6253\u8FC7\u624D\u77E5\u9053\uFF01,false)"
+    - "Talk.setnpc(19,0,\u6C14\u6B7B\u6211\u4E86\uFF0C\u5F1F\u5144\u4EEC\u7ED9\u6211\u4E0A\uFF0C\u597D\u597D\u6559\u8BAD\u4ED6\u4EEC\u3002,false)"
+    - "Talk.setnpc(19,0,\uFF08\u8FD9\u4E2A\u548C\u5C1A\u7684\u58F0\u97F3\u597D\u719F\u6089\uFF0C\u96BE\u9053\u662F\u719F\u4EBA......\uFF1F\uFF09,false)"
+    - function battle_win()
+    - "Talk.setplayer(1004,0,\u548C\u5C1A\uFF0C\u4F60\u5148\u522B\u52A8\u624B\uFF0C\u4F60\u7684\u58F0\u97F3\u6211\u542C\u7740\u8033\u719F\uFF0C\u80FD\u4E0D\u80FD\u5148\u901A\u4E2A\u59D3\u540D\uFF1F,false)"
+    - "Talk.setnpc(19,0,\u54FC\uFF01\u6D12\u5BB6\u4E0D\u662F\u522B\u4EBA\uFF0C\u8001\u79CD\u7ECF\u7565\u76F8\u516C\u5E10\u524D\u63D0\u8F96\u9C81\u8FBE\u7684\u4FBF\u662F\uFF0C\u5982\u4ECA\u51FA\u4E86\u5BB6\uFF0C\u505A\u548C\u5C1A\uFF0C\u5524\u505A\u9C81\u667A\u6DF1\u3002,false)"
+    - "Talk.setplayer(1004,0,\u54C8\u54C8\u54C8\uFF0C\u602A\u4E0D\u5F97\u8FD9\u4E48\u5389\u5BB3\u3002\u54E5\u54E5\u597D\u4E45\u4E0D\u89C1\u4E86\uFF0C\u53D7\u5C0F\u5F1F\u4E00\u62DC\u3002,false)"
+    - "Talk.setnpc(19,0,\u54CE\u5440\uFF1F\u4F60\u662F\u8C01\u554A\uFF1F\u4E0D\u8981\u4E71\u8BA4\u4EB2\u621A\u3002,false)"
+    - "Talk.setplayer(@player_id,0,\u54E5\u54E5\uFF0C\u8FD9\u4F4D\u4E0D\u662F\u522B\u4EBA\uFF0C\u662F\u6E2D\u6D32\u57CE\u4E00\u8D77\u5403\u9152\u7684\u201C\u6253\u864E\u5C06\u201D\u674E\u5FE0\u54E5\u54E5\u5440\uFF01,false)"
+    - "Talk.setnpc(19,0,\u54C8\u54C8\uFF01\u8FD8\u662F\u8D24\u5F1F\u773C\u529B\u597D\u3002\u54E5\u54E5\uFF0C\u600E\u4E48\u505A\u4E86\u548C\u5C1A\u4E86\uFF1F\u83AB\u4E0D\u662F\u4E3A\u4E86\u8EB2\u907F\u5B98\u5E9C\u7684\u8FFD\u6355\uFF1F,false)"
+    - "Talk.setnpc(19,0,\u6B63\u662F\uFF0C\u5144\u5F1F\u6211\u8DDF\u4F60\u8BF4\uFF0C\u5218\u592A\u516C\u7684\u8FD9\u95E8\u4EB2\u4E8B\u4E0D\u662F\u4ED6\u7684\u672C\u610F\uFF0C\u4F60\u4EEC\u5C31\u6B64\u4F5C\u7F62\u5427\u3002,false)"
+    - "Talk.setnpc(19,0,\u65E2\u7136\u54E5\u54E5\u5F00\u53E3\uFF0C\u4E00\u5207\u5C31\u542C\u54E5\u54E5\u7684\u3002,false)"
+    - Var.setprogress(luzhishen_2,2)
+    - Var.setprogress(luzhishen_3,1)
+    - endfunction
+  - id: 9
+    name: "\u706B\u70E7\u74E6\u5B98\u5BFA"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 2
+    max_bout: 20
+    script:
+    - function battle_win()
+    - "Talk.setnpc(8,0,\u54FC\u54FC\uFF01\u5584\u6076\u7EC8\u6709\u62A5\uFF0C\u8FD9\u4F19\u513F\u5F3A\u5F92\u4F5C\u6076\u591A\u7AEF\uFF0C\u6211\u4EEC\u4E5F\u7B97\u662F\u4E3A\u6C11\u9664\u5BB3\u4E86\uFF01,false)"
+    - "Talk.setnpc(19,0,\u54C8\u54C8\uFF01\u8BF4\u7684\u597D\uFF0C\u5144\u5F1F\u63A5\u4E0B\u6765\u8981\u4E0A\u54EA\u91CC\u53BB\uFF1F,false)"
+    - "Talk.setnpc(8,0,\u65E2\u7136\u627E\u4E0D\u5230\u6211\u5E08\u5085\uFF0C\u5982\u4ECA\u6211\u53EA\u80FD\u56DE\u5C11\u534E\u5C71\u627E\u6731\u6B66\u7B49\u4E09\u4EBA\u4E86\uFF01,false)"
+    - "Talk.setnpc(19,0,\u90A3\u4E5F\u597D\u3002\u6D12\u5BB6\u8981\u6295\u4E1C\u4EAC\u53BB\uFF0C@player_name@player_claim_called\uFF0C\u4F60\u4E0D\u5982\u968F\u6D12\u5BB6\u4E00\u8D77\u53BB\u6E38\u73A9\u4E00\u8D9F\u5982\u4F55\uFF1F,false)"
+    - "Talk.setplayer(@player_id,0,\u597D\u554A\uFF0C\u65E2\u7136\u54E5\u54E5\u76F8\u9080\uFF0C@player_claim\u5C31\u968F\u54E5\u54E5\u4E00\u8D77\u4E0A\u8DEF\uFF01,false)"
+    - "Talk.setnpc(19,0,\u54C8\u54C8\uFF01\u723D\u5FEB\uFF01\u54B1\u4EEC\u8FD9\u5C31\u51FA\u53D1\u5427\u3002,false)"
+    - Var.setprogress(luzhishen_4,2)
+    - Var.setprogress(luzhishen_5,1)
+    - endfunction
+  - id: 10
+    name: "\u4F1A\u6597\u4F17\u6CFC\u76AE"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script: []
+  - id: 11
+    name: "\u8425\u6551\u6797\u5A18\u5B50"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script: []
+  - id: 12
+    name: "\u5927\u95F9\u91CE\u732A\u6797"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script: []
+  - id: 13
+    name: "\u4F1A\u6597\u6D2A\u6559\u5934"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script:
+    - "\u67F4\u8FDB\u4E0D\u5728\uFF0C\u6D2A\u6559\u5934\u8981\u8D76\u6797\u51B2\u8D70\uFF0C\u60F9\u6012\u4E86\u6797\u51B2\uFF0C\u6253\u5B8C\u4E4B\u540E\uFF0C\u67F4\u8FDB\u51FA\u73B0\u89E3\u56F4"
+  - id: 14
+    name: "\u5C71\u795E\u5E99\u590D\u4EC7"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script: []
+  - id: 15
+    name: "\u64D2\u6597\u9752\u9762\u517D"
+    enemys: []
+    friends: []
+    owns: []
+    mapId: 2
+    ap: 0
+    max_bout: 20
+    script: []

@@ -253,14 +253,6 @@ class Master_model extends MY_Model
 		$result = $this->master_db->select($select, $table);
 		return $result;
 	}
-	function get_master_battlefield_tiles($battlefield_id){
-		$select = "`id`,`tile_id`, `x`,`y`, `level`";
-		$table = $this->master_db->battlefield_tile;
-		$where = array("battlefield_id = {$battlefield_id}");
-		$order_by = "id asc";
-		$result = $this->master_db->select($select, $table, $where, $order_by);
-		return $result;
-	}
 	function get_master_battlefield_npcs($battlefield_id,$belong){
 		$select = "`id`, `npc_id`,`boss`,`skills`, `x`,`y`, `level`,`star`,`weapon`,`horse`,`clothes`";
 		$table = $this->master_db->battlefield_npc;
@@ -320,7 +312,7 @@ class Master_model extends MY_Model
 		return $result;
 	}
 	function get_master_battlefields($language="cn"){
-		$select = "`id`,`name_{$language}` as `name`,`world_id`,`script_{$language}` as `script`,`max_bout`, `ap`";
+		$select = "`id`,`name_{$language}` as `name`,`map_id`,`script_{$language}` as `script`,`max_bout`, `ap`";
 		$table = $this->master_db->battlefield;
 		$order_by = "id asc";
 		$result_array = $this->master_db->select($select, $table, null, $order_by);
@@ -335,7 +327,6 @@ class Master_model extends MY_Model
 				}
 				$val["script"][] = $script;
 			}
-			$val["tiles"] = $this->get_master_battlefield_tiles($val["id"]);
 			$val["enemys"] = $this->get_master_battlefield_npcs($val["id"], "enemy");
 			$val["friends"] = $this->get_master_battlefield_npcs($val["id"], "friend");
 			$val["owns"] = $this->get_master_battlefield_owns($val["id"]);

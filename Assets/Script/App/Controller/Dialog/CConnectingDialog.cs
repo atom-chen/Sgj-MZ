@@ -51,8 +51,7 @@ namespace App.Controller.Dialog
 
         public static void ToShow()
         {
-            //Debug.LogError("ToShow,"+ (AppManager.CurrentScene == null)+","+ (connectingDialog != null));
-            if (AppManager.CurrentScene == null)
+            if (AppManager.CurrentScene == null || Global.AppManager == null)
             {
                 return;
             }
@@ -66,7 +65,6 @@ namespace App.Controller.Dialog
         }
         public static void ToClose()
         {
-            //Debug.LogError("ToClose," + (connectingDialog != null));
             if (connectingDialog != null)
             {
                 connectingDialog.Close();

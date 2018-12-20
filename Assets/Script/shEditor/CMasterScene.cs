@@ -58,7 +58,7 @@ namespace App.Controller{
                     apis.Add("weapon", CreateScriptableObjectMasterWeaponRun());
                     apis.Add("skill", CreateScriptableObjectMasterSkillRun());
                     //apis.Add("strategy", CreateScriptableObjectMasterStrategyRun());
-                    //apis.Add("battlefield", CreateScriptableObjectMasterBattleFieldRun());
+                    apis.Add("battlefield", CreateScriptableObjectMasterBattleFieldRun());
                     //apis.Add("item", CreateScriptableObjectMasterItemRun());
                     //apis.Add("mission", CreateScriptableObjectMasterMissionRun());
                     //apis.Add("shop", CreateScriptableObjectMasterShopRun());
@@ -414,7 +414,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(areaAsset, string.Format(scriptableObjectPath, App.Model.Scriptable.CharacterAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }
-        /*IEnumerator CreateScriptableObjectMasterBattleFieldRun()
+        IEnumerator CreateScriptableObjectMasterBattleFieldRun()
         {
             var asset = ScriptableObject.CreateInstance<App.Model.Scriptable.BattlefieldAsset>();
 
@@ -425,7 +425,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(asset, string.Format(scriptableObjectPath, App.Model.Scriptable.BattlefieldAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }
-        IEnumerator CreateScriptableObjectMasterAreaRun()
+        /*IEnumerator CreateScriptableObjectMasterAreaRun()
         {
             var areaAsset = ScriptableObject.CreateInstance<App.Model.Scriptable.AreaAsset>();
 
@@ -491,7 +491,7 @@ namespace App.Controller{
             UnityEditor.AssetDatabase.CreateAsset(constantAsset, string.Format(scriptableObjectPath, App.Model.Scriptable.ConstantAsset.Name));
             UnityEditor.AssetDatabase.Refresh();
         }*/
-        #endif
+#endif
 
-	}
+    }
 }
