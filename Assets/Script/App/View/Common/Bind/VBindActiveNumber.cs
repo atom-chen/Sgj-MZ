@@ -21,6 +21,7 @@ namespace App.View.Common.Bind
             object val = this.GetByPath(BindPath);
             if (val == null)
             {
+                gameObject.SetActive(false);
                 return;
             }
             bool result = false;
