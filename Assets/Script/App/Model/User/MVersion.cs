@@ -21,6 +21,8 @@ namespace App.Model.User
         public int clothes;
         public int face;
         public int constant;
+        public int battlefield;
+        public int scenario;
         public MVersion()
         {
         }

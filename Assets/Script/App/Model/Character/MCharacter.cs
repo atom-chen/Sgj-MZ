@@ -48,13 +48,17 @@ namespace App.Model.Character
                 }
                 return fileCharacter.skills;
             }
+            set {
+                fileCharacter.skills = value;
+            }
         }
         #endregion
         MEquipment _equipmentWepon;
         public MEquipment equipmentWepon
         {
-            get {
-                if(_equipmentWepon == null) {
+            get
+            {
+                if (_equipmentWepon == null) {
                     _equipmentWepon = CacherBase<UserEquipmentCacher, MBase>.Instance.GetEquipment(weapon, EquipmentType.weapon, master.weapon) as MEquipment;
                 }
                 return _equipmentWepon;
@@ -136,6 +140,7 @@ namespace App.Model.Character
         }
 
         public Mission mission;
+        public int isSelected;
         public MCharacter target;
         public int head
         {
@@ -189,6 +194,12 @@ namespace App.Model.Character
             mCharacter.weapon = npc.weapon;
             mCharacter.star = npc.star;
             mCharacter.action = ActionType.idle;
+            return mCharacter;
+        }
+        public MCharacter Clone()
+        {
+            MCharacter mCharacter = new MCharacter();
+            mCharacter.characterId = characterId;
             return mCharacter;
         }
         public void StatusInit()

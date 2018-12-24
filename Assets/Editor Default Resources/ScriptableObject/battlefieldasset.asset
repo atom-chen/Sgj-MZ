@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -25,7 +26,7 @@ MonoBehaviour:
       star: 1
       x: 2
       y: 0
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 5
       boss: 0
       level: 1
@@ -36,7 +37,7 @@ MonoBehaviour:
       star: 1
       x: 3
       y: 0
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 6
       boss: 0
       level: 1
@@ -47,7 +48,7 @@ MonoBehaviour:
       star: 1
       x: 7
       y: 5
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 7
       boss: 0
       level: 1
@@ -58,7 +59,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 8
       boss: 0
       level: 1
@@ -69,7 +70,7 @@ MonoBehaviour:
       star: 0
       x: 3
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     friends:
     - id: 2
       boss: 0
@@ -92,7 +93,7 @@ MonoBehaviour:
       star: 1
       x: 2
       y: 4
-      skills: '[{"SkillId":67,"Level":1},{"SkillId":98,"Level":5}]'
+      skills: '[{"skill_id":67,"level":1},{"skill_id":98,"level":5}]'
     - id: 4
       boss: 0
       level: 1
@@ -103,7 +104,7 @@ MonoBehaviour:
       star: 1
       x: 8
       y: 8
-      skills: '[{"SkillId":32,"Level":1},{"SkillId":98,"Level":5}]'
+      skills: '[{"skill_id":32,"level":1},{"skill_id":98,"level":5}]'
     owns:
     - id: 1
       x: 5
@@ -113,7 +114,7 @@ MonoBehaviour:
       y: 5
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script:
     - Character.addskill(5301,enemy,98,5)
     - Character.hide(3)
@@ -150,7 +151,7 @@ MonoBehaviour:
       star: 1
       x: 2
       y: 3
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 11
       boss: 0
       level: 2
@@ -161,7 +162,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 12
       boss: 0
       level: 2
@@ -172,7 +173,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 13
       boss: 0
       level: 2
@@ -183,7 +184,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 0
-      skills: '[{"SkillId":2,"Level":1}]'
+      skills: '[{"skill_id":2,"level":1}]'
     - id: 14
       boss: 0
       level: 2
@@ -194,7 +195,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 0
-      skills: '[{"SkillId":2,"Level":1}]'
+      skills: '[{"skill_id":2,"level":1}]'
     friends:
     - id: 10
       boss: 0
@@ -206,7 +207,7 @@ MonoBehaviour:
       star: 1
       x: 3
       y: 8
-      skills: '[{"SkillId":32,"Level":1}]'
+      skills: '[{"skill_id":32,"level":1}]'
     owns:
     - id: 1
       x: 4
@@ -219,7 +220,7 @@ MonoBehaviour:
       y: 9
     mapId: 4
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - Character.setaction(8,attack)
     - "Talk.setnpc(8,0,\u4F60\u4EEC\u8FD9\u4E9B\u5F3A\u76D7\uFF0C\u597D\u5927\u80C6\u5462\uFF0C\u6CA1\u542C\u8FC7\u4E5D\u7EB9\u9F99\u7684\u5927\u540D\u5417\uFF1F\u7ADF\u6562\u5728\u592A\u5C81\u5934\u4E0A\u52A8\u571F\uFF01,false)"
@@ -251,7 +252,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 16
       boss: 0
       level: 3
@@ -262,7 +263,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 2
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 17
       boss: 0
       level: 3
@@ -273,7 +274,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 18
       boss: 0
       level: 3
@@ -284,7 +285,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 8
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 19
       boss: 0
       level: 3
@@ -295,7 +296,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 3
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 20
       boss: 0
       level: 3
@@ -306,7 +307,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     friends:
     - id: 21
       boss: 0
@@ -318,7 +319,7 @@ MonoBehaviour:
       star: 1
       x: 3
       y: 7
-      skills: '[{"SkillId":32,"Level":1}]'
+      skills: '[{"skill_id":32,"level":1}]'
     owns:
     - id: 1
       x: 4
@@ -331,7 +332,7 @@ MonoBehaviour:
       y: 8
     mapId: 4
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - Character.setaction(8,attack)
     - "Talk.setnpc(8,0,\u8FD9\u91CC\u7684\u4EBA\u90FD\u662F\u6211\u7684\u5BA2\u4EBA\uFF0C\u4F60\u4EEC\u60F3\u6293\u4ED6\u4EEC\uFF0C\u8FD8\u662F\u5148\u8D62\u4E86\u6211\u518D\u8BF4\u5427\uFF01,false)"
@@ -358,7 +359,7 @@ MonoBehaviour:
       star: 1
       x: 1
       y: 3
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 23
       boss: 0
       level: 3
@@ -369,7 +370,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 2
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 24
       boss: 0
       level: 3
@@ -380,7 +381,7 @@ MonoBehaviour:
       star: 0
       x: 0
       y: 2
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 25
       boss: 0
       level: 3
@@ -391,7 +392,7 @@ MonoBehaviour:
       star: 0
       x: 0
       y: 6
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 26
       boss: 0
       level: 3
@@ -402,7 +403,7 @@ MonoBehaviour:
       star: 0
       x: 0
       y: 7
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 27
       boss: 0
       level: 3
@@ -413,7 +414,7 @@ MonoBehaviour:
       star: 0
       x: 8
       y: 4
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 28
       boss: 0
       level: 3
@@ -424,7 +425,7 @@ MonoBehaviour:
       star: 0
       x: 7
       y: 5
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 29
       boss: 0
       level: 3
@@ -435,7 +436,7 @@ MonoBehaviour:
       star: 0
       x: 8
       y: 6
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 30
       boss: 0
       level: 3
@@ -446,7 +447,7 @@ MonoBehaviour:
       star: 0
       x: 7
       y: 7
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     friends:
     - id: 31
       boss: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
       star: 0
       x: 4
       y: 5
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     owns:
     - id: 1
       x: 5
@@ -474,7 +475,7 @@ MonoBehaviour:
       y: 7
     mapId: 5
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - Character.setaction(19,attack)
     - "Talk.setnpc(19,0,\u4F60\u4E00\u4E2A\u5356\u732A\u8089\u7684\u5C60\u6237\uFF0C\u7ADF\u7136\u4E5F\u6562\u53EB\u4EC0\u4E48\u9547\u5173\u897F\uFF01\u4F60\u662F\u600E\u4E48\u9A97\u4E86\u91D1\u7FE0\u83B2\uFF0C\u7ED9\u6211\u8001\u5B9E\u4EA4\u4EE3\u4EA4\u4EE3\uFF01,false)"
@@ -503,7 +504,7 @@ MonoBehaviour:
       star: 0
       x: 4
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 33
       boss: 0
       level: 5
@@ -514,7 +515,7 @@ MonoBehaviour:
       star: 0
       x: 6
       y: 12
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 34
       boss: 0
       level: 4
@@ -525,7 +526,7 @@ MonoBehaviour:
       star: 0
       x: 4
       y: 8
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 35
       boss: 0
       level: 4
@@ -536,7 +537,7 @@ MonoBehaviour:
       star: 0
       x: 5
       y: 8
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 36
       boss: 0
       level: 4
@@ -547,7 +548,7 @@ MonoBehaviour:
       star: 0
       x: 5
       y: 9
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 37
       boss: 0
       level: 4
@@ -558,7 +559,7 @@ MonoBehaviour:
       star: 0
       x: 6
       y: 11
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 38
       boss: 0
       level: 4
@@ -569,7 +570,7 @@ MonoBehaviour:
       star: 0
       x: 7
       y: 12
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 39
       boss: 0
       level: 4
@@ -580,7 +581,7 @@ MonoBehaviour:
       star: 0
       x: 6
       y: 13
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 40
       boss: 0
       level: 4
@@ -591,7 +592,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 14
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 41
       boss: 0
       level: 4
@@ -602,7 +603,7 @@ MonoBehaviour:
       star: 0
       x: 0
       y: 13
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 42
       boss: 0
       level: 4
@@ -613,7 +614,7 @@ MonoBehaviour:
       star: 0
       x: 0
       y: 14
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     friends:
     - id: 43
       boss: 0
@@ -625,7 +626,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 11
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     owns:
     - id: 1
       x: 1
@@ -641,7 +642,7 @@ MonoBehaviour:
       y: 11
     mapId: 5
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - "Talk.setnpc(17,0,\u9C81\u63D0\u8F96\uFF0C\u4F60\u8FD8\u662F\u8DDF\u6211\u4EEC\u56DE\u53BB\u5427\uFF01,false)"
     - "Talk.setnpc(19,0,\u54FC\uFF01\u6D12\u5BB6\u624D\u6CA1\u90A3\u4E48\u50BB\u5462\uFF1F\u4F60\u4EEC\u8FD9\u4E48\u591A\u4EBA\u6765\u6293\u6D12\u5BB6\uFF0C\u5F88\u660E\u663E\u90D1\u5C60\u90A3\u53AE\u5DF2\u7ECF\u6B7B\u4E86\uFF01\u4F60\u8BA9\u6D12\u5BB6\u8DDF\u4F60\u56DE\u53BB\uFF0C\u8FD9\u662F\u5728\u641E\u4E8B\u60C5\u554A\u3002,false)"
@@ -666,7 +667,7 @@ MonoBehaviour:
       star: 1
       x: 2
       y: 3
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 45
       boss: 0
       level: 2
@@ -677,7 +678,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 46
       boss: 0
       level: 2
@@ -688,7 +689,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 47
       boss: 0
       level: 2
@@ -699,7 +700,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 0
-      skills: '[{"SkillId":2,"Level":1}]'
+      skills: '[{"skill_id":2,"level":1}]'
     - id: 48
       boss: 0
       level: 2
@@ -710,7 +711,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 0
-      skills: '[{"SkillId":2,"Level":1}]'
+      skills: '[{"skill_id":2,"level":1}]'
     - id: 49
       boss: 0
       level: 2
@@ -721,7 +722,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 50
       boss: 0
       level: 2
@@ -732,7 +733,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 51
       boss: 0
       level: 2
@@ -743,7 +744,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 0
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 52
       boss: 0
       level: 2
@@ -754,7 +755,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 0
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 53
       boss: 0
       level: 2
@@ -765,7 +766,7 @@ MonoBehaviour:
       star: 0
       x: 1
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     - id: 54
       boss: 0
       level: 2
@@ -776,7 +777,7 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     friends:
     - id: 55
       boss: 0
@@ -788,11 +789,11 @@ MonoBehaviour:
       star: 0
       x: 2
       y: 1
-      skills: '[{"SkillId":1,"Level":1}]'
+      skills: '[{"skill_id":1,"level":1}]'
     owns: []
     mapId: 78
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - "Talk.setplayer(@player_id,0,\u54E5\u54E5\uFF0C\u8FD9\u4E9B\u4EBA\u4E0D\u50CF\u662F\u5B98\u5175\u554A\uFF0C\u662F\u4E0D\u662F...\uFF1F,false)"
     - "Talk.setnpc(19,0,\u522B\u7BA1\u90A3\u4E48\u591A\u4E86\uFF0C\u4ED6\u4EEC\u6765\u6293\u6D12\u5BB6\uFF0C\u5C31\u662F\u8DDF\u6D12\u5BB6\u641E\u4E8B\u60C5\u554A\uFF0C\u6740\u51FA\u53BB\u518D\u8BF4\uFF01,false)"
@@ -814,7 +815,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - "Talk.setplayer(@player_id,0,(\u6211\u53EA\u628A\u4ED6\u4EEC\u6253\u9000\u4E86\u5C31\u597D\uFF0C\u5343\u4E07\u4E0D\u53EF\u4F24\u5230\u8FD9\u4E9B\u548C\u5C1A\u3002),false)"
     - function battle_win()
@@ -838,7 +839,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - "Talk.setnpc(19,0,\u8001\u4E08\u4EBA\uFF0C\u6211\u6765\u63A5\u65B0\u5A18\u4E86\uFF0C\u8FD8\u4E0D\u5FEB\u6765\u8FCE\u63A5\u6211\u8FD9\u4E2A\u59D1\u7237\u4E86\uFF01,false)"
     - "Talk.setnpc(19,0,\u54C8\u54C8\u54C8\uFF01\u76F4\u5A18\u8D3C\uFF0C\u6D12\u5BB6\u5C31\u662F\u4F60\u7684\u65B0\u5A18\uFF01\u4F60\u60F3\u5973\u4EBA\u60F3\u75AF\u4E86\u5427\uFF0C\u8FDE\u548C\u5C1A\u90FD\u5A36\u3002,false)"
@@ -865,7 +866,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 2
-    max_bout: 20
+    maxBout: 20
     script:
     - function battle_win()
     - "Talk.setnpc(8,0,\u54FC\u54FC\uFF01\u5584\u6076\u7EC8\u6709\u62A5\uFF0C\u8FD9\u4F19\u513F\u5F3A\u5F92\u4F5C\u6076\u591A\u7AEF\uFF0C\u6211\u4EEC\u4E5F\u7B97\u662F\u4E3A\u6C11\u9664\u5BB3\u4E86\uFF01,false)"
@@ -884,7 +885,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script: []
   - id: 11
     name: "\u8425\u6551\u6797\u5A18\u5B50"
@@ -893,7 +894,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script: []
   - id: 12
     name: "\u5927\u95F9\u91CE\u732A\u6797"
@@ -902,7 +903,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script: []
   - id: 13
     name: "\u4F1A\u6597\u6D2A\u6559\u5934"
@@ -911,7 +912,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script:
     - "\u67F4\u8FDB\u4E0D\u5728\uFF0C\u6D2A\u6559\u5934\u8981\u8D76\u6797\u51B2\u8D70\uFF0C\u60F9\u6012\u4E86\u6797\u51B2\uFF0C\u6253\u5B8C\u4E4B\u540E\uFF0C\u67F4\u8FDB\u51FA\u73B0\u89E3\u56F4"
   - id: 14
@@ -921,7 +922,7 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script: []
   - id: 15
     name: "\u64D2\u6597\u9752\u9762\u517D"
@@ -930,5 +931,5 @@ MonoBehaviour:
     owns: []
     mapId: 2
     ap: 0
-    max_bout: 20
+    maxBout: 20
     script: []

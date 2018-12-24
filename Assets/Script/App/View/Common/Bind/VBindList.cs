@@ -1,4 +1,5 @@
-﻿using App.Model.Common;
+﻿using System.Collections.Generic;
+using App.Model.Common;
 using UnityEngine.UI;
 
 namespace App.View.Common.Bind
@@ -17,8 +18,15 @@ namespace App.View.Common.Bind
             object val = this.GetByPath(BindPath);
             if (val != null)
             {
-                MBase[] models = val as MBase[];
-                vBaseList.UpdateView(models);
+                if (val is MBase[])
+                {
+                    vBaseList.UpdateView(val as MBase[]);
+                }
+                else if (val is List<MBase>)
+                {
+
+                    vBaseList.UpdateView(val as List<MBase>);
+                }
             }
         }
     }

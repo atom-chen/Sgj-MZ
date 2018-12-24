@@ -18,7 +18,8 @@ namespace App.Model.Master
         [JsonName(Name = "map_id")]
         public int mapId;
         public int ap;
-        public int max_bout;
+        [JsonName(Name = "max_bout")]
+        public int maxBout;
         public List<string> script;
     }
 }

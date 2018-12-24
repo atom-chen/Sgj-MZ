@@ -24,7 +24,7 @@ namespace App.Util.Search
             //mBaseMap = model;
             //vBaseMap = view;
         }
-        private void Init()
+        private void Init(List<MCharacter> characters)
         {
             for (int i = 0; i < Global.tileUnits.Count; i++)
             {
@@ -33,6 +33,12 @@ namespace App.Util.Search
                 {
                     childs[j].SearchInit();
                 }
+            }
+            if(characters != null)
+            {
+                characters.ForEach(character => {
+                    Global.tileUnits[character.coordinate.y][character.coordinate.x].isRoad = false;
+                });
             }
             open.Clear();
         }
@@ -185,7 +191,7 @@ namespace App.Util.Search
             }
             return obj_note;
         }
-        public List<VTile> Search(MCharacter mCharacter, VTile startTile, VTile endTile)
+        public List<VTile> Search(MCharacter mCharacter, VTile startTile, VTile endTile, List<MCharacter> characters = null)
         {
             path.Clear();
             if (startTile.coordinate.Equals(endTile.coordinate))
@@ -193,7 +199,7 @@ namespace App.Util.Search
                 return path;
             }
             this.endNode = endTile;
-            Init();
+            Init(characters);
             open.Add(null);
             bool isOver = false;
             VTile thisPoint = startTile;

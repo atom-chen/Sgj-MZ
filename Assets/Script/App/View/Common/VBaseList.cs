@@ -16,6 +16,14 @@ namespace App.View.Common
                 parentContent = transform;
             }
         }
+        public void UpdateView(List<MBase> models)
+        {
+            Util.Global.ClearChild(parentContent.gameObject);
+            foreach (MBase model in models)
+            {
+                ScrollViewSetChild(parentContent, content, model);
+            }
+        }
         public void UpdateView(MBase[] models)
         {
             Util.Global.ClearChild(parentContent.gameObject);

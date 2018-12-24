@@ -46,7 +46,7 @@ namespace App.View.Avatar
                 icon.uvRect = mFace.rect;
                 mFace.id = characterId;
                 FaceCacher.Instance.Set(mFace);
-            }));
+            }, true, false));
         }
 
 

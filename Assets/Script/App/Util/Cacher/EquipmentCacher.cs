@@ -38,6 +38,11 @@ namespace App.Util.Cacher
         }
         public MEquipment GetEquipment(int id, EquipmentType type)
         {
+            if (id == 0)
+            {
+                UnityEngine.Debug.LogError("MEquipment id==0");
+                return new MEquipment();
+            }
             MEquipment[] equipments;
             switch (type)
             {
@@ -52,7 +57,8 @@ namespace App.Util.Cacher
                     equipments = horses;
                     break;
             }
-            return System.Array.Find(equipments, _ => _.id == id);
+            MEquipment equipment = System.Array.Find(equipments, _ => _.id == id);
+            return equipment;
         }
     }
 }

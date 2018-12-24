@@ -54,5 +54,29 @@ namespace App.Service
             //App.Util.LSharp.LSharpScript.Instance.UpdateBattleList();
         }
 
+        public IEnumerator RequestProgress(string key, int value, System.Action callback = null)
+        {
+            Debug.LogError("SUser RequestProgress," + this.self.id + "," + key + "," + value);
+            var url = "user/progress";
+            WWWForm form = new WWWForm();
+            form.AddField("user_id", this.self.id);
+            form.AddField("k", key);
+            form.AddField("v", value);
+            HttpClient client = new HttpClient();
+            yield return App.Util.AppManager.CurrentScene.StartCoroutine(client.Send(url, form));
+            App.Util.LSharp.LSharpVarlable.SetVarlable(key, value.ToString());
+            if (this.self.progress.ContainsKey(key))
+            {
+                this.self.progress[key] = value;
+            }
+            else
+            {
+                this.self.progress.Add(key, value);
+            }
+            if (callback != null)
+            {
+                callback();
+            }
+        }
     }
 }

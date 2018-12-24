@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 2878519226
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2b24d33c80843b0afba1ede2a274c8b7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4cff81a1f579ce72953f49e225403861
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 1f1a001bd99b34db0b43a552bc3a7c10, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/battlefieldasset.asset
+Dependencies: []

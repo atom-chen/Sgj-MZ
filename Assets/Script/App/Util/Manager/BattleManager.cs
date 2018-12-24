@@ -7,6 +7,7 @@ using App.Model;
 using App.Model.Character;
 using App.Util.Cacher;
 using App.Util.Event;
+using App.Util.LSharp;
 using App.Util.Search;
 using App.View.Avatar;
 using App.View.Map;
@@ -407,7 +408,7 @@ namespace App.Util.Manager
                 List<string> script = new List<string>();
                 script.Add("Call.battle_win();");
                 script.Add("Battle.win();");
-                //LSharpScript.Instance.Analysis(script);
+                LSharpScript.Instance.Analysis(script);
                 yield break;
             }
             else if (!charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.self))

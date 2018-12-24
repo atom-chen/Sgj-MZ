@@ -45,7 +45,7 @@ namespace App.View.Avatar
                 mFace.id = characterId;
                 FaceCacher.Instance.Set(mFace);
                 icon.color = new Color32(255, 255, 255, 255);
-            }));
+            }, true, false));
         }
 
 

@@ -18,7 +18,9 @@ namespace App.Controller.Home
         }
         public void BattleStart()
         {
-            AppManager.LoadScene("Battle", null);
+            Request req = new Request();
+            req.Set("battleId", 1);
+            AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.ReadyBattleDialog, req));
         }
     }
 }

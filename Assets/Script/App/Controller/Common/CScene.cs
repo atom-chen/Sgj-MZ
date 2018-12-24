@@ -26,7 +26,7 @@ namespace App.Controller.Common
         public override IEnumerator OnLoad(Request request)
         {
             Debug.Log("CScene OnLoad");
-            yield return StartCoroutine(Global.AppManager.LoadPanel(defaultPanel));
+            yield return StartCoroutine(Global.AppManager.LoadPanel(defaultPanel, AppManager.CurrentSceneRequest));
         }
         public Transform GetChildParent(string name){
             Transform trans = transform.Find(name);

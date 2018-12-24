@@ -10,13 +10,12 @@ namespace App.Util.Cacher
     {
         public MCharacter GetFromNpc(int npcId)
         {
-            App.Model.Master.MNpc npc = Get(npcId);
+            Model.Master.MNpc npc = Get(npcId);
             return GetFromNpc(npc);
         }
         public MCharacter GetFromBattleNpc(App.Model.Master.MBattleNpc mBattleNpc)
         {
-            Debug.LogError("mBattleNpc.npc_id =" + mBattleNpc.npcId);
-            App.Model.Master.MNpc npc = Get(mBattleNpc.npcId);
+            Model.Master.MNpc npc = Get(mBattleNpc.npcId);
             MCharacter mCharacter = GetFromNpc(npc);
             if (mBattleNpc.horse > 0)
             {
@@ -34,14 +33,13 @@ namespace App.Util.Cacher
             {
                 mCharacter.star = mBattleNpc.star;
             }
-            //TODO::
-            //mCharacter.skills = App.Service.HttpClient.Deserialize<App.Model.Character.MSkill[]>(mBattleNpc.skills);
-            //mCharacter.CoordinateX = mBattleNpc.x;
-            //mCharacter.CoordinateY = mBattleNpc.y;
+            mCharacter.skills = Service.HttpClient.Deserialize<App.Model.Character.MSkill[]>(mBattleNpc.skills);
+            mCharacter.coordinate.x = mBattleNpc.x;
+            mCharacter.coordinate.y = mBattleNpc.y;
 
             return mCharacter;
         }
-        public MCharacter GetFromNpc(App.Model.Master.MNpc npc)
+        public MCharacter GetFromNpc(Model.Master.MNpc npc)
         {
             return MCharacter.Create(npc);
         }

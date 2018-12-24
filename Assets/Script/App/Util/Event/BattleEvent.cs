@@ -49,13 +49,21 @@ namespace App.Util.Event
             }
         }
 
-        public delegate void OperatingMenuEvent(bool value);
-        public event OperatingMenuEvent OperatingMenuHandler;
+        public delegate void BoolEvent(bool value);
+        public event BoolEvent OperatingMenuHandler;
         public void DispatchEventOperatingMenu(bool value)
         {
             if (OperatingMenuHandler != null)
             {
                 OperatingMenuHandler(value);
+            }
+        }
+        public event BoolEvent BattleOverHandler;
+        public void DispatchBattleOver(bool value)
+        {
+            if (BattleOverHandler != null)
+            {
+                BattleOverHandler(value);
             }
         }
 

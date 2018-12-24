@@ -56,6 +56,11 @@ namespace App.Util
                 CharacterCacher.Instance.Reset(CharacterAsset.Data.characters);
                 CharacterAsset.Clear();
             }));
+            list.Add(sUser.Download(BattlefieldAsset.Url, versions.battlefield, (AssetBundle assetbundle) => {
+                BattlefieldAsset.assetbundle = assetbundle;
+                BattlefieldCacher.Instance.Reset(BattlefieldAsset.Data.battlefields);
+                BattlefieldAsset.Clear();
+            }));
             list.Add(sUser.Download(SkillAsset.Url, versions.skill, (AssetBundle assetbundle) => {
                 SkillAsset.assetbundle = assetbundle;
                 SkillCacher.Instance.Reset(SkillAsset.Data.skills);

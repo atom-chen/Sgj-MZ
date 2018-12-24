@@ -142,11 +142,11 @@ namespace MyEditor
             BuildAssetBundleMasterClothes();
             BuildAssetBundleMasterWeapon();
             BuildAssetBundleMasterNpcEquipment();
-            BuildAssetBundleMasterBattlefield();
             BuildAssetBundleMasterStrategy();
             BuildAssetBundleCharacterStar();
             BuildAssetBundleStoryProgress();
             BuildAssetBundleWord();*/
+            BuildAssetBundleMasterBattlefield();
             BuildAssetBundleCharacter();
             BuildAssetBundleMasterNpc();
         }
@@ -256,11 +256,6 @@ namespace MyEditor
         {
             BuildAssetBundleMaster(App.Model.Scriptable.NpcEquipmentAsset.Name);
         }
-        [MenuItem("CH/Build Assetbundle/Master/Battlefield")]
-        static private void BuildAssetBundleMasterBattlefield()
-        {
-            BuildAssetBundleMaster(App.Model.Scriptable.BattlefieldAsset.Name);
-        }
         [MenuItem("CH/Build Assetbundle/Master/Strategy")]
         static private void BuildAssetBundleMasterStrategy()
         {
@@ -276,6 +271,11 @@ namespace MyEditor
         {
             BuildAssetBundleMaster("wordasset");
         }*/
+        [MenuItem("CH/Build Assetbundle/Master/Battlefield")]
+        static private void BuildAssetBundleMasterBattlefield()
+        {
+            BuildAssetBundleMaster(App.Model.Scriptable.BattlefieldAsset.Name);
+        }
         [MenuItem("CH/Build Assetbundle/Master/Character")]
         static private void BuildAssetBundleCharacter()
         {

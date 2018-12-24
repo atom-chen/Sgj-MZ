@@ -141,15 +141,17 @@ namespace App.View.Map
                     vTile.SetData(mTiles[j]);
                 }
             }
-            mapHeight = Global.tileUnits.Count;
-            mapWidth = Global.tileUnits[0].Count;
+            mapHeight = tiles.Count;
+            mapWidth = tiles[0].Count;
             vTile = Global.tileUnits[0][0];
             minPosition = new Vector2(vTile.transform.localPosition.x, vTile.transform.localPosition.y - 3f);
             vTile = Global.tileUnits[tiles.Count - 1][Global.tileUnits[0].Count - 1];
-            maxPosition = new Vector2(vTile.transform.localPosition.x, vTile.transform.localPosition.y - 3f);
+            maxPosition = new Vector2(vTile.transform.localPosition.x * 2, vTile.transform.localPosition.y * 2 - 3f);
             BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
             boxCollider.size = new Vector3(Global.tileUnits[0].Count * 0.64f, tiles.Count * 0.64f, 1);
             boxCollider.center = new Vector3(boxCollider.size.x * 0.5f, -boxCollider.size.y * 0.5f, 0f);
+            //Debug.LogError("minPosition=" + minPosition.x + "," + minPosition.y);
+            //Debug.LogError("maxPosition=" + maxPosition.x + "," + maxPosition.y);
         }
         public override void UpdateView()
         {
@@ -161,6 +163,18 @@ namespace App.View.Map
             SetCharacters();
             Global.battleEvent.MovingTilesHandler += ShowMovingTiles;
             Global.battleEvent.AttackTilesHandler += ShowAttackTiles;
+            MoveToPosition();
+        }
+        public void MoveToPosition(int x = int.MinValue, int y = 0)
+        {
+            if (x == int.MinValue)
+            {
+                x = Mathf.FloorToInt(mapWidth / 2f);
+                y = Mathf.FloorToInt(mapHeight / 2f);
+            }
+            VTile obj = Global.tileUnits[y][x];
+            //Debug.LogError("x=" + x + ", y=" + y + ", position="+ obj.transform.localPosition.x+","+obj.transform.localPosition.y);
+            Camera3dToPosition(obj.transform.localPosition.x * 2, obj.transform.localPosition.y * 2);
         }
         private void ShowMovingTiles(List<VTile> tiles, App.Model.Belong belong)
         {
@@ -206,11 +220,11 @@ namespace App.View.Map
                 float ty = camera3d.transform.localPosition.y;
                 if (Math.Abs(mx) > 0)
                 {
-                    tx -= mx * 0.05f;
+                    tx -= mx * 0.1f;
                 }
                 if (Math.Abs(my) > 0)
                 {
-                    ty -= my * 0.05f;
+                    ty -= my * 0.1f;
                 }
                 float x = tx;
                 float y = ty;
@@ -235,6 +249,7 @@ namespace App.View.Map
                     new Vector3(x, y, camera3d.transform.localPosition.z)));
             }
             mousePosition.x = int.MinValue;
+            //Debug.LogError("camera3d Position="+ camera3d.transform.localPosition.x+","+ camera3d.transform.localPosition.y);
         }
         void OnMouseDrag()
         {
@@ -242,8 +257,8 @@ namespace App.View.Map
             {
                 return;
             }
-            float x = camera3dPosition.x + (mousePosition.x - Input.mousePosition.x) * 0.005f;
-            float y = camera3dPosition.y + (mousePosition.y - Input.mousePosition.y) * 0.005f;
+            float x = camera3dPosition.x + (mousePosition.x - Input.mousePosition.x) * 0.03f;
+            float y = camera3dPosition.y + (mousePosition.y - Input.mousePosition.y) * 0.03f;
             if (x < minPosition.x)
             {
                 x = minPosition.x;
@@ -264,6 +279,9 @@ namespace App.View.Map
             dragPosition.x = Input.mousePosition.x;
             dragPosition.y = Input.mousePosition.y;
         }
-
+        public void Camera3dToPosition(float x, float y)
+        {
+            HOTween.To(camera3d.transform, 0.3f, new TweenParms().Prop("localPosition", new Vector3(x, y, camera3d.transform.localPosition.z)));
+        }
     }
 }

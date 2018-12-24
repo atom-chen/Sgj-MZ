@@ -19,9 +19,9 @@ namespace App.Util.Cacher
             }
             fileCharacter = new Model.File.MCharacter();
             fileCharacter.characterId = characterId;
-            fileCharacter.weapon = 1;
-            fileCharacter.horse = 1;
-            fileCharacter.clothes = 1;
+            //fileCharacter.weapon = 1;
+            //fileCharacter.horse = 1;
+            //fileCharacter.clothes = 1;
             fileCharacter.level = 1;
             return fileCharacter;
         }

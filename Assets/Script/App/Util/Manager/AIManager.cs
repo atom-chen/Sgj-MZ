@@ -299,6 +299,14 @@ namespace App.Util.Manager
                 VTile startTile = mapSearch.GetTile(mCharacter.coordinate);
                 VTile endTile = mapSearch.GetTile(character.coordinate);
                 List<VTile> tiles = Global.battleManager.aStar.Search(mCharacter, startTile, endTile);
+                if(tiles.Count == 0) {
+                    tiles = Global.battleManager.aStar.Search(mCharacter, startTile, endTile, charactersManager.mCharacters);
+                    if (tiles.Count == 0)
+                    {
+                        Debug.LogError("MoveToNearestTarget search null");
+                        yield return new WaitForEndOfFrame();
+                    }
+                }
                 if (tileList == null || tileList.Count > tiles.Count)
                 {
                     tileList = tiles;

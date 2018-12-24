@@ -23,7 +23,10 @@ namespace App.Util
         AlertDialog,
         RegisterDialog,
         CharacterDetailDialog,
-        BoutWaveDialog
+        BoutWaveDialog,
+        ReadyBattleDialog,
+        MessageDialog,
+        BattleResultDialog
     }
 
     public class AppManager
