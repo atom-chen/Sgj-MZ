@@ -15,6 +15,7 @@ namespace App.Util
         GroupPanel,
         EventPanel,
         BattlePanel,
+        ScenarioPanel,
     }
     public enum Dialog
     {

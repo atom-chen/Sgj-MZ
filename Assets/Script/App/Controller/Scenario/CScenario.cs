@@ -1,8 +1,8 @@
 ﻿
 using App.Controller.Common;
-namespace App.Controller.Battle
+namespace App.Controller.Scenario
 {
-    public class CBattle : CScene
+    public class CScenario : CScene
     {
         /*
         public void ChangePanel(string panelName)
@@ -10,6 +10,6 @@ namespace App.Controller.Battle
             Debug.Log("ChangePanel:" + panelName);
             Panel panel = (Panel)System.Enum.Parse(typeof(Panel), panelName, true);
             StartCoroutine(Global.AppManager.LoadPanel(panel));
-        } */
+        }*/
     }
 }
