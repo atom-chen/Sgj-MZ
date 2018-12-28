@@ -41,6 +41,19 @@ namespace App.Controller.Common
             {
                 yield return StartCoroutine(LoadBackground());
             }
+            canvas = this.GetComponent<Canvas>();
+            if (canvas == null)
+            {
+                yield break;
+            }
+            if (staticSortingOrder == 0)
+            {
+                canvas.sortingOrder = ++Util.Global.dialogSortOrder;
+            }
+            else
+            {
+                canvas.sortingOrder = staticSortingOrder;
+            }
             if (background != null)
             {
                 HOTween.To(background, 0.1f, new TweenParms().Prop("color", new Color(0, 0, 0, 0.6f)));
@@ -85,19 +98,6 @@ namespace App.Controller.Common
             {
                 background.transform.SetAsFirstSibling();
                 background.color = new Color(0, 0, 0, 0);
-            }
-            canvas = this.GetComponent<Canvas>();
-            if (canvas == null)
-            {
-                yield break;
-            }
-            if (staticSortingOrder == 0)
-            {
-                canvas.sortingOrder = ++Util.Global.dialogSortOrder;
-            }
-            else
-            {
-                canvas.sortingOrder = staticSortingOrder;
             }
             yield return LoadAnimation();
             if (onLoadCompleteEvent != null)

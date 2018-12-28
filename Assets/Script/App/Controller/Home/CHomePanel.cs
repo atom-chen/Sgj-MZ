@@ -22,5 +22,10 @@ namespace App.Controller.Home
             req.Set("battleId", 1);
             AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.ReadyBattleDialog, req));
         }
+        public void ShowMap()
+        {
+            Request req = new Request();
+            AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.MapDialog, req));
+        }
     }
 }

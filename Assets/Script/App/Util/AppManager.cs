@@ -27,7 +27,8 @@ namespace App.Util
         BoutWaveDialog,
         ReadyBattleDialog,
         MessageDialog,
-        BattleResultDialog
+        BattleResultDialog,
+        MapDialog
     }
 
     public class AppManager
