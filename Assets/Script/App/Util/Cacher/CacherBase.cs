@@ -19,7 +19,7 @@ namespace App.Util.Cacher
         }
         protected TValue[] datas;
         protected Dictionary<int, TValue> dictionary = new Dictionary<int, TValue>();
-        public void Reset(TValue[] datas)
+        public virtual void Reset(TValue[] datas)
         {
             this.datas = datas;
             this.dictionary.Clear();

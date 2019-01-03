@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using App.Util;
@@ -9,7 +10,6 @@ using App.Util.Cacher;
 using App.View.Map;
 using App.Model.Master;
 using App.Controller.Common;
-#if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
 
@@ -146,12 +146,22 @@ namespace MyEditor
             }
         }
 
+        [MenuItem("CH/Build Assetbundle/ScenarioMaps")]
+        static private void BuildAssetBundleScenarioMaps()
+        {
+            BuildAssetBundle("scenario");
+        }
+
         [MenuItem("CH/Build Assetbundle/Maps")]
-        static private void BuildAssetBundleMap()
+        static private void BuildAssetBundleMaps()
+        {
+            BuildAssetBundle("maps");
+        }
+        static private void BuildAssetBundle(string child)
         {
             //ScriptableObject asset = null;
             //string assetPath;
-            DirectoryInfo rootDirInfo = new DirectoryInfo(Application.dataPath + "/Editor Default Resources/Prefabs/maps");
+            DirectoryInfo rootDirInfo = new DirectoryInfo(Application.dataPath + "/Editor Default Resources/Prefabs/" + child);
             FileInfo[] files = rootDirInfo.GetFiles();
             foreach (FileInfo file in files)
             {
@@ -162,23 +172,23 @@ namespace MyEditor
                 string name = file.Name;
                 //assetPath = string.Format("Prefabs/maps/{0}", name);
                 //asset = EditorGUIUtility.Load(assetPath) as ScriptableObject;
-                BuildAssetBundleChilds(name.Replace(".prefab", ""), "maps");
+                BuildAssetBundleChilds(name.Replace(".prefab", ""), child);
             }
         }
         static public void BuildAssetBundleChilds(string name, string child)
         {
-            string path = "Assets/Editor Default Resources/assetbundle/" + target + "/" + child + "/";
+            string path = "Assets/Editor Default Resources/assetbundle/" + target + "/maps/";
             string assetPath = string.Format("Assets/Editor Default Resources/Prefabs/{0}/{1}.prefab", child, name);
             AssetBundleBuild[] builds = new AssetBundleBuild[1];
             //builds[0].assetBundleName = string.Format("{0}_{1}.unity3d", child, name);
             builds[0].assetBundleName = child + "_" + name + ".unity3d";
-            string[] enemyAssets = new string[2];
+            string[] enemyAssets = new string[child == "maps" ? 2 : 1];
             enemyAssets[0] = assetPath;
-            //enemyAssets[0] = string.Format("Assets/Editor Default Resources/Prefabs/{0}/{1}.prefab", child, name);
-            enemyAssets[1] = string.Format("Assets/Editor Default Resources/ScriptableObject/{0}/{1}.asset", child, name);
+            if(child == "maps")
+            {
+                enemyAssets[1] = string.Format("Assets/Editor Default Resources/ScriptableObject/{0}/{1}.asset", child, name);
+            }
             builds[0].assetNames = enemyAssets;
-            Debug.LogError(enemyAssets[0]);
-            Debug.LogError(enemyAssets[1]);
             BuildPipeline.BuildAssetBundles(path, builds,
                 BuildAssetBundleOptions.ChunkBasedCompression
                 , GetBuildTarget()

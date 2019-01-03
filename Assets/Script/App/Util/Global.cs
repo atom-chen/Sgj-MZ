@@ -21,9 +21,11 @@ namespace App.Util
         public static VMap vMap { get; set; }
         public static List<List<VTile>> tileUnits = new List<List<VTile>>();
         public static BattleEvent battleEvent { get; set; }
+        public static SharpEvent sharpEvent { get; set; }
         public static void Initialize()
         {
             battleEvent = new BattleEvent();
+            sharpEvent = new SharpEvent();
             battleManager = new Manager.BattleManager();
             AppManager = new AppManager();
             SUser = new SUser();
@@ -44,6 +46,18 @@ namespace App.Util
                     _characterPrefab = (GameObject)Resources.Load("Character/Character");
                 }
                 return _characterPrefab;
+            }
+        }
+        private static Material _materialGray;
+        public static Material materialGray
+        {
+            get
+            {
+                if (_materialGray == null)
+                {
+                    _materialGray = Resources.Load("Material/GrayMaterial") as Material; ;
+                }
+                return _materialGray;
             }
         }
         private static GameObject _tilePrefab;

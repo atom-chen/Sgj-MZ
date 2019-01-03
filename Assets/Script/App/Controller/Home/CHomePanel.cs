@@ -22,6 +22,13 @@ namespace App.Controller.Home
             req.Set("battleId", 1);
             AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.ReadyBattleDialog, req));
         }
+        public void ScenarioStart()
+        {
+            Debug.LogError("ScenarioStart");
+            Request req = new Request();
+            req.Set("scenarioId", 1);
+            AppManager.LoadScene("Scenario", req);
+        }
         public void ShowMap()
         {
             Request req = new Request();

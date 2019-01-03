@@ -31,7 +31,7 @@ namespace App.View.Common
             //TODO:: this.UpdateView();
         }
 
-        public void InitContoller()
+        public virtual void InitContoller()
         {
             if (!registered)
             {

@@ -181,7 +181,7 @@ namespace App.View.Avatar
             }
             if (materialGray == null)
             {
-                materialGray = Resources.Load("Material/GrayMaterial") as Material;
+                materialGray = Global.materialGray;
                 materialDefault = head.sharedMaterial;
             }
             num.GetComponent<MeshRenderer>().sortingOrder = clothesDownLong.sortingOrder + 10;

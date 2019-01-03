@@ -27,7 +27,6 @@ namespace App.Controller.Battle
             selectedCharacters.ForEach(chara => {
                 characterIds.Add(chara.characterId, true);
             }); 
-            LSharpInit();
             yield return this.StartCoroutine(base.OnLoad(request));
             Service.SUser sUser = Util.Global.SUser;
             string url = Service.HttpClient.assetBandleURL + "maps/maps_001.unity3d";
@@ -36,6 +35,7 @@ namespace App.Controller.Battle
             InitCharacters(characterIds, battlefieldMaster);
             AddEvents();
             this.dispatcher.Notify();
+            LSharpInit();
         }
         private void LSharpInit()
         {

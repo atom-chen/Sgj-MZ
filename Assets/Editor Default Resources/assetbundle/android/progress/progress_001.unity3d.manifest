@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 993959722
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 84a8325eb90884532b68d721e1f58f67
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 852c5b42a10335793ac6a094b82db217
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 391e1babcd93943be92de1e476bb306c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b36e83ff8d1fe42ca98add9c3e8a5245, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: af0e2e4a2595846d3959b9a2d6533aea, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/Prefabs/progress/001.prefab
+Dependencies: []

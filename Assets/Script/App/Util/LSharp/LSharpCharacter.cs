@@ -1,14 +1,26 @@
 ﻿
 using System;
+using App.Controller.Common;
 
 namespace App.Util.LSharp
 {
     public class LSharpCharacter : LSharpBase<LSharpCharacter>
     {
-        /*
         public void Add(string[] arguments)
         {
+            UnityEngine.Debug.LogError("LSharpCharacter Add");
             int npcId = int.Parse(arguments[0]);
+            string action = arguments[1];
+            string directionStr = arguments[2];
+            int x = int.Parse(arguments[3]);
+            int y = int.Parse(arguments[4]);
+            //CSharpPanel cSharpPanel = AppManager.CurrentPanel as CSharpPanel;
+            Model.ActionType actionType = (Model.ActionType)Enum.Parse(typeof(Model.ActionType), action);
+            Model.Direction direction = (Model.Direction)Enum.Parse(typeof(Model.Direction), directionStr, true);
+            Global.sharpEvent.DispatchAddCharacter(npcId, actionType, direction, x, y);
+            //cSharpPanel.AddCharacter(npcId, actionType, direction, x, y);
+            LSharpScript.Instance.Analysis();
+            /*int npcId = int.Parse(arguments[0]);
             string action = arguments[1];
             if (action == "stand")
             {
@@ -26,8 +38,9 @@ namespace App.Util.LSharp
             App.Model.ActionType actionType = (App.Model.ActionType)Enum.Parse(typeof(App.Model.ActionType), action);
             App.Model.Direction direction = (App.Model.Direction)System.Enum.Parse(typeof(App.Model.Direction), directionStr, true);
             cBaseMap.AddCharacter(npcId, actionType, direction, x, y);
-            LSharpScript.Instance.Analysis();
+            LSharpScript.Instance.Analysis();*/
         }
+        /*
         public void Hide(string[] arguments)
         {
             int npcId = int.Parse(arguments[0]);

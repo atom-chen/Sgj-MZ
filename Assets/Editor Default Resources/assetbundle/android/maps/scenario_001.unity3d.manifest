@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 1584501589
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 936fa5a5025ef1fc10c30353f048c547
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 32606cd886769877a38cc6b80b85f9f8
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4efb884715dd4d31a9acf03116e6a40, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 156049354
+  Script: {instanceID: 0}
+- Class: 483693784
+  Script: {instanceID: 0}
+- Class: 1839735485
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/Prefabs/scenario/001.prefab
+Dependencies: []

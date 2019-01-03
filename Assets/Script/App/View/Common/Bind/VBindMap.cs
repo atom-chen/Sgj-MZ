@@ -9,6 +9,7 @@ namespace App.View.Common.Bind
         public override void UpdateView()
         {
             object val = this.GetByPath(BindPath);
+            Debug.LogError("val="+ val);
             if (val == null)
             {
                 return;
