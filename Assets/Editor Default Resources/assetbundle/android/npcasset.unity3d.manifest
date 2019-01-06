@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3263467118
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4c0bd953b7700bbbde5496e20e4c6ff0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 88b29accd58ec158e589cc61ff6a37b2
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 1e494fc8d8fa44ca6b3750d4a3b0fb28, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Editor Default Resources/ScriptableObject/npcasset.asset
+Dependencies: []

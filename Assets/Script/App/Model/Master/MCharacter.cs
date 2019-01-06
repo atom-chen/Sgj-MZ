@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using App.Model.Common;
+using JsonFx;
 using UnityEngine;
 namespace App.Model.Master
 {
@@ -12,6 +13,8 @@ namespace App.Model.Master
         }
         public string name;
         public string nickname;
+        [JsonName(Name = "static_avatar")]
+        public int staticAvatar;//
         public int head;//
         public int hat;//
         public int weapon;//默认兵器

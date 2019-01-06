@@ -64,7 +64,7 @@ namespace App.Controller{
                     //apis.Add("shop", CreateScriptableObjectMasterShopRun());
                     //apis.Add("gacha", CreateScriptableObjectMasterGachaRun());
                     //apis.Add("word", CreateScriptableObjectMasterWordRun());
-                    //apis.Add("npc", CreateScriptableObjectMasterNpcRun());
+                    apis.Add("npc", CreateScriptableObjectMasterNpcRun());
                     //apis.Add("npc_equip", CreateScriptableObjectMasterNpcEquipmentRun());
                     //apis.Add("star", CreateScriptableObjectMasterStarRun());
                     //apis.Add("loginbonus", CreateScriptableObjectMasterLoginBonusRun());

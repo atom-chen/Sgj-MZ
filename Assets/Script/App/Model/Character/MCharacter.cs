@@ -163,6 +163,12 @@ namespace App.Model.Character
                 return master.name;
             }
         }
+        public int staticAvatar
+        {
+            get {
+                return master.staticAvatar;
+            }
+        }
         public int movingPower{
             get{
                 return ability.movingPower;

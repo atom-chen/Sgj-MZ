@@ -14,31 +14,23 @@ namespace App.Util.LSharp
             string directionStr = arguments[2];
             int x = int.Parse(arguments[3]);
             int y = int.Parse(arguments[4]);
-            //CSharpPanel cSharpPanel = AppManager.CurrentPanel as CSharpPanel;
             Model.ActionType actionType = (Model.ActionType)Enum.Parse(typeof(Model.ActionType), action);
             Model.Direction direction = (Model.Direction)Enum.Parse(typeof(Model.Direction), directionStr, true);
             Global.sharpEvent.DispatchAddCharacter(npcId, actionType, direction, x, y);
-            //cSharpPanel.AddCharacter(npcId, actionType, direction, x, y);
             LSharpScript.Instance.Analysis();
-            /*int npcId = int.Parse(arguments[0]);
-            string action = arguments[1];
-            if (action == "stand")
-            {
-                action = "idle";
-            }
-            string directionStr = arguments[2];
-            int x = int.Parse(arguments[3]);
-            int y = int.Parse(arguments[4]);
-            CBaseMap cBaseMap = App.Util.SceneManager.CurrentScene as CBaseMap;
-            if (cBaseMap == null)
-            {
-                LSharpScript.Instance.Analysis();
-                return;
-            }
-            App.Model.ActionType actionType = (App.Model.ActionType)Enum.Parse(typeof(App.Model.ActionType), action);
-            App.Model.Direction direction = (App.Model.Direction)System.Enum.Parse(typeof(App.Model.Direction), directionStr, true);
-            cBaseMap.AddCharacter(npcId, actionType, direction, x, y);
-            LSharpScript.Instance.Analysis();*/
+        }
+        public void Setaction(string[] arguments)
+        {
+            int npcId = int.Parse(arguments[0]);
+            App.Model.ActionType actionType = (App.Model.ActionType)Enum.Parse(typeof(App.Model.ActionType), arguments[1]);
+            Global.sharpEvent.DispatchSetNpcAction(npcId, actionType);
+        }
+        public void Move(string[] arguments)
+        {
+            int npcId = int.Parse(arguments[0]);
+            int x = int.Parse(arguments[1]);
+            int y = int.Parse(arguments[2]);
+            Global.sharpEvent.DispatchMoveNpc(npcId, x, y);
         }
         /*
         public void Hide(string[] arguments)
@@ -64,19 +56,6 @@ namespace App.Util.LSharp
             }
             cBaseMap.HideNpc(npcId, false);
             LSharpScript.Instance.Analysis();
-        }
-        public void Move(string[] arguments)
-        {
-            int npcId = int.Parse(arguments[0]);
-            int x = int.Parse(arguments[1]);
-            int y = int.Parse(arguments[2]);
-            CBaseMap cBaseMap = App.Util.SceneManager.CurrentScene as CBaseMap;
-            if (cBaseMap == null)
-            {
-                LSharpScript.Instance.Analysis();
-                return;
-            }
-            cBaseMap.MoveNpc(npcId, x, y);
         }
         public void Moveself(string[] arguments)
         {
@@ -129,18 +108,6 @@ namespace App.Util.LSharp
             }
             cBaseMap.SetSelfDirection(index, direction);
             LSharpScript.Instance.Analysis();
-        }
-        public void Setaction(string[] arguments)
-        {
-            int npcId = int.Parse(arguments[0]);
-            App.Model.ActionType actionType = (App.Model.ActionType)Enum.Parse(typeof(App.Model.ActionType), arguments[1]);
-            CBaseMap cBaseMap = App.Util.SceneManager.CurrentScene as CBaseMap;
-            if (cBaseMap == null)
-            {
-                LSharpScript.Instance.Analysis();
-                return;
-            }
-            cBaseMap.SetNpcAction(npcId, actionType);
         }
         public void Setselfaction(string[] arguments)
         {

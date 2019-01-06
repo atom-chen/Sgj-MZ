@@ -45,7 +45,7 @@ namespace App.Util.Search
             {
                 return;
             }
-            List<Vector2Int> coordinates = Global.battleManager.mapSearch.GetNeighboringCoordinates(vTile.coordinate);
+            List<Vector2Int> coordinates = Global.mapSearch.GetNeighboringCoordinates(vTile.coordinate);
             foreach (Vector2Int vec in coordinates)
             {
                 VTile tile = Global.tileUnits[vec.y][vec.x];
@@ -72,20 +72,20 @@ namespace App.Util.Search
             }
             int mapHeight = Global.tileUnits.Count;
             int mapWidth = Global.tileUnits[0].Count;
-            foreach (MCharacter character in Global.battleManager.charactersManager.mCharacters)
+            foreach (MCharacter character in Global.charactersManager.mCharacters)
             {
-                if (character.hp == 0 || character.isHide || Global.battleManager.charactersManager.IsSameCharacter(mCharacter, character))
+                if (character.hp == 0 || character.isHide || Global.charactersManager.IsSameCharacter(mCharacter, character))
                 {
                     continue;
                 }
-                VTile tile = Global.battleManager.mapSearch.GetTile(character.coordinate);
-                if (Global.battleManager.charactersManager.IsSameBelong(mCharacter.belong, character.belong))
+                VTile tile = Global.mapSearch.GetTile(character.coordinate);
+                if (Global.charactersManager.IsSameBelong(mCharacter.belong, character.belong))
                 {
                     continue;
                 }
                 tile.isRoad = false;
 
-                List<Vector2Int> coordinates = Global.battleManager.mapSearch.GetNeighboringCoordinates(tile.coordinate);
+                List<Vector2Int> coordinates = Global.mapSearch.GetNeighboringCoordinates(tile.coordinate);
                 foreach (Vector2Int vec in coordinates)
                 {
                     VTile childTile = Global.tileUnits[vec.y][vec.x];

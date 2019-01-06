@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using App.Model.User;
 using App.Service;
 using App.Util.Event;
+using App.Util.Search;
 using App.View.Map;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ namespace App.Util
         public static int dialogSortOrder = 20;
         public static AppManager AppManager { get; private set; }
         public static Manager.BattleManager battleManager { get; set; }
+        public static Manager.BattleCharactersManager charactersManager { get; set; }
+        public static TileMap mapSearch { get; set; }
+        public static AStar aStar { get; set; }
         public static VMap vMap { get; set; }
         public static List<List<VTile>> tileUnits = new List<List<VTile>>();
         public static BattleEvent battleEvent { get; set; }
@@ -27,6 +31,9 @@ namespace App.Util
             battleEvent = new BattleEvent();
             sharpEvent = new SharpEvent();
             battleManager = new Manager.BattleManager();
+            charactersManager = new Manager.BattleCharactersManager();
+            mapSearch = new TileMap();
+            aStar = new AStar();
             AppManager = new AppManager();
             SUser = new SUser();
         }
@@ -46,6 +53,18 @@ namespace App.Util
                     _characterPrefab = (GameObject)Resources.Load("Character/Character");
                 }
                 return _characterPrefab;
+            }
+        }
+        private static GameObject _avatarPrefab;
+        public static GameObject avatarPrefab
+        {
+            get
+            {
+                if (_avatarPrefab == null)
+                {
+                    _avatarPrefab = (GameObject)Resources.Load("Character/Avatar");
+                }
+                return _avatarPrefab;
             }
         }
         private static Material _materialGray;

@@ -13,9 +13,9 @@ namespace App.Util.Manager
         /// <summary>
         /// 行动中武将
         /// </summary>
-        private List<VCharacter> dynamicCharacters = new List<VCharacter>();
+        private List<VCharacterBase> dynamicCharacters = new List<VCharacterBase>();
         public List<MCharacter> mCharacters = new List<MCharacter>();
-        public List<VCharacter> vCharacters = new List<VCharacter>();
+        public List<VCharacterBase> vCharacters = new List<VCharacterBase>();
         public BattleCharactersManager()
         {
 
@@ -34,7 +34,7 @@ namespace App.Util.Manager
         /// 行动中武将挂起
         /// </summary>
         /// <param name="vCharacter">V character.</param>
-        public void AddDynamicCharacter(VCharacter vCharacter)
+        public void AddDynamicCharacter(VCharacterBase vCharacter)
         {
             if (dynamicCharacters.Contains(vCharacter))
             {
@@ -55,7 +55,7 @@ namespace App.Util.Manager
         /// 行动中武将移除
         /// </summary>
         /// <param name="vCharacter">V character.</param>
-        public void RemoveDynamicCharacter(VCharacter vCharacter)
+        public void RemoveDynamicCharacter(VCharacterBase vCharacter)
         {
             dynamicCharacters.Remove(vCharacter);
             if (!HasDynamicCharacter())
@@ -75,7 +75,7 @@ namespace App.Util.Manager
 
         public void ActionRestore()
         {
-            foreach (VCharacter character in vCharacters)
+            foreach (VCharacterBase character in vCharacters)
             {
                 if (character.actionOver)
                 {
@@ -97,11 +97,11 @@ namespace App.Util.Manager
             }
             return belong2 == Belong.self || belong2 == Belong.friend;
         }
-        public VCharacter GetVCharacter(MCharacter mCharacter)
+        public VCharacterBase GetVCharacter(MCharacter mCharacter)
         {
             return vCharacters.Find(child=>child.mCharacter.id == mCharacter.id);
         }
-        public VCharacter GetCharacter(Vector2Int coordinate, List<VCharacter> characters)
+        public VCharacterBase GetCharacter(Vector2Int coordinate, List<VCharacterBase> characters)
         {
             return characters.Find(child => child.mCharacter.coordinate.Equals(coordinate));
         }
@@ -140,7 +140,7 @@ namespace App.Util.Manager
         {
             //MSkill targetSkill = distanceCharacter.CurrentSkill;
             App.Model.Master.MSkill targetSkillMaster = targetSkill.master;
-            int distance = Global.battleManager.mapSearch.GetDistance(coordinate, targetCoordinate);
+            int distance = Global.mapSearch.GetDistance(coordinate, targetCoordinate);
             if (distance >= targetSkillMaster.distance[0] && distance <= targetSkillMaster.distance[1])
             {
                 return true;
@@ -167,14 +167,14 @@ namespace App.Util.Manager
         /// <param name="vCharacter">攻击方</param>
         /// <param name="targetView">攻击目标</param>
         /// <param name="skill">Skill.</param>
-        public List<VCharacter> GetTargetCharacters(VCharacter vCharacter, VCharacter targetView, Model.Master.MSkill skill) {
-            Search.TileMap mapSearch = Global.battleManager.mapSearch;
-            List<VCharacter> result = new List<VCharacter>() { targetView };
+        public List<VCharacterBase> GetTargetCharacters(VCharacterBase vCharacter, VCharacterBase targetView, Model.Master.MSkill skill) {
+            Search.TileMap mapSearch = Global.mapSearch;
+            List<VCharacterBase> result = new List<VCharacterBase>() { targetView };
             if (skill.radiusType == RadiusType.point)
             {
                 return result;
             }
-            List<VCharacter> characters;
+            List<VCharacterBase> characters;
             if (Array.Exists(skill.types, s => s == SkillType.heal))
             {
                 characters = vCharacters.FindAll(c => c.hp > 0 
@@ -209,11 +209,11 @@ namespace App.Util.Manager
                 bool quantity_plus = skill.effect.special == SkillEffectSpecial.quantity_plus;
                 if (quantity_plus)
                 {
-                    List<VCharacter> resultPlus = new List<VCharacter>();
+                    List<VCharacterBase> resultPlus = new List<VCharacterBase>();
                     while (result.Count > 1 && resultPlus.Count < skill.effect.special_value)
                     {
                         int index = UnityEngine.Random.Range(1, result.Count - 1);
-                        VCharacter plusView = result[index];
+                        VCharacterBase plusView = result[index];
                         resultPlus.Add(plusView);
                         result.RemoveAt(index);
                     }
@@ -234,7 +234,7 @@ namespace App.Util.Manager
                 while (radius-- > 0)
                 {
                     tile = mapSearch.GetTile(targetTile, direction);
-                    VCharacter child = GetCharacter(tile.coordinate, characters);
+                    VCharacterBase child = GetCharacter(tile.coordinate, characters);
                     if (child == null)
                     {
                         break;

@@ -91,6 +91,7 @@ namespace App.Util.LSharp
         }
         public void Analysis(List<string> datas)
         {
+            UnityEngine.Debug.LogError("LSharpScript Analysis datas="+ datas.Count);
             if (dataList.Count > 0)
             {
                 SaveList();
@@ -115,6 +116,7 @@ namespace App.Util.LSharp
         }
         public override void Analysis()
         {
+            UnityEngine.Debug.LogError("LSharpScript Analysis");
             string lineValue = "";
             if (lineList == null)
             {

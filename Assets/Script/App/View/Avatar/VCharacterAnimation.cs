@@ -7,7 +7,7 @@ namespace App.View.Avatar
 {
     public class VCharacterAnimation : VBase
     {
-        [SerializeField] private VCharacter vCharacter;
+        [SerializeField] private VCharacterBase vCharacter;
         public void AttackToHert()
         {
             vCharacter.AttackToHert();

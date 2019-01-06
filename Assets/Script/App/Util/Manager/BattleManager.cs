@@ -21,16 +21,13 @@ namespace App.Util.Manager
         public Belong currentBelong { get; set; }
         public BattleMode battleMode { get; set; }
         public BattleTilesManager tilesManager { get; set; }
-        public BattleCharactersManager charactersManager { get; set; }
         public BattleCalculateManager calculateManager { get; set; }
         public AIManager aiManager { get; set; }
-        public TileMap mapSearch { get; set; }
-        public AStar aStar { get; set; }
         public BreadthFirst breadthFirst { get; set; }
         private MCharacter currentMCharacter;
-        private VCharacter currentVCharacter;
+        private VCharacterBase currentVCharacter;
         private System.Action returnAction;
-        private List<VCharacter> actionCharacterList = new List<VCharacter>();
+        private List<VCharacterBase> actionCharacterList = new List<VCharacterBase>();
         private Vector2Int _oldCoordinate = new Vector2Int();
         public Vector2Int oldCoordinate
         {
@@ -48,25 +45,22 @@ namespace App.Util.Manager
         public BattleManager()
         {
             tilesManager = new BattleTilesManager();
-            charactersManager = new BattleCharactersManager();
             calculateManager = new BattleCalculateManager();
-            mapSearch = new TileMap();
-            aStar = new AStar();
             aiManager = new AIManager();
             breadthFirst = new BreadthFirst();
         }
         public void Init()
         {
-            charactersManager.mCharacters.Clear();
-            charactersManager.vCharacters.Clear();
+            Global.charactersManager.mCharacters.Clear();
+            Global.charactersManager.vCharacters.Clear();
 
         }
         public void ClickNoneNode(Vector2Int coordinate)
         {
-            MCharacter mCharacter = charactersManager.GetCharacter(coordinate);
+            MCharacter mCharacter = Global.charactersManager.GetCharacter(coordinate);
             if (mCharacter != null)
             {
-                currentVCharacter = charactersManager.GetVCharacter(mCharacter);
+                currentVCharacter = Global.charactersManager.GetVCharacter(mCharacter);
                 this.currentMCharacter = mCharacter;
                 this.currentMCharacter.roadLength = 0;
                 tilesManager.ShowCharacterMovingArea(mCharacter);
@@ -98,10 +92,10 @@ namespace App.Util.Manager
                 CharacterReturnNone();
                 return;
             }
-            MCharacter mCharacter = this.charactersManager.GetCharacter(coordinate);
+            MCharacter mCharacter = Global.charactersManager.GetCharacter(coordinate);
             if (mCharacter != null)
             {
-                bool sameBelong = this.charactersManager.IsSameBelong(mCharacter.belong, this.currentMCharacter.belong);
+                bool sameBelong = Global.charactersManager.IsSameBelong(mCharacter.belong, this.currentMCharacter.belong);
                 bool useToEnemy = this.currentMCharacter.currentSkill.useToEnemy;
                 if (useToEnemy ^ sameBelong)
                 {
@@ -120,8 +114,8 @@ namespace App.Util.Manager
         }
         private void MoveStart(Vector2Int coordinate)
         {
-            VTile startTile = mapSearch.GetTile(this.currentMCharacter.coordinate);
-            VTile endTile = mapSearch.GetTile(coordinate);
+            VTile startTile = Global.mapSearch.GetTile(this.currentMCharacter.coordinate);
+            VTile endTile = Global.mapSearch.GetTile(coordinate);
             //cBattlefield.MapMoveToPosition(this.mCharacter.CoordinateX, this.mCharacter.CoordinateY);
             Holoville.HOTween.Core.TweenDelegate.TweenCallback moveComplete;
             if (battleMode == Model.BattleMode.move_after_attack)
@@ -150,7 +144,7 @@ namespace App.Util.Manager
                     Global.battleEvent.DispatchEventOperatingMenu(true);
                 };
             }
-            List<VTile> tiles = aStar.Search(currentMCharacter, startTile, endTile);
+            List<VTile> tiles = Global.aStar.Search(currentMCharacter, startTile, endTile);
             this.currentMCharacter.roadLength = tiles.Count;
             if (tiles.Count > 0)
             {
@@ -180,13 +174,13 @@ namespace App.Util.Manager
         }
         public void ClickSkillNode(Vector2Int coordinate)
         {
-            MCharacter mCharacter = this.charactersManager.GetCharacter(coordinate);
-            if (mCharacter == null || !this.charactersManager.IsInSkillDistance(mCharacter, currentMCharacter))
+            MCharacter mCharacter = Global.charactersManager.GetCharacter(coordinate);
+            if (mCharacter == null || !Global.charactersManager.IsInSkillDistance(mCharacter, currentMCharacter))
             {
                 CharacterReturnNone();
                 return;
             }
-            bool sameBelong = this.charactersManager.IsSameBelong(mCharacter.belong, currentMCharacter.belong);
+            bool sameBelong = Global.charactersManager.IsSameBelong(mCharacter.belong, currentMCharacter.belong);
             bool useToEnemy = currentMCharacter.currentSkill.useToEnemy;
             if (!(useToEnemy ^ sameBelong))
             {
@@ -196,12 +190,12 @@ namespace App.Util.Manager
             currentMCharacter.target = mCharacter;
             mCharacter.target = currentMCharacter;
 
-            VCharacter vCharacter = charactersManager.GetVCharacter(mCharacter);
+            VCharacterBase vCharacter = Global.charactersManager.GetVCharacter(mCharacter);
 
             if (useToEnemy)
             {
                 bool forceFirst = (mCharacter.currentSkill != null && mCharacter.currentSkill.master.effect.special == Model.SkillEffectSpecial.force_first);
-                if (forceFirst && this.charactersManager.IsInSkillDistance(currentMCharacter, mCharacter))
+                if (forceFirst && Global.charactersManager.IsInSkillDistance(currentMCharacter, mCharacter))
                 {
                     //先手攻击
                     SetActionCharacterList(vCharacter, currentVCharacter, true);
@@ -222,7 +216,7 @@ namespace App.Util.Manager
             Global.battleEvent.ActionEndHandler += OnActionComplete;
             OnActionComplete();
         }
-        private void SetActionCharacterList(VCharacter actionCharacter, VCharacter targetCharacter, bool canCounter)
+        private void SetActionCharacterList(VCharacterBase actionCharacter, VCharacterBase targetCharacter, bool canCounter)
         {
             int count = this.calculateManager.SkillCount(actionCharacter.mCharacter, targetCharacter.mCharacter);
             int countBack = count;
@@ -256,7 +250,7 @@ namespace App.Util.Manager
             Debug.LogError("OnActionComplete");
             if (actionCharacterList.Count > 0)
             {
-                VCharacter vCharacter = actionCharacterList[0];
+                VCharacterBase vCharacter = actionCharacterList[0];
                 actionCharacterList.RemoveAt(0);
                 bool isContinue = ActionStart(vCharacter);
                 if (isContinue)
@@ -272,7 +266,7 @@ namespace App.Util.Manager
         /// </summary>
         /// <returns><c>true</c>, if start was actioned, <c>false</c> otherwise.</returns>
         /// <param name="vCharacter">Current character.</param>
-        private bool ActionStart(VCharacter vCharacter){
+        private bool ActionStart(VCharacterBase vCharacter){
             Debug.LogError("ActionStart");
             if (vCharacter.mCharacter.hp > 0)
             {
@@ -285,7 +279,7 @@ namespace App.Util.Manager
                 return true;
             }
             actionCharacterList.Clear();
-            if (charactersManager.IsSameCharacter(vCharacter.mCharacter, currentMCharacter))
+            if (Global.charactersManager.IsSameCharacter(vCharacter.mCharacter, currentMCharacter))
             {
                 return true;
             }
@@ -293,23 +287,23 @@ namespace App.Util.Manager
             bool continueAttack = (currentMCharacter.currentSkill.master.effect.special == Model.SkillEffectSpecial.continue_attack);
             if (continueAttack)
             {
-                VTile vTile = mapSearch.GetTile(currentMCharacter.coordinate);
-                MCharacter mCharacter = charactersManager.mCharacters.Find((c) => {
+                VTile vTile = Global.mapSearch.GetTile(currentMCharacter.coordinate);
+                MCharacter mCharacter = Global.charactersManager.mCharacters.Find((c) => {
                     if (c.hp == 0)
                     {
                         return false;
                     }
-                    if (charactersManager.IsSameBelong(currentMCharacter.belong, c.belong))
+                    if (Global.charactersManager.IsSameBelong(currentMCharacter.belong, c.belong))
                     {
                         return false;
                     }
-                    bool canAttack = charactersManager.IsInSkillDistance(c.coordinate, vTile.coordinate, currentMCharacter);
+                    bool canAttack = Global.charactersManager.IsInSkillDistance(c.coordinate, vTile.coordinate, currentMCharacter);
                     return canAttack;
                 });
                 if (mCharacter != null)
                 {
                     Global.battleEvent.ActionEndHandler -= OnActionComplete;
-                    VTile tile = mapSearch.GetTile(mCharacter.coordinate);
+                    VTile tile = Global.mapSearch.GetTile(mCharacter.coordinate);
                     ClickSkillNode(tile.coordinate);
                     return true;
                 }
@@ -321,30 +315,30 @@ namespace App.Util.Manager
         /// </summary>
         /// <returns><c>true</c>, if start run was actioned, <c>false</c> otherwise.</returns>
         /// <param name="vCharacter">Current character.</param>
-        private void ActionStartRun(VCharacter vCharacter)
+        private void ActionStartRun(VCharacterBase vCharacter)
         {
             Debug.LogError("ActionStartRun");
             System.Action actionStartEvent = () =>
             {
                 //cBattlefield.MapMoveToPosition(currentCharacter.CoordinateX, currentCharacter.CoordinateY);
                 //vCharacter.direction = (vCharacter.mCharacter.coordinate.x > vCharacter.mCharacter.target.coordinate.x ? Direction.left : Direction.right);
-                vCharacter.direction = mapSearch.GetDirection(vCharacter.mCharacter.coordinate, vCharacter.mCharacter.target.coordinate);
+                vCharacter.direction = Global.mapSearch.GetDirection(vCharacter.mCharacter.coordinate, vCharacter.mCharacter.target.coordinate);
                 vCharacter.action = ActionType.attack;
                 App.Model.Master.MSkill skillMaster = vCharacter.mCharacter.currentSkill.master;
                 if (!string.IsNullOrEmpty(skillMaster.animation))
                 {
-                    VTile vTile = mapSearch.GetTile(vCharacter.mCharacter.target.coordinate);
+                    VTile vTile = Global.mapSearch.GetTile(vCharacter.mCharacter.target.coordinate);
                     //this.cBattlefield.CreateEffect(skillMaster.animation, vTile.transform);
                 }
             };
             if (vCharacter.mCharacter.currentSkill.master.effect.special == SkillEffectSpecial.back_thrust)
             {
                 //回马枪
-                VTile currentTile = mapSearch.GetTile(vCharacter.mCharacter.coordinate);
-                VTile targetTile = mapSearch.GetTile(vCharacter.mCharacter.target.coordinate);
-                Direction direction = mapSearch.GetDirection(targetTile, currentTile);
-                VTile backTile = mapSearch.GetTile(currentTile, direction);
-                if (charactersManager.GetCharacter(backTile.coordinate) != null)
+                VTile currentTile = Global.mapSearch.GetTile(vCharacter.mCharacter.coordinate);
+                VTile targetTile = Global.mapSearch.GetTile(vCharacter.mCharacter.target.coordinate);
+                Direction direction = Global.mapSearch.GetDirection(targetTile, currentTile);
+                VTile backTile = Global.mapSearch.GetTile(currentTile, direction);
+                if (Global.charactersManager.GetCharacter(backTile.coordinate) != null)
                 {
                     actionStartEvent();
                     return;
@@ -367,7 +361,7 @@ namespace App.Util.Manager
                     actionStartEvent();
                 };
                 tweenParms.OnComplete(moveComplete);
-                VCharacter vTarget = charactersManager.GetVCharacter(vCharacter.mCharacter.target);
+                VCharacterBase vTarget = Global.charactersManager.GetVCharacter(vCharacter.mCharacter.target);
                 sequence.Insert(0f, HOTween.To(vCharacter, 0.5f, tweenParms));
                 sequence.Insert(0f, HOTween.To(vTarget, 0.5f, tweenParmsTarget));
                 sequence.Play();
@@ -401,7 +395,7 @@ namespace App.Util.Manager
                 currentMCharacter.target = null;
 
             }
-            if (!charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.enemy))
+            if (!Global.charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.enemy))
             {
                 //敌军全灭
                 Debug.LogError("敌军全灭");
@@ -411,7 +405,7 @@ namespace App.Util.Manager
                 LSharpScript.Instance.Analysis(script);
                 yield break;
             }
-            else if (!charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.self))
+            else if (!Global.charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.self))
             {
                 //我军全灭
                 Debug.LogError("我军全灭");
@@ -457,12 +451,12 @@ namespace App.Util.Manager
                     //特效
                     if (strategy.effect_type == StrategyEffectType.aid)
                     {
-                        VTile vTile = mapSearch.GetTile(target.coordinate);
+                        VTile vTile = Global.mapSearch.GetTile(target.coordinate);
                         //cBattle.CreateEffect(strategy.effect, vTile.transform);
                     }
                     else if (strategy.effect_type ==StrategyEffectType.status)
                     {
-                        VTile vTile = mapSearch.GetTile(target.coordinate);
+                        VTile vTile = Global.mapSearch.GetTile(target.coordinate);
                         //cBattle.CreateEffect(strategy.effect, vTile.transform);
                     }
                 }
@@ -510,7 +504,7 @@ namespace App.Util.Manager
             Belong belong = currentMCharacter.belong;
             this.currentMCharacter = null;
             this.currentVCharacter = null;
-            if (!charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == belong && !c.actionOver))
+            if (!Global.charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == belong && !c.actionOver))
             {
                 ChangeBelong(belong);
             }
@@ -523,7 +517,7 @@ namespace App.Util.Manager
         {
             if (belong == Belong.self)
             {
-                if (charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.friend && !c.actionOver))
+                if (Global.charactersManager.mCharacters.Exists(c => c.hp > 0 && !c.isHide && c.belong == Belong.friend && !c.actionOver))
                 {
                     Global.battleEvent.DispatchEventBelongChange(Belong.friend);
                 }

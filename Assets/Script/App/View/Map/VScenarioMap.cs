@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using App.Model.Master;
 using App.Util;
@@ -65,10 +66,82 @@ namespace App.View.Map
         {
             Debug.LogError("VScenarioMap AddSharpEvents");
             Global.sharpEvent.AddCharacterHandler += AddCharacterHandler;
+            Global.sharpEvent.SetNpcActionHandler += SetNpcActionHandler;
+            Global.sharpEvent.MoveNpcHandler += MoveNpcHandler;
         }
         void RemoveSharpEvents()
         {
             Global.sharpEvent.AddCharacterHandler -= AddCharacterHandler;
+            Global.sharpEvent.SetNpcActionHandler -= SetNpcActionHandler;
+            Global.sharpEvent.MoveNpcHandler -= MoveNpcHandler;
+        }
+        void MoveNpcHandler(int npcId, int x, int y)
+        {
+            Debug.LogError("VScenarioMap MoveNpcHandler");
+            Avatar.VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara => chara.mCharacter.id == npcId);
+            MoveCharacter(vCharacter, x, y);
+        }
+        private void MoveCharacter(Avatar.VCharacterBase vCharacter, int x, int y)
+        {
+            //MapMoveToPosition(mCharacter.CoordinateX, mCharacter.CoordinateY);
+            Model.Character.MCharacter mCharacter = vCharacter.mCharacter;
+            VTile startTile = Global.mapSearch.GetTile(mCharacter.coordinate.x, mCharacter.coordinate.y);
+            VTile endTile = Global.mapSearch.GetTile(x, y);
+            List<VTile> tiles = Global.aStar.Search(mCharacter, startTile, endTile);
+
+            Holoville.HOTween.Core.TweenDelegate.TweenCallback moveComplete = () =>
+            {
+                mCharacter.coordinate.y = endTile.coordinate.y;
+                mCharacter.coordinate.x = endTile.coordinate.x;
+                vCharacter.action = Model.ActionType.idle;
+                //MapMoveToPosition(mCharacter.CoordinateX, mCharacter.CoordinateY);
+                App.Util.LSharp.LSharpScript.Instance.Analysis();
+            };
+            if (tiles.Count > 0)
+            {
+                vCharacter.action = Model.ActionType.move;
+                Sequence sequence = new Sequence();
+                foreach (VTile tile in tiles)
+                {
+                    TweenParms tweenParms = new TweenParms().Prop("X", tile.transform.localPosition.x, false)
+                    .Prop("Y", tile.transform.localPosition.y, false).Ease(EaseType.Linear);
+                    if (tile.coordinate.Equals(endTile.coordinate))
+                    {
+                        tweenParms.OnComplete(moveComplete);
+                    }
+                    else
+                    {
+                        tweenParms.OnComplete(() => {
+                            //MapMoveToPosition(tile.CoordinateX, tile.CoordinateY);
+                        });
+                    }
+                    sequence.Append(HOTween.To(mCharacter, 0.5f, tweenParms));
+                }
+                sequence.Play();
+            }
+            else
+            {
+                moveComplete();
+            }
+        }
+        void SetNpcActionHandler(int npcId, Model.ActionType actionType)
+        {
+            Debug.LogError("VScenarioMap SetNpcActionHandler");
+            Avatar.VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara=>chara.mCharacter.id == npcId);
+            StartCoroutine(SetAction(vCharacter, actionType));
+        }
+        public IEnumerator SetAction(Avatar.VCharacterBase vCharacter, Model.ActionType action)
+        {
+            //MapMoveToPosition(mCharacter.CoordinateX, mCharacter.CoordinateY);
+            vCharacter.action = action;
+            if (vCharacter.action != Model.ActionType.idle && vCharacter.action != Model.ActionType.move)
+            {
+                while (vCharacter.action == action)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+            Util.LSharp.LSharpScript.Instance.Analysis();
         }
         void AddCharacterHandler(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y)
         {
@@ -76,15 +149,16 @@ namespace App.View.Map
             Model.Character.MCharacter character = NpcCacher.Instance.GetFromNpc(npcId);
             character.StatusInit();
             character.action = actionType;
-            GameObject obj = Instantiate(Global.characterPrefab);
+            GameObject obj = character.staticAvatar == 0 ? Instantiate(Global.characterPrefab) : Instantiate(Global.avatarPrefab);
             obj.transform.SetParent(characterLayer);
             obj.transform.localScale = Vector3.one * 0.6f;
             //float x = character.coordinate.x * 0.64f + 0.32f + (character.coordinate.y % 2 == 0 ? 0 : 0.32f);
             obj.transform.localPosition = new Vector3(x * 0.32f, -4.4f, 0);
             obj.SetActive(true);
-            Avatar.VCharacter vCharacter = obj.GetComponent<Avatar.VCharacter>();
+            Avatar.VCharacterBase vCharacter = obj.GetComponent<Avatar.VCharacterBase>();
             vCharacter.UpdateView(character);
             vCharacter.direction = direction;
+            Global.charactersManager.vCharacters.Add(vCharacter);
         }
         void OnDestroy()
         {
@@ -113,8 +187,7 @@ namespace App.View.Map
         }
         void OnMouseDown()
         {
-            Debug.LogError("OnMouseDown");
-            if (Util.Global.AppManager.DialogIsShow() || !camera3DEnable)
+            if (Global.AppManager.DialogIsShow() || !camera3DEnable)
             {
                 mousePosition.x = int.MinValue;
                 return;
@@ -124,8 +197,7 @@ namespace App.View.Map
         }
         void OnMouseUp()
         {
-            Debug.LogError("OnMouseUp");
-            if (Util.Global.AppManager.DialogIsShow() || !camera3DEnable)
+            if (Global.AppManager.DialogIsShow() || !camera3DEnable)
             {
                 return;
             }
@@ -160,7 +232,6 @@ namespace App.View.Map
         }
         void OnMouseDrag()
         {
-            Debug.LogError("OnMouseDrag");
             if (Math.Abs(mousePosition.x - int.MinValue) < 0.0001f)
             {
                 return;

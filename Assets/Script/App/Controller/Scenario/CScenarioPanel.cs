@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using App.Controller.Common;
+using App.Util;
 using App.Util.LSharp;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ namespace App.Controller.Scenario
         }
         public void InitMap(AssetBundle assetbundle)
         {
+            Global.charactersManager.mCharacters.Clear();
+            Global.charactersManager.vCharacters.Clear();
+
             Object[] ts = assetbundle.LoadAllAssets<Object>();
             GameObject obj = ts[0] as GameObject;
             this.dispatcher.Set("tileMap", obj);
@@ -37,7 +41,7 @@ namespace App.Controller.Scenario
         private IEnumerator SharpInitRun()
         {
             yield return new WaitForEndOfFrame();
-            string str = "Character.add(8,idle,right,12,4,true);";
+            string str = "Character.add(21,idle,right,5,4,true);\rCharacter.add(8,idle,right,12,4,true);\rCharacter.move(8,7,4);\rCharacter.setaction(21,move);";
             List<string> script = str.Split('\r').ToList();
             LSharpScript.Instance.Analysis(script);
         }

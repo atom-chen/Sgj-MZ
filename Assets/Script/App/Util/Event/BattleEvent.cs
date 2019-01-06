@@ -90,15 +90,15 @@ namespace App.Util.Event
             }
         }
 
-        public void OnDamage(VCharacter vCharacter)
+        public void OnDamage(VCharacterBase vCharacter)
         {
             Manager.BattleCalculateManager calculateManager = Global.battleManager.calculateManager;
-            Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            Manager.BattleCharactersManager charactersManager = Global.charactersManager;
             MCharacter mCharacter = vCharacter.mCharacter;
             MCharacter targetModel = mCharacter.target;
-            VCharacter target = charactersManager.GetVCharacter(targetModel);
-            List<VCharacter> characters = charactersManager.GetTargetCharacters(vCharacter, target, mCharacter.currentSkill.master);
-            VTile tile = Global.battleManager.mapSearch.GetTile(mCharacter.coordinate);
+            VCharacterBase target = charactersManager.GetVCharacter(targetModel);
+            List<VCharacterBase> characters = charactersManager.GetTargetCharacters(vCharacter, target, mCharacter.currentSkill.master);
+            VTile tile = Global.mapSearch.GetTile(mCharacter.coordinate);
             foreach (VCharacter child in characters)
             {
                 MCharacter childModel = child.mCharacter;
@@ -139,10 +139,10 @@ namespace App.Util.Event
                 }
             }
         }
-        public System.Collections.IEnumerator OnBoutFixedDamage(MCharacter mCharacter, Model.Master.MSkill skill, List<VCharacter> characters)
+        public System.Collections.IEnumerator OnBoutFixedDamage(MCharacter mCharacter, Model.Master.MSkill skill, List<VCharacterBase> characters)
         {
-            TileMap mapSearch = Global.battleManager.mapSearch;
-            Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            TileMap mapSearch = Global.mapSearch;
+            Manager.BattleCharactersManager charactersManager = Global.charactersManager;
             VTile targetTile = mapSearch.GetTile(mCharacter.coordinate);
             foreach (VCharacter child in characters)
             {
@@ -167,7 +167,7 @@ namespace App.Util.Event
         public System.Collections.IEnumerator OnBoutStart()
         {
             UnityEngine.Debug.LogError("OnBoutStart");
-            Manager.BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            Manager.BattleCharactersManager charactersManager = Global.charactersManager;
             Belong currentBelong = Global.battleManager.currentBelong;
             while (true)
             {
@@ -181,7 +181,7 @@ namespace App.Util.Event
                 Model.Master.MSkill skill = mCharacter.boutFixedDamageSkill;
                 if (skill != null)
                 {
-                    List<VCharacter> characters = charactersManager.vCharacters.FindAll((c)=> {
+                    List<VCharacterBase> characters = charactersManager.vCharacters.FindAll((c)=> {
                         return c.hp > 0 && !c.isHide && !charactersManager.IsSameBelong(c.belong, currentBelong);
                     });
                     yield return OnBoutFixedDamage(mCharacter, skill, characters);

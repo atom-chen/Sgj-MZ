@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using App.Model;
 using App.Util;
-using App.Util.Cacher;
 using App.Util.Manager;
-using App.View.Common;
 using Holoville.HOTween;
 using UnityEngine;
 namespace App.View.Avatar
 {
-    public class VCharacter : VBase
+    public class VCharacter : VCharacterBase
     {
         [SerializeField] Anima2D.SpriteMeshInstance head;
         [SerializeField] Anima2D.SpriteMeshInstance hat;
@@ -34,15 +32,8 @@ namespace App.View.Avatar
         [SerializeField] Anima2D.SpriteMeshInstance horseSaddle;
         [SerializeField] Anima2D.SpriteMeshInstance legLeft;
         [SerializeField] Anima2D.SpriteMeshInstance legRight;
-        [SerializeField] Transform content;
-        [SerializeField] SpriteRenderer hpSprite;
-        [SerializeField] TextMesh num;
-        [SerializeField] UnityEngine.Rendering.SortingGroup sortingGroup;
-        [SerializeField] SpriteRenderer[] status;
-        [SerializeField] GameObject beAttackedIconObj;
 
         private static Vector3 numScale = new Vector3(0.01f, 0.01f, 0.01f);
-        private Sequence sequenceStatus;
         private Dictionary<string, Anima2D.SpriteMeshInstance> meshs = new Dictionary<string, Anima2D.SpriteMeshInstance>();
         private Anima2D.SpriteMeshInstance Weapon
         {
@@ -79,79 +70,20 @@ namespace App.View.Avatar
                 return armRightShort.gameObject.activeSelf ? armRightShort : armRightLong;
             }
         }
-        public Model.Character.MCharacter mCharacter { get; private set; }
-        private static Material materialGray;
-        private static Material materialDefault;
-        private static Dictionary<Belong, Color32> hpColors = new Dictionary<Belong, Color32>{
-            {Belong.self, new Color32(255,0,0,255)},
-            {Belong.friend, new Color32(0,255,0,255)},
-            {Belong.enemy, new Color32(0,0,255,255)}
-        };
         private Anima2D.SpriteMeshInstance[] allSprites;
-        private bool init = false;
-        public Direction direction{
-            set{
-                content.localScale = new Vector3(value == Direction.left ? 1 : -1, 1, 1);
-            }
-            get{
-                return content.localScale.x > 0 ? Direction.left : Direction.right;
-            }
-        }
-        public float X
-        {
-            get{
-                return transform.localPosition.x;
-            }
-            set
-            {
-                float oldvalue = transform.localPosition.x;
-                if (value > oldvalue)
-                {
-                    direction = Direction.right;
-                }
-                else if (value < oldvalue)
-                {
-                    direction = Direction.left;
-                }
-                transform.localPosition = new Vector3(value, transform.localPosition.y, 0f);
-            }
-        }
-        public float Y
-        {
-            get
-            {
-                return transform.localPosition.y;
-            }
-            set {
-                transform.localPosition = new Vector3(transform.localPosition.x, value, 0f);
-            }
-        }
-        private Animator _animator;
-        private Animator animator
-        {
-            get
-            {
-                if (_animator == null)
-                {
-                    _animator = GetComponentInChildren<Animator>();
-                }
-                return _animator;
-            }
-        }
-        public void SetOrders(Dictionary<string, int> meshOrders)
+        public override void SetOrders(Dictionary<string, int> meshOrders)
         {
             foreach (string key in meshOrders.Keys)
             {
                 meshs[key].sortingOrder = meshOrders[key];
             }
         }
-        private void Init()
+        protected override void Init()
         {
             if (init)
             {
                 return;
             }
-            init = true;
             allSprites = this.GetComponentsInChildren<Anima2D.SpriteMeshInstance>(true);
             if (meshs.Count == 0)
             {
@@ -181,14 +113,12 @@ namespace App.View.Avatar
             }
             if (materialGray == null)
             {
-                materialGray = Global.materialGray;
                 materialDefault = head.sharedMaterial;
             }
             num.GetComponent<MeshRenderer>().sortingOrder = clothesDownLong.sortingOrder + 10;
-            num.gameObject.SetActive(false);
-            //BelongChanged(ViewModel.Belong.Value, ViewModel.Belong.Value);
+            base.Init();
         }
-        private bool Gray
+        protected override bool Gray
         {
             set
             {
@@ -203,7 +133,7 @@ namespace App.View.Avatar
                 return head.sharedMaterial.Equals(materialGray);
             }
         }
-        public float alpha
+        public override float alpha
         {
             set
             {
@@ -217,10 +147,9 @@ namespace App.View.Avatar
                 return allSprites[0].color.a;
             }
         }
-        public void UpdateView(Model.Character.MCharacter mCharacter)
+        public override void UpdateView(Model.Character.MCharacter mCharacter)
         {
-            this.mCharacter = mCharacter;
-            Init();
+            base.UpdateView(mCharacter);
             HeadChanged();
             WeaponChanged();
             ClothesChanged();
@@ -295,16 +224,7 @@ namespace App.View.Avatar
                 legRight.spriteMesh = ImageAssetBundleManager.GetShoeRightMesh(mEquipment.imageIndex);
             }
         }
-        public ActionType action{
-            set{
-                mCharacter.action = value;
-                ActionChanged();
-            }
-            get{
-                return mCharacter.action;
-            }
-        }
-        private void ActionChanged()
+        protected override void ActionChanged()
         {
             string animatorName = string.Format("{0}_{1}_{2}", 
                                                 mCharacter.moveType.ToString(), 
@@ -315,106 +235,7 @@ namespace App.View.Avatar
                 return;
             }
             animator.Play(animatorName);
-            if (mCharacter.action != ActionType.idle)
-            {
-                Global.battleManager.charactersManager.AddDynamicCharacter(this);
-                //this.controller.SendMessage("AddDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
-                return;
-            }
-            if (mCharacter.hp > 0)
-            {
-                this.StartCoroutine(RemoveDynamicCharacter());
-                return;
-            }
-            HOTween.To(this, 1f, new TweenParms().Prop("alpha", 0f).OnComplete(() => {
-                this.gameObject.SetActive(false);
-                this.alpha = 1f;
-                if (sequenceStatus != null)
-                {
-                    sequenceStatus.Kill();
-                }
-                if (App.Util.AppManager.CurrentScene != null)
-                {
-                    App.Util.AppManager.CurrentScene.StartCoroutine(RemoveDynamicCharacter());
-                }
-            }));
-        }
-        private IEnumerator RemoveDynamicCharacter()
-        {
-            while (this.gameObject.activeSelf && this.num.gameObject.activeSelf)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            yield return new WaitForEndOfFrame();
-            Global.battleManager.charactersManager.RemoveDynamicCharacter(this);
-            //this.controller.SendMessage("RemoveDynamicCharacter", this, SendMessageOptions.DontRequireReceiver);
-        }
-        public void AttackToHert()
-        {
-            if (mCharacter.target == null)
-            {
-                return;
-            }
-            if (mCharacter.currentSkill.useToEnemy)
-            {
-                Global.battleEvent.OnDamage(this);
-                //this.controller.SendMessage("OnDamage", this, SendMessageOptions.DontRequireReceiver);
-            }
-            else
-            {
-                this.controller.SendMessage("OnHeal", this, SendMessageOptions.DontRequireReceiver);
-            }
-        }
-        public bool actionOver
-        {
-            set
-            {
-                mCharacter.actionOver = value;
-                Gray = value;
-                animator.speed = value ? 0 : 1;
-            }
-            get {
-                return mCharacter.actionOver;
-            }
-        }
-        public void ActionEnd()
-        {
-            this.action = ActionType.idle;
-        }
-        public Belong belong
-        {
-            get
-            {
-                return mCharacter.belong;
-            }
-        }
-        public bool isHide
-        {
-            get
-            {
-                return mCharacter.isHide;
-            }
-        }
-        public int hp{
-            get{
-                return mCharacter.hp;
-            }
-            set{
-                mCharacter.hp = value;
-                float hpValue = value * 1f / mCharacter.ability.hpMax;
-                hpSprite.transform.localPosition = new Vector3((hpValue - 1f) * 0.5f, 0f, 0f);
-                hpSprite.transform.localScale = new Vector3(hpValue, 1f, 1f);
-            }
-        }
-        public bool beAttackedIcon
-        {
-            set{
-                beAttackedIconObj.SetActive(value);
-            }
-        }
-        public void OnBlock()
-        {
-            this.action = ActionType.block;
+            base.ActionChanged();
         }
         public void OnHeal(Model.Battle.MDamageParam arg)
         {

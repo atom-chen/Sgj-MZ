@@ -34,8 +34,8 @@ namespace App.Util.Manager
                 return true;
             }
             //获取地形辅助
-            float tileAid = attackCharacter.TileAid(Global.battleManager.mapSearch.GetTile(attackCharacter.coordinate));
-            float targetTileAid = attackCharacter.TileAid(Global.battleManager.mapSearch.GetTile(targetCharacter.coordinate));
+            float tileAid = attackCharacter.TileAid(Global.mapSearch.GetTile(attackCharacter.coordinate));
+            float targetTileAid = attackCharacter.TileAid(Global.mapSearch.GetTile(targetCharacter.coordinate));
             int attackValue = (int)((attackCharacter.ability.knowledge + attackCharacter.ability.speed * 2) * tileAid);
             int targetValue = (int)((targetCharacter.ability.knowledge + targetCharacter.ability.speed * 2) * targetTileAid);
             int r;
@@ -98,7 +98,7 @@ namespace App.Util.Manager
             {
                 return false;
             }
-            if (!Global.battleManager.charactersManager.IsInSkillDistance(coordinate, targetCoordinate, targetCharacter))
+            if (!Global.charactersManager.IsInSkillDistance(coordinate, targetCoordinate, targetCharacter))
             {
                 //不在攻击范围内
                 return false;
@@ -145,11 +145,11 @@ namespace App.Util.Manager
             App.Model.Master.MSkill skillMaster = skill.master;
             if (tile == null)
             {
-                tile = Global.battleManager.mapSearch.GetTile(attackCharacter.coordinate);
+                tile = Global.mapSearch.GetTile(attackCharacter.coordinate);
             }
             if (targetTile == null)
             {
-                targetTile = Global.battleManager.mapSearch.GetTile(targetCharacter.coordinate);
+                targetTile = Global.mapSearch.GetTile(targetCharacter.coordinate);
             }
             float attack = Array.Exists(skillMaster.types, s => s == SkillType.attack) ? attackCharacter.ability.physicalAttack : attackCharacter.ability.magicAttack;
             //地形辅助

@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using App.Model;
+using App.Util;
+using Holoville.HOTween;
 using UnityEngine;
 namespace App.View.Avatar
 {
-    [RequireComponent(typeof(SpriteRenderer))]
-    public class VAvatar : MonoBehaviour
+    public class VAvatar : VCharacterBase
     {
-        private SpriteRenderer sr;
+        [SerializeField] private Texture texture = null;
+        [SerializeField] private SpriteRenderer sprite;
 
         private static int idMainTex = Shader.PropertyToID("_MainTex");
         private MaterialPropertyBlock block;
 
-        [SerializeField]
-        private Texture texture = null;
         public Texture overrideTexture
         {
             get { return texture; }
@@ -27,15 +28,9 @@ namespace App.View.Avatar
             }
         }
 
-        void Awake()
-        {
-            Init();
-            overrideTexture = texture;
-        }
-
         void LateUpdate()
         {
-            sr.SetPropertyBlock(block);
+            sprite.SetPropertyBlock(block);
         }
 
         void OnValidate()
@@ -43,11 +38,45 @@ namespace App.View.Avatar
             overrideTexture = texture;
         }
 
-        void Init()
+        protected override void Init()
         {
             block = new MaterialPropertyBlock();
-            sr = GetComponent<SpriteRenderer>();
-            sr.GetPropertyBlock(block);
+            sprite.GetPropertyBlock(block);
+            overrideTexture = texture;
+            base.Init();
+        }
+        public override float alpha
+        {
+            set
+            {
+                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, value);
+            }
+            get
+            {
+                return sprite.color.a;
+            }
+        }
+        protected override bool Gray
+        {
+            set
+            {
+                Material material = value ? materialGray : materialDefault;
+                sprite.sharedMaterial = material;
+            }
+            get
+            {
+                return sprite.sharedMaterial.Equals(materialGray);
+            }
+        }
+        protected override void ActionChanged()
+        {
+            string animatorName = mCharacter.action.ToString();
+            if (!this.gameObject.activeInHierarchy)
+            {
+                return;
+            }
+            animator.Play(animatorName);
+            base.ActionChanged();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace App.Util.Manager
         private List<VTile> _currentMovingTiles;
         private List<VTile> currentAttackTiles;
         public List<VTile> currentMovingTiles { get { return _currentMovingTiles; } }
-        private List<View.Avatar.VCharacter> beAttackedCharacters = new List<View.Avatar.VCharacter>();
+        private List<View.Avatar.VCharacterBase> beAttackedCharacters = new List<View.Avatar.VCharacterBase>();
         public BattleTilesManager()
         {
 
@@ -72,7 +72,7 @@ namespace App.Util.Manager
             //VTile characterTile = currentAttackTiles.Find(v => v.coordinate.Equals(mCharacter.coordinate));
             //Debug.LogError("currentAttackTiles " + currentAttackTiles.Count);
             currentAttackTiles = currentAttackTiles.FindAll((tile) => {
-                int length = Global.battleManager.mapSearch.GetDistance(tile.coordinate, mCharacter.coordinate);
+                int length = Global.mapSearch.GetDistance(tile.coordinate, mCharacter.coordinate);
                 return distances.Exists(d => length >= d[0] && length <= d[1]);
             });
             if (mCharacter.currentSkill == null)
@@ -93,16 +93,16 @@ namespace App.Util.Manager
                 {
                     continue;
                 }
-                MCharacter character = Global.battleManager.charactersManager.GetCharacter(tile.coordinate);
+                MCharacter character = Global.charactersManager.GetCharacter(tile.coordinate);
                 if (character == null || character.hp == 0 || character.isHide)
                 {
                     continue;
                 }
-                bool sameBelong = Global.battleManager.charactersManager.IsSameBelong(character.belong, mCharacter.belong);
+                bool sameBelong = Global.charactersManager.IsSameBelong(character.belong, mCharacter.belong);
                 bool useToEnemy = mCharacter.currentSkill.useToEnemy;
                 if (useToEnemy ^ sameBelong)
                 {
-                    View.Avatar.VCharacter vCharacter = Global.battleManager.charactersManager.GetVCharacter(character);
+                    View.Avatar.VCharacterBase vCharacter = Global.charactersManager.GetVCharacter(character);
                     vCharacter.beAttackedIcon = true;
                     beAttackedCharacters.Add(vCharacter);
                 }

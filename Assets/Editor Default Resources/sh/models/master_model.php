@@ -5,10 +5,11 @@ class Master_model extends MY_Model
 		parent::__construct();
 	}
 	public function get_master_character(){
-		$select = "`id`,`name`,`nickname`,`head`,`hat`,`hp`,`mp`,`weapon`,`clothes`,`horse`,`qualification`,
-		`power`,`knowledge`,`trick`,`endurance`,`speed`,`moving_power`,`riding`,`walker`,`pike`,`sword`,
-		`long_knife`,`knife`,`long_ax`,`ax`,`long_sticks`,`sticks`,`archery`,`hidden_weapons`,`dual_wield`,`magic`,
-		`resistance_metal`,`resistance_wood`,`resistance_water`,`resistance_fire`,`resistance_earth`, `introduction` ";
+		$select = "`id`,`name`,`nickname`,`static_avatar`,`head`,`hat`,`hp`,`mp`,`weapon`,`clothes`,
+		`horse`,`qualification`,`power`,`knowledge`,`trick`,`endurance`,`speed`,`moving_power`,
+		`riding`,`walker`,`pike`,`sword`,`long_knife`,`knife`,`long_ax`,`ax`,`long_sticks`,`sticks`,
+		`archery`,`hidden_weapons`,`dual_wield`,`magic`,`resistance_metal`,`resistance_wood`,
+		`resistance_water`,`resistance_fire`,`resistance_earth`, `introduction` ";
 		$table = $this->master_db->base_character;
 		$order_by = "id";
 		$result = $this->master_db->select($select, $table, null, $order_by, null, Database_Result::TYPE_DEFAULT);

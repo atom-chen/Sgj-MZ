@@ -45,7 +45,7 @@ namespace App.Controller.Battle
         /// </summary>
         private void BattleOver(bool isWin)
         {
-            List<MCharacter> characters = Global.battleManager.charactersManager.mCharacters;
+            List<MCharacter> characters = Global.charactersManager.mCharacters;
             Request req = Request.Create("selectedCharacters", selectedCharacters, "isWin", isWin);
             this.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.BattleResultDialog, req));
         }
@@ -65,11 +65,11 @@ namespace App.Controller.Battle
             {
                 boutCount++;
             }
-           Global.battleManager.charactersManager.ActionRestore();
+           Global.charactersManager.ActionRestore();
             System.Action closeEvent = () => {
                 this.StartCoroutine(Global.battleEvent.OnBoutStart());
             };
-            foreach (MCharacter mCharacter in Global.battleManager.charactersManager.mCharacters)
+            foreach (MCharacter mCharacter in Global.charactersManager.mCharacters)
            {
                mCharacter.boutEventComplete = false;
            }
@@ -110,7 +110,7 @@ namespace App.Controller.Battle
         public void InitCharacters(Dictionary<int, bool> characterIds, Model.Master.MBattlefield battlefieldMaster)
         {
             int index = 0;
-            List<MCharacter> characters = Global.battleManager.charactersManager.mCharacters;
+            List<MCharacter> characters = Global.charactersManager.mCharacters;
             characters.Clear();
             System.Array.ForEach(Global.SUser.self.characters, (model) =>
             {

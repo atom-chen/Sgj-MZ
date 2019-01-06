@@ -24,8 +24,8 @@ namespace App.Util.Manager
         public IEnumerator Execute()
         {
             BattleCalculateManager calculateManager = Global.battleManager.calculateManager;
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            BattleCharactersManager charactersManager = Global.charactersManager;
+            TileMap mapSearch = Global.mapSearch;
             //行动顺序
             List<MCharacter> characters = charactersManager.mCharacters.FindAll((c) => {
                 return c.belong == this.belong && c.hp > 0 && !c.isHide && !c.actionOver;
@@ -175,7 +175,7 @@ namespace App.Util.Manager
 
         private void FindHealTarget(out MCharacter healTarget, out VTile healTile)
         {
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            BattleCharactersManager charactersManager = Global.charactersManager;
             BattleTilesManager tilesManager = Global.battleManager.tilesManager;
 
             healTarget = null;
@@ -217,8 +217,8 @@ namespace App.Util.Manager
         private VTile GetNearestNode(MCharacter target, List<VTile> tiles)
         {
             BattleCalculateManager calculateManager = Global.battleManager.calculateManager;
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            BattleCharactersManager charactersManager = Global.charactersManager;
+            TileMap mapSearch = Global.mapSearch;
             Debug.LogError("GetNearestNode tiles = " + tiles.Count);
             if (mCharacter.mission == Mission.defensive)
             {
@@ -282,8 +282,8 @@ namespace App.Util.Manager
 
         private IEnumerator MoveToNearestTarget()
         {
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            BattleCharactersManager charactersManager = Global.charactersManager;
+            TileMap mapSearch = Global.mapSearch;
             BattleTilesManager tilesManager = Global.battleManager.tilesManager;
             List<VTile> tileList = null;
             foreach (MCharacter character in charactersManager.mCharacters)
@@ -298,9 +298,9 @@ namespace App.Util.Manager
                 }
                 VTile startTile = mapSearch.GetTile(mCharacter.coordinate);
                 VTile endTile = mapSearch.GetTile(character.coordinate);
-                List<VTile> tiles = Global.battleManager.aStar.Search(mCharacter, startTile, endTile);
+                List<VTile> tiles = Global.aStar.Search(mCharacter, startTile, endTile);
                 if(tiles.Count == 0) {
-                    tiles = Global.battleManager.aStar.Search(mCharacter, startTile, endTile, charactersManager.mCharacters);
+                    tiles = Global.aStar.Search(mCharacter, startTile, endTile, charactersManager.mCharacters);
                     if (tiles.Count == 0)
                     {
                         Debug.LogError("MoveToNearestTarget search null");
@@ -338,7 +338,7 @@ namespace App.Util.Manager
         private IEnumerator Attack()
         {
             Debug.LogError("IEnumerator Attack targetTile="+ targetTile);
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            TileMap mapSearch = Global.mapSearch;
             yield return AppManager.CurrentScene.StartCoroutine(WaitMoving());
             if (targetTile == null)
             {
@@ -358,7 +358,7 @@ namespace App.Util.Manager
         }
         private IEnumerator Heal()
         {
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            TileMap mapSearch = Global.mapSearch;
             yield return AppManager.CurrentScene.StartCoroutine(WaitMoving());
             VTile vTile = mapSearch.GetTile(attackTarget.coordinate);
             Global.battleManager.ClickSkillNode(vTile.coordinate);
@@ -369,8 +369,8 @@ namespace App.Util.Manager
         }
         public void MoveAfterAttack()
         {
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
-            TileMap mapSearch = Global.battleManager.mapSearch;
+            BattleCharactersManager charactersManager = Global.charactersManager;
+            TileMap mapSearch = Global.mapSearch;
             BattleTilesManager tilesManager = Global.battleManager.tilesManager;
             List<VTile> vTiles = tilesManager.currentMovingTiles;
             VTile vTile = mapSearch.GetTile(mCharacter.coordinate);
@@ -400,7 +400,7 @@ namespace App.Util.Manager
         {
             BattleCalculateManager calculateManager = Global.battleManager.calculateManager;
             BattleTilesManager tilesManager = Global.battleManager.tilesManager;
-            BattleCharactersManager charactersManager = Global.battleManager.charactersManager;
+            BattleCharactersManager charactersManager = Global.charactersManager;
             attackTarget = null;
             targetTile = null;
             if (mCharacter.currentSkill == null)

@@ -60,7 +60,6 @@ namespace App.Util.Search
         /// </summary>
         /// <param name="neighboringNode">Neighboring node.</param>
         /// <param name="centerNode">Center node.</param>
-        /// <param name="eight">If set to <c>true</c> eight.</param>
         private void Calculation(VTile neighboringNode, VTile centerNode)
         {
             if (neighboringNode.isChecked)
@@ -80,7 +79,7 @@ namespace App.Util.Search
         }
         private void CalculationGHF(VTile node)
         {
-            node.H = Global.battleManager.mapSearch.GetDistance(node, endNode);
+            node.H = Global.mapSearch.GetDistance(node, endNode);
             node.F = node.G + node.H;
         }
         /// <summary>
@@ -206,11 +205,11 @@ namespace App.Util.Search
             while (!isOver)
             {
                 thisPoint.isChecked = true;
-                List<Vector2Int> checkList = Global.battleManager.mapSearch.GetNeighboringCoordinates(thisPoint.coordinate);
+                List<Vector2Int> checkList = Global.mapSearch.GetNeighboringCoordinates(thisPoint.coordinate);
                 //检测开始
                 foreach (Vector2Int tileVec in checkList)
                 {
-                    VTile tile = Global.battleManager.mapSearch.GetTile(tileVec);
+                    VTile tile = Global.mapSearch.GetTile(tileVec);
                     if (IsWay(tile))
                     {
                         //如果坐标可以通过，则首先检查是不是目标点

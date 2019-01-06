@@ -1,0 +1,279 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e494fc8d8fa44ca6b3750d4a3b0fb28, type: 3}
+  m_Name: npcasset
+  m_EditorClassIdentifier: 
+  npcs:
+  - id: 1
+    character_id: 447
+    horse: 4
+    clothes: 1
+    weapon: 14
+    star: 2
+  - id: 2
+    character_id: 1000
+    horse: 4
+    clothes: 1
+    weapon: 0
+    star: 3
+  - id: 3
+    character_id: 1001
+    horse: 4
+    clothes: 1
+    weapon: 3
+    star: 1
+  - id: 4
+    character_id: 1002
+    horse: 4
+    clothes: 1
+    weapon: 3
+    star: 1
+  - id: 5
+    character_id: 5200
+    horse: 4
+    clothes: 1
+    weapon: 4
+    star: 1
+  - id: 6
+    character_id: 5300
+    horse: 4
+    clothes: 1
+    weapon: 3
+    star: 1
+  - id: 7
+    character_id: 5301
+    horse: 4
+    clothes: 1
+    weapon: 3
+    star: 1
+  - id: 8
+    character_id: 23
+    horse: 4
+    clothes: 1
+    weapon: 7
+    star: 3
+  - id: 9
+    character_id: 449
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 1
+  - id: 10
+    character_id: 450
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
+  - id: 11
+    character_id: 72
+    horse: 4
+    clothes: 1
+    weapon: 7
+    star: 1
+  - id: 12
+    character_id: 5302
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 13
+    character_id: 5303
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 14
+    character_id: 37
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
+  - id: 15
+    character_id: 73
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
+  - id: 16
+    character_id: 5400
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 17
+    character_id: 5000
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
+  - id: 18
+    character_id: 5001
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
+  - id: 19
+    character_id: 469
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 2
+  - id: 20
+    character_id: 468
+    horse: 4
+    clothes: 1
+    weapon: 3
+    star: 1
+  - id: 21
+    character_id: 1003
+    horse: 4
+    clothes: 1
+    weapon: 0
+    star: 0
+  - id: 22
+    character_id: 1004
+    horse: 4
+    clothes: 1
+    weapon: 0
+    star: 0
+  - id: 23
+    character_id: 86
+    horse: 4
+    clothes: 1
+    weapon: 14
+    star: 1
+  - id: 24
+    character_id: 5600
+    horse: 4
+    clothes: 1
+    weapon: 2
+    star: 0
+  - id: 25
+    character_id: 5500
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 26
+    character_id: 5501
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 27
+    character_id: 5502
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 28
+    character_id: 5503
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 29
+    character_id: 5504
+    horse: 1
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 30
+    character_id: 5505
+    horse: 1
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 31
+    character_id: 5506
+    horse: 1
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 32
+    character_id: 5507
+    horse: 1
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 33
+    character_id: 5304
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 34
+    character_id: 5305
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 35
+    character_id: 5306
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 36
+    character_id: 5307
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 0
+  - id: 37
+    character_id: 5508
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 38
+    character_id: 5509
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 39
+    character_id: 5510
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 40
+    character_id: 5511
+    horse: 4
+    clothes: 1
+    weapon: 5
+    star: 0
+  - id: 41
+    character_id: 1006
+    horse: 4
+    clothes: 1
+    weapon: 7
+    star: 1
+  - id: 42
+    character_id: 5308
+    horse: 4
+    clothes: 1
+    weapon: 4
+    star: 1
+  - id: 43
+    character_id: 5309
+    horse: 4
+    clothes: 1
+    weapon: 4
+    star: 1
+  - id: 44
+    character_id: 13
+    horse: 4
+    clothes: 1
+    weapon: 1
+    star: 1
