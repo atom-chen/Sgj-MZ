@@ -35,15 +35,18 @@ namespace App.Controller.Scenario
         private void LSharpInit()
         {
             LSharpFunction.Clear();
-            //LSharpScript.Instance.Analysis(new List<string> { string.Format("Load.script({0})", world.id * 100) });
             StartCoroutine(SharpInitRun());
         }
         private IEnumerator SharpInitRun()
         {
             yield return new WaitForEndOfFrame();
-            string str = "Character.add(21,idle,right,5,4,true);\rCharacter.add(8,idle,right,12,4,true);\rCharacter.move(8,7,4);\rCharacter.setaction(21,move);";
-            List<string> script = str.Split('\r').ToList();
+            string path = "Assets/Editor Default Resources/ScenarioScripts/test.txt";
+            System.IO.StreamReader reader = new System.IO.StreamReader(path);
+            string str = reader.ReadToEnd();
+            reader.Close();
+            List<string> script = str.Split('\n').ToList();
             LSharpScript.Instance.Analysis(script);
+            //LSharpScript.Instance.Analysis(new List<string> { string.Format("Load.script({0})", world.id * 100) });
         }
     }
 }

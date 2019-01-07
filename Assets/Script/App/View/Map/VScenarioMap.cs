@@ -64,7 +64,6 @@ namespace App.View.Map
         }
         void AddSharpEvents()
         {
-            Debug.LogError("VScenarioMap AddSharpEvents");
             Global.sharpEvent.AddCharacterHandler += AddCharacterHandler;
             Global.sharpEvent.SetNpcActionHandler += SetNpcActionHandler;
             Global.sharpEvent.MoveNpcHandler += MoveNpcHandler;
@@ -77,56 +76,28 @@ namespace App.View.Map
         }
         void MoveNpcHandler(int npcId, int x, int y)
         {
-            Debug.LogError("VScenarioMap MoveNpcHandler");
             Avatar.VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara => chara.mCharacter.id == npcId);
             MoveCharacter(vCharacter, x, y);
         }
         private void MoveCharacter(Avatar.VCharacterBase vCharacter, int x, int y)
         {
             //MapMoveToPosition(mCharacter.CoordinateX, mCharacter.CoordinateY);
-            Model.Character.MCharacter mCharacter = vCharacter.mCharacter;
-            VTile startTile = Global.mapSearch.GetTile(mCharacter.coordinate.x, mCharacter.coordinate.y);
-            VTile endTile = Global.mapSearch.GetTile(x, y);
-            List<VTile> tiles = Global.aStar.Search(mCharacter, startTile, endTile);
-
             Holoville.HOTween.Core.TweenDelegate.TweenCallback moveComplete = () =>
             {
-                mCharacter.coordinate.y = endTile.coordinate.y;
-                mCharacter.coordinate.x = endTile.coordinate.x;
                 vCharacter.action = Model.ActionType.idle;
-                //MapMoveToPosition(mCharacter.CoordinateX, mCharacter.CoordinateY);
                 App.Util.LSharp.LSharpScript.Instance.Analysis();
             };
-            if (tiles.Count > 0)
-            {
-                vCharacter.action = Model.ActionType.move;
-                Sequence sequence = new Sequence();
-                foreach (VTile tile in tiles)
-                {
-                    TweenParms tweenParms = new TweenParms().Prop("X", tile.transform.localPosition.x, false)
-                    .Prop("Y", tile.transform.localPosition.y, false).Ease(EaseType.Linear);
-                    if (tile.coordinate.Equals(endTile.coordinate))
-                    {
-                        tweenParms.OnComplete(moveComplete);
-                    }
-                    else
-                    {
-                        tweenParms.OnComplete(() => {
-                            //MapMoveToPosition(tile.CoordinateX, tile.CoordinateY);
-                        });
-                    }
-                    sequence.Append(HOTween.To(mCharacter, 0.5f, tweenParms));
-                }
-                sequence.Play();
-            }
-            else
-            {
-                moveComplete();
-            }
+
+            vCharacter.action = Model.ActionType.move;
+            Sequence sequence = new Sequence();
+            TweenParms tweenParms = new TweenParms().Prop("X", x * 0.32f, false)
+            .Prop("Y", -4.4f, false).Ease(EaseType.Linear);
+            tweenParms.OnComplete(moveComplete);
+            sequence.Append(HOTween.To(vCharacter, 1f, tweenParms));
+            sequence.Play();
         }
         void SetNpcActionHandler(int npcId, Model.ActionType actionType)
         {
-            Debug.LogError("VScenarioMap SetNpcActionHandler");
             Avatar.VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara=>chara.mCharacter.id == npcId);
             StartCoroutine(SetAction(vCharacter, actionType));
         }
