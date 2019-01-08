@@ -4,13 +4,13 @@ namespace App.Util.Event
 {
     public class SharpEvent
     {
-        public delegate void AddCharacterEvent(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y);
+        public delegate void AddCharacterEvent(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y, bool isPlayer);
         public event AddCharacterEvent AddCharacterHandler;
-        public void DispatchAddCharacter(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y)
+        public void DispatchAddCharacter(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y, bool isPlayer)
         {
             if (AddCharacterHandler != null)
             {
-                AddCharacterHandler(npcId, actionType, direction, x, y);
+                AddCharacterHandler(npcId, actionType, direction, x, y, isPlayer);
             }
         }
 

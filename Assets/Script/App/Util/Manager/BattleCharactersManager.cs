@@ -16,6 +16,7 @@ namespace App.Util.Manager
         private List<VCharacterBase> dynamicCharacters = new List<VCharacterBase>();
         public List<MCharacter> mCharacters = new List<MCharacter>();
         public List<VCharacterBase> vCharacters = new List<VCharacterBase>();
+        public VCharacterBase mainVCharacter;
         public BattleCharactersManager()
         {
 

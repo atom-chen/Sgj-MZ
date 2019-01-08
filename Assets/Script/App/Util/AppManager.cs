@@ -28,7 +28,8 @@ namespace App.Util
         ReadyBattleDialog,
         MessageDialog,
         BattleResultDialog,
-        MapDialog
+        MapDialog,
+        TalkDialog
     }
 
     public class AppManager

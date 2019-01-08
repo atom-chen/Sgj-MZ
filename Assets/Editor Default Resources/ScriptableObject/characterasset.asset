@@ -6255,7 +6255,7 @@ MonoBehaviour:
     resistanceWater: 0
     resistanceFire: 0
     resistanceEarth: 0
-    name: "\u6587\u4EF2\u5BB9"
+    name: "\u9879\u4F2F"
     nickname: 
     staticAvatar: 0
     head: 1
@@ -6264,7 +6264,7 @@ MonoBehaviour:
     clothes: 1
     horse: 1
     qualification: 1
-    introduction: '----'
+    introduction: "\u6218\u56FD\u672B\u671F\u7684\u695A\u56FD\u8D35\u65CF\u3002\u4ED6\u662F\u9879\u7FBD\u6700\u5C0F\u7684\u53D4\u7236\uFF0C\u968F\u9879\u7FBD\u8FDB\u5165\u5173\u4E2D\uFF0C\u66FE\u5728\u9E3F\u95E8\u5BB4\u4E2D\u4FDD\u62A4\u5218\u90A6\u3002\u6C49\u738B\u671D\u5EFA\u7ACB\u540E\uFF0C\u5218\u90A6\u4E3A\u611F\u5FF5\u9879\u4F2F\u5F53\u5E74\u5728\u9E3F\u95E8\u5BB4\u65F6\u7684\u89E3\u6551\u4E4B\u6069\uFF0C\u8D50\u5218\u59D3\uFF0C\u5E76\u5C01\u4E3A\u5C04\u9633\u4FAF\u3002"
     resistances: 000000000000000000000000000000000000000000000000
     skills: []
   - id: 148
@@ -6294,7 +6294,7 @@ MonoBehaviour:
     resistanceWater: 0
     resistanceFire: 0
     resistanceEarth: 0
-    name: "\u5D14\u57DC"
+    name: "\u97E9\u4FE1"
     nickname: 
     staticAvatar: 0
     head: 1
@@ -6303,7 +6303,7 @@ MonoBehaviour:
     clothes: 1
     horse: 1
     qualification: 1
-    introduction: "\u539F\u4E3A\u5F3A\u4EBA\uFF0C\u66FE\u5F52\u987A\u7530\u864E\u3002\u4E0E\u6881\u5C71\u519B\u4EA4\u6218\u4E2D\u6295\u964D\u3002\u540E\u6765\uFF0C\u5D14\u57DC\u5728\u5F81\u8BA8\u738B\u5E86\u4E4B\u6218\u4E2D\u88AB\u7E3B\u80DC\u65A9\u4E8E\u9A6C\u4E0B\u3002"
+    introduction: '----'
     resistances: 000000000000000000000000000000000000000000000000
     skills: []
   - id: 149
@@ -6342,7 +6342,7 @@ MonoBehaviour:
     clothes: 1
     horse: 1
     qualification: 1
-    introduction: "\u7530\u864E\u9EBE\u4E0B\u5934\u9886\u3002\u4E0E\u6881\u5C71\u519B\u4EA4\u6218\u4E2D\uFF0C\u88AB\u5F20\u6E05\u4E00\u67AA\u6420\u6B7B\u3002"
+    introduction: '----'
     resistances: 000000000000000000000000000000000000000000000000
     skills: []
   - id: 150

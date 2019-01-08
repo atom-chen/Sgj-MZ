@@ -14,31 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcs:
   - id: 1
-    character_id: 447
+    character_id: 2
     horse: 4
     clothes: 1
     weapon: 14
     star: 2
   - id: 2
-    character_id: 1000
+    character_id: 1
     horse: 4
     clothes: 1
     weapon: 0
     star: 3
   - id: 3
-    character_id: 1001
+    character_id: 148
     horse: 4
     clothes: 1
     weapon: 3
     star: 1
   - id: 4
-    character_id: 1002
+    character_id: 54
     horse: 4
     clothes: 1
     weapon: 3
     star: 1
   - id: 5
-    character_id: 5200
+    character_id: 147
     horse: 4
     clothes: 1
     weapon: 4

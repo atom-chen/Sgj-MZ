@@ -1,6 +1,7 @@
-Character.add(21,idle,right,5,4,true);
-Character.add(8,idle,right,12,4,true);
-Character.move(8,7,4);
-Talk.setnpc(8,0,王四吗？昨天就已经回去了啊！,false);
-Character.setaction(8,attack);
-Character.setaction(21,hert);
+Character.add(1,idle,left,4,4,true);
+Character.add(4,idle,right,2,4,false);
+Talk.setnpc(4,0,王四吗？昨天就已经回去了啊！);
+Character.add(5,idle,right,12,4,false);
+Character.move(5,7,4);
+Character.setaction(1,attack);
+Character.setaction(4,hert);

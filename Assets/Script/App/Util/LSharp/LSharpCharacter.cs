@@ -14,9 +14,10 @@ namespace App.Util.LSharp
             string directionStr = arguments[2];
             int x = int.Parse(arguments[3]);
             int y = int.Parse(arguments[4]);
+            bool isPlayer = arguments.Length > 5 && arguments[5] == "true";
             Model.ActionType actionType = (Model.ActionType)Enum.Parse(typeof(Model.ActionType), action);
             Model.Direction direction = (Model.Direction)Enum.Parse(typeof(Model.Direction), directionStr, true);
-            Global.sharpEvent.DispatchAddCharacter(npcId, actionType, direction, x, y);
+            Global.sharpEvent.DispatchAddCharacter(npcId, actionType, direction, x, y, isPlayer);
             LSharpScript.Instance.Analysis();
         }
         public void Setaction(string[] arguments)

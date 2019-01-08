@@ -11,12 +11,21 @@ namespace App.Controller.Talk
         {
             int npcId = request.Get<int>("npcId");
             string message = request.Get<string>("message");
-            VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara => chara.mCharacter.id == npcId);
-            this.dispatcher.Set("name", vCharacter.mCharacter.name);
-            this.dispatcher.Set("characterId", vCharacter.mCharacter.characterId);
+            Model.Character.MCharacter mCharacter = request.Get<Model.Character.MCharacter>("mCharacter");
+            int isPlayer = Global.charactersManager.mainVCharacter.mCharacter.characterId == mCharacter.characterId ? 1 : 0;
+            this.dispatcher.Set("name", mCharacter.name);
+            this.dispatcher.Set("characterId", mCharacter.characterId);
             this.dispatcher.Set("message", message);
-            this.dispatcher.Set("isPlayer", 1);
+            this.dispatcher.Set("isPlayer", isPlayer);
+            this.dispatcher.Notify();
             yield return StartCoroutine(base.OnLoad(request));
+        }
+        public static void ToShowNpc(int npcId, string message, System.Action onComplete = null)
+        {
+            VCharacterBase vCharacter = Global.charactersManager.vCharacters.Find(chara => chara.mCharacter.id == npcId);
+            Model.Character.MCharacter mCharacter = vCharacter.mCharacter;
+            Request req = Request.Create("mCharacter", mCharacter, "message", message, "closeEvent", onComplete);
+            AppManager.CurrentScene.StartCoroutine(Global.AppManager.ShowDialog(Util.Dialog.TalkDialog, req));
         }
     }
 }

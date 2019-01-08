@@ -7,9 +7,9 @@ namespace App.View.Common.Bind
     public class VBindText : VBindBase
     {
         //private const float DBL_EPSILON = 0.0001f;
-        [SerializeField] private string Format = "{0}";
+        [SerializeField] protected string Format = "{0}";
         //public float max = 0;
-        private Text text;
+        protected Text text;
 
         public override void Awake()
         {

@@ -114,7 +114,7 @@ namespace App.View.Map
             }
             Util.LSharp.LSharpScript.Instance.Analysis();
         }
-        void AddCharacterHandler(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y)
+        void AddCharacterHandler(int npcId, App.Model.ActionType actionType, App.Model.Direction direction, int x, int y, bool isPlayer)
         {
             Debug.LogError("VScenarioMap AddCharacterHandler");
             Model.Character.MCharacter character = NpcCacher.Instance.GetFromNpc(npcId);
@@ -130,6 +130,9 @@ namespace App.View.Map
             vCharacter.UpdateView(character);
             vCharacter.direction = direction;
             Global.charactersManager.vCharacters.Add(vCharacter);
+            if (isPlayer) {
+                Global.charactersManager.mainVCharacter = vCharacter;
+            }
         }
         void OnDestroy()
         {
