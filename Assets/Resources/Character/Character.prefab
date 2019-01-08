@@ -307,7 +307,10 @@ MonoBehaviour:
   hpSprite: {fileID: 212427950642939630}
   num: {fileID: 102208876083219720}
   sortingGroup: {fileID: 210988194872238146}
-  status: []
+  status:
+  - {fileID: 212999300854369010}
+  - {fileID: 212145292295184542}
+  - {fileID: 212675899291032512}
   beAttackedIconObj: {fileID: 1246353761487190}
   animator: {fileID: 95475476504726588}
   head: {fileID: 114447938519107490}
@@ -2747,7 +2750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.15632479
+  m_Length: 0.15632486
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4696447625209504}
   m_AttachedIK: {fileID: 114981511256801218}

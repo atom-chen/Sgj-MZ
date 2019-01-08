@@ -227,6 +227,7 @@ namespace App.Model.Character
             }
             this.hp = this.ability.hpMax;
             this.mp = this.ability.mpMax;
+            this._status = new List<MBase>();
         }
         public int physicalAttack{
             get{
@@ -429,6 +430,22 @@ namespace App.Model.Character
             get{
                 return IsSkillEffectSpecial(SkillEffectSpecial.force_hit);
             }
+        }
+        private List<MBase> _status;
+        public List<MBase> status
+        {
+            get
+            {
+                return _status;
+            }
+        }
+        public void AddStatus(Master.MStrategy mStrategy)
+        {
+            this.status.Add(mStrategy);
+        }
+        public void RemoveStatus(Master.MStrategy mStrategy)
+        {
+            this.status.Remove(mStrategy);
         }
 
         /// <summary>

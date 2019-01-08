@@ -933,7 +933,10 @@ MonoBehaviour:
   hpSprite: {fileID: 9205324175963207376}
   num: {fileID: 8945923364134911286}
   sortingGroup: {fileID: 9196569437927166076}
-  status: []
+  status:
+  - {fileID: 9203644825858030284}
+  - {fileID: 9204480830988308640}
+  - {fileID: 9205005872226544638}
   beAttackedIconObj: {fileID: 9027815122688686440}
   animator: {fileID: 5675562260736555366}
   texture: {fileID: 2800000, guid: 58fedc48b12be418688b4ba18fbf6206, type: 3}
